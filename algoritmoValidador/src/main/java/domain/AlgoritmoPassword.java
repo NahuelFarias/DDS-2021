@@ -1,9 +1,16 @@
 package domain;
 
+import domain.validacion.ValidadorCaracteres;
+import domain.validacion.ValidadorLongitud;
+import domain.validacion.ValidadorPassword;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 import java.util.regex.Matcher;
@@ -53,35 +60,11 @@ public class AlgoritmoPassword {
     // una minuscula, una mayuscula, un numero, un caracter especial y no contiene espacios.
     public static Boolean verificarValidez(String password) {
         Boolean esValida = true;
-        if (password.length() > 20 || password.length() < 8) {
-            System.out.println("Longitud no permitida");
-            esValida = false;
-        }
-        String mayusculas = "(.*[A-Z].*)";
-        if (!password.matches(mayusculas)) {
-            System.out.println("La Password debe contener almenos una mayuscula");
-            esValida = false;
-        }
-        String minusculas = "(.*[a-z].*)";
-        if (!password.matches(minusculas)) {
-            System.out.println("La Password debe contener almenos una minuscula");
-            esValida = false;
-        }
-        String numeros = "(.*[0-9].*)";
-        if (!password.matches(numeros)) {
-            System.out.println("La Password debe contener almenos un numero");
-            esValida = false;
-        }
-        String caracteresEspeciales = "(.*[@#$%^&+=].*)";
-        if (!password.matches(caracteresEspeciales)) {
-            System.out.println("La Password debe contener almenos un caracter especial");
-            esValida = false;
-        }
-        String espacio = "(.\\S+)";
-        if (!password.matches(espacio)) {
-            System.out.println("La Password no puede contener espacios en blanco");
-            esValida = false;
-        }
+        ValidadorCaracteres validadorCaracteres = new ValidadorCaracteres();
+        ValidadorLongitud validadorLongitud = new ValidadorLongitud();
+
+        esValida = validadorLongitud.validar(password) && validadorCaracteres.validar(password);
+
         return esValida;
     }
 }
