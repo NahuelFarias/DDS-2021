@@ -20,19 +20,19 @@ public class AlgoritmoPassword {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
         Boolean validez;
-        Boolean segura = true;
+        Boolean noSegura = true;
         HashSet<String> setDePasswords = new HashSet<>(cargarLista());
         do {
             System.out.println("Por favor escriba la Password.");
             String password = lector.nextLine();
             if (validez = verificarValidez(password)) {
-                if (segura = setDePasswords.contains(password)){
+                if (noSegura = setDePasswords.contains(password)){
                     System.out.println("Password no segura");
                 } else {
                     System.out.println("Password Segura");
                 }
             }
-        } while (validez == false || segura == true );
+        } while (!validez || noSegura);
 
     }
     // Esta funcion devuelve un HashSet<String> con las 10000 peores contrasenias(solo las de longitud mayor a 8)
