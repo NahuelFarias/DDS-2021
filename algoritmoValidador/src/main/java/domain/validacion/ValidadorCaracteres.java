@@ -14,13 +14,11 @@ public class ValidadorCaracteres implements ValidadorPassword {
 
     @Override
     public boolean validar(String password) {
-        Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=.*\\S+)$");
-        Matcher matcher = pattern.matcher(password);
-        if (!matcher.find()) {
-            validarPatron(mayusculas, password,"debe contener almenos una mayuscula");
-            validarPatron(minusculas, password,"debe contener almenos una minuscula");
-            validarPatron(numeros, password,"debe contener almenos un numero");
-            validarPatron(caracteresEspeciales, password,"debe contener almenos un caracter especial");
+        if (password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=.*\\S+)$")) {
+            validarPatron(mayusculas, password,"debe contener al menos una mayuscula");
+            validarPatron(minusculas, password,"debe contener al menos una minuscula");
+            validarPatron(numeros, password,"debe contener al menos un numero");
+            validarPatron(caracteresEspeciales, password,"debe contener al menos un caracter especial");
             validarPatron(espacio, password,"no puede contener espacios en blanco");
             return false;
         }
