@@ -10,11 +10,12 @@ public class ValidadorPassTest {
     @Test
     public void laContrasenaEsCorrecta(){
 
-       String password = "Hola_4124";
-       ValidadorCaracteres validadorCaracteres = new ValidadorCaracteres();
+        String password = "Hola@4124";
+        String password2 = "Ho124";
+        ValidadorCaracteres validadorCaracteres = new ValidadorCaracteres();
 
         Assert.assertTrue(validadorCaracteres.validar(password));
-       // Assert.assertTrue(validadorCaracteres.validar(password2));
+        Assert.assertFalse(validadorCaracteres.validar(password2));
     }
 
     @Test
