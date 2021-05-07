@@ -22,6 +22,7 @@ public class ValidadorCaracteres implements ValidadorPassword {
             validarPatron(espacio, password,"no puede contener espacios en blanco");
             return false;
         }
+
         return true;
     }
 
