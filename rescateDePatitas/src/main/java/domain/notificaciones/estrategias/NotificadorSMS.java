@@ -15,7 +15,7 @@ public class NotificadorSMS implements EstrategiaDeNotificacion {
         this.adapter = adapter;
     }
 
-    public void enviar(Contacto notificacion) {
-        this.adapter.enviarSMS(notificacion);
+    public void enviarNotificacion(Contacto contacto) {
+        this.adapter.enviarSMS(contacto);
     }
 }

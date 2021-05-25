@@ -9,7 +9,7 @@ public class MetodoDeEnvio {
         this.estrategia = estrategia;
     }
 
-    public void enviar(Contacto notificacion) {
-        this.estrategia.enviar(notificacion);
+    public void enviarNotificacion(Contacto contacto) {
+        this.estrategia.enviarNotificacion(contacto);
     }
 }
