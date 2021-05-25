@@ -1,7 +1,7 @@
 package domain;
 
-import domain.validacion.ValidadorCaracteres;
-import domain.validacion.ValidadorLongitud;
+import domain.validacion.validadores.ValidadorCaracteres;
+import domain.validacion.validadores.ValidadorLongitud;
 import org.junit.Assert;
 import org.junit.Test;
 
