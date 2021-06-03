@@ -20,7 +20,6 @@ public class ValidadorPassTest {
         validadorLongitud = new ValidadorLongitud();
     }
 
-
     @Test
     public void laContrasenaEsCorrecta(){
         Assert.assertTrue(validadorCaracteres.validar(password));
