@@ -23,7 +23,7 @@ public class EnvioDeNotificaciones {
         AdapterTwilioSMS adapter = new AdapterTwilioSMS();
         NotificadorSMS notificadorSMS = new NotificadorSMS(adapter);
         MetodoDeEnvio metodoDeEnvio = new MetodoDeEnvio(notificadorSMS);
-        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola, tu mascota fue encontrada!");
+        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola " + contactoNotificado.getNombre() + ", tu mascota fue encontrada!");
 
         adapter.enviarSMS(notificacion);
     }

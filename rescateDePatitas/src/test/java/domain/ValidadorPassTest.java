@@ -1,6 +1,5 @@
 package domain;
 
-import domain.notificaciones.Contacto;
 import domain.validacion.validadores.ValidadorCaracteres;
 import domain.validacion.validadores.ValidadorLongitud;
 import org.junit.Assert;
