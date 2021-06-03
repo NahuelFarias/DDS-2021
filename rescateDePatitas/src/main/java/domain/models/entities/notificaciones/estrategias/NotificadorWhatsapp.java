@@ -1,7 +1,7 @@
-package domain.notificaciones.estrategias;
+package domain.models.entities.notificaciones.estrategias;
 
-import domain.notificaciones.Notificacion;
-import domain.notificaciones.estrategias.adapters.wpp.AdapterNotificadorWhatsapp;
+import domain.models.entities.notificaciones.Notificacion;
+import domain.models.entities.notificaciones.estrategias.adapters.wpp.AdapterNotificadorWhatsapp;
 
 public class NotificadorWhatsapp implements EstrategiaDeNotificacion{
     private AdapterNotificadorWhatsapp adapter;

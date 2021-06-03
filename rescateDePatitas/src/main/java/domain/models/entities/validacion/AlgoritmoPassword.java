@@ -1,7 +1,7 @@
-package domain.validacion;
+package domain.models.entities.validacion;
 
-import domain.validacion.validadores.ValidadorCaracteres;
-import domain.validacion.validadores.ValidadorLongitud;
+import domain.models.entities.validacion.validadores.ValidadorCaracteres;
+import domain.models.entities.validacion.validadores.ValidadorLongitud;
 
 import java.io.File;
 import java.io.FileNotFoundException;

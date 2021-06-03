@@ -1,4 +1,4 @@
-package domain.notificaciones;
+package domain.models.entities.personas;
 
 public class Contacto {
     private String nombre;

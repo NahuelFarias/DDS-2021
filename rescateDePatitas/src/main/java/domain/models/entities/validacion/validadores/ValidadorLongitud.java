@@ -1,4 +1,4 @@
-package domain.validacion.validadores;
+package domain.models.entities.validacion.validadores;
 
 public class ValidadorLongitud implements ValidadorPassword {
     Integer tamanioMinimo = 8;

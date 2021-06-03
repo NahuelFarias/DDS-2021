@@ -1,12 +1,12 @@
-package notificaciones;
+package domain;
 
-import domain.notificaciones.Contacto;
-import domain.notificaciones.MetodoDeEnvio;
-import domain.notificaciones.Notificacion;
-import domain.notificaciones.estrategias.NotificadorSMS;
-import domain.notificaciones.estrategias.NotificadorWhatsapp;
-import domain.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
-import domain.notificaciones.estrategias.adapters.wpp.AdapterTwilioWhatsapp;
+import domain.models.entities.notificaciones.MetodoDeEnvio;
+import domain.models.entities.notificaciones.Notificacion;
+import domain.models.entities.personas.Contacto;
+import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
+import domain.models.entities.notificaciones.estrategias.NotificadorWhatsapp;
+import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
+import domain.models.entities.notificaciones.estrategias.adapters.wpp.AdapterTwilioWhatsapp;
 import org.junit.Before;
 import org.junit.Test;
 

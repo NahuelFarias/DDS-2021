@@ -1,6 +1,6 @@
-package domain.notificaciones;
+package domain.models.entities.notificaciones;
 
-import domain.notificaciones.estrategias.EstrategiaDeNotificacion;
+import domain.models.entities.notificaciones.estrategias.EstrategiaDeNotificacion;
 
 public class MetodoDeEnvio {
     private EstrategiaDeNotificacion estrategia;
