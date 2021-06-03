@@ -1,4 +1,4 @@
-package domain.validacion;
+package domain.validacion.validadores;
 
 public class ValidadorLongitud implements ValidadorPassword {
     Integer tamanioMinimo = 8;

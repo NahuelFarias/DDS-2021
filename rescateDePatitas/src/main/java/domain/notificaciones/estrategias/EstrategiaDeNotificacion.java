@@ -1,7 +1,7 @@
 package domain.notificaciones.estrategias;
 
-import domain.notificaciones.Contacto;
+import domain.notificaciones.Notificacion;
 
 public interface EstrategiaDeNotificacion {
-    void enviar(Contacto notificacion);
+    void enviarNotificacion(Notificacion notificacion);
 }

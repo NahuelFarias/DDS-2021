@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Algoritmo_verificacion_password</artifactId>
+    <artifactId>rescateDePatitas</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <build>
@@ -31,6 +31,7 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+<<<<<<< HEAD
 
         <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
         <dependency>
@@ -44,6 +45,18 @@
             <version>3.4.1</version>
         </dependency>
 
+=======
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+>>>>>>> 3a68b452fa0a2076c6de7c8523b8834c7a8c3e95
     </dependencies>
 
 </project>

@@ -1,6 +1,6 @@
 package domain.notificaciones.estrategias;
 
-import domain.notificaciones.Contacto;
+import domain.notificaciones.Notificacion;
 import domain.notificaciones.estrategias.adapters.wpp.AdapterNotificadorWhatsapp;
 
 public class NotificadorWhatsapp implements EstrategiaDeNotificacion{
@@ -14,7 +14,7 @@ public class NotificadorWhatsapp implements EstrategiaDeNotificacion{
         this.adapter = adapter;
     }
 
-    public void enviar(Contacto notificacion) {
+    public void enviarNotificacion(Notificacion notificacion) {
         this.adapter.enviarWhatsapp(notificacion);
     }
 }

@@ -1,7 +1,7 @@
 package domain.notificaciones.estrategias.adapters.wpp;
 
-import domain.notificaciones.Contacto;
+import domain.notificaciones.Notificacion;
 
 public interface AdapterNotificadorWhatsapp {
-    void enviarWhatsapp(Contacto notificacion);
+    void enviarWhatsapp(Notificacion notificacion);
 }

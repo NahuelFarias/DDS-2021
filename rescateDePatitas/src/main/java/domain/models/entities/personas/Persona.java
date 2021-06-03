@@ -104,10 +104,10 @@ public class Persona extends Persistente {
     }
 
     public void agregarContacto(String nombre, String Apellido, String numero,String email){
-        Contacto contacto = new Contacto();
+        //Contacto contacto = new Contacto();
         //ver si hay cambios en la clase Contacto
 
-        contactos.add(contacto);
+       // contactos.add(contacto);
 
     }
 

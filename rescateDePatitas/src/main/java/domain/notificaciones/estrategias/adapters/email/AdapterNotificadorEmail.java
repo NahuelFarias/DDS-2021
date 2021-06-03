@@ -1,7 +1,7 @@
 package domain.notificaciones.estrategias.adapters.email;
 
-import domain.notificaciones.Contacto;
+import domain.notificaciones.Notificacion;
 
 public interface AdapterNotificadorEmail {
-    void enviarEmail(Contacto notificacion);
+    void enviarEmail(Notificacion notificacion);
 }

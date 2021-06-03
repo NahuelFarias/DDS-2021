@@ -1,23 +1,15 @@
-package domain;
+package domain.validacion;
 
-import domain.validacion.ValidadorCaracteres;
-import domain.validacion.ValidadorLongitud;
-import domain.validacion.ValidadorPassword;
+import domain.validacion.validadores.ValidadorCaracteres;
+import domain.validacion.validadores.ValidadorLongitud;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Scanner;
-import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AlgoritmoPassword {
-    public static void main(String[] args) {
+    public static void validadorPassword() {
         Scanner lector = new Scanner(System.in);
         Boolean validez;
         Boolean noSegura = true;
@@ -33,7 +25,6 @@ public class AlgoritmoPassword {
                 }
             }
         } while (!validez || noSegura);
-
     }
     // Esta funcion devuelve un HashSet<String> con las 10000 peores contrasenias(solo las de longitud mayor a 8)
     // Excepcion en caso de no encontrar el archivo: Imprime en pantalla un mensaje de error y devuelve un HashSet vacio
@@ -49,7 +40,7 @@ public class AlgoritmoPassword {
                     miSet.add(password);
                 }
             }
-        return miSet;
+            return miSet;
         } catch(FileNotFoundException e){
             System.out.println("Error leyendo el archivo");
             e.printStackTrace();
