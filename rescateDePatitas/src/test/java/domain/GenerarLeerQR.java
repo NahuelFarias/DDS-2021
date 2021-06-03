@@ -4,28 +4,39 @@ import domain.models.entities.GeneradorQR;
 import domain.models.entities.LectorQR;
 import org.junit.Test;
 
+import java.io.File;
+
+import static org.junit.Assert.*;
+
 
 public class GenerarLeerQR {
 
     String data = "http://www.google.com";
-    String path = "C:\\QR\\qr.jpg";
-    String path2 = "C:\\QR\\qr_kaspersky.png";
+    String pathQRaGenerar = "src/main/resources/qr.jpg";
+    String pathQRKaspersky = "src/main/resources/qr_kaspersky.png";
 
 
     @Test
     public void generarQRcorrecto() throws Exception {
-
+        File imagenGenerada = new File("src/main/resources/qr.jpg");
         GeneradorQR generador = new GeneradorQR();
 
-        generador.generarQR(data,path,"jpg",500,500);
+        if(imagenGenerada.exists()) { imagenGenerada.delete(); }
+
+        assertFalse(imagenGenerada.exists());
+
+        generador.generarQR(data,pathQRaGenerar,"jpg",500,500);
+
+        assertTrue(imagenGenerada.exists());
 
     }
 
     @Test
     public void leerQRcorrecto(){
+
         LectorQR lector = new LectorQR();
 
-        lector.leerQR(path);
-        lector.leerQR(path2);
+        lector.leerQR(pathQRaGenerar);
+        lector.leerQR(pathQRKaspersky);
     }
 }
