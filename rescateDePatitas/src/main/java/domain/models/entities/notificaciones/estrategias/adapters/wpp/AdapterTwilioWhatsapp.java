@@ -1,9 +1,8 @@
-package domain.notificaciones.estrategias.adapters.wpp;
+package domain.models.entities.notificaciones.estrategias.adapters.wpp;
 
-import domain.notificaciones.Notificacion;
+import domain.models.entities.notificaciones.Notificacion;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 
 public class AdapterTwilioWhatsapp implements AdapterNotificadorWhatsapp {
     public static final String ACCOUNT_SID = "ACf9a15ce926e3f281df16a70f1f7624ea";

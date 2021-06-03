@@ -3,7 +3,6 @@ package domain.models.entities.personas;
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.rol.Rol;
-import domain.notificaciones.Contacto;
 
 import java.util.ArrayList;
 import java.util.HashSet;

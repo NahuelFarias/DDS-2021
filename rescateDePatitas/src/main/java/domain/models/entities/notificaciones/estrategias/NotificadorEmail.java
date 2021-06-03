@@ -1,7 +1,7 @@
-package domain.notificaciones.estrategias;
+package domain.models.entities.notificaciones.estrategias;
 
-import domain.notificaciones.Notificacion;
-import domain.notificaciones.estrategias.adapters.email.AdapterNotificadorEmail;
+import domain.models.entities.notificaciones.Notificacion;
+import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterNotificadorEmail;
 
 public class NotificadorEmail implements EstrategiaDeNotificacion{
     private AdapterNotificadorEmail adapter;

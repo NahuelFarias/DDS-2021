@@ -1,4 +1,6 @@
-package domain.notificaciones;
+package domain.models.entities.notificaciones;
+
+import domain.models.entities.personas.Contacto;
 
 public class Notificacion {
     private Contacto contacto;

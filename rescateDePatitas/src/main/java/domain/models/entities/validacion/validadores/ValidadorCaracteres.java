@@ -1,4 +1,4 @@
-package domain.validacion.validadores;
+package domain.models.entities.validacion.validadores;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

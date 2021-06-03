@@ -1,8 +1,7 @@
 package domain;
 
-import domain.notificaciones.Contacto;
-import domain.validacion.validadores.ValidadorCaracteres;
-import domain.validacion.validadores.ValidadorLongitud;
+import domain.models.entities.validacion.validadores.ValidadorCaracteres;
+import domain.models.entities.validacion.validadores.ValidadorLongitud;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +19,6 @@ public class ValidadorPassTest {
         validadorCaracteres = new ValidadorCaracteres();
         validadorLongitud = new ValidadorLongitud();
     }
-
 
     @Test
     public void laContrasenaEsCorrecta(){

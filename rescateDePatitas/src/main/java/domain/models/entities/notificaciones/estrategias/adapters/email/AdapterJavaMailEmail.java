@@ -1,7 +1,6 @@
-package domain.notificaciones.estrategias.adapters.email;
+package domain.models.entities.notificaciones.estrategias.adapters.email;
 
-import domain.notificaciones.Notificacion;
-import java.util.Properties;
+import domain.models.entities.notificaciones.Notificacion;
 
 
 public class AdapterJavaMailEmail implements AdapterNotificadorEmail{
