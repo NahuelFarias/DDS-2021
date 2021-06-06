@@ -31,7 +31,7 @@ public class EnvioDeNotificaciones {
         AdapterTwilioSMS adapter = new AdapterTwilioSMS();
         NotificadorSMS notificadorSMS = new NotificadorSMS(adapter);
         MetodoDeEnvio metodoDeEnvio = new MetodoDeEnvio(notificadorSMS);
-        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola " + contactoNotificado.getNombre() + ", tu mascota fue encontrada!");
+        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola " + contactoNotificado.getNombre() + ", tu mascota fue encontrada! ✨");
 
         adapter.enviarSMS(notificacion);
     }
@@ -41,7 +41,7 @@ public class EnvioDeNotificaciones {
         AdapterTwilioWhatsapp adapter = new AdapterTwilioWhatsapp();
         NotificadorWhatsapp notificadorWhatsapp = new NotificadorWhatsapp(adapter);
         MetodoDeEnvio metodoDeEnvio = new MetodoDeEnvio(notificadorWhatsapp);
-        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola " + contactoNotificado.getNombre() + ", tu mascota fue encontrada!");
+        Notificacion notificacion = new Notificacion(contactoNotificado, metodoDeEnvio, "Hola " + contactoNotificado.getNombre() + ", tu mascota fue encontrada! ✨");
 
         adapter.enviarWhatsapp(notificacion);
     }
