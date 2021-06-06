@@ -4,6 +4,11 @@ public class Caracteristica {
     private String descripcion;
     private String respuesta;
 
+    public Caracteristica(String descripcion){
+        setDescripcion(descripcion);
+        setRespuesta(null);
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

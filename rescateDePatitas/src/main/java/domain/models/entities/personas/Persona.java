@@ -19,7 +19,6 @@ public class Persona extends Persistente {
     private List<Contacto> contactos;
     private Set<Rol> roles;
     private Usuario usuario;
-    private List<Mascota> mascotas;
 
     public Persona() {
         this.contactos = new ArrayList<Contacto>();
@@ -102,25 +101,19 @@ public class Persona extends Persistente {
         this.usuario = usuario;
     }
 
-    public void agregarContacto(String nombre, String Apellido, String numero,String email){
-        //Contacto contacto = new Contacto();
-        //ver si hay cambios en la clase Contacto
+    public void agregarContacto(String nombre, String apellido, String numero,String email){
+        Contacto contacto = new Contacto(nombre,apellido,numero,email);
 
-       // contactos.add(contacto);
+        contactos.add(contacto);
 
     }
 
-    public Boolean checkRol(String rol){
-        return this.roles.stream().anyMatch(r->r.getNombre()==rol); //alguna clase elemento de la lista tiene de nombre el rol que indico
+    public void crearUsuario(){
+        Usuario usuario = new Usuario();
+        setUsuario(usuario);
+        //TODO
+
     }
 
-    public void registrarMascota(String nombre,String apodo, Integer edad, String descripcion,
-                                 String especie, String genero){
-        //checkRol("DUENIO");
 
-        Mascota mascota = new Mascota(this);
-
-        mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero);
-        this.mascotas.add(mascota);
-    }
 }

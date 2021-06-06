@@ -4,7 +4,7 @@ import domain.models.entities.GeneradorQR;
 import domain.models.entities.LectorQR;
 import org.junit.Test;
 
-import java.io.File;
+import java.io.*;
 
 import static org.junit.Assert.*;
 
@@ -39,4 +39,6 @@ public class GenerarLeerQR {
         lector.leerQR(pathQRaGenerar);
         lector.leerQR(pathQRKaspersky);
     }
+
 }
+

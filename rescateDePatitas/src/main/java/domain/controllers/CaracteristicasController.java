@@ -4,7 +4,8 @@ import domain.models.entities.mascotas.Caracteristica;
 
 public class CaracteristicasController {
 
-    public void crear(){
-        Caracteristica caracteristica = new Caracteristica();
+    public void crearCaracteristica(String descripcion){
+
+        Caracteristica caracteristica = new Caracteristica(descripcion);
     }
 }
