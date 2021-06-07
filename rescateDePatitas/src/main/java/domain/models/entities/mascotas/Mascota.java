@@ -14,19 +14,20 @@ import java.util.List;
 public class Mascota extends Persistente {
     private String nombre;
     private String apodo;
-    private String idMascota; //tiene que ser unico
+    private static Integer idMascota=0;
     private String descripcion;
     private Integer edad;
     private String especie;
     private String genero;
     private Organizacion organizacion;
-    private List<Caracteristica> caracteristicas;
+    private List<CaracteristicaConRta> caracteristicas;
     private List<Foto> fotos;
     private Persona persona;
 
     public Mascota(Persona persona) {
         this.caracteristicas = new ArrayList<>();
         this.fotos = new ArrayList<>();
+        this.idMascota= getIdMascota() + 1;
         this.persona = persona;
     }
 
@@ -46,9 +47,7 @@ public class Mascota extends Persistente {
         this.apodo = apodo;
     }
 
-    public String getIdMascota() { return idMascota; }
-
-    public void setIdMascota(String idMascota) { this.idMascota = idMascota; }
+    public Integer getIdMascota() { return idMascota; }
 
     public String getDescripcion() {
         return descripcion;
@@ -90,11 +89,11 @@ public class Mascota extends Persistente {
         this.organizacion = organizacion;
     }
 
-    public List<Caracteristica> getCaracteristicas() {
+    public List<CaracteristicaConRta> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+    public void setCaracteristicas(List<CaracteristicaConRta> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
@@ -120,9 +119,9 @@ public class Mascota extends Persistente {
 
         Configuracion configuracion = new Configuracion();
 
-        String url = configuracion.leerPropiedad("url") + "/idMascota";
+        String url = configuracion.leerPropiedad("url") + "/" +idMascota.toString();
 
-        String pathGuardar = configuracion.leerPropiedad("pathQR") + "idMascota" + ".jpg";
+        String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
 
 
         GeneradorQR generador = new GeneradorQR();
@@ -130,15 +129,16 @@ public class Mascota extends Persistente {
 
     }
 
+
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
-                            String especie, String genero){
-        //this.setIdMascota(idMascota);
+                            String especie, String genero, List<CaracteristicaConRta> caracteristicas){
         this.setApodo(apodo);
         this.setNombre(nombre);
         this.setEdad(edad);
         this.setDescripcion(descripcion);
         this.setEspecie(especie);
         this.setGenero(genero);
+        this.caracteristicas = caracteristicas;
 
     }
 

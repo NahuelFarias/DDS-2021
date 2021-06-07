@@ -1,22 +1,19 @@
 package domain.models.entities.rol;
 
-public abstract class Rol {
-    private Integer id;
-    private String nombre;
+import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.personas.Persona;
 
-    public Integer getId() {
-        return id;
-    }
+import java.util.List;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+public interface Rol {
 
-    public String getNombre() {
-        return nombre;
-    }
+    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero,List<CaracteristicaConRta> caracteristicas, Persona persona);
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
+    void aprobarPublicacion(Publicacion unaPublicacion);
+
+    List<Mascota> getMascotas();
+
 }

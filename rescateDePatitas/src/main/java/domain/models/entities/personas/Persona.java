@@ -1,13 +1,12 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
-import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.rol.Rol;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Persona extends Persistente {
     private String nombre;
@@ -17,13 +16,15 @@ public class Persona extends Persistente {
     private Integer nroDoc;
     private String direccion;
     private List<Contacto> contactos;
-    private Set<Rol> roles;
+    private Rol rol;
     private Usuario usuario;
 
     public Persona() {
         this.contactos = new ArrayList<Contacto>();
-        this.roles = new HashSet<Rol>();
     }
+
+
+    //getters & setters
 
     public String getNombre() {
         return nombre;
@@ -73,6 +74,12 @@ public class Persona extends Persistente {
         this.direccion = direccion;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+    public void setRol(Rol rol){this.rol = rol;}
+
+
     public List<Contacto> getContactos() {
         return contactos;
     }
@@ -81,17 +88,6 @@ public class Persona extends Persistente {
         this.contactos = contactos;
     }
 
-    public Set<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
-    }
-
-    public void agregarRol(Rol rol){
-        roles.add(rol);
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -99,6 +95,28 @@ public class Persona extends Persistente {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+
+    // methods
+
+    public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
+                            Integer nroDoc,Integer fechaDeNacimiento ){
+        setNombre(nombre);
+        setApellido(apellido);
+        setDireccion(direccion);
+        setNroDoc(nroDoc);
+        setTipoDoc(tipoDoc);
+        setFechaDeNacimiento(fechaDeNacimiento);
+
+    }
+
+    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
+                                 String especie, String genero,ArrayList<CaracteristicaConRta> caracteristicas,Persona persona){
+        persona = this;
+
+        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,persona);
+
     }
 
     public void agregarContacto(String nombre, String apellido, String numero,String email){
@@ -114,6 +132,10 @@ public class Persona extends Persistente {
         //TODO
 
     }
+    
+    public void aprobarPublicacion(Publicacion unaPublicacion){
 
+        this.rol.aprobarPublicacion(unaPublicacion);
+    }
 
 }
