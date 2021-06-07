@@ -15,7 +15,7 @@ public class FiltradorDeHogaresDeTransito {
         Map<String, Boolean> mapa = new HashMap<>();
         for (Hogar hogar:listadoDeHogares) {
             mapa.replace("gato",hogar.admisiones.gatos);
-            mapa.replace("perro",hogar.admisiones.gatos);
+            mapa.replace("perro",hogar.admisiones.perros);
             if(mapa.get(animal)) {listadoFiltrado.add(hogar);}
         }
         return listadoFiltrado;
