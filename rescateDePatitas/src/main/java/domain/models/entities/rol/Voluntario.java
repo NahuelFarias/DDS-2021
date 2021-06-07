@@ -4,6 +4,7 @@ import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
@@ -21,6 +22,16 @@ public class Voluntario implements Rol{
     @Override
     public List<Mascota> getMascotas() {
         return null;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+
     }
 
     @Override

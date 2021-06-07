@@ -1,6 +1,5 @@
 package domain.models.entities.rol;
 
-
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Publicacion;
@@ -18,6 +17,11 @@ public class Duenio implements Rol{
 
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+
     }
 
     @Override
@@ -40,5 +44,4 @@ public class Duenio implements Rol{
     public void aprobarPublicacion(Publicacion unaPublicacion){
 
     }
-
 }
