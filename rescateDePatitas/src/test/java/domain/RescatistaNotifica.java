@@ -21,7 +21,6 @@ public class RescatistaNotifica {
     Duenio duenio;
     Rescatista rescatista;
 
-
     AdapterTwilioSMS adapterSMS;
     NotificadorSMS notificadorSMS;
     MetodoDeEnvio metodoDeEnvioSMS;
