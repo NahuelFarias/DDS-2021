@@ -34,5 +34,4 @@ public class Duenio extends Rol{
         mascotas.add(mascota);
     }
 
-
 }

@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
@@ -29,5 +30,9 @@ public abstract class Rol {
 
     public List<Mascota> getMascotas() {
         return null;
+    }
+
+    public void encontreMascota(Mascota unaMascota, Contacto contacto) {
+
     }
 }

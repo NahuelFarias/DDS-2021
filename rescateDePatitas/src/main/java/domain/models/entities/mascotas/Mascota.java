@@ -4,6 +4,7 @@ import com.google.zxing.WriterException;
 import domain.Configuracion;
 import domain.models.entities.GeneradorQR;
 import domain.models.entities.Persistente;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Mascota extends Persistente {
     private String nombre;
     private String apodo;
-    private static Integer idMascota=0;
+    private static Integer idMascota = 0;
     private String descripcion;
     private Integer edad;
     private String especie;
@@ -123,12 +124,14 @@ public class Mascota extends Persistente {
 
         String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
 
-
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url,pathGuardar,"jpg",500,500);
 
     }
 
+    public void avisarQueMeEcontraron(Contacto contacto) {
+        persona.notificarContactos(this, contacto);
+    }
 
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
                             String especie, String genero){
@@ -138,12 +141,6 @@ public class Mascota extends Persistente {
         this.setDescripcion(descripcion);
         this.setEspecie(especie);
         this.setGenero(genero);
-
     }
-
-
-
-
-
 
 }
