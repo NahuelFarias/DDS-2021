@@ -9,35 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Duenio extends Rol{
-    private final Integer id = 1;
-    private final String nombre = "DUENIO";
-    private Persona persona;
+    private Integer id = 1;
+    private String nombre = "DUENIO";
+    //private Persona persona;
     private List<Mascota> mascotas = new ArrayList<>();
 
-    public Duenio(Persona persona) {
-        setPersona(persona);
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
+    @Override
     public List<Mascota> getMascotas() {
         return mascotas;
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero){
+                                 String especie, String genero, Persona persona){
 
-        Mascota mascota = new Mascota(getPersona());
+        Mascota mascota = new Mascota(persona);
 
         mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero);
 
-        getMascotas().add(mascota);
+        mascotas.add(mascota);
     }
 
 
