@@ -21,6 +21,9 @@ public class Persona extends Persistente {
         this.contactos = new ArrayList<Contacto>();
     }
 
+
+    //getters & setters
+
     public String getNombre() {
         return nombre;
     }
@@ -69,6 +72,12 @@ public class Persona extends Persistente {
         this.direccion = direccion;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+    public void setRol(Rol rol){this.rol = rol;}
+
+
     public List<Contacto> getContactos() {
         return contactos;
     }
@@ -77,10 +86,6 @@ public class Persona extends Persistente {
         this.contactos = contactos;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-    public void setRol(Rol rol){this.rol = rol;}
 
     public Usuario getUsuario() {
         return usuario;
@@ -103,33 +108,10 @@ public class Persona extends Persistente {
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
                                  String especie, String genero,Persona persona){
-        persona = this;
 
-        if(getRol().getNombre() == "DUENIO"){
-            getRol().registrarMascota(nombre,apodo,edad,descripcion,especie,genero,persona);
-        }
-        else{System.out.println("No es duenio.");}
+        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,persona);
 
     }
-
-//    public Rol esDuenio(){
-//        Boolean encontrado = false;
-//        int i = 0;
-//        Integer posicion = -1;
-//
-//        while (!encontrado && i<roles.size()){
-//            if(roles.get(i).getNombre().equals("DUENIO")){
-//                encontrado = true;
-//                posicion = i;
-//            }
-//            else {
-//                i++;
-//            }
-//        }
-//
-//        if(encontrado) return roles.get(posicion);
-//        else return null;
-//    }
 
     public void agregarContacto(String nombre, String apellido, String numero,String email){
         Contacto contacto = new Contacto(nombre,apellido,numero,email);

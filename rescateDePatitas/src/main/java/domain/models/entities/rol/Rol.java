@@ -5,29 +5,9 @@ import domain.models.entities.personas.Persona;
 
 import java.util.List;
 
-public abstract class Rol {
-    private Integer id;
-    private String nombre;
+public interface Rol {
 
-    public Integer getId() {
-        return id;
-    }
+    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, Persona persona);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public abstract void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, Persona persona);
-
-    public List<Mascota> getMascotas() {
-        return null;
-    }
+    List<Mascota> getMascotas();
 }

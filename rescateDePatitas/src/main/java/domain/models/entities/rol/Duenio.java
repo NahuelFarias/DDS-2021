@@ -8,7 +8,7 @@ import domain.models.entities.personas.Persona;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Duenio extends Rol{
+public class Duenio implements Rol{
     private Integer id = 1;
     private String nombre = "DUENIO";
     //private Persona persona;
