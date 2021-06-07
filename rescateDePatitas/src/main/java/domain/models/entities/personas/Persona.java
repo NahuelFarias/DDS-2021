@@ -1,6 +1,7 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.rol.Rol;
 
 import java.util.ArrayList;
@@ -130,8 +131,9 @@ public class Persona extends Persistente {
 
     }
     
-    public void aprobarPublicacion(){
-        this.rol.aprobarPublicacion();
+    public void aprobarPublicacion(Publicacion unaPublicacion){
+
+        this.rol.aprobarPublicacion(unaPublicacion);
     }
 
 }

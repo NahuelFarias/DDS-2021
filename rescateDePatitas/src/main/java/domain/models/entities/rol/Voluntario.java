@@ -1,6 +1,8 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
@@ -21,7 +23,9 @@ public class Voluntario implements Rol{
     }
 
     @Override
-    public void aprobarPublicacion(){
+    public void aprobarPublicacion(Publicacion unaPublicacion){
+        Organizacion.publicacionesAceptadas.add(unaPublicacion);
+        Organizacion.publicacionesARevisar.remove(unaPublicacion);
 
     }
 }

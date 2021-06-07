@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface Rol {
 
     List<Mascota> getMascotas();
 
-    void aprobarPublicacion();
+    void aprobarPublicacion(Publicacion unaPublicacion);
 }

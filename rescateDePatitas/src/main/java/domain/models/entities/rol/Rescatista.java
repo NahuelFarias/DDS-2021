@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public class Rescatista implements Rol {
         return null;
     }
     @Override
-    public void aprobarPublicacion(){}
+    public void aprobarPublicacion(Publicacion unaPublicacion){}
 }
