@@ -1,9 +1,13 @@
 package domain;
 
 import domain.models.entities.BuscadorDeHogaresDeTransito;
+import domain.models.entities.FiltradorDeHogaresDeTransito;
 import domain.models.entities.hogares.ListadoDeHogares;
+import domain.models.entities.hogares.Hogar;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
 
 public class BuscadorYFiltradorDeHogaresTest {
     @Test
@@ -15,5 +19,14 @@ public class BuscadorYFiltradorDeHogaresTest {
             listadoDeHogares = buscadorDeHogaresDeTransito.listadoDeHogares(1);
         } catch (Exception e) {e.printStackTrace();}
         Assert.assertNotNull(listadoDeHogares);
+        List<Hogar> listaHogares = new FiltradorDeHogaresDeTransito().filtrarPorAnimalAceptado(listadoDeHogares.hogares, "perro");
+        int i = 0;
+        for(Hogar hogar: listaHogares){
+            System.out.println(i + ") " + hogar.nombre);
+            System.out.println(hogar.telefono);
+            i++;
+        }
+
+
     }
 }
