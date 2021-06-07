@@ -1,11 +1,14 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Persona;
 
 import java.util.List;
 
-public class Voluntario extends Rol{
+public class Voluntario implements Rol{
 
     private final Integer id = 3;
     private final String nombre = "VOLUNTARIO";
@@ -15,4 +18,15 @@ public class Voluntario extends Rol{
 
     }
 
+    @Override
+    public List<Mascota> getMascotas() {
+        return null;
+    }
+
+    @Override
+    public void aprobarPublicacion(Publicacion unaPublicacion){
+        Organizacion.publicacionesAceptadas.add(unaPublicacion);
+        Organizacion.publicacionesARevisar.remove(unaPublicacion);
+
+    }
 }

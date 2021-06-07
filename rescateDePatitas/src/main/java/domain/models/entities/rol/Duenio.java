@@ -3,12 +3,14 @@ package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Duenio extends Rol{
+public class Duenio implements Rol{
     private Integer id = 1;
     private String nombre = "DUENIO";
     private List<Mascota> mascotas = new ArrayList<>();
@@ -23,6 +25,7 @@ public class Duenio extends Rol{
         return mascotas;
     }
 
+    @Override
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
                                  String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona){
 
@@ -33,5 +36,9 @@ public class Duenio extends Rol{
         mascotas.add(mascota);
     }
 
+    @Override
+    public void aprobarPublicacion(Publicacion unaPublicacion){
+
+    }
 
 }
