@@ -10,7 +10,8 @@ public class Rescatista extends Rol {
     private final String nombre = "RESCATISTA";
 
     @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, Persona persona) {
+    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
+                                 String especie, String genero, Persona persona) {
     }
 
     public void encontreMascota(Mascota unaMascota, Contacto contacto) {

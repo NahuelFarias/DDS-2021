@@ -2,15 +2,18 @@ package domain;
 
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
+import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
 import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
+import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
 import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
-import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 public class RescatistaNotifica {
     Persona personaDuenio;
@@ -19,14 +22,16 @@ public class RescatistaNotifica {
     Rescatista rescatista;
 
 
-    Contacto contactoNotificadoSMS;
     AdapterTwilioSMS adapterSMS;
     NotificadorSMS notificadorSMS;
     MetodoDeEnvio metodoDeEnvioSMS;
+    AdapterJavaMailEmail adapterEmail;
+    NotificadorEmail notificadorEmail;
+    MetodoDeEnvio metodoDeEnvioEmail;
 
 
     @Before
-    public void instanciar() {
+    public void instanciar() throws IOException {
         personaDuenio = new Persona();
 
         personaDuenio.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996);
@@ -38,6 +43,11 @@ public class RescatistaNotifica {
         adapterSMS = new AdapterTwilioSMS();
         notificadorSMS = new NotificadorSMS(adapterSMS);
         metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
+        notificadorEmail = new NotificadorEmail(adapterEmail);
+        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
+
+        personaDuenio.agregarContacto("Soledad", "Grilleta", "+541122222242", "sole.012@gmail.com", metodoDeEnvioEmail);
 
         personaDuenio.agregarContacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
 

@@ -93,14 +93,13 @@ public class Persona extends Persistente {
     }
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,Integer fechaDeNacimiento ){
+                            Integer nroDoc,Integer fechaDeNacimiento) {
         setNombre(nombre);
         setApellido(apellido);
         setDireccion(direccion);
         setNroDoc(nroDoc);
         setTipoDoc(tipoDoc);
         setFechaDeNacimiento(fechaDeNacimiento);
-
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,

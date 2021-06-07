@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
