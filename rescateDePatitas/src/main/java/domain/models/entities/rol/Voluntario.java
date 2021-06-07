@@ -20,4 +20,8 @@ public class Voluntario implements Rol{
         return null;
     }
 
+    @Override
+    public void aprobarPublicacion(){
+
+    }
 }

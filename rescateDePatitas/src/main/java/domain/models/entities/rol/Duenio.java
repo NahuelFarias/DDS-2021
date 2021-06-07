@@ -34,5 +34,7 @@ public class Duenio implements Rol{
         mascotas.add(mascota);
     }
 
+    @Override
+    public void aprobarPublicacion(){}
 
 }

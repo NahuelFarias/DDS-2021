@@ -10,4 +10,6 @@ public interface Rol {
     void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, Persona persona);
 
     List<Mascota> getMascotas();
+
+    void aprobarPublicacion();
 }

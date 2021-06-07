@@ -19,4 +19,6 @@ public class Rescatista implements Rol {
     public List<Mascota> getMascotas() {
         return null;
     }
+    @Override
+    public void aprobarPublicacion(){}
 }

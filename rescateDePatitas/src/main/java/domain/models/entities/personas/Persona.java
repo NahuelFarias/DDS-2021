@@ -95,6 +95,9 @@ public class Persona extends Persistente {
         this.usuario = usuario;
     }
 
+
+    // methods
+
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
                             Integer nroDoc,Integer fechaDeNacimiento ){
         setNombre(nombre);
@@ -126,6 +129,9 @@ public class Persona extends Persistente {
         //TODO
 
     }
-
+    
+    public void aprobarPublicacion(){
+        this.rol.aprobarPublicacion();
+    }
 
 }
