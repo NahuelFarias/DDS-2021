@@ -2,6 +2,7 @@ package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.rol.Rol;
 
@@ -138,4 +139,9 @@ public class Persona extends Persistente {
         this.rol.aprobarPublicacion(unaPublicacion);
     }
 
+    public void rechazarPublicacion(Publicacion unaPublicacion){
+
+        this.rol.rechazarPublicacion(unaPublicacion);
+
+    }
 }

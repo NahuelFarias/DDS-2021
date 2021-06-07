@@ -3,6 +3,7 @@ package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -41,4 +42,7 @@ public class Duenio implements Rol{
 
     }
 
+    @Override
+    public void rechazarPublicacion(Publicacion unaPublicacion){
+    }
 }

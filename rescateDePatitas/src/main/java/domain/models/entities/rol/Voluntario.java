@@ -29,4 +29,11 @@ public class Voluntario implements Rol{
         Organizacion.publicacionesARevisar.remove(unaPublicacion);
 
     }
+    @Override
+    public void rechazarPublicacion(Publicacion unaPublicacion){
+
+        Organizacion.publicacionesARevisar.remove(unaPublicacion);
+
+    }
+
 }

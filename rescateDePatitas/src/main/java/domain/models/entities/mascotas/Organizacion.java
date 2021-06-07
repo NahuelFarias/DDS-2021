@@ -1,12 +1,14 @@
 package domain.models.entities.mascotas;
 
+import domain.models.entities.personas.Persona;
 import domain.models.entities.rol.Voluntario;
+
 import java.util.List;
 
 public class Organizacion {
     private String nombre;
     //private List<Administrador> administradores;
-    private List<Voluntario> voluntarios;
+    private List<Persona> voluntarios;
     public static List<Publicacion> publicacionesAceptadas;
     public static List<Publicacion> publicacionesARevisar;
 
@@ -37,4 +39,15 @@ public class Organizacion {
     public void setPublicacionesARevisar(List<Publicacion> publicacionesARevisar) {
         this.publicacionesARevisar = publicacionesARevisar;
     }
+
+    public void generarVoluntario(Persona persona) {
+        Voluntario voluntario = new Voluntario();
+        persona.setRol(voluntario);
+        this.voluntarios.add(persona);
+    }
+
+    public void controlarPublicaciones(Voluntario voluntario){
+        this.getPublicacionesARevisar().forEach(publicacion -> voluntario.aprobarPublicacion(publicacion));
+    }
+
 }
