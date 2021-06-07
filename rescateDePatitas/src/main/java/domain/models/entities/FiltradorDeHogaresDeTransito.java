@@ -1,0 +1,69 @@
+package domain.models.entities;
+
+import domain.models.entities.hogares.Hogar;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FiltradorDeHogaresDeTransito {
+
+    //Recibe una lista de hogares y un animal(perro o gato) y devuelve una lista de los hogares que admiten a ese animal
+    public List<Hogar> filtrarPorAnimalAceptado(List<Hogar> listadoDeHogares, String animal){
+        List<Hogar> listadoFiltrado = new ArrayList<Hogar>();
+        Map<String, Boolean> mapa = new HashMap<>();
+        for (Hogar hogar:listadoDeHogares) {
+            mapa.replace("gato",hogar.admisiones.gatos);
+            mapa.replace("perro",hogar.admisiones.gatos);
+            if(mapa.get(animal)) {listadoFiltrado.add(hogar);}
+        }
+        return listadoFiltrado;
+    }
+
+    //Recibe una lista de hogares y el tamanio de un animal(grande, mediano, pequenio) y devuelve una lista de los hogares que admiten ese animal
+    public List<Hogar> filtrarPorTamanio(List<Hogar> listadoDeHogares, String tamanio){
+        List<Hogar> listadoFiltrado = new ArrayList<Hogar>();
+        Map<String, Boolean> mapa = new HashMap<>();
+        mapa.put("pequenio", true);
+        for (Hogar hogar:listadoDeHogares) {
+            mapa.replace("mediano", hogar.patio);
+            mapa.replace("grande", hogar.patio);
+            if(mapa.get(tamanio)) {listadoFiltrado.add(hogar);}
+        }
+        return listadoFiltrado;
+    }
+
+    //Recibe una lista de hogares y devuelve una lista de los hogares que tienen espacio disponible
+    public List<Hogar> filtrarPorCapacidad(List<Hogar> listadoDeHogares){
+        List<Hogar> listadoFiltrado = new ArrayList<Hogar>();
+        for (Hogar hogar:listadoDeHogares) {
+            if (hogar.lugares_disponibles > 0) {listadoFiltrado.add(hogar);}
+        }
+        return listadoFiltrado;
+    }
+
+    //Recibe una lista de hogares, un radio, una latitud y una longitud y devuelve una lista de hogares que entran en radio de las coordenadas
+    public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, int latitud, int longitud){
+        List<Hogar> listadoFiltrado = new ArrayList<Hogar>();
+        float restaLatitud;
+        float restaLongitud;
+        for (Hogar hogar:listadoDeHogares) {
+            restaLatitud = Math.abs(latitud - hogar.direccion.latitud);
+            restaLongitud = Math.abs(longitud - hogar.direccion.longitud);
+            if (Math.hypot(restaLatitud, restaLongitud) <= radio) {listadoFiltrado.add(hogar);}
+        }
+        return listadoFiltrado;
+    }
+
+    //Recibe una lista de hogares y una caracteristica y devuelve una lista de hogares que piden esa caracteristica
+    //Se interpreta que los que no piden caracteristicas aceptan sin importar la caracteristica
+    public List<Hogar> filtrarPorCaracteristica(List<Hogar> listadoDeHogares, String caracteristica){
+        List<Hogar> listadoFiltrado = new ArrayList<Hogar>();
+        for (Hogar hogar:listadoDeHogares) {
+            if (hogar.caracteristicas.isEmpty() || hogar.caracteristicas.contains(caracteristica)) {listadoFiltrado.add(hogar);}
+        }
+        return listadoFiltrado;
+    }
+
+}
