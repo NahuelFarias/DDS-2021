@@ -1,5 +1,6 @@
 package domain.models.entities.rol;
 
+import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Persona;
 
@@ -25,7 +26,7 @@ public abstract class Rol {
         this.nombre = nombre;
     }
 
-    public abstract void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, Persona persona);
+    public abstract void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona);
 
     public List<Mascota> getMascotas() {
         return null;

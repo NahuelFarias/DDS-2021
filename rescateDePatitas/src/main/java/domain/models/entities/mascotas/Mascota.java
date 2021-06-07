@@ -20,7 +20,7 @@ public class Mascota extends Persistente {
     private String especie;
     private String genero;
     private Organizacion organizacion;
-    private List<Caracteristica> caracteristicas;
+    private List<CaracteristicaConRta> caracteristicas;
     private List<Foto> fotos;
     private Persona persona;
 
@@ -89,11 +89,11 @@ public class Mascota extends Persistente {
         this.organizacion = organizacion;
     }
 
-    public List<Caracteristica> getCaracteristicas() {
+    public List<CaracteristicaConRta> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+    public void setCaracteristicas(List<CaracteristicaConRta> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
@@ -131,13 +131,14 @@ public class Mascota extends Persistente {
 
 
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
-                            String especie, String genero){
+                            String especie, String genero, List<CaracteristicaConRta> caracteristicas){
         this.setApodo(apodo);
         this.setNombre(nombre);
         this.setEdad(edad);
         this.setDescripcion(descripcion);
         this.setEspecie(especie);
         this.setGenero(genero);
+        this.caracteristicas = caracteristicas;
 
     }
 

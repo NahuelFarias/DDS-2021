@@ -1,6 +1,7 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.rol.Rol;
 
 import java.util.ArrayList;
@@ -102,34 +103,15 @@ public class Persona extends Persistente {
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero,Persona persona){
+                                 String especie, String genero,ArrayList<CaracteristicaConRta> caracteristicas,Persona persona){
         persona = this;
 
         if(getRol().getNombre() == "DUENIO"){
-            getRol().registrarMascota(nombre,apodo,edad,descripcion,especie,genero,persona);
+            getRol().registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,persona);
         }
         else{System.out.println("No es duenio.");}
 
     }
-
-//    public Rol esDuenio(){
-//        Boolean encontrado = false;
-//        int i = 0;
-//        Integer posicion = -1;
-//
-//        while (!encontrado && i<roles.size()){
-//            if(roles.get(i).getNombre().equals("DUENIO")){
-//                encontrado = true;
-//                posicion = i;
-//            }
-//            else {
-//                i++;
-//            }
-//        }
-//
-//        if(encontrado) return roles.get(posicion);
-//        else return null;
-//    }
 
     public void agregarContacto(String nombre, String apellido, String numero,String email){
         Contacto contacto = new Contacto(nombre,apellido,numero,email);
