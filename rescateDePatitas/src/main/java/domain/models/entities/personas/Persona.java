@@ -3,6 +3,8 @@ package domain.models.entities.personas;
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
+import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.rol.Rol;
 
 import java.util.ArrayList;
@@ -22,6 +24,9 @@ public class Persona extends Persistente {
     public Persona() {
         this.contactos = new ArrayList<Contacto>();
     }
+
+
+    //getters & setters
 
     public String getNombre() {
         return nombre;
@@ -71,6 +76,12 @@ public class Persona extends Persistente {
         this.direccion = direccion;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+    public void setRol(Rol rol){this.rol = rol;}
+
+
     public List<Contacto> getContactos() {
         return contactos;
     }
@@ -79,10 +90,6 @@ public class Persona extends Persistente {
         this.contactos = contactos;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-    public void setRol(Rol rol){this.rol = rol;}
 
     public Usuario getUsuario() {
         return usuario;
@@ -91,6 +98,9 @@ public class Persona extends Persistente {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
+    // methods
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
                             Integer nroDoc,Integer fechaDeNacimiento) {
@@ -103,34 +113,12 @@ public class Persona extends Persistente {
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero,Persona persona){
+                                 String especie, String genero,ArrayList<CaracteristicaConRta> caracteristicas,Persona persona){
         persona = this;
 
-        if(getRol().getNombre() == "DUENIO"){
-            getRol().registrarMascota(nombre,apodo,edad,descripcion,especie,genero,persona);
-        }
-        else{System.out.println("No es duenio.");}
+        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,persona);
 
     }
-
-//    public Rol esDuenio(){
-//        Boolean encontrado = false;
-//        int i = 0;
-//        Integer posicion = -1;
-//
-//        while (!encontrado && i<roles.size()){
-//            if(roles.get(i).getNombre().equals("DUENIO")){
-//                encontrado = true;
-//                posicion = i;
-//            }
-//            else {
-//                i++;
-//            }
-//        }
-//
-//        if(encontrado) return roles.get(posicion);
-//        else return null;
-//    }
 
     public void agregarContacto(String nombre, String apellido, String numero, String email, MetodoDeEnvio metodoDeEnvio){
         Contacto contacto = new Contacto(nombre,apellido,numero,email, metodoDeEnvio);
@@ -153,6 +141,10 @@ public class Persona extends Persistente {
         //TODO
 
     }
+    
+    public void aprobarPublicacion(Publicacion unaPublicacion){
 
+        this.rol.aprobarPublicacion(unaPublicacion);
+    }
 
 }

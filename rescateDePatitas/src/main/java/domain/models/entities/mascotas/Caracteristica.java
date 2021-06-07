@@ -1,12 +1,14 @@
 package domain.models.entities.mascotas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Caracteristica {
     private String descripcion;
-    private String respuesta;
+    private List<String> respuestasPosibles;
 
-    public Caracteristica(String descripcion){
-        setDescripcion(descripcion);
-        setRespuesta(null);
+    public Caracteristica(){
+        this.respuestasPosibles = new ArrayList<String>();
     }
 
     public String getDescripcion() {
@@ -17,12 +19,12 @@ public class Caracteristica {
         this.descripcion = descripcion;
     }
 
-    public String getRespuesta() {
-        return respuesta;
+    public List<String> getRespuestasPosibles() {
+        return respuestasPosibles;
     }
 
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
-    }
+    public void setRespuestasPosibles(List<String> respuestas) { this.respuestasPosibles = respuestas; }
+    public void agregarRespuesta(String respuesta){ respuestasPosibles.add(respuesta); }
+
 
 }

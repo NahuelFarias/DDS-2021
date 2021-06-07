@@ -1,20 +1,37 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
-public class Rescatista extends Rol {
+import java.util.List;
+
+public class Rescatista implements Rol {
 
     private final Integer id = 2;
     private final String nombre = "RESCATISTA";
 
     @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero, Persona persona) {
+    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona) {
+
     }
 
-    public void encontreMascota(Mascota unaMascota, Contacto contacto) {
-        unaMascota.avisarQueMeEcontraron(contacto);
+    @Override
+    public List<Mascota> getMascotas() {
+        return null;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public void aprobarPublicacion(Publicacion unaPublicacion){}
+
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+        mascotaPerdida.avisarQueMeEcontraron(contacto);
     }
 }

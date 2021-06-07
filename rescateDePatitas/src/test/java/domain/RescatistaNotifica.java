@@ -1,5 +1,8 @@
 package domain;
 
+import domain.controllers.CaracteristicasController;
+import domain.models.entities.mascotas.Caracteristica;
+import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
@@ -14,6 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RescatistaNotifica {
     Persona personaDuenio;
@@ -27,6 +32,12 @@ public class RescatistaNotifica {
     AdapterJavaMailEmail adapterEmail;
     NotificadorEmail notificadorEmail;
     MetodoDeEnvio metodoDeEnvioEmail;
+
+
+    CaracteristicasController controller;
+    CaracteristicaConRta caracteristicaConRta1;
+    CaracteristicaConRta caracteristicaConRta2;
+    ArrayList<CaracteristicaConRta> caracteristicasConRtas;
 
 
     @Before
@@ -50,8 +61,37 @@ public class RescatistaNotifica {
 
         personaDuenio.agregarContacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
 
-        personaDuenio.registrarMascota("Susana", "Susi", 2, "tiene una mancha blanca en una pata.",
-                "gato", "hembra", personaDuenio);
+        //Empiezo a cargar caracteristicas al repositorio
+
+        controller = CaracteristicasController.getInstancia();
+        ArrayList<String> rtas = new ArrayList<String>();
+        rtas.add("Si");
+        rtas.add("No");
+        controller.crearCaracteristica("Esta castrado", rtas);
+
+        ArrayList<String> rtas2 = new ArrayList<String>();
+        rtas2.add("Negro");
+        rtas2.add("Marron");
+        rtas2.add("Rubio");
+        rtas2.add("Ninguno de estos");
+        controller.crearCaracteristica("Color principal", rtas2);
+        //Termino de cargar caracteristicas al repositorio
+
+        //Registro de 1 mascota
+
+        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+
+
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
+
+        caracteristicasConRtas = new ArrayList<CaracteristicaConRta>();
+        caracteristicasConRtas.add(caracteristicaConRta1);
+        caracteristicasConRtas.add(caracteristicaConRta2);
+
+
+        personaDuenio.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
+                "gato", "hembra", caracteristicasConRtas, personaDuenio);
 
         personaRescatista = new Persona();
 
@@ -68,6 +108,6 @@ public class RescatistaNotifica {
     public void elRescatistaEncuentraUnaMascotaConQR() {
         Mascota mascotaPerdida = personaDuenio.getRol().getMascotas().get(0);
 
-        personaRescatista.getRol().encontreMascota(mascotaPerdida, personaRescatista.getContactos().get(0));
+        personaRescatista.getRol().encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0));
     }
 }
