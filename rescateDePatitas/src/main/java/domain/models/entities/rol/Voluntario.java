@@ -24,15 +24,15 @@ public class Voluntario implements Rol{
     }
 
     @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion){
-        Organizacion.publicacionesAceptadas.add(unaPublicacion);
-        Organizacion.publicacionesARevisar.remove(unaPublicacion);
+    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
+        organizacion.getPublicacionesAceptadas().add(unaPublicacion);
+        organizacion.getPublicacionesARevisar().remove(unaPublicacion);
 
     }
     @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion){
+    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
 
-        Organizacion.publicacionesARevisar.remove(unaPublicacion);
+        organizacion.getPublicacionesARevisar().remove(unaPublicacion);
 
     }
 

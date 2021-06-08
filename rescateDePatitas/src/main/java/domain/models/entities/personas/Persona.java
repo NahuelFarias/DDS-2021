@@ -134,14 +134,14 @@ public class Persona extends Persistente {
 
     }
     
-    public void aprobarPublicacion(Publicacion unaPublicacion){
+    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
 
-        this.rol.aprobarPublicacion(unaPublicacion);
+        this.rol.aprobarPublicacion(unaPublicacion, organizacion);
     }
 
-    public void rechazarPublicacion(Publicacion unaPublicacion){
+    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
 
-        this.rol.rechazarPublicacion(unaPublicacion);
+        this.rol.rechazarPublicacion(unaPublicacion, organizacion);
 
     }
 }
