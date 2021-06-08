@@ -1,5 +1,7 @@
 package domain;
 
+import domain.models.entities.EditorDeFotos;
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
 import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
@@ -13,6 +15,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,12 +43,10 @@ public class EnvioDeNotificaciones {
         metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
         contactoNotificadoSMS = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
 
-
         adapterWhatsapp = new AdapterTwilioWhatsapp();
         notificadorWhatsapp = new NotificadorWhatsapp(adapterWhatsapp);
         metodoDeEnvioWhatsapp = new MetodoDeEnvio(notificadorWhatsapp);
         contactoNotificadoWhatsapp = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioWhatsapp);
-
 
         adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
         notificadorEmail = new NotificadorEmail(adapterEmail);

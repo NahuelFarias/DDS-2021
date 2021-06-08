@@ -1,6 +1,7 @@
 package domain;
 
 import domain.models.entities.EditorDeFotos;
+import domain.models.entities.mascotas.Foto;
 import org.junit.Assert;
 import org.junit.Test;
 import java.io.File;
@@ -9,10 +10,12 @@ public class EditorDeFotosTest {
 
     @Test
     public void creaFotoConNuevasDimensiones(){
+        Foto foto = new Foto();
+        foto.setURLfoto("src/main/resources/FotoDePrueba.jpg");
         EditorDeFotos editorDeFotos = new EditorDeFotos();
-        File fotoRedimensionada = new File("src/main/resources/FotoRedimensionada.jpg");
+        Foto fotoModificada = editorDeFotos.ajustarCalidad(foto);
 
-        editorDeFotos.ajustarCalidad();
-        Assert.assertTrue(fotoRedimensionada.exists());
+
+        Assert.assertTrue(new File(fotoModificada.getURLfoto()).exists());
     }
 }

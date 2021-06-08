@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public interface Rol {
 
-    String getNombre();
+    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona);
 
-    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero,List<CaracteristicaConRta> caracteristicas, Persona persona);
+    String getNombre();
 
     void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion);
 

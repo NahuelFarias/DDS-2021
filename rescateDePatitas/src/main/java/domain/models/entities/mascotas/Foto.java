@@ -9,5 +9,11 @@ public class Foto {
 
     }
 
+    public String getURLfoto() {
+        return URLfoto;
+    }
 
+    public void setURLfoto(String URLfoto) {
+        this.URLfoto = URLfoto;
+    }
 }
