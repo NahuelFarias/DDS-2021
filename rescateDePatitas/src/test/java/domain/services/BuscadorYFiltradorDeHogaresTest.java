@@ -1,7 +1,7 @@
-package domain;
+package domain.services;
 
-import domain.models.entities.BuscadorDeHogaresDeTransito;
-import domain.models.entities.FiltradorDeHogaresDeTransito;
+import services.BuscadorDeHogaresDeTransito;
+import services.FiltradorDeHogaresDeTransito;
 import domain.models.entities.hogares.ListadoDeHogares;
 import domain.models.entities.hogares.Hogar;
 import org.junit.Assert;

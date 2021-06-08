@@ -1,7 +1,5 @@
-package domain;
+package domain.services;
 
-import domain.models.entities.EditorDeFotos;
-import domain.models.entities.mascotas.Foto;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
 import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
@@ -15,7 +13,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

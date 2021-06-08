@@ -1,8 +1,8 @@
 package domain.models.entities.mascotas;
 
 import com.google.zxing.WriterException;
-import domain.Configuracion;
-import domain.models.entities.GeneradorQR;
+import services.Configuracion;
+import services.GeneradorQR;
 import domain.models.entities.Persistente;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;

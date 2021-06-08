@@ -1,4 +1,4 @@
-package domain.models.entities;
+package services;
 
 import domain.models.entities.hogares.*;
 import retrofit2.Call;

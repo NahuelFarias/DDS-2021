@@ -1,7 +1,7 @@
-package domain;
+package domain.services;
 
-import domain.models.entities.GeneradorQR;
-import domain.models.entities.LectorQR;
+import services.GeneradorQR;
+import services.LectorQR;
 import org.junit.Test;
 
 import java.io.*;

@@ -1,7 +1,7 @@
-package domain;
+package domain.services;
 
-import org.junit.Before;
 import org.junit.Test;
+import services.Configuracion;
 
 
 public class LeerArchivoConfiguracion {

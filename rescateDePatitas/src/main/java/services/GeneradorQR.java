@@ -1,4 +1,4 @@
-package domain.models.entities;
+package services;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;

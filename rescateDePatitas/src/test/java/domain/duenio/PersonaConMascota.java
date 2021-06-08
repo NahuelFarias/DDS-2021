@@ -1,8 +1,8 @@
-package domain;
+package domain.duenio;
 
 import com.google.zxing.WriterException;
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.EditorDeFotos;
+import services.EditorDeFotos;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;

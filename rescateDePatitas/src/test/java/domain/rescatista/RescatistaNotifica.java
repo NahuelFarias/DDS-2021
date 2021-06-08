@@ -1,7 +1,7 @@
-package domain;
+package domain.rescatista;
 
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.EditorDeFotos;
+import services.EditorDeFotos;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;

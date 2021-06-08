@@ -1,6 +1,6 @@
-package domain;
+package domain.services;
 
-import domain.models.entities.EditorDeFotos;
+import services.EditorDeFotos;
 import domain.models.entities.mascotas.Foto;
 import org.junit.Assert;
 import org.junit.Test;
