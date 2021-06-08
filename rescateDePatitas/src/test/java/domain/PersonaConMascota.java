@@ -2,8 +2,10 @@ package domain;
 
 import com.google.zxing.WriterException;
 import domain.controllers.CaracteristicasController;
+import domain.models.entities.EditorDeFotos;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -28,6 +30,8 @@ public class PersonaConMascota {
     CaracteristicaConRta caracteristicaConRta2;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
     Mascota mascota,mascota2;
+    List<Contacto> contactos,contactos2;
+    Contacto contacto1,contacto2;
 
 
     @Before
@@ -35,13 +39,18 @@ public class PersonaConMascota {
         persona = new Persona();
         duenio = new Duenio();
         repoCaracteristicas = new RepositorioDeCaracteristicas();
+        contactos = new ArrayList<Contacto>();
     }
 
     @Test
     public void crearPersonaConMascotasTest() throws IOException, WriterException {
 
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com");
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com");
+        contactos.add(contacto1);
+        contactos.add(contacto2);
 
-        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA",TipoDeDocumento.DNI,3333333,27081996);
+        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA",TipoDeDocumento.DNI,3333333,27081996,contactos);
 
         System.out.println ("Datos del Dueño");
         System.out.println ("Nombre:" + persona.getNombre());
@@ -52,11 +61,10 @@ public class PersonaConMascota {
         System.out.println ("Fecha de nacimiento:" + persona.getFechaDeNacimiento());
         System.out.println ("-------------");
 
-
+        //Agrego el rol duenio a la persona para que pueda registrar sus mascotas
         persona.setRol(duenio);
 
-        //Empiezo a cargar caracteristicas al repositorio
-
+        //Cargo caracteristicas al repositorio con el controller
         controller = CaracteristicasController.getInstancia();
         ArrayList<String> rtas = new ArrayList<String>();
         rtas.add("Si");
@@ -78,13 +86,22 @@ public class PersonaConMascota {
         caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
         caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
 
+        //Armo la lista de caracteristicas para agregar a la mascota
         caracteristicasConRtas = new ArrayList<CaracteristicaConRta>();
         caracteristicasConRtas.add(caracteristicaConRta1);
         caracteristicasConRtas.add(caracteristicaConRta2);
 
+        //Redimensiono las fotos para agregar a la mascota
+        ArrayList<Foto> fotos = new ArrayList<Foto>();
+        Foto foto = new Foto();
+        foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
+        EditorDeFotos editor = new EditorDeFotos();
+        Foto fotoEditada = editor.ajustarCalidad(foto);
+        fotos.add(fotoEditada);
+
 
         persona.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas,persona);
+                "gato", "hembra", caracteristicasConRtas,fotos,persona);
 
         //Listo los datos de la mascota 1 cargada
         System.out.println ("Datos de la Mascota");
@@ -106,11 +123,12 @@ public class PersonaConMascota {
         System.out.println ("-------------");
 
         //Fin datos mascota 1
-
         mascota.generarQR();
+
 
         //Registro de mascota 2
 
+        //Agrego las caracteristicas con su respuesta elegida para registrar la mascota
         CaracteristicaConRta caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
         CaracteristicaConRta caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
 
@@ -118,8 +136,16 @@ public class PersonaConMascota {
         caracteristicasConRtas2.add(caracteristicaConRta3);
         caracteristicasConRtas2.add(caracteristicaConRta4);
 
+        //Redimensiono la foto de la mascota 2
+        ArrayList<Foto> fotos2 = new ArrayList<Foto>();
+        Foto foto2 = new Foto();
+        foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
+        editor = new EditorDeFotos();
+        Foto fotoEditada2 = editor.ajustarCalidad(foto2);
+        fotos2.add(foto);
+
         persona.registrarMascota("Titan","Titi",5,"Tiene los ojos de distinto color.",
-                "perro", "macho",caracteristicasConRtas2,persona);
+                "perro", "macho",caracteristicasConRtas2,fotos2,persona);
 
         //Listo los datos de la mascota 2
 

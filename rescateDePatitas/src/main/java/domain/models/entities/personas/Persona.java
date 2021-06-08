@@ -2,6 +2,7 @@ package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.CaracteristicaConRta;
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.rol.Rol;
 
@@ -101,21 +102,22 @@ public class Persona extends Persistente {
     // methods
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,Integer fechaDeNacimiento ){
+                            Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos ){
         setNombre(nombre);
         setApellido(apellido);
         setDireccion(direccion);
         setNroDoc(nroDoc);
         setTipoDoc(tipoDoc);
         setFechaDeNacimiento(fechaDeNacimiento);
+        setContactos(contactos);
 
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero,ArrayList<CaracteristicaConRta> caracteristicas,Persona persona){
+                                 String especie, String genero, ArrayList<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona){
         persona = this;
 
-        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,persona);
+        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,fotos,persona);
 
     }
 
