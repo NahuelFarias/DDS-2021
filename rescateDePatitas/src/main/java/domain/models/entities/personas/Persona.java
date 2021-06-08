@@ -1,6 +1,8 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
@@ -102,14 +104,13 @@ public class Persona extends Persistente {
     // methods
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,Integer fechaDeNacimiento ){
+                            Integer nroDoc,Integer fechaDeNacimiento) {
         setNombre(nombre);
         setApellido(apellido);
         setDireccion(direccion);
         setNroDoc(nroDoc);
         setTipoDoc(tipoDoc);
         setFechaDeNacimiento(fechaDeNacimiento);
-
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
@@ -120,11 +121,19 @@ public class Persona extends Persistente {
 
     }
 
-    public void agregarContacto(String nombre, String apellido, String numero,String email){
-        Contacto contacto = new Contacto(nombre,apellido,numero,email);
+    public void agregarContacto(String nombre, String apellido, String numero, String email, MetodoDeEnvio metodoDeEnvio){
+        Contacto contacto = new Contacto(nombre,apellido,numero,email, metodoDeEnvio);
 
         contactos.add(contacto);
 
+    }
+
+    public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista) {
+        if(rol.getNombre() == "DUENIO") {
+           contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() +  " fue encontrada!\n" +
+                   "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
+                   "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
+        }
     }
 
     public void crearUsuario(){

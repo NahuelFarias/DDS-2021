@@ -13,10 +13,12 @@ public class FiltradorDeHogaresDeTransito {
     public List<Hogar> filtrarPorAnimalAceptado(List<Hogar> listadoDeHogares, String animal){
         List<Hogar> listadoFiltrado = new ArrayList<>();
         Map<String, Boolean> mapa = new HashMap<>();
+        mapa.put("perro", true);
+        mapa.put("gato", true);
         for (Hogar hogar:listadoDeHogares) {
             mapa.replace("gato",hogar.admisiones.gatos);
-            mapa.replace("perro",hogar.admisiones.gatos);
-            if(mapa.get(animal)) {listadoFiltrado.add(hogar);}
+            mapa.replace("perro",hogar.admisiones.perros);
+            if(mapa.get( animal )) {listadoFiltrado.add(hogar);}
         }
         return listadoFiltrado;
     }

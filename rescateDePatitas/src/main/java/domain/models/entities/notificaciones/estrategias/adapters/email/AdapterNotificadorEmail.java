@@ -1,9 +1,9 @@
 package domain.models.entities.notificaciones.estrategias.adapters.email;
 
-import domain.models.entities.notificaciones.Notificacion;
+import domain.models.entities.personas.Contacto;
 
 import javax.mail.MessagingException;
 
 public interface AdapterNotificadorEmail {
-    void enviarEmail(Notificacion notificacion) throws MessagingException;
+    void enviarEmail(Contacto contacto) throws MessagingException;
 }
