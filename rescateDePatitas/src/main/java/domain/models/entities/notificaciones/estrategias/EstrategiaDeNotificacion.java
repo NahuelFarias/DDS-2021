@@ -1,7 +1,7 @@
 package domain.models.entities.notificaciones.estrategias;
 
-import domain.models.entities.notificaciones.Notificacion;
+import domain.models.entities.personas.Contacto;
 
 public interface EstrategiaDeNotificacion {
-    void enviarNotificacion(Notificacion notificacion);
+    void enviarNotificacion(Contacto contacto);
 }

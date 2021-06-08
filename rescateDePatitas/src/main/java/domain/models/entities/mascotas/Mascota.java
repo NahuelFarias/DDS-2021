@@ -15,7 +15,7 @@ import java.util.List;
 public class Mascota extends Persistente {
     private String nombre;
     private String apodo;
-    private static Integer idMascota=0;
+    private static Integer idMascota = 0;
     private String descripcion;
     private Integer edad;
     private String especie;
@@ -127,12 +127,14 @@ public class Mascota extends Persistente {
 
         String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
 
-
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url,pathGuardar,"jpg",500,500);
 
     }
 
+    public void avisarQueMeEcontraron(Contacto contacto) {
+        persona.notificarContactos(this, contacto);
+    }
 
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
                             String especie, String genero, List<CaracteristicaConRta> caracteristicas,
@@ -148,10 +150,5 @@ public class Mascota extends Persistente {
         this.fotos = fotos;
 
     }
-
-
-
-
-
 
 }
