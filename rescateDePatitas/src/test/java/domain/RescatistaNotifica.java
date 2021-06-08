@@ -20,7 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,21 +36,29 @@ public class RescatistaNotifica {
     NotificadorEmail notificadorEmail;
     MetodoDeEnvio metodoDeEnvioEmail;
 
-
     CaracteristicasController controller;
     CaracteristicaConRta caracteristicaConRta1;
     CaracteristicaConRta caracteristicaConRta2;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
+    List<Caracteristica> caracteristicas;
+    ArrayList<String> rtas, rtas2;
 
     Contacto contacto1,contacto2,contacto3;
-    List<Contacto> contactos;
-    Foto foto;
+    List<Contacto> contactos, contactosRescatista;
+    Foto foto, fotoEditada;
     List<Foto> fotos;
-
+    EditorDeFotos editor;
 
     @Before
     public void instanciar() throws IOException {
         personaDuenio = new Persona();
+
+        adapterSMS = new AdapterTwilioSMS();
+        notificadorSMS = new NotificadorSMS(adapterSMS);
+        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
+        notificadorEmail = new NotificadorEmail(adapterEmail);
+        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
 
         contacto1 = new Contacto("Soledad", "Grilleta", "+541122222242", "sole.012@gmail.com", metodoDeEnvioEmail);
         contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
@@ -65,22 +72,15 @@ public class RescatistaNotifica {
 
         personaDuenio.setRol(duenio);
 
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
-        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
-        notificadorEmail = new NotificadorEmail(adapterEmail);
-        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
-
         //Empiezo a cargar caracteristicas al repositorio
 
         controller = CaracteristicasController.getInstancia();
-        ArrayList<String> rtas = new ArrayList<String>();
+        rtas = new ArrayList<>();
         rtas.add("Si");
         rtas.add("No");
         controller.crearCaracteristica("Esta castrado", rtas);
 
-        ArrayList<String> rtas2 = new ArrayList<String>();
+        rtas2 = new ArrayList<>();
         rtas2.add("Negro");
         rtas2.add("Marron");
         rtas2.add("Rubio");
@@ -88,9 +88,7 @@ public class RescatistaNotifica {
         controller.crearCaracteristica("Color principal", rtas2);
         //Termino de cargar caracteristicas al repositorio
 
-        //Registro de 1 mascota
-
-        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+        caracteristicas = controller.getRepositorio().caracteristicas;
 
 
         caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
@@ -103,22 +101,21 @@ public class RescatistaNotifica {
         fotos = new ArrayList<>();
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
-        EditorDeFotos editor = new EditorDeFotos();
-        Foto fotoEditada = editor.ajustarCalidad(foto);
+        editor = new EditorDeFotos();
+        fotoEditada = editor.ajustarCalidad(foto);
         fotos.add(fotoEditada);
 
         personaDuenio.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas,fotos, personaDuenio);
+                "gato", "hembra", caracteristicasConRtas, fotos, personaDuenio);
 
         personaRescatista = new Persona();
 
         contacto3 = new Contacto("Roberto Francisco", "Ginez", "+541138138227", "rginez@gmail.com", metodoDeEnvioSMS);
 
-        List<Contacto> contactosRescatista = new ArrayList<>();
+        contactosRescatista = new ArrayList<>();
         contactosRescatista.add(contacto3);
 
-        personaRescatista.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, 30031998,contactosRescatista);
-
+        personaRescatista.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, 30031998, contactosRescatista);
 
         rescatista = new Rescatista();
 

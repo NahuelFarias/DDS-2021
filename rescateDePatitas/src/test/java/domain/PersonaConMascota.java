@@ -33,9 +33,8 @@ public class PersonaConMascota {
     CaracteristicaConRta caracteristicaConRta2;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
     Mascota mascota,mascota2;
-    List<Contacto> contactos,contactos2;
+    List<Contacto> contactos;
     Contacto contacto1,contacto2;
-    Contacto contactoNotificadoSMS;
     MetodoDeEnvio metodoDeEnvioSMS;
     NotificadorSMS notificadorSMS;
     AdapterTwilioSMS adapterSMS;

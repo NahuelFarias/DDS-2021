@@ -24,7 +24,7 @@ public class Persona extends Persistente {
     private Usuario usuario;
 
     public Persona() {
-        this.contactos = new ArrayList<Contacto>();
+        this.contactos = new ArrayList<>();
     }
 
 
@@ -81,8 +81,8 @@ public class Persona extends Persistente {
     public Rol getRol() {
         return rol;
     }
-    public void setRol(Rol rol){this.rol = rol;}
 
+    public void setRol(Rol rol){this.rol = rol;}
 
     public List<Contacto> getContactos() {
         return contactos;
@@ -92,7 +92,6 @@ public class Persona extends Persistente {
         this.contactos = contactos;
     }
 
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -101,13 +100,10 @@ public class Persona extends Persistente {
         this.usuario = usuario;
     }
 
-
     // methods
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-
                             Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos ){
-
         setNombre(nombre);
         setApellido(apellido);
         setDireccion(direccion);
@@ -115,7 +111,6 @@ public class Persona extends Persistente {
         setTipoDoc(tipoDoc);
         setFechaDeNacimiento(fechaDeNacimiento);
         setContactos(contactos);
-
     }
 
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
