@@ -1,11 +1,8 @@
 package domain;
 
-import com.sun.codemodel.internal.JForEach;
-import com.sun.tools.javac.code.Attribute;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Persona;
-import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.rol.Voluntario;
 import org.junit.Before;
 import org.junit.Test;
