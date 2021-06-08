@@ -52,12 +52,12 @@ public class Organizacion {
     public void generarVoluntario(Persona persona){
         Voluntario voluntario = new Voluntario();
         persona.setRol(voluntario);
-        this.getVoluntarios();
         voluntarios.add(persona);
     }
 
     public void controlarPublicaciones(Persona persona){
         this.getPublicacionesARevisar().forEach(publicacion -> persona.aprobarPublicacion(publicacion,this));
+        this.getPublicacionesARevisar().removeAll(publicacionesARevisar);
     }
 
 }
