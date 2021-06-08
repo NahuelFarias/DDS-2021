@@ -1,11 +1,11 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.Mascota;
-<<<<<<< HEAD
+
 import domain.models.entities.mascotas.Organizacion;
-=======
+
 import domain.models.entities.mascotas.CaracteristicaConRta;
->>>>>>> 096bf3b9a848b4f4eaaea22afa2a65f7836721d3
+
 import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -33,15 +33,15 @@ public class Rescatista implements Rol {
     }
 
     @Override
-<<<<<<< HEAD
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){}
+
+    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {}
+
     @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-=======
-    public void aprobarPublicacion(Publicacion unaPublicacion){}
+    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
+    }
 
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
->>>>>>> 096bf3b9a848b4f4eaaea22afa2a65f7836721d3
     }
 }
+

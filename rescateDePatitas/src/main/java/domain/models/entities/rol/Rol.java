@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface Rol {
 
-    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero,List<CaracteristicaConRta> caracteristicas, Persona persona);
+    String getNombre();
 
-<<<<<<< HEAD
+    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero,List<CaracteristicaConRta> caracteristicas, Persona persona);
 
     void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion);
 
@@ -21,14 +21,6 @@ public interface Rol {
 
     void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion);
 
-
-=======
-    void aprobarPublicacion(Publicacion unaPublicacion);
-
-    List<Mascota> getMascotas();
-
-    String getNombre();
-
     void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto);
->>>>>>> 096bf3b9a848b4f4eaaea22afa2a65f7836721d3
+
 }

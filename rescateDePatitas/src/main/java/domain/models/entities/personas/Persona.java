@@ -153,4 +153,9 @@ public class Persona extends Persistente {
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
 
     }
+
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto){
+        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+    }
+
 }

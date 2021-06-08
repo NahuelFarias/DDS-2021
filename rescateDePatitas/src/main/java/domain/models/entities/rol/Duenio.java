@@ -42,14 +42,8 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-
-    }
-<<<<<<< HEAD
-
+    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){ }
     @Override
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
     }
-=======
->>>>>>> 096bf3b9a848b4f4eaaea22afa2a65f7836721d3
 }

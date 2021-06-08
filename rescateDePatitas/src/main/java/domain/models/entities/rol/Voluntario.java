@@ -9,10 +9,14 @@ import domain.models.entities.personas.Persona;
 
 import java.util.List;
 
-public class Voluntario implements Rol{
+public class Voluntario implements Rol {
 
     private final Integer id = 3;
     private final String nombre = "VOLUNTARIO";
+
+    public String getNombre() {
+        return nombre;
+    }
 
     @Override
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona) {
@@ -25,13 +29,8 @@ public class Voluntario implements Rol{
     }
 
     @Override
-<<<<<<< HEAD
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-        organizacion.getPublicacionesAceptadas().add(unaPublicacion);
+    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
         organizacion.getPublicacionesARevisar().remove(unaPublicacion);
-=======
-    public String getNombre() {
-        return nombre;
     }
 
     @Override
@@ -40,17 +39,9 @@ public class Voluntario implements Rol{
     }
 
     @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion){
-        Organizacion.publicacionesAceptadas.add(unaPublicacion);
-        Organizacion.publicacionesARevisar.remove(unaPublicacion);
->>>>>>> 096bf3b9a848b4f4eaaea22afa2a65f7836721d3
-
-    }
-    @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-
+    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
+        organizacion.getPublicacionesAceptadas().add(unaPublicacion);
         organizacion.getPublicacionesARevisar().remove(unaPublicacion);
 
     }
-
 }
