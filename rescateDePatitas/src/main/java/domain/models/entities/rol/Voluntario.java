@@ -36,6 +36,11 @@ public class Voluntario implements Rol {
     }
 
     @Override
+    public void perdiUnaMascota(Mascota mascota) {
+
+    }
+
+    @Override
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
 
     }

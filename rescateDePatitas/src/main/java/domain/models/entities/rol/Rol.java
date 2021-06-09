@@ -22,6 +22,8 @@ public interface Rol {
 
     void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion);
 
+    void perdiUnaMascota(Mascota mascota);
+
     void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto);
 
 }

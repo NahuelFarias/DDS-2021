@@ -9,6 +9,7 @@ import domain.models.entities.personas.Persona;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +22,7 @@ public class Mascota extends Persistente {
     private String especie;
     private String genero;
     private Organizacion organizacion;
+    private Date fechaDesdeQueEstaPerdida;
     private List<CaracteristicaConRta> caracteristicas;
     private List<Contacto> contactos;
     private List<Foto> fotos;
@@ -130,6 +132,15 @@ public class Mascota extends Persistente {
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url,pathGuardar,"jpg",500,500);
 
+    }
+
+    public void avisarQueMePerdi() {
+        fechaDesdeQueEstaPerdida = new Date();
+        System.out.println(fechaDesdeQueEstaPerdida);
+    }
+
+    public Date getFechaDesdeQueEstaPerdida() {
+        return fechaDesdeQueEstaPerdida;
     }
 
     public void avisarQueMeEcontraron(Contacto contacto) {

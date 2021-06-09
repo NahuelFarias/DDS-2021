@@ -43,6 +43,11 @@ public class Rescatista implements Rol {
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
     }
 
+    @Override
+    public void perdiUnaMascota(Mascota mascota) {
+
+    }
+
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
     }

@@ -22,8 +22,12 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+    public void perdiUnaMascota(Mascota mascota) {
+        mascota.avisarQueMePerdi();
+    }
 
+    @Override
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
     }
 
     @Override

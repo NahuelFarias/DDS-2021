@@ -27,7 +27,6 @@ public class Persona extends Persistente {
         this.contactos = new ArrayList<>();
     }
 
-
     //getters & setters
 
     public String getNombre() {
