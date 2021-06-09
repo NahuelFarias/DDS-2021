@@ -140,7 +140,7 @@ public class Persona extends Persistente {
     }
 
     public Boolean iniciarSesion(String user, String contrasenia) {
-        return this.usuario.iniciarSesion(user, contrasenia);
+        return this.usuario.iniciarSesion(user, contrasenia, this);
     }
     
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){

@@ -8,6 +8,7 @@ public class Usuario {
     private static int workload = 12;
     private String nombreDeUsuario;
     private String hashContrasenia;
+    private Integer fallosAlIniciarSesion = 0;
 
     public Usuario(String user, String contrasenia) {
         setNombreDeUsuario(user);
@@ -18,6 +19,10 @@ public class Usuario {
 
     public String getNombreDeUsuario() {
         return nombreDeUsuario;
+    }
+
+    public String getHashContrasenia() {
+        return hashContrasenia;
     }
 
     public void setNombreDeUsuario(String nombreDeUsuario) {
@@ -42,7 +47,22 @@ public class Usuario {
         setHashContrasenia(hashed_password);
     }
 
-    public Boolean iniciarSesion(String user, String contrasenia) {
+    public Boolean iniciarSesion(String user, String contrasenia, Persona persona) {
+        
+        if(getNombreDeUsuario() != user) {
+            System.out.println("El usuario ingresado es incorrecto");
+            this.fallosAlIniciarSesion = fallosAlIniciarSesion + 1;
+        } else if(!checkPassword(contrasenia, this.hashContrasenia)) {
+            System.out.println("La contraseña ingresada es incorrecta");
+            this.fallosAlIniciarSesion = fallosAlIniciarSesion+ 1;
+        } else {
+            System.out.println("Inicio de sesion exitoso!");
+        }
+
+        if(fallosAlIniciarSesion >= 3){
+            persona.getContactos().forEach(contacto -> contacto.notificarContacto("detectamos una serie de ingresos fallidos en tu cuenta"));
+        }
+
         return this.getNombreDeUsuario() == user && checkPassword(contrasenia, this.hashContrasenia);
     }
 

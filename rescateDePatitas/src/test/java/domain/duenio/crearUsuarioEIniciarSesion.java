@@ -63,6 +63,7 @@ public class crearUsuarioEIniciarSesion {
         System.out.println ("Numero de documento:" + persona.getNroDoc());
         System.out.println ("Fecha de nacimiento:" + persona.getFechaDeNacimiento());
         System.out.println("Usuario en la plataforma: " + persona.getUsuario().getNombreDeUsuario());
+        System.out.println("Contrasenia en la plataforma: " + persona.getUsuario().getHashContrasenia());
         System.out.println ("-------------");
     }
 
@@ -84,6 +85,40 @@ public class crearUsuarioEIniciarSesion {
     }
 
     @Test
+    public void crearUsuarioEIniciarSesionConUsuarioIncorrecto(){
+        adapterSMS = new AdapterTwilioSMS();
+        notificadorSMS = new NotificadorSMS(adapterSMS);
+        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contactos.add(contacto1);
+        contactos.add(contacto2);
+
+        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996,contactos);
+        persona.crearUsuario("Victoria09", "MiPerro22!!##");
+
+        Assert.assertFalse(persona.iniciarSesion("Victoria091", "MiPerro22!!##"));
+    }
+
+    @Test
+    public void crearUsuarioEIniciarSesionConContraseniaIncorrecta(){
+        adapterSMS = new AdapterTwilioSMS();
+        notificadorSMS = new NotificadorSMS(adapterSMS);
+        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contactos.add(contacto1);
+        contactos.add(contacto2);
+
+        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996,contactos);
+        persona.crearUsuario("Victoria09", "MiPerro22!!##");
+
+        Assert.assertFalse(persona.iniciarSesion("Victoria09", "MiPerr22!!##"));
+    }
+
+    @Test
     public void crearUsuarioEIniciarSesionConDatosIncorrectos(){
         adapterSMS = new AdapterTwilioSMS();
         notificadorSMS = new NotificadorSMS(adapterSMS);
@@ -97,6 +132,23 @@ public class crearUsuarioEIniciarSesion {
         persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996,contactos);
         persona.crearUsuario("Victoria09", "MiPerro22!!##");
 
+        Assert.assertFalse(persona.iniciarSesion("Victoria092", "MiPerr22!!##"));
+    }
+
+    @Test
+    public void crearUsuarioEIniciarSesionConDatosIncorrectosMasDe3Veces(){
+        adapterSMS = new AdapterTwilioSMS();
+        notificadorSMS = new NotificadorSMS(adapterSMS);
+        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+
+        contacto1 = new Contacto("Maria Victoria","Sanchez","+541138338092","mvicsanchez@gmail.com",metodoDeEnvioSMS);
+        contactos.add(contacto1);
+
+        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996, contactos);
+        persona.crearUsuario("Victoria09", "MiPerro22!!##");
+
+        Assert.assertFalse(persona.iniciarSesion("Victoria092", "MiPerr22!!##"));
+        Assert.assertFalse(persona.iniciarSesion("Victoria09", "MiPerro2!!##"));
         Assert.assertFalse(persona.iniciarSesion("Victoria09", "MiPerr22!!##"));
     }
 }
