@@ -17,7 +17,6 @@ import domain.models.repositories.RepositorioDeCaracteristicas;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import services.EditorDeFotos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -90,12 +89,10 @@ public class PerdiMiMascota {
         caracteristicasConRtas.add(caracteristicaConRta2);
 
         //Redimensiono las fotos para agregar a la mascota
-        ArrayList<Foto> fotos = new ArrayList<Foto>();
+        ArrayList<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
-        EditorDeFotos editor = new EditorDeFotos();
-        Foto fotoEditada = editor.ajustarCalidad(foto);
-        fotos.add(fotoEditada);
+        fotos.add(foto);
 
         persona.registrarMascota("Susana", "Susi", 2, "tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasConRtas, fotos, persona);

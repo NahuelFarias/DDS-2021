@@ -1,7 +1,6 @@
 package domain.rescatista;
 
 import domain.controllers.CaracteristicasController;
-import services.EditorDeFotos;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
@@ -45,9 +44,8 @@ public class RescatistaNotifica {
 
     Contacto contacto1,contacto2,contacto3;
     List<Contacto> contactos, contactosRescatista;
-    Foto foto, fotoEditada;
+    Foto foto;
     List<Foto> fotos;
-    EditorDeFotos editor;
 
     @Before
     public void instanciar() throws IOException {
@@ -100,9 +98,7 @@ public class RescatistaNotifica {
         fotos = new ArrayList<>();
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
-        editor = new EditorDeFotos();
-        fotoEditada = editor.ajustarCalidad(foto);
-        fotos.add(fotoEditada);
+        fotos.add(foto);
 
         personaDuenio.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasConRtas, fotos, personaDuenio);
