@@ -124,7 +124,6 @@ public class Persona extends Persistente {
         Contacto contacto = new Contacto(nombre,apellido,numero,email, metodoDeEnvio);
 
         contactos.add(contacto);
-
     }
 
     public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista) {
@@ -143,14 +142,11 @@ public class Persona extends Persistente {
     }
     
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-
         this.rol.aprobarPublicacion(unaPublicacion, organizacion);
     }
 
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
-
     }
 
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto){

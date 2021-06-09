@@ -29,9 +29,8 @@ public class PersonaConMascota {
     Rol duenio;
     RepositorioDeCaracteristicas repoCaracteristicas;
     CaracteristicasController controller;
-    CaracteristicaConRta caracteristicaConRta1;
-    CaracteristicaConRta caracteristicaConRta2;
-    ArrayList<CaracteristicaConRta> caracteristicasConRtas;
+    CaracteristicaConRta caracteristicaConRta1, caracteristicaConRta2, caracteristicaConRta3, caracteristicaConRta4;
+    ArrayList<CaracteristicaConRta> caracteristicasConRtas, caracteristicasConRtas2;
     Mascota mascota,mascota2;
     List<Contacto> contactos;
     Contacto contacto1,contacto2;
@@ -45,7 +44,22 @@ public class PersonaConMascota {
         persona = new Persona();
         duenio = new Duenio();
         repoCaracteristicas = new RepositorioDeCaracteristicas();
-        contactos = new ArrayList<Contacto>();
+        contactos = new ArrayList<>();
+
+        //Cargo caracteristicas al repositorio con el controller
+        controller = CaracteristicasController.getInstancia();
+        ArrayList<String> rtas = new ArrayList<>();
+        rtas.add("Si");
+        rtas.add("No");
+        controller.crearCaracteristica("Esta castrado", rtas);
+
+        ArrayList<String> rtas2 = new ArrayList<>();
+        rtas2.add("Negro");
+        rtas2.add("Marron");
+        rtas2.add("Rubio");
+        rtas2.add("Ninguno de estos");
+        controller.crearCaracteristica("Color principal", rtas2);
+        //Termino de cargar caracteristicas al repositorio
     }
 
     @Test
@@ -74,21 +88,6 @@ public class PersonaConMascota {
         //Agrego el rol duenio a la persona para que pueda registrar sus mascotas
         persona.setRol(duenio);
 
-        //Cargo caracteristicas al repositorio con el controller
-        controller = CaracteristicasController.getInstancia();
-        ArrayList<String> rtas = new ArrayList<String>();
-        rtas.add("Si");
-        rtas.add("No");
-        controller.crearCaracteristica("Esta castrado", rtas);
-
-        ArrayList<String> rtas2 = new ArrayList<String>();
-        rtas2.add("Negro");
-        rtas2.add("Marron");
-        rtas2.add("Rubio");
-        rtas2.add("Ninguno de estos");
-        controller.crearCaracteristica("Color principal", rtas2);
-        //Termino de cargar caracteristicas al repositorio
-
         //Registro de 1 mascota
 
         List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
@@ -97,12 +96,12 @@ public class PersonaConMascota {
         caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
 
         //Armo la lista de caracteristicas para agregar a la mascota
-        caracteristicasConRtas = new ArrayList<CaracteristicaConRta>();
+        caracteristicasConRtas = new ArrayList<>();
         caracteristicasConRtas.add(caracteristicaConRta1);
         caracteristicasConRtas.add(caracteristicaConRta2);
 
         //Redimensiono las fotos para agregar a la mascota
-        ArrayList<Foto> fotos = new ArrayList<Foto>();
+        ArrayList<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
         EditorDeFotos editor = new EditorDeFotos();
@@ -132,27 +131,23 @@ public class PersonaConMascota {
         System.out.println (descripcion2 + ":"+respuesta2);
         System.out.println ("-------------");
 
-        //Fin datos mascota 1
-        mascota.generarQR();
-
-
         //Registro de mascota 2
 
         //Agrego las caracteristicas con su respuesta elegida para registrar la mascota
-        CaracteristicaConRta caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
-        CaracteristicaConRta caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
+        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
+        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
 
-        ArrayList<CaracteristicaConRta> caracteristicasConRtas2 = new ArrayList<CaracteristicaConRta>();
+        caracteristicasConRtas2 = new ArrayList<>();
         caracteristicasConRtas2.add(caracteristicaConRta3);
         caracteristicasConRtas2.add(caracteristicaConRta4);
 
         //Redimensiono la foto de la mascota 2
-        ArrayList<Foto> fotos2 = new ArrayList<Foto>();
+        ArrayList<Foto> fotos2 = new ArrayList<>();
         Foto foto2 = new Foto();
         foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
         editor = new EditorDeFotos();
         Foto fotoEditada2 = editor.ajustarCalidad(foto2);
-        fotos2.add(foto);
+        fotos2.add(fotoEditada2);
 
         persona.registrarMascota("Titan","Titi",5,"Tiene los ojos de distinto color.",
                 "perro", "macho",caracteristicasConRtas2,fotos2,persona);
@@ -176,9 +171,5 @@ public class PersonaConMascota {
         System.out.println (descripcion2 + ":"+respuesta2);
 
         System.out.println ("-------------");
-
-        mascota2.generarQR();
-
-
     }
 }

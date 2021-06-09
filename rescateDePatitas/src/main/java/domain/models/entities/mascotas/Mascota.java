@@ -24,7 +24,6 @@ public class Mascota extends Persistente {
     private Organizacion organizacion;
     private Date fechaDesdeQueEstaPerdida;
     private List<CaracteristicaConRta> caracteristicas;
-    private List<Contacto> contactos;
     private List<Foto> fotos;
     private Persona persona;
 
@@ -33,8 +32,7 @@ public class Mascota extends Persistente {
         this.fotos = new ArrayList<>();
         this.idMascota= getIdMascota() + 1;
         this.persona = persona;
-        this.contactos = new ArrayList<Contacto>();
-        this.fotos = new ArrayList<Foto>();
+        this.fotos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -131,7 +129,6 @@ public class Mascota extends Persistente {
 
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url,pathGuardar,"jpg",500,500);
-
     }
 
     public void avisarQueMePerdi() {
@@ -150,16 +147,15 @@ public class Mascota extends Persistente {
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
                             String especie, String genero, List<CaracteristicaConRta> caracteristicas,
                             List<Foto> fotos){
-        this.setApodo(apodo);
-        this.setNombre(nombre);
-        this.setEdad(edad);
-        this.setDescripcion(descripcion);
-        this.setEspecie(especie);
-        this.setGenero(genero);
-        this.caracteristicas = caracteristicas;
-        this.contactos = contactos;
-        this.fotos = fotos;
-
+        setApodo(apodo);
+        setNombre(nombre);
+        setEdad(edad);
+        setDescripcion(descripcion);
+        setEspecie(especie);
+        setGenero(genero);
+        setCaracteristicas(caracteristicas);
+        // TODO: Redimensionar fotos aca?
+        setFotos(fotos);
     }
 
 }

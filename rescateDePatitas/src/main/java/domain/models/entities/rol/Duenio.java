@@ -1,5 +1,6 @@
 package domain.models.entities.rol;
 
+import com.google.zxing.WriterException;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
@@ -8,6 +9,7 @@ import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,14 @@ public class Duenio implements Rol{
                                  List<Foto> fotos, Persona persona){
 
         Mascota mascota = new Mascota(persona);
+
+        try {
+            mascota.generarQR();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
 
         mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero, caracteristicas,fotos);
 
