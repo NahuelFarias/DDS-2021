@@ -90,7 +90,6 @@ public class RescatistaNotifica {
 
         caracteristicas = controller.getRepositorio().caracteristicas;
 
-
         caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
         caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
 

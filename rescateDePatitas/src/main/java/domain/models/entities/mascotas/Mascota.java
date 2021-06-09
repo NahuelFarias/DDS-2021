@@ -154,8 +154,13 @@ public class Mascota extends Persistente {
         setEspecie(especie);
         setGenero(genero);
         setCaracteristicas(caracteristicas);
-        // TODO: Redimensionar fotos aca?
+        redimensionarFotos(fotos);
         setFotos(fotos);
+    }
+
+    public List<Foto> redimensionarFotos(List<Foto> fotosOrigianles) {
+        fotosOrigianles.forEach(foto -> foto.editarFoto());
+        return fotosOrigianles;
     }
 
 }

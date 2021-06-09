@@ -2,7 +2,6 @@ package domain.duenio;
 
 import com.google.zxing.WriterException;
 import domain.controllers.CaracteristicasController;
-import services.EditorDeFotos;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
@@ -68,7 +67,6 @@ public class PersonaConMascota {
         notificadorSMS = new NotificadorSMS(adapterSMS);
         metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-
         contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
         contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
         contactos.add(contacto1);
@@ -104,13 +102,10 @@ public class PersonaConMascota {
         ArrayList<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
-        EditorDeFotos editor = new EditorDeFotos();
-        Foto fotoEditada = editor.ajustarCalidad(foto);
-        fotos.add(fotoEditada);
-
+        fotos.add(foto);
 
         persona.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas,fotos,persona);
+                "gato", "hembra", caracteristicasConRtas, fotos, persona);
 
         //Listo los datos de la mascota 1 cargada
         System.out.println ("Datos de la Mascota");
@@ -145,12 +140,10 @@ public class PersonaConMascota {
         ArrayList<Foto> fotos2 = new ArrayList<>();
         Foto foto2 = new Foto();
         foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
-        editor = new EditorDeFotos();
-        Foto fotoEditada2 = editor.ajustarCalidad(foto2);
-        fotos2.add(fotoEditada2);
+        fotos2.add(foto2);
 
         persona.registrarMascota("Titan","Titi",5,"Tiene los ojos de distinto color.",
-                "perro", "macho",caracteristicasConRtas2,fotos2,persona);
+                "perro", "macho",caracteristicasConRtas2, fotos2, persona);
 
         //Listo los datos de la mascota 2
 
