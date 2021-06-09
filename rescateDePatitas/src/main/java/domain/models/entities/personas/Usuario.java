@@ -48,7 +48,7 @@ public class Usuario {
     }
 
     public Boolean iniciarSesion(String user, String contrasenia, Persona persona) {
-        
+
         if(getNombreDeUsuario() != user) {
             System.out.println("El usuario ingresado es incorrecto");
             this.fallosAlIniciarSesion = fallosAlIniciarSesion + 1;

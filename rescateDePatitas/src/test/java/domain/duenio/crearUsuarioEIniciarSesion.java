@@ -1,8 +1,9 @@
 package domain.duenio;
 
-import com.google.zxing.WriterException;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
+import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
 import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
+import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
 import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -25,6 +26,9 @@ public class crearUsuarioEIniciarSesion {
     MetodoDeEnvio metodoDeEnvioSMS;
     NotificadorSMS notificadorSMS;
     AdapterTwilioSMS adapterSMS;
+    AdapterJavaMailEmail adapterEmail;
+    NotificadorEmail notificadorEmail;
+    MetodoDeEnvio metodoDeEnvioEmail;
 
 
     @Before
@@ -41,7 +45,7 @@ public class crearUsuarioEIniciarSesion {
     }
 
     @Test
-    public void crearUsuarioPorPrimeraVez() throws IOException, WriterException {
+    public void crearUsuarioPorPrimeraVez() {
         adapterSMS = new AdapterTwilioSMS();
         notificadorSMS = new NotificadorSMS(adapterSMS);
         metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
@@ -136,13 +140,19 @@ public class crearUsuarioEIniciarSesion {
     }
 
     @Test
-    public void crearUsuarioEIniciarSesionConDatosIncorrectosMasDe3Veces(){
+    public void crearUsuarioEIniciarSesionConDatosIncorrectosMasDe3Veces() throws IOException {
         adapterSMS = new AdapterTwilioSMS();
         notificadorSMS = new NotificadorSMS(adapterSMS);
         metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
+        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Actividad sospechosa en tu cuenta 😱");
+        notificadorEmail = new NotificadorEmail(adapterEmail);
+        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
+        contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioEmail);
+
         contacto1 = new Contacto("Maria Victoria","Sanchez","+541138338092","mvicsanchez@gmail.com",metodoDeEnvioSMS);
         contactos.add(contacto1);
+        contactos.add(contacto2);
 
         persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996, contactos);
         persona.crearUsuario("Victoria09", "MiPerro22!!##");
