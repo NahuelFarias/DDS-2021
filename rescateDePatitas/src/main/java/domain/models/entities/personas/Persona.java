@@ -134,11 +134,13 @@ public class Persona extends Persistente {
         }
     }
 
-    public void crearUsuario(){
-        Usuario usuario = new Usuario();
+    public void crearUsuario(String user, String contrasenia){
+        Usuario usuario = new Usuario(user, contrasenia);
         setUsuario(usuario);
-        //TODO
+    }
 
+    public Boolean iniciarSesion(String user, String contrasenia) {
+        return this.usuario.iniciarSesion(user, contrasenia);
     }
     
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){

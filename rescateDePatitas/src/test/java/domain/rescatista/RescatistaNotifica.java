@@ -121,6 +121,6 @@ public class RescatistaNotifica {
     public void elRescatistaEncuentraUnaMascotaConQR() {
         Mascota mascotaPerdida = personaDuenio.getRol().getMascotas().get(0);
 
-        personaRescatista.getRol().encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0));
+        personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0));
     }
 }
