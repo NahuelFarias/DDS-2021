@@ -1,21 +1,31 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.notificaciones.MetodoDeEnvio;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
+import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
+import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
+import domain.models.entities.notificaciones.estrategias.NotificadorWhatsapp;
+import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
+import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
+import domain.models.entities.notificaciones.estrategias.adapters.wpp.AdapterTwilioWhatsapp;
+
+import java.io.IOException;
 
 public class Contacto {
     private String nombre;
     private String apellido;
     private String numeroCompleto;
     private String email;
+    private Estrategia estrategiaDeEnvio;
     private MetodoDeEnvio metodoDeEnvio;
     private String mensaje;
 
-    public Contacto(String nombre, String apellido, String numeroCompleto, String email, MetodoDeEnvio metodoDeEnvio) {
+    public Contacto(String nombre, String apellido, String numeroCompleto, String email, Estrategia estrategiaDeEnvio) {
         setNombre(nombre);
         setApellido(apellido);
         setNumeroCompleto(numeroCompleto);
         setEmail(email);
-        setMetodoDeEnvio(metodoDeEnvio);
+        setEstrategiaDeEnvio(estrategiaDeEnvio);
     }
 
     public void notificarContacto(String mensaje) {
@@ -27,12 +37,43 @@ public class Contacto {
         metodoDeEnvio.enviarNotificacion(this);
     }
 
+    public void setEstrategiaDeEnvio(Estrategia estrategiaDeEnvio) {
+        this.estrategiaDeEnvio = estrategiaDeEnvio;
+        try {
+            setMetodoDeEnvio(estrategiaDeEnvio);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setMensaje(String mensaje) {
         this.mensaje = "Hola " + nombre + ", " + mensaje;
     }
 
-    public void setMetodoDeEnvio(MetodoDeEnvio metodoDeEnvio) {
-        this.metodoDeEnvio = metodoDeEnvio;
+    public void setMetodoDeEnvio(Estrategia estrategiaDeEnvio) throws IOException {
+        switch (estrategiaDeEnvio) {
+            case SMS:
+                AdapterTwilioSMS adapterTwilioSMS = new AdapterTwilioSMS();
+                NotificadorSMS notificadorSMS = new NotificadorSMS(adapterTwilioSMS);
+                MetodoDeEnvio metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+                this.metodoDeEnvio = metodoDeEnvioSMS;
+                break;
+            case WHATSAPP:
+                AdapterTwilioWhatsapp adapterTwilioWhatsapp = new AdapterTwilioWhatsapp();
+                NotificadorWhatsapp notificadorWhatsapp = new NotificadorWhatsapp(adapterTwilioWhatsapp);
+                MetodoDeEnvio metodoDeEnvioWhatsapp = new MetodoDeEnvio(notificadorWhatsapp);
+                this.metodoDeEnvio = metodoDeEnvioWhatsapp;
+                break;
+            case EMAIL:
+                AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop",
+                        "Tu mascota fue encontrada ✨");
+                NotificadorEmail notificadorEmail = new NotificadorEmail(adapterJavaMailEmail);
+                MetodoDeEnvio metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
+                this.metodoDeEnvio = metodoDeEnvioEmail;
+                break;
+            default:
+                System.out.println("El valor ingresado es invalido");
+        }
     }
 
     public void setNombre(String nombre) {

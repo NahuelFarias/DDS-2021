@@ -7,6 +7,7 @@ import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
 
 import java.util.ArrayList;
@@ -120,8 +121,8 @@ public class Persona extends Persistente {
 
     }
 
-    public void agregarContacto(String nombre, String apellido, String numero, String email, MetodoDeEnvio metodoDeEnvio){
-        Contacto contacto = new Contacto(nombre,apellido,numero,email, metodoDeEnvio);
+    public void agregarContacto(String nombre, String apellido, String numero, String email, Estrategia estrategiaDeEnvio){
+        Contacto contacto = new Contacto(nombre,apellido,numero,email, estrategiaDeEnvio);
 
         contactos.add(contacto);
     }

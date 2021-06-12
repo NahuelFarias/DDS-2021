@@ -1,13 +1,7 @@
 package domain.services;
 
-import domain.models.entities.notificaciones.MetodoDeEnvio;
-import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
-import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
-import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
-import domain.models.entities.notificaciones.estrategias.NotificadorWhatsapp;
-import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
-import domain.models.entities.notificaciones.estrategias.adapters.wpp.AdapterTwilioWhatsapp;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,34 +15,11 @@ public class EnvioDeNotificaciones {
     Contacto contactoNotificadoWhatsapp;
     Contacto contactoNotificadoEmail;
 
-    AdapterTwilioSMS adapterSMS;
-    NotificadorSMS notificadorSMS;
-    MetodoDeEnvio metodoDeEnvioSMS;
-
-    AdapterTwilioWhatsapp adapterWhatsapp;
-    NotificadorWhatsapp notificadorWhatsapp;
-    MetodoDeEnvio metodoDeEnvioWhatsapp;
-
-    AdapterJavaMailEmail adapterEmail;
-    NotificadorEmail notificadorEmail;
-    MetodoDeEnvio metodoDeEnvioEmail;
-
     @Before
     public void Instanciar() throws IOException {
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
-        contactoNotificadoSMS = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
-
-        adapterWhatsapp = new AdapterTwilioWhatsapp();
-        notificadorWhatsapp = new NotificadorWhatsapp(adapterWhatsapp);
-        metodoDeEnvioWhatsapp = new MetodoDeEnvio(notificadorWhatsapp);
-        contactoNotificadoWhatsapp = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioWhatsapp);
-
-        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
-        notificadorEmail = new NotificadorEmail(adapterEmail);
-        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
-        contactoNotificadoEmail = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioEmail);
+        contactoNotificadoSMS = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", Estrategia.SMS);
+        contactoNotificadoWhatsapp = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", Estrategia.WHATSAPP);
+        contactoNotificadoEmail = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", Estrategia.EMAIL);
     }
 
     @Test

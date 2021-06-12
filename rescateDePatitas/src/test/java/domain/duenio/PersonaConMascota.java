@@ -1,14 +1,11 @@
 package domain.duenio;
 
-import com.google.zxing.WriterException;
 import domain.controllers.CaracteristicasController;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.notificaciones.MetodoDeEnvio;
-import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
-import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
@@ -18,7 +15,6 @@ import domain.models.repositories.RepositorioDeCaracteristicas;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +29,6 @@ public class PersonaConMascota {
     Mascota mascota,mascota2;
     List<Contacto> contactos;
     Contacto contacto1,contacto2;
-    MetodoDeEnvio metodoDeEnvioSMS;
-    NotificadorSMS notificadorSMS;
-    AdapterTwilioSMS adapterSMS;
 
 
     @Before
@@ -62,13 +55,10 @@ public class PersonaConMascota {
     }
 
     @Test
-    public void crearPersonaConMascotasTest() throws IOException, WriterException {
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
+    public void crearPersonaConMascotasTest() {
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 

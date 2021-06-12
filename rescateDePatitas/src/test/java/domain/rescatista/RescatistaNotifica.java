@@ -5,11 +5,7 @@ import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.notificaciones.MetodoDeEnvio;
-import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
-import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
-import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
-import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
@@ -28,13 +24,6 @@ public class RescatistaNotifica {
     Duenio duenio;
     Rescatista rescatista;
 
-    AdapterTwilioSMS adapterSMS;
-    NotificadorSMS notificadorSMS;
-    MetodoDeEnvio metodoDeEnvioSMS;
-    AdapterJavaMailEmail adapterEmail;
-    NotificadorEmail notificadorEmail;
-    MetodoDeEnvio metodoDeEnvioEmail;
-
     CaracteristicasController controller;
     CaracteristicaConRta caracteristicaConRta1;
     CaracteristicaConRta caracteristicaConRta2;
@@ -51,15 +40,8 @@ public class RescatistaNotifica {
     public void instanciar() throws IOException {
         personaDuenio = new Persona();
 
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
-        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Tu mascota fue encontrada ✨");
-        notificadorEmail = new NotificadorEmail(adapterEmail);
-        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
-
-        contacto1 = new Contacto("Soledad", "Grilleta", "+541122222242", "sole.012@gmail.com", metodoDeEnvioEmail);
-        contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioSMS);
+        contacto1 = new Contacto("Soledad", "Grilleta", "+541122222242", "sole.012@gmail.com", Estrategia.EMAIL);
+        contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", Estrategia.SMS);
 
         contactos = new ArrayList<>();
         contactos.add(contacto1);
@@ -105,7 +87,7 @@ public class RescatistaNotifica {
 
         personaRescatista = new Persona();
 
-        contacto3 = new Contacto("Roberto Francisco", "Ginez", "+541138138227", "rginez@gmail.com", metodoDeEnvioSMS);
+        contacto3 = new Contacto("Roberto Francisco", "Ginez", "+541138138227", "rginez@gmail.com", Estrategia.SMS);
 
         contactosRescatista = new ArrayList<>();
         contactosRescatista.add(contacto3);

@@ -1,10 +1,6 @@
 package domain.duenio;
 
-import domain.models.entities.notificaciones.MetodoDeEnvio;
-import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
-import domain.models.entities.notificaciones.estrategias.NotificadorSMS;
-import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJavaMailEmail;
-import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
@@ -23,12 +19,6 @@ public class crearUsuarioEIniciarSesion {
     Rol duenio;
     List<Contacto> contactos;
     Contacto contacto1,contacto2;
-    MetodoDeEnvio metodoDeEnvioSMS;
-    NotificadorSMS notificadorSMS;
-    AdapterTwilioSMS adapterSMS;
-    AdapterJavaMailEmail adapterEmail;
-    NotificadorEmail notificadorEmail;
-    MetodoDeEnvio metodoDeEnvioEmail;
 
 
     @Before
@@ -46,12 +36,9 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioPorPrimeraVez() {
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -73,12 +60,9 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioEIniciarSesionConDatosCorrectos(){
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -90,12 +74,9 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioEIniciarSesionConUsuarioIncorrecto(){
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -107,12 +88,9 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioEIniciarSesionConContraseniaIncorrecta(){
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -124,12 +102,9 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioEIniciarSesionConDatosIncorrectos(){
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com",metodoDeEnvioSMS);
-        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
+        contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -141,16 +116,10 @@ public class crearUsuarioEIniciarSesion {
 
     @Test
     public void crearUsuarioEIniciarSesionConDatosIncorrectosMasDe3Veces() throws IOException {
-        adapterSMS = new AdapterTwilioSMS();
-        notificadorSMS = new NotificadorSMS(adapterSMS);
-        metodoDeEnvioSMS = new MetodoDeEnvio(notificadorSMS);
 
-        adapterEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop", "Actividad sospechosa en tu cuenta 😱");
-        notificadorEmail = new NotificadorEmail(adapterEmail);
-        metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
-        contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", metodoDeEnvioEmail);
+        contacto2 = new Contacto("Nahuel", "Farias", "+541138338092", "nfarias@frba.utn.edu.ar", Estrategia.EMAIL);
 
-        contacto1 = new Contacto("Maria Victoria","Sanchez","+541138338092","mvicsanchez@gmail.com",metodoDeEnvioSMS);
+        contacto1 = new Contacto("Maria Victoria","Sanchez","+541138338092","mvicsanchez@gmail.com", Estrategia.SMS);
         contactos.add(contacto1);
         contactos.add(contacto2);
 
