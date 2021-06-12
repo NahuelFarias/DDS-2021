@@ -57,6 +57,7 @@ public class Usuario {
             this.fallosAlIniciarSesion = fallosAlIniciarSesion+ 1;
         } else {
             System.out.println("Inicio de sesion exitoso!");
+            this.fallosAlIniciarSesion = 0;
         }
 
         if(fallosAlIniciarSesion >= 3){
