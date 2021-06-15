@@ -26,4 +26,6 @@ public interface Rol {
 
     void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto);
 
+    void tieneUsuario(Persona persona);
+
 }

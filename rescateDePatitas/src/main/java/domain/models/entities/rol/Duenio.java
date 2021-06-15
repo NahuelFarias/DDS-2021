@@ -9,6 +9,8 @@ import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import domain.models.repositories.RepositorioDeUsuarios;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,9 @@ public class Duenio implements Rol{
     private Integer id = 1;
     private String nombre = "DUENIO";
     private List<Mascota> mascotas = new ArrayList<>();
+    //en un controler
+    private RepositorioDeUsuarios repositorio;
+
 
 
     public String getNombre() {
@@ -55,6 +60,11 @@ public class Duenio implements Rol{
         mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero, caracteristicas,fotos);
 
         mascotas.add(mascota);
+    }
+
+    @Override
+    public void tieneUsuario(Persona persona) {
+      this.repositorio.buscar(persona.getUsuario().getNombreDeUsuario());
     }
 
     @Override
