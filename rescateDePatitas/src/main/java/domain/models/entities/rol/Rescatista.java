@@ -6,9 +6,7 @@ import domain.models.entities.mascotas.Mascota;
 
 import domain.models.entities.mascotas.Organizacion;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 

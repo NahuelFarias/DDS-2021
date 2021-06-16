@@ -1,7 +1,7 @@
 package domain.voluntario;
 
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.rol.Voluntario;
 import org.junit.Assert;
@@ -35,14 +35,14 @@ public class AprobarPublicacion {
     public void aprobarPublicacionTest(){
 
         veteCan.generarVoluntario(persona);
-        veteCan.getPublicacionesAceptadas();
-        veteCan.getPublicacionesARevisar().add(publicacion);
-        veteCan.getPublicacionesARevisar().add(publicacion2);
-        veteCan.getPublicacionesARevisar().add(publicacion3);
+        veteCan.getPublicaciones();
+        veteCan.getPublicaciones().add(publicacion);
+        veteCan.getPublicaciones().add(publicacion2);
+        veteCan.getPublicaciones().add(publicacion3);
 
         veteCan.controlarPublicaciones(persona);
 
-        Assert.assertTrue(veteCan.getPublicacionesARevisar().size() == 0);
+        Assert.assertTrue(veteCan.getPublicaciones().size() == 0);
     }
 
 }
