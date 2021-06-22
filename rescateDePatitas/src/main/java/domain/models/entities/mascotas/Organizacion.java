@@ -1,6 +1,7 @@
 package domain.models.entities.mascotas;
 
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.rol.Voluntario;
 
 import java.util.ArrayList;
@@ -9,8 +10,7 @@ import java.util.List;
 public class Organizacion {
     private String nombre;
     private List<Persona> voluntarios = new ArrayList<>();
-    private List<Publicacion> publicacionesAceptadas = new ArrayList<>();
-    private List<Publicacion> publicacionesARevisar = new ArrayList<>();
+    private List<Publicacion> publicaciones = new ArrayList<>();
 
 
 //  getters & setters
@@ -31,23 +31,13 @@ public class Organizacion {
         this.voluntarios = voluntarios;
     }
 
-    public List<Publicacion> getPublicacionesAceptadas() {
-        return publicacionesAceptadas;
+    public List<Publicacion> getPublicaciones() {
+        return publicaciones;
     }
 
-    public void setPublicacionesAceptadas(List<Publicacion> publicacionesAceptadas) {
-        this.publicacionesAceptadas = publicacionesAceptadas;
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
     }
-
-    public List<Publicacion> getPublicacionesARevisar() {
-        return publicacionesARevisar;
-    }
-
-    public void setPublicacionesARevisar(List<Publicacion> publicacionesARevisar) {
-        this.publicacionesARevisar = publicacionesARevisar;
-    }
-
-
 
     public void generarVoluntario(Persona persona){
         Voluntario voluntario = new Voluntario();
@@ -56,8 +46,8 @@ public class Organizacion {
     }
 
     public void controlarPublicaciones(Persona persona){
-        this.getPublicacionesARevisar().forEach(publicacion -> persona.aprobarPublicacion(publicacion,this));
-        this.getPublicacionesARevisar().removeAll(publicacionesARevisar);
+        this.getPublicaciones().forEach(publicacion -> persona.aprobarPublicacion(publicacion,this));
+
     }
 
 }

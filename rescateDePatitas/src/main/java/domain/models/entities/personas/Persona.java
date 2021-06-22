@@ -2,11 +2,10 @@ package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
 

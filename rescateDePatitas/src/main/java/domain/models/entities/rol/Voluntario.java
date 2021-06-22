@@ -4,7 +4,8 @@ import domain.models.entities.mascotas.*;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.publicaciones.EstadoDePublicacion;
+import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
@@ -32,7 +33,7 @@ public class Voluntario implements Rol {
 
     @Override
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
-        organizacion.getPublicacionesARevisar().remove(unaPublicacion);
+        unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Voluntario implements Rol {
 
     @Override
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
-        organizacion.getPublicacionesAceptadas().add(unaPublicacion);
+        unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
     }
 
     @Override
