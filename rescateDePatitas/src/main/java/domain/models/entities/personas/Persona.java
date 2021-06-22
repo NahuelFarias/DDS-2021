@@ -10,6 +10,8 @@ import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
 
+import domain.models.repositories.RepositorioDeUsuarios;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class Persona extends Persistente {
     private List<Contacto> contactos;
     private Rol rol;
     private Usuario usuario;
+
+    //en un controler
+    private RepositorioDeUsuarios repositorioDeUsuarios;
 
     public Persona() {
         this.contactos = new ArrayList<>();
@@ -154,6 +159,31 @@ public class Persona extends Persistente {
 
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto){
         this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+    }
+
+    public String hasheoPersona(){
+
+        String cadena = String.valueOf(this.fechaDeNacimiento) + String.valueOf(this.nroDoc) ;
+
+        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex( cadena );
+
+        return md5;
+    }
+// en usuario ?
+    public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
+                            Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
+
+        Persona persona = new Persona();
+        this.inicializar(nombre, apellido,direccion,tipoDoc,nroDoc,fechaDeNacimiento,contactos);
+
+        if(this.rol.tieneUsuario(persona)) {
+            System.out.println("Usted ya tiene un usuario");
+        }
+        else{
+            persona.setUsuario(usuario);
+            Usuario usuario = new Usuario(nombreDeUsuario,pwd);
+            this.repositorioDeUsuarios.aniadir(usuario);
+        }
     }
 
 }

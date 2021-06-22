@@ -51,5 +51,12 @@ public class Rescatista implements Rol {
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
     }
+
+    @Override
+    public boolean tieneUsuario(Persona persona){
+
+        return false;
+    }
+
 }
 

@@ -20,9 +20,7 @@ public class Duenio implements Rol{
     private String nombre = "DUENIO";
     private List<Mascota> mascotas = new ArrayList<>();
     //en un controler
-    private RepositorioDeUsuarios repositorio;
-
-
+    private RepositorioDeUsuarios repositorioDeUsuarios;
 
     public String getNombre() {
         return nombre;
@@ -63,8 +61,8 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void tieneUsuario(Persona persona) {
-      this.repositorio.buscar(persona.getUsuario().getNombreDeUsuario());
+    public boolean tieneUsuario(Persona persona){
+      return this.repositorioDeUsuarios.buscar(persona.getUsuario().getNombreDeUsuario()).isPresent();
     }
 
     @Override

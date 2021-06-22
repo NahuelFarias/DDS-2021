@@ -12,9 +12,12 @@ public class RepositorioDeUsuarios {
 
 
     public Optional<Usuario> buscar(String nombreDeUsuario){
-       return this.usuarios
-               .stream()
-               .filter(n -> n.getNombreDeUsuario() == nombreDeUsuario)
-               .findFirst();
+       return this.usuarios.stream()
+                                    .filter(n -> n.getNombreDeUsuario() == nombreDeUsuario)
+                                    .findFirst();
+    }
+
+    public void aniadir(Usuario usuario){
+        usuarios.add(usuario);
     }
 }

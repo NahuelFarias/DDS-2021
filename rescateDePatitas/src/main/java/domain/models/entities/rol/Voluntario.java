@@ -49,4 +49,10 @@ public class Voluntario implements Rol {
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
         organizacion.getPublicacionesAceptadas().add(unaPublicacion);
     }
+
+    @Override
+    public boolean tieneUsuario(Persona persona){
+        return false;
+    }
+
 }
