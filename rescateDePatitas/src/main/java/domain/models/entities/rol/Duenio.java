@@ -1,17 +1,12 @@
 package domain.models.entities.rol;
 
-import com.google.zxing.WriterException;
+
 import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.mascotas.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
-import domain.models.repositories.RepositorioDeUsuarios;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +14,10 @@ public class Duenio implements Rol{
     private Integer id = 1;
     private String nombre = "DUENIO";
     private List<Mascota> mascotas = new ArrayList<>();
-    //en un controler
-    private RepositorioDeUsuarios repositorioDeUsuarios;
+
 
     public String getNombre() {
         return nombre;
-    }
-
-    @Override
-    public void perdiUnaMascota(Mascota mascota) {
-        mascota.avisarQueMePerdi();
-    }
-
-    @Override
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
     }
 
     @Override
@@ -42,32 +27,18 @@ public class Duenio implements Rol{
 
     @Override
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero, List<CaracteristicaConRta> caracteristicas,
-                                 List<Foto> fotos, Persona persona){
+                                 String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona){
 
         Mascota mascota = new Mascota(persona);
 
-        try {
-            mascota.generarQR();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-
-        mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero, caracteristicas,fotos);
+        mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero, caracteristicas);
 
         mascotas.add(mascota);
     }
 
     @Override
-    public boolean tieneUsuario(Persona persona){
-      return this.repositorioDeUsuarios.buscar(persona.getUsuario().getNombreDeUsuario()).isPresent();
+    public void aprobarPublicacion(Publicacion unaPublicacion){
+
     }
 
-    @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){ }
-    @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
-    }
 }

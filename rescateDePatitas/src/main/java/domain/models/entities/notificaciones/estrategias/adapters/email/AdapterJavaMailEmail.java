@@ -1,6 +1,6 @@
 package domain.models.entities.notificaciones.estrategias.adapters.email;
 
-import domain.models.entities.personas.Contacto;
+import domain.models.entities.notificaciones.Notificacion;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -55,14 +55,14 @@ public class AdapterJavaMailEmail implements AdapterNotificadorEmail{
         }
     }
 
-    public void enviarEmail(Contacto contacto) throws MessagingException {
-        System.out.println("Enviando email a "+ contacto.getEmail()+" por JavaMail: '"+ contacto.getMensaje()+"'");
+    public void enviarEmail(Notificacion notificacion) throws MessagingException {
+        System.out.println("Enviando email a "+ notificacion.getEmail()+" por JavaMail: '"+ notificacion.getMensaje()+"'");
 
         MimeMessage contenedor = new MimeMessage(session);
         contenedor.setFrom(new InternetAddress((String) this.properties.get("mail.smtp.user")));
-        contenedor.addRecipient(Message.RecipientType.TO, new InternetAddress(contacto.getEmail()));
+        contenedor.addRecipient(Message.RecipientType.TO, new InternetAddress(notificacion.getEmail()));
         contenedor.setSubject(asunto);
-        contenedor.setText(contacto.getMensaje());
+        contenedor.setText(notificacion.getMensaje());
         Transport t = session.getTransport("smtp");
         t.connect((String) this.properties.get("mail.smtp.user"), (String) this.properties.get("mail.smtp.password"));
         t.sendMessage(contenedor, contenedor.getAllRecipients());

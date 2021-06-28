@@ -1,4 +1,4 @@
-package domain.sistema;
+package domain;
 
 import domain.models.entities.validacion.validadores.ValidadorCaracteres;
 import domain.models.entities.validacion.validadores.ValidadorLongitud;

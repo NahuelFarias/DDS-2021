@@ -7,7 +7,7 @@ public class Caracteristica {
     private String descripcion;
     private List<String> respuestasPosibles;
 
-    public Caracteristica() {
+    public Caracteristica(){
         this.respuestasPosibles = new ArrayList<String>();
     }
 
@@ -23,13 +23,8 @@ public class Caracteristica {
         return respuestasPosibles;
     }
 
-    public void setRespuestasPosibles(List<String> respuestas) {
-        this.respuestasPosibles = respuestas;
-    }
-
-    public void agregarRespuesta(String respuesta) {
-        respuestasPosibles.add(respuesta);
-    }
+    public void setRespuestasPosibles(List<String> respuestas) { this.respuestasPosibles = respuestas; }
+    public void agregarRespuesta(String respuesta){ respuestasPosibles.add(respuesta); }
 
 
 }

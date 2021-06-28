@@ -1,7 +1,7 @@
 package domain.models.entities.notificaciones.estrategias;
 
+import domain.models.entities.notificaciones.Notificacion;
 import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterNotificadorEmail;
-import domain.models.entities.personas.Contacto;
 
 import javax.mail.MessagingException;
 
@@ -16,9 +16,9 @@ public class NotificadorEmail implements EstrategiaDeNotificacion{
         this.adapter = adapter;
     }
 
-    public void enviarNotificacion(Contacto contacto) {
+    public void enviarNotificacion(Notificacion notificacion) {
         try {
-            this.adapter.enviarEmail(contacto);
+            this.adapter.enviarEmail(notificacion);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,6 @@
 package domain.models.entities.notificaciones;
 
 import domain.models.entities.notificaciones.estrategias.EstrategiaDeNotificacion;
-import domain.models.entities.personas.Contacto;
 
 public class MetodoDeEnvio {
     private EstrategiaDeNotificacion estrategia;
@@ -14,7 +13,7 @@ public class MetodoDeEnvio {
         this.estrategia = estrategia;
     }
 
-    public void enviarNotificacion(Contacto contacto) {
-        this.estrategia.enviarNotificacion(contacto);
+    public void enviarNotificacion(Notificacion notificacion) {
+        this.estrategia.enviarNotificacion(notificacion);
     }
 }

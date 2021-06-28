@@ -1,4 +1,4 @@
-package domain.sistema;
+package domain;
 
 import domain.controllers.CaracteristicasController;
 import domain.models.entities.mascotas.Caracteristica;
