@@ -1,4 +1,4 @@
-package domain.models.entities;
+package services;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
