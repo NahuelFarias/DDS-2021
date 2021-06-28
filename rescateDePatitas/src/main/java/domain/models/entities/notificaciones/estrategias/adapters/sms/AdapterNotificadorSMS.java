@@ -1,7 +1,7 @@
 package domain.models.entities.notificaciones.estrategias.adapters.sms;
 
-import domain.models.entities.personas.Contacto;
+import domain.models.entities.notificaciones.Notificacion;
 
 public interface AdapterNotificadorSMS {
-    void enviarSMS(Contacto contacto);
+    void enviarSMS(Notificacion notificacion);
 }

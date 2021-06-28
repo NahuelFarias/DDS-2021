@@ -1,28 +1,25 @@
 package domain.models.entities.mascotas;
 
 import com.google.zxing.WriterException;
-import services.Configuracion;
-import services.GeneradorQR;
+import domain.Configuracion;
+import domain.models.entities.GeneradorQR;
 import domain.models.entities.Persistente;
-import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
 public class Mascota extends Persistente {
     private String nombre;
     private String apodo;
-    private static Integer idMascota = 0;
+    private static Integer idMascota=0;
     private String descripcion;
     private Integer edad;
     private String especie;
     private String genero;
     private Organizacion organizacion;
-    private Date fechaDesdeQueEstaPerdida;
     private List<CaracteristicaConRta> caracteristicas;
     private List<Foto> fotos;
     private Persona persona;
@@ -32,7 +29,6 @@ public class Mascota extends Persistente {
         this.fotos = new ArrayList<>();
         this.idMascota= getIdMascota() + 1;
         this.persona = persona;
-        this.fotos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -127,40 +123,28 @@ public class Mascota extends Persistente {
 
         String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
 
+
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url,pathGuardar,"jpg",500,500);
+
     }
 
-    public void avisarQueMePerdi() {
-        fechaDesdeQueEstaPerdida = new Date();
-        System.out.println(fechaDesdeQueEstaPerdida);
-    }
-
-    public Date getFechaDesdeQueEstaPerdida() {
-        return fechaDesdeQueEstaPerdida;
-    }
-
-    public void avisarQueMeEcontraron(Contacto contacto) {
-        persona.notificarContactos(this, contacto);
-    }
 
     public void inicializar(String nombre,String apodo, Integer edad, String descripcion,
-                            String especie, String genero, List<CaracteristicaConRta> caracteristicas,
-                            List<Foto> fotos){
-        setApodo(apodo);
-        setNombre(nombre);
-        setEdad(edad);
-        setDescripcion(descripcion);
-        setEspecie(especie);
-        setGenero(genero);
-        setCaracteristicas(caracteristicas);
-        redimensionarFotos(fotos);
-        setFotos(fotos);
+                            String especie, String genero, List<CaracteristicaConRta> caracteristicas){
+        this.setApodo(apodo);
+        this.setNombre(nombre);
+        this.setEdad(edad);
+        this.setDescripcion(descripcion);
+        this.setEspecie(especie);
+        this.setGenero(genero);
+        this.caracteristicas = caracteristicas;
+
     }
 
-    public List<Foto> redimensionarFotos(List<Foto> fotosOrigianles) {
-        fotosOrigianles.forEach(foto -> foto.editarFoto());
-        return fotosOrigianles;
-    }
+
+
+
+
 
 }
