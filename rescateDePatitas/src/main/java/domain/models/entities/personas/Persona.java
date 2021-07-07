@@ -137,6 +137,12 @@ public class Persona extends Persistente {
                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
         }
+        if(rol.getNombre() == "RESCATISTA"){
+            contactos.forEach( c -> c.notificarContacto(contactoRescatista.getNombre() + " encontro su mascosta!\n" +
+                         "Sus medios de contacto son:\n" + "Telefono: " +
+                          contactoRescatista.getNumeroCompleto() + "\n" +
+                             "Email: " + contactoRescatista.getEmail()));
+        }
     }
 
     public void crearUsuario(String user, String contrasenia){
@@ -156,9 +162,12 @@ public class Persona extends Persistente {
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto){
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
     }
+    public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
+            this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+        }
 
     public String hasheoPersona(){
 

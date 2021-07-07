@@ -70,4 +70,8 @@ public class Duenio implements Rol{
     @Override
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
     }
+    public void encontreMiMascotaPerdida(Mascota mascotaPerdida , Contacto contactoDuenio){
+        mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
+
+    }
 }
