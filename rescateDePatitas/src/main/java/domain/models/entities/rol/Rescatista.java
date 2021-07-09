@@ -10,12 +10,15 @@ import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rescatista implements Rol {
 
+    private List<Mascota> mascotasRescatadas = new ArrayList<>();
     private final Integer id = 2;
     private final String nombre = "RESCATISTA";
+
 
     @Override
     public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie,
@@ -25,8 +28,10 @@ public class Rescatista implements Rol {
 
     @Override
     public List<Mascota> getMascotas() {
-        return null;
+        return mascotasRescatadas;
     }
+
+    public void agregarMascota(Mascota mascota){ mascotasRescatadas.add(mascota);}
 
     @Override
     public String getNombre() {

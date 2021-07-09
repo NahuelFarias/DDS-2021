@@ -105,9 +105,4 @@ public class RescatistaNotifica {
 
         personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0));
     }
-    @Test
-    public void duenioEncuentraASuMascotaPerdida(){
-        Mascota mascotaperdida = personaDuenio.getRol().getMascotas().get(0);
-        personaDuenio.encontreMiMascotaPerdida( mascotaperdida,personaDuenio.getContactos().get(0));
-    }
 }
