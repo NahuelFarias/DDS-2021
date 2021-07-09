@@ -165,6 +165,11 @@ public class Persona extends Persistente {
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
     }
+
+    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
+        this.rol.encontreUnaMascotaPerdidaSinChapita(mascotaPerdida);
+    }
+
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
             this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
         }

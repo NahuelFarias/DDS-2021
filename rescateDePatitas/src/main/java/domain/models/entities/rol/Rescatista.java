@@ -6,6 +6,7 @@ import domain.models.entities.mascotas.Mascota;
 
 import domain.models.entities.mascotas.Organizacion;
 
+import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -53,6 +54,13 @@ public class Rescatista implements Rol {
 
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
+    }
+
+    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
+       Publicacion publicacion = new Publicacion();
+       publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
+       publicacion.setDescripcion(mascotaPerdida.getDescripcion());
+
     }
 
     @Override

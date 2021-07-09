@@ -35,6 +35,9 @@ public class Duenio implements Rol{
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
     }
 
+    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
+    }
+
     @Override
     public List<Mascota> getMascotas() {
         return mascotas;

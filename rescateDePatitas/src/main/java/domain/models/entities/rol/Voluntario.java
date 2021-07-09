@@ -46,6 +46,9 @@ public class Voluntario implements Rol {
 
     }
 
+    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
+    }
+
     @Override
     public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
         unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
