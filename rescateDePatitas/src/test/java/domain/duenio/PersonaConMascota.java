@@ -14,6 +14,7 @@ import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
 import org.junit.Before;
 import org.junit.Test;
+import services.EditorDeFotos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class PersonaConMascota {
     Mascota mascota,mascota2;
     List<Contacto> contactos;
     Contacto contacto1,contacto2;
+    EditorDeFotos editor;
 
 
     @Before
@@ -89,13 +91,17 @@ public class PersonaConMascota {
         caracteristicasConRtas.add(caracteristicaConRta2);
 
         //Redimensiono las fotos para agregar a la mascota
-        ArrayList<Foto> fotos = new ArrayList<>();
+        List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
         fotos.add(foto);
+        editor = new EditorDeFotos();
+        fotos= editor.redimensionarFotos(fotos);
 
-        persona.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas, fotos, persona);
+        Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
+        mascotaDTO.inicializar(persona,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
+                "gato", "hembra", caracteristicasConRtas, fotos);
+        persona.registrarMascota(mascotaDTO);
 
         //Listo los datos de la mascota 1 cargada
         System.out.println ("Datos de la Mascota");
@@ -132,8 +138,11 @@ public class PersonaConMascota {
         foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
         fotos2.add(foto2);
 
-        persona.registrarMascota("Titan","Titi",5,"Tiene los ojos de distinto color.",
-                "perro", "macho",caracteristicasConRtas2, fotos2, persona);
+        fotos= editor.redimensionarFotos(fotos);
+
+        mascotaDTO.inicializar(persona,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
+                "gato", "hembra", caracteristicasConRtas, fotos);
+        persona.registrarMascota(mascotaDTO);
 
         //Listo los datos de la mascota 2
 

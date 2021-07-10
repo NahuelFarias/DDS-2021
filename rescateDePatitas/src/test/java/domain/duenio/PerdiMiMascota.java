@@ -4,6 +4,7 @@ import domain.controllers.CaracteristicasController;
 import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
+import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -14,6 +15,7 @@ import domain.models.repositories.RepositorioDeCaracteristicas;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import services.EditorDeFotos;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +31,7 @@ public class PerdiMiMascota {
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
     List<Contacto> contactos;
     Contacto contacto1, contacto2;
+    EditorDeFotos editor;
 
 
     @Before
@@ -79,13 +82,17 @@ public class PerdiMiMascota {
         caracteristicasConRtas.add(caracteristicaConRta2);
 
         //Redimensiono las fotos para agregar a la mascota
-        ArrayList<Foto> fotos = new ArrayList<>();
+        List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
         fotos.add(foto);
+        editor = new EditorDeFotos();
+        fotos= editor.redimensionarFotos(fotos);
 
-        persona.registrarMascota("Susana", "Susi", 2, "tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas, fotos, persona);
+        Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
+        mascotaDTO.inicializar(persona,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
+                "gato", "hembra", caracteristicasConRtas, fotos);
+        persona.registrarMascota(mascotaDTO);
 
         Date fechaActual = new Date();
         persona.getRol().perdiUnaMascota(persona.getRol().getMascotas().get(0));

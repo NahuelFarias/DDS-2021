@@ -7,11 +7,14 @@ import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 
 import domain.models.entities.publicaciones.EstadoDePublicacion;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.PublicacionPerdidaNoRegistrada;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Rescatista implements Rol {
@@ -22,8 +25,7 @@ public class Rescatista implements Rol {
 
 
     @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie,
-                                 String genero, List<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona) {
+    public void registrarMascota(Mascota.MascotaDTO mascota, Persona persona) {
 
     }
 
@@ -32,7 +34,12 @@ public class Rescatista implements Rol {
         return mascotasRescatadas;
     }
 
-    public void agregarMascota(Mascota mascota){ mascotasRescatadas.add(mascota);}
+    public void agregarMascota(Mascota.MascotaDTO mascotaDTO){
+        Persona duenio = mascotaDTO.getPersona();
+        Mascota mascota = new Mascota(duenio);
+        mascota.inicializar(mascotaDTO);
+        mascotasRescatadas.add(mascota);
+    }
 
     @Override
     public String getNombre() {
@@ -61,6 +68,11 @@ public class Rescatista implements Rol {
        publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
        publicacion.setDescripcion(mascotaPerdida.getDescripcion());
 
+    }
+
+    public void encontreUnaMascotaPerdidaSinChapita(List<Foto> fotos,String descripcion,String latitud, String longitud) {
+        GestorDePublicaciones gestor = new GestorDePublicaciones();
+        gestor.generarPublicacionPerdidaNoRegistrada(fotos,descripcion,latitud,longitud);
     }
 
     @Override

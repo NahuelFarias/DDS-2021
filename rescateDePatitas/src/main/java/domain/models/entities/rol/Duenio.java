@@ -5,6 +5,8 @@ import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -19,7 +21,7 @@ public class Duenio implements Rol{
     private Integer id = 1;
     private String nombre = "DUENIO";
     private List<Mascota> mascotas = new ArrayList<>();
-    //en un controler
+    //en un controller
     private RepositorioDeUsuarios repositorioDeUsuarios;
 
     public String getNombre() {
@@ -44,9 +46,7 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero, List<CaracteristicaConRta> caracteristicas,
-                                 List<Foto> fotos, Persona persona){
+    public void registrarMascota(Mascota.MascotaDTO mascotaDTO, Persona persona){
 
         Mascota mascota = new Mascota(persona);
 
@@ -58,7 +58,7 @@ public class Duenio implements Rol{
             e.printStackTrace();
         }
 
-        mascota.inicializar(nombre, apodo, edad, descripcion, especie, genero, caracteristicas,fotos);
+        mascota.inicializar(mascotaDTO);
 
         mascotas.add(mascota);
     }
@@ -75,6 +75,14 @@ public class Duenio implements Rol{
     }
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida , Contacto contactoDuenio){
         mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
+    }
+
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<PreguntaAdopcion> preguntasOrganizacion,
+                              List<PreguntaAdopcion> preguntasGenerales){
+        GestorDePublicaciones gestor = new GestorDePublicaciones();
+        gestor.generarPublicacionEnAdopcion(mascota,preguntasOrganizacion,preguntasGenerales,organizacion);
 
     }
+
+
 }

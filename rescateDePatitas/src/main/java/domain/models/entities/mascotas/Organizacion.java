@@ -1,6 +1,8 @@
 package domain.models.entities.mascotas;
 
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.rol.Voluntario;
 
@@ -11,7 +13,14 @@ public class Organizacion {
     private String nombre;
     private List<Persona> voluntarios = new ArrayList<>();
     private List<Publicacion> publicaciones = new ArrayList<>();
+    private List<PreguntaAdopcion> preguntasAdopcion;
+    private GestorDePublicaciones gestorDePublicaciones;
+    private String latitud;
+    private String longitud;
 
+    public Organizacion(){
+        this.gestorDePublicaciones = new GestorDePublicaciones();
+    }
 
 //  getters & setters
 
@@ -31,6 +40,8 @@ public class Organizacion {
         this.voluntarios = voluntarios;
     }
 
+    public void agregarVoluntario(Persona voluntario){ this.voluntarios.add(voluntario);}
+
     public List<Publicacion> getPublicaciones() {
         return publicaciones;
     }
@@ -39,15 +50,44 @@ public class Organizacion {
         this.publicaciones = publicaciones;
     }
 
+    public List<PreguntaAdopcion> getPreguntasAdopcion() {
+        return preguntasAdopcion;
+    }
+
+    public void setPreguntasAdopcion(List<PreguntaAdopcion> preguntasAdopcion) {
+        this.preguntasAdopcion = preguntasAdopcion;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
     public void generarVoluntario(Persona persona){
         Voluntario voluntario = new Voluntario();
+        voluntario.setOrganizacion(this);
         persona.setRol(voluntario);
         voluntarios.add(persona);
     }
 
     public void controlarPublicaciones(Persona persona){
         this.getPublicaciones().forEach(publicacion -> persona.aprobarPublicacion(publicacion,this));
-
     }
+
+    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){
+        this.preguntasAdopcion.add(pregunta);
+    }
+
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface Rol {
 
-    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona);
+    void registrarMascota(Mascota.MascotaDTO mascotaDTO, Persona persona);
 
     String getNombre();
 

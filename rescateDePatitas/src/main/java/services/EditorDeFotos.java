@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 //Seguramente habra que hacer cambios mas adelante
 public class EditorDeFotos {
@@ -32,5 +33,10 @@ public class EditorDeFotos {
             }
 
         }return fotoModificada;
+    }
+
+    public List<Foto> redimensionarFotos(List<Foto> fotosOrigianles) {
+        fotosOrigianles.forEach(foto -> foto.editarFoto());
+        return fotosOrigianles;
     }
 }

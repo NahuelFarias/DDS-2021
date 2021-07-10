@@ -13,6 +13,7 @@ import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
+import services.EditorDeFotos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class EncontreMiMascota {
         Foto foto;
         List<Foto> fotos;
         List<Mascota> mascotas;
+        EditorDeFotos editor;
 
         @Before
         public void instanciar() throws IOException {
@@ -96,13 +98,14 @@ public class EncontreMiMascota {
             foto = new Foto();
             foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
             fotos.add(foto);
+            editor = new EditorDeFotos();
+            fotos= editor.redimensionarFotos(fotos);
 
             //mascota
-            mascota = new Mascota(personaRescatista);
-            mascota.inicializar("Susana","Susi",2,"tiene una mancha blanca en una pata.",
+            Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
+            mascotaDTO.inicializar(personaRescatista,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
                     "gato", "hembra", caracteristicasConRtas, fotos);
-            //aniado la mascota en la lista del rescatista
-            rescatista.agregarMascota(mascota);
+            rescatista.agregarMascota(mascotaDTO);
 
         }
         @Test

@@ -5,6 +5,7 @@ import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
+import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -15,14 +16,16 @@ public class Voluntario implements Rol {
 
     private final Integer id = 3;
     private final String nombre = "VOLUNTARIO";
+    private Organizacion organizacion;
+
+    public void setOrganizacion(Organizacion organizacion){ this.organizacion = organizacion; }
 
     public String getNombre() {
         return nombre;
     }
 
     @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero, List<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona) {
+    public void registrarMascota(Mascota.MascotaDTO mascota, Persona persona) {
 
     }
 
@@ -37,7 +40,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void perdiUnaMascota(Mascota mascota) {
+    public void perdiUnaMascota(Mascota mascota){
 
     }
 
@@ -57,6 +60,10 @@ public class Voluntario implements Rol {
     @Override
     public boolean tieneUsuario(Persona persona){
         return false;
+    }
+
+    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){
+        this.organizacion.agregarPreguntaAdopcion(pregunta);
     }
 
 }

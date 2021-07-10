@@ -5,6 +5,7 @@ import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
@@ -25,7 +26,7 @@ public class Persona extends Persistente {
     private Rol rol;
     private Usuario usuario;
 
-    //en un controler
+    //en un controller
     private RepositorioDeUsuarios repositorioDeUsuarios;
 
     public Persona() {
@@ -117,12 +118,8 @@ public class Persona extends Persistente {
         setContactos(contactos);
     }
 
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion,
-                                 String especie, String genero, ArrayList<CaracteristicaConRta> caracteristicas, List<Foto> fotos, Persona persona){
-        persona = this;
-
-        this.rol.registrarMascota(nombre,apodo,edad,descripcion,especie,genero,caracteristicas,fotos,persona);
-
+    public void registrarMascota(Mascota.MascotaDTO mascota){
+        this.rol.registrarMascota(mascota,this);
     }
 
     public void agregarContacto(String nombre, String apellido, String numero, String email, Estrategia estrategiaDeEnvio){
@@ -182,7 +179,8 @@ public class Persona extends Persistente {
 
         return md5;
     }
-// en usuario ?
+
+     // en usuario ?
     public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
                             Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
 
@@ -196,6 +194,131 @@ public class Persona extends Persistente {
             persona.setUsuario(usuario);
             Usuario usuario = new Usuario(nombreDeUsuario,pwd);
             this.repositorioDeUsuarios.aniadir(usuario);
+        }
+    }
+
+    public void notificarPosibleAdopcion(Mascota mascota,Persona adoptante){
+        contactos.forEach(contacto -> contacto.notificarContacto("Alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
+                "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
+                "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
+
+
+    }
+
+    public void quieroAdoptar(){
+        GestorDePublicaciones gestor = new GestorDePublicaciones();
+        gestor.generarPublicacionIntencionAdoptar();
+    }
+
+
+
+
+    public void inicializar(PersonaDTO persona) {
+        this.apellido = persona.getApellido();
+        this.nombre = persona.getNombre();
+        this.fechaDeNacimiento = persona.getFechaDeNacimiento();
+        this.tipoDoc = persona.getTipoDoc();
+        this.nroDoc = persona.getNroDoc();
+        this.direccion = persona.getDireccion();
+        this.contactos = persona.getContactos();
+        this.rol = persona.getRol();
+        this.usuario = persona.getUsuario();
+    }
+
+    public static class PersonaDTO {
+        private String nombre;
+        private String apellido;
+        private Integer fechaDeNacimiento;
+        private TipoDeDocumento tipoDoc;
+        private Integer nroDoc;
+        private String direccion;
+        private List<Contacto> contactos;
+        private Rol rol;
+        private Usuario usuario;
+
+        public void setApellido(String apellido) {
+            this.apellido = apellido;
+        }
+
+        public Integer getFechaDeNacimiento() {
+            return fechaDeNacimiento;
+        }
+
+        public void setFechaDeNacimiento(Integer fechaDeNacimiento) {
+            this.fechaDeNacimiento = fechaDeNacimiento;
+        }
+
+        public TipoDeDocumento getTipoDoc() {
+            return tipoDoc;
+        }
+
+        public void setTipoDoc(TipoDeDocumento tipoDoc) {
+            this.tipoDoc = tipoDoc;
+        }
+
+        public Integer getNroDoc() {
+            return nroDoc;
+        }
+
+        public void setNroDoc(Integer nroDoc) {
+            this.nroDoc = nroDoc;
+        }
+
+        public String getDireccion() {
+            return direccion;
+        }
+
+        public void setDireccion(String direccion) {
+            this.direccion = direccion;
+        }
+
+        public List<Contacto> getContactos() {
+            return contactos;
+        }
+
+        public void setContactos(List<Contacto> contactos) {
+            this.contactos = contactos;
+        }
+
+        public Rol getRol() {
+            return rol;
+        }
+
+        public void setRol(Rol rol) {
+            this.rol = rol;
+        }
+
+        public Usuario getUsuario() {
+            return usuario;
+        }
+
+        public void setUsuario(Usuario usuario) {
+            this.usuario = usuario;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getApellido() {
+            return apellido;
+        }
+
+        public void inicializar(String nombre,String apellido, String direccion,TipoDeDocumento tipoDoc,Integer nroDoc,
+               Integer fechaDeNacimiento,List<Contacto> contactos) {
+            this.apellido = apellido;
+            this.nombre = nombre;
+            this.fechaDeNacimiento = fechaDeNacimiento;
+            this.tipoDoc = tipoDoc;
+            this.nroDoc = nroDoc;
+            this.direccion = direccion;
+            this.contactos = contactos;
+            this.rol = rol;
+            this.usuario = usuario;
         }
     }
 

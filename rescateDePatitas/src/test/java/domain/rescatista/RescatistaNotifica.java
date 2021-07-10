@@ -13,6 +13,7 @@ import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
+import services.EditorDeFotos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class RescatistaNotifica {
     List<Contacto> contactos, contactosRescatista;
     Foto foto;
     List<Foto> fotos;
+    EditorDeFotos editor;
 
     @Before
     public void instanciar() throws IOException {
@@ -81,9 +83,15 @@ public class RescatistaNotifica {
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
         fotos.add(foto);
+        editor = new EditorDeFotos();
+        fotos= editor.redimensionarFotos(fotos);
 
-        personaDuenio.registrarMascota("Susana","Susi",2,"tiene una mancha blanca en una pata.",
-                "gato", "hembra", caracteristicasConRtas, fotos, personaDuenio);
+        //mascota
+        Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
+        mascotaDTO.inicializar(personaDuenio,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
+                "gato", "hembra", caracteristicasConRtas, fotos);
+
+        //Termina de crear una mascota con duenio//
 
         personaRescatista = new Persona();
 
@@ -97,6 +105,8 @@ public class RescatistaNotifica {
         rescatista = new Rescatista();
 
         personaRescatista.setRol(rescatista);
+
+        rescatista.agregarMascota(mascotaDTO);
     }
 
     @Test

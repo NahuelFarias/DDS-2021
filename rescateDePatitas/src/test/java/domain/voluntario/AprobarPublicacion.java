@@ -35,12 +35,17 @@ public class AprobarPublicacion {
     public void aprobarPublicacionTest(){
 
         veteCan.generarVoluntario(persona);
-        veteCan.getPublicaciones();
+        //veteCan.getPublicaciones();
+
         veteCan.getPublicaciones().add(publicacion);
+        System.out.println(veteCan.getPublicaciones().size());
         veteCan.getPublicaciones().add(publicacion2);
+        System.out.println(veteCan.getPublicaciones().size());
         veteCan.getPublicaciones().add(publicacion3);
+        System.out.println(veteCan.getPublicaciones().size());
 
         veteCan.controlarPublicaciones(persona);
+        System.out.println(veteCan.getPublicaciones().size());
 
         Assert.assertTrue(veteCan.getPublicaciones().size() == 0);
     }
