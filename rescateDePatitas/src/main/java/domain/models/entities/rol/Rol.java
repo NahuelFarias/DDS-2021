@@ -1,9 +1,6 @@
 package domain.models.entities.rol;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -24,7 +21,8 @@ public interface Rol {
 
     void perdiUnaMascota(Mascota mascota);
 
-    void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto);
+    void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
+                                   String descripcion, Lugar lugar);
 
     void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida);
 

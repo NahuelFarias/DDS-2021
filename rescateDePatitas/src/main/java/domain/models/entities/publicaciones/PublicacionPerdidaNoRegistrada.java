@@ -1,7 +1,7 @@
 package domain.models.entities.publicaciones;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import domain.models.entities.mascotas.Foto;
+import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Organizacion;
 
 import java.util.Date;
@@ -13,28 +13,15 @@ public class PublicacionPerdidaNoRegistrada extends PublicacionGenerica{
     private String descripcion;
     private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
     private List<Foto> fotos;
-    private String latitud;
-    private String longitud;
+    private Lugar lugar;
     private Organizacion organizacion;
-
-    public String getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    public String getLongitud() {
-        return longitud;
-    }
 
     public void setOrganizacion(Organizacion organizacion){
         this.organizacion = organizacion;
     }
 
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
     }
 
     public EstadoDePublicacion getEstadoDePublicacion() {
@@ -59,5 +46,9 @@ public class PublicacionPerdidaNoRegistrada extends PublicacionGenerica{
 
     public void setFotos(List<Foto> fotos) {
         this.fotos = fotos;
+    }
+
+    public Lugar getLugar() {
+        return lugar;
     }
 }

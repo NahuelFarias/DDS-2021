@@ -157,8 +157,9 @@ public class Persona extends Persistente {
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
-        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
+                                          String descripcion, Lugar lugar) {
+        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto, fotos, descripcion, lugar);
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
@@ -166,9 +167,9 @@ public class Persona extends Persistente {
     }
 
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
-            this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
-
-        }
+        // this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+        // TODO: Revisar
+    }
 
     public String hasheoPersona(){
 
@@ -200,8 +201,6 @@ public class Persona extends Persistente {
         contactos.forEach(contacto -> contacto.notificarContacto("Alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
                 "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
-    //TODO Cambiar el asunto del mail o poner generico
-
     }
 
     public void quieroAdoptar(List<PreguntaAdopcion> preguntasGenerales){

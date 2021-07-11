@@ -66,7 +66,7 @@ public class Contacto {
                 break;
             case EMAIL:
                 AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop",
-                        "Tu mascota fue encontrada ✨");
+                        "Notificación de Patitas ✨");
                 NotificadorEmail notificadorEmail = new NotificadorEmail(adapterJavaMailEmail);
                 MetodoDeEnvio metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
                 this.metodoDeEnvio = metodoDeEnvioEmail;

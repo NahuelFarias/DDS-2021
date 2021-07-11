@@ -1,10 +1,6 @@
 package domain.models.entities.rol;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
-
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 
 import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
@@ -59,9 +55,11 @@ public class Rescatista implements Rol {
 
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
+                                          String descripcion, Lugar lugar) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
-        //TODO Ver lo del formulario
+        // Los datos del rescatista estan reflejados en inicializar de Persona
+        DatosMascotaPerdida datos = new DatosMascotaPerdida(fotos, descripcion, lugar);
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
@@ -71,9 +69,9 @@ public class Rescatista implements Rol {
 
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(List<Foto> fotos,String descripcion,String latitud, String longitud) {
+    public void encontreUnaMascotaPerdidaSinChapita(List<Foto> fotos,String descripcion,Lugar lugar) {
         GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionPerdidaNoRegistrada(fotos,descripcion,latitud,longitud);
+        gestor.generarPublicacionPerdidaNoRegistrada(fotos,descripcion,lugar);
         //TODO el metodo anterior deberia cambiarse a este
     }
 

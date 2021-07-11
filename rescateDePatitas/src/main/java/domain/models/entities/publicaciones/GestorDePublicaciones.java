@@ -1,6 +1,7 @@
 package domain.models.entities.publicaciones;
 
 import domain.models.entities.mascotas.Foto;
+import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
@@ -21,7 +22,7 @@ public class GestorDePublicaciones {
         return instancia;
     }
 
-    public Organizacion buscarOrganizacionMasCercana(String latitud, String longitud){
+    public Organizacion buscarOrganizacionMasCercana(Lugar lugar){
         //TODO
         return organizaciones.get(0);
     }
@@ -60,15 +61,14 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionPerdidaNoRegistrada(List<Foto> fotos, String descripcion, String latitud,String longitud){
+    public void generarPublicacionPerdidaNoRegistrada(List<Foto> fotos, String descripcion, Lugar lugar){
         PublicacionPerdidaNoRegistrada publicacion = new PublicacionPerdidaNoRegistrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
         publicacion.setDescripcion(descripcion);
         publicacion.setFotos(fotos);
-        publicacion.setLatitud(latitud);
-        publicacion.setLongitud(longitud);
+        publicacion.setLugar(lugar);
         publicacion.setFecha(new Date());
-        Organizacion organizacion = this.buscarOrganizacionMasCercana(latitud,longitud);
+        Organizacion organizacion = this.buscarOrganizacionMasCercana(lugar);
         publicacion.setOrganizacion(organizacion);
 
         publicaciones.add(publicacion);

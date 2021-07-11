@@ -1,10 +1,7 @@
 package domain.models.entities.rol;
 
 import com.google.zxing.WriterException;
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
@@ -34,7 +31,8 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
+                                          String descripcion, Lugar lugar) {
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {

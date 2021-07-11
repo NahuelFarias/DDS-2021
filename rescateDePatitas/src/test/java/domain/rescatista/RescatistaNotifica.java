@@ -1,10 +1,7 @@
 package domain.rescatista;
 
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.mascotas.Caracteristica;
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -91,6 +88,7 @@ public class RescatistaNotifica {
         mascotaDTO.inicializar(personaDuenio,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasConRtas, fotos);
 
+        personaDuenio.registrarMascota(mascotaDTO);
         //Termina de crear una mascota con duenio//
 
         personaRescatista = new Persona();
@@ -111,8 +109,9 @@ public class RescatistaNotifica {
 
     @Test
     public void elRescatistaEncuentraUnaMascotaConQR() {
+        Lugar lugar = new Lugar("1231231", "4342342");
         Mascota mascotaPerdida = personaDuenio.getRol().getMascotas().get(0);
 
-        personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0));
+        personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0), fotos, "En una plaza toda sucia", lugar);
     }
 }
