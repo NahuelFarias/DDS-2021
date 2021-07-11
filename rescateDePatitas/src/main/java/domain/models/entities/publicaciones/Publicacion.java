@@ -25,5 +25,4 @@ public class Publicacion {
         this.descripcion = descripcion;
     }
 
-
 }

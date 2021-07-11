@@ -6,25 +6,25 @@ import domain.models.entities.mascotas.Organizacion;
 import java.util.List;
 
 public class PublicacionEnAdopcion extends PublicacionGenerica{
-    private List<PreguntaAdopcion> preguntasOrganizacion;
-    private List<PreguntaAdopcion> preguntasGenerales;
+    private List<RespuestaSobrePregunta> respuestasOrganizacion;
+    private List<RespuestaSobrePregunta> respuestasGenerales;
     private Organizacion organizacion;
     private Mascota mascota;
 
-    public List<PreguntaAdopcion> getPreguntasOrganizacion() {
-        return preguntasOrganizacion;
+    public void setPreguntasOrganizacion(List<RespuestaSobrePregunta> respuestasOrganizacion) {
+        this.respuestasOrganizacion = respuestasOrganizacion;
     }
 
-    public void setPreguntasOrganizacion(List<PreguntaAdopcion> preguntasOrganizacion) {
-        this.preguntasOrganizacion = preguntasOrganizacion;
+    public List<RespuestaSobrePregunta> getRespuestasOrganizacion() {
+        return respuestasOrganizacion;
     }
 
-    public List<PreguntaAdopcion> getPreguntasGenerales() {
-        return preguntasGenerales;
+    public List<RespuestaSobrePregunta> getRespuestasGenerales() {
+        return respuestasGenerales;
     }
 
-    public void setPreguntasGenerales(List<PreguntaAdopcion> preguntasGenerales) {
-        this.preguntasGenerales = preguntasGenerales;
+    public void setPreguntasGenerales(List<RespuestaSobrePregunta> respuestasGenerales) {
+        this.respuestasGenerales = respuestasGenerales;
     }
 
     public Organizacion getOrganizacion() {

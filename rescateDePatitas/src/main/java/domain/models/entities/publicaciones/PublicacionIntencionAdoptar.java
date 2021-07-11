@@ -5,14 +5,14 @@ import domain.models.entities.personas.Persona;
 import java.util.List;
 
 public class PublicacionIntencionAdoptar extends PublicacionGenerica{
-    List<PreguntaAdopcion> preferenciasYcomodidades;
+    List<RespuestaSobrePregunta> preferenciasYcomodidades;
     Persona adoptante;
 
-    public List<PreguntaAdopcion> getPreferenciasYcomodidades() {
+    public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() {
         return preferenciasYcomodidades;
     }
 
-    public void setPreferenciasYcomodidades(List<PreguntaAdopcion> preferenciasYcomodidades) {
+    public void setPreferenciasYcomodidades(List<RespuestaSobrePregunta> preferenciasYcomodidades) {
         this.preferenciasYcomodidades = preferenciasYcomodidades;
     }
 

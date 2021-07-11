@@ -27,12 +27,12 @@ public class GestorDePublicaciones {
         return organizaciones.get(0);
     }
 
-    public void generarPublicacionEnAdopcion(Mascota mascota, List<PreguntaAdopcion> pregOrganizacion,
-                                             List<PreguntaAdopcion> pregGenerales,Organizacion organizacion){
+    public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasOrganizacion,
+                                             List<RespuestaSobrePregunta> respuestasGenerales,Organizacion organizacion){
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
         publicacion.setFecha(new Date());
-        publicacion.setPreguntasOrganizacion(pregOrganizacion);
-        publicacion.setPreguntasGenerales(pregGenerales);
+        publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
+        publicacion.setPreguntasGenerales(respuestasGenerales);
         publicacion.setMascota(mascota);
         publicacion.setOrganizacion(organizacion);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
@@ -82,11 +82,11 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<PreguntaAdopcion> preguntasGenerales){
-        //TODO Revisar lo de las preguntas
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<RespuestaSobrePregunta> respuestasGenerales){
+        //Pasamos directamente las preguntas
         PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
         publicacion.setAdoptante(adoptante);
-        publicacion.setPreferenciasYcomodidades(preguntasGenerales);
+        publicacion.setPreferenciasYcomodidades(respuestasGenerales);
     }
 
     public void generarRecomendacionesSemanales(){

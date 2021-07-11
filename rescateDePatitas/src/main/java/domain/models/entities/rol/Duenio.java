@@ -8,6 +8,7 @@ import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.repositories.RepositorioDeUsuarios;
 
 import java.io.IOException;
@@ -76,11 +77,11 @@ public class Duenio implements Rol{
         //TODO Tendria que avisarle al rescatista que hizo la publicacion
     }
 
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<PreguntaAdopcion> preguntasOrganizacion,
-                              List<PreguntaAdopcion> preguntasGenerales){
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<RespuestaSobrePregunta> respuestasOrganizacion,
+                              List<RespuestaSobrePregunta> respuestasGenerales){
         //TODO Preguntas
         GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionEnAdopcion(mascota,preguntasOrganizacion,preguntasGenerales,organizacion);
+        gestor.generarPublicacionEnAdopcion(mascota,respuestasOrganizacion,respuestasGenerales,organizacion);
 
     }
 

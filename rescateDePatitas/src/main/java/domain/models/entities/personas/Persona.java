@@ -6,6 +6,7 @@ import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
+import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.entities.rol.Rol;
 
 import domain.models.repositories.RepositorioDeUsuarios;
@@ -168,7 +169,7 @@ public class Persona extends Persistente {
 
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
         // this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
-        // TODO: Revisar
+        // TODO: Revisar ya que se cambio el metodo encontreMiMascotaPerdida
     }
 
     public String hasheoPersona(){
@@ -203,10 +204,10 @@ public class Persona extends Persistente {
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void quieroAdoptar(List<PreguntaAdopcion> preguntasGenerales){
+    public void quieroAdoptar(List<RespuestaSobrePregunta> respuestasGenerales){
         //TODO Debe estar asociado a una organizacion
         GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionIntencionAdoptar(this,preguntasGenerales);
+        gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
     }
 
 
