@@ -1,13 +1,15 @@
 package domain.models.entities.publicaciones;
 
 import domain.models.entities.mascotas.Mascota;
+import domain.models.entities.mascotas.Organizacion;
 
 import java.util.List;
 
 public class PublicacionEnAdopcion extends PublicacionGenerica{
-    List<PreguntaAdopcion> preguntasOrganizacion;
-    List<PreguntaAdopcion> preguntasGenerales;
-    Mascota mascota;
+    private List<PreguntaAdopcion> preguntasOrganizacion;
+    private List<PreguntaAdopcion> preguntasGenerales;
+    private Organizacion organizacion;
+    private Mascota mascota;
 
     public List<PreguntaAdopcion> getPreguntasOrganizacion() {
         return preguntasOrganizacion;
@@ -23,6 +25,14 @@ public class PublicacionEnAdopcion extends PublicacionGenerica{
 
     public void setPreguntasGenerales(List<PreguntaAdopcion> preguntasGenerales) {
         this.preguntasGenerales = preguntasGenerales;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
     }
 
     public Mascota getMascota() {

@@ -1,11 +1,9 @@
 package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
@@ -169,6 +167,7 @@ public class Persona extends Persistente {
 
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
             this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
+
         }
 
     public String hasheoPersona(){
@@ -201,13 +200,14 @@ public class Persona extends Persistente {
         contactos.forEach(contacto -> contacto.notificarContacto("Alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
                 "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
-
+    //TODO Cambiar el asunto del mail o poner generico
 
     }
 
-    public void quieroAdoptar(){
+    public void quieroAdoptar(List<PreguntaAdopcion> preguntasGenerales){
+        //TODO Debe estar asociado a una organizacion
         GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionIntencionAdoptar();
+        gestor.generarPublicacionIntencionAdoptar(this,preguntasGenerales);
     }
 
 

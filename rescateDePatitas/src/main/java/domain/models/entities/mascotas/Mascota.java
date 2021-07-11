@@ -23,7 +23,7 @@ public class Mascota extends Persistente {
     private String especie;
     private String genero;
     private Organizacion organizacion;
-    private Date fechaDesdeQueEstaPerdida;
+    private Date fechaDesdeQueEstaPerdida; //sacar?
     private List<CaracteristicaConRta> caracteristicas;
     private List<Foto> fotos;
     private Persona persona;
@@ -135,7 +135,7 @@ public class Mascota extends Persistente {
     public void avisarQueMePerdi() {
         fechaDesdeQueEstaPerdida = new Date();
         System.out.println(fechaDesdeQueEstaPerdida);
-        //TODO
+        //TODO Adecuar a nuevo modelo con publicaciones
         GestorDePublicaciones gestor = new GestorDePublicaciones();
         gestor.generarPublicacionPerdidaRegistrada(this);
     }

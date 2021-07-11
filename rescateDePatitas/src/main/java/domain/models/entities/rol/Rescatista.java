@@ -61,6 +61,7 @@ public class Rescatista implements Rol {
 
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto) {
         mascotaPerdida.avisarQueMeEcontraron(contacto);
+        //TODO Ver lo del formulario
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
@@ -73,6 +74,7 @@ public class Rescatista implements Rol {
     public void encontreUnaMascotaPerdidaSinChapita(List<Foto> fotos,String descripcion,String latitud, String longitud) {
         GestorDePublicaciones gestor = new GestorDePublicaciones();
         gestor.generarPublicacionPerdidaNoRegistrada(fotos,descripcion,latitud,longitud);
+        //TODO el metodo anterior deberia cambiarse a este
     }
 
     @Override

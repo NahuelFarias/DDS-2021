@@ -75,10 +75,12 @@ public class Duenio implements Rol{
     }
     public void encontreMiMascotaPerdida(Mascota mascotaPerdida , Contacto contactoDuenio){
         mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
+        //TODO Tendria que avisarle al rescatista que hizo la publicacion
     }
 
     public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<PreguntaAdopcion> preguntasOrganizacion,
                               List<PreguntaAdopcion> preguntasGenerales){
+        //TODO Preguntas
         GestorDePublicaciones gestor = new GestorDePublicaciones();
         gestor.generarPublicacionEnAdopcion(mascota,preguntasOrganizacion,preguntasGenerales,organizacion);
 

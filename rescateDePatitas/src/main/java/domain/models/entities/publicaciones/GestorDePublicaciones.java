@@ -3,6 +3,7 @@ package domain.models.entities.publicaciones;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.personas.Persona;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,7 @@ public class GestorDePublicaciones {
         publicacion.setPreguntasOrganizacion(pregOrganizacion);
         publicacion.setPreguntasGenerales(pregGenerales);
         publicacion.setMascota(mascota);
+        publicacion.setOrganizacion(organizacion);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
 
         publicaciones.add(publicacion);
@@ -80,8 +82,15 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionIntencionAdoptar(){
-        //TODO
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<PreguntaAdopcion> preguntasGenerales){
+        //TODO Revisar lo de las preguntas
+        PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
+        publicacion.setAdoptante(adoptante);
+        publicacion.setPreferenciasYcomodidades(preguntasGenerales);
+    }
+
+    public void generarRecomendacionesSemanales(){
+
     }
 
 

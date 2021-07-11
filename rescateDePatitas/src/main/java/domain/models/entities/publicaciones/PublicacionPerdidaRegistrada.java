@@ -3,7 +3,7 @@ package domain.models.entities.publicaciones;
 import domain.models.entities.mascotas.Mascota;
 
 public class PublicacionPerdidaRegistrada extends PublicacionGenerica {
-    Mascota mascota;
+    private Mascota mascota;
 
     public Mascota getMascota() {
         return mascota;

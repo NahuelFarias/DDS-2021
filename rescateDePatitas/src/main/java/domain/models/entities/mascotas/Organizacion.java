@@ -14,13 +14,8 @@ public class Organizacion {
     private List<Persona> voluntarios = new ArrayList<>();
     private List<Publicacion> publicaciones = new ArrayList<>();
     private List<PreguntaAdopcion> preguntasAdopcion;
-    private GestorDePublicaciones gestorDePublicaciones;
     private String latitud;
     private String longitud;
-
-    public Organizacion(){
-        this.gestorDePublicaciones = new GestorDePublicaciones();
-    }
 
 //  getters & setters
 
@@ -88,6 +83,5 @@ public class Organizacion {
     public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){
         this.preguntasAdopcion.add(pregunta);
     }
-
 
 }
