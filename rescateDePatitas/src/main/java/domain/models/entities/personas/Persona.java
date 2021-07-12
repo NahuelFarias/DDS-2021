@@ -211,10 +211,12 @@ public class Persona extends Persistente {
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void quieroAdoptar(List<RespuestaSobrePregunta> respuestasGenerales){
+    public void intencionDeAdoptar(List<RespuestaSobrePregunta> respuestasGenerales,Lugar ubicacion){
         //TODO Debe estar asociado a una organizacion
         GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
+        PublicacionIntencionAdoptar nuevaPublicacion = gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
+
+        nuevaPublicacion.setOrganizacion(gestor.buscarOrganizacionMasCercana(ubicacion));
     }
 
 
