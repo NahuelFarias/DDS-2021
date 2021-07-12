@@ -1,6 +1,6 @@
 package domain.models.repositories;
 
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class RepositorioDePublicaciones extends RepositorioGenerico{
 
     private static RepositorioDePublicaciones instancia;
-    public List<Publicacion> caracteristicas = new ArrayList<Publicacion>();
+    public List<PublicacionGenerica> publicaciones = new ArrayList<PublicacionGenerica>();
 
 
     public static RepositorioDePublicaciones getInstancia() {
@@ -18,22 +18,22 @@ public class RepositorioDePublicaciones extends RepositorioGenerico{
         return instancia;
     }
 
-    public void agregar(Publicacion publicacion){
-        this.caracteristicas.add(publicacion);
+    public void agregar(PublicacionGenerica publicacion){
+        this.publicaciones.add(publicacion);
     }
 
-    public List<Publicacion> buscarTodos(){
-        return caracteristicas;
+    public List<PublicacionGenerica> buscarTodos(){
+        return publicaciones;
 
     }
 
-    public void eliminar(Publicacion publicacion){
+    public void eliminar(PublicacionGenerica publicacion){
         //TODO
     }
 
-    public Publicacion buscar(String id){
+    public PublicacionGenerica buscar(String id){
         //TODO caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
-        Publicacion publicacion = new Publicacion();
+        PublicacionGenerica publicacion = new PublicacionGenerica();
         return publicacion;
     }
 }

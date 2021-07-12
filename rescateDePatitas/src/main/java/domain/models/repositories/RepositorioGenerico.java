@@ -1,6 +1,7 @@
 package domain.models.repositories;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 
 import java.util.ArrayList;
 import java.util.List;

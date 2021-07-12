@@ -1,8 +1,8 @@
 package domain.voluntario;
 
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.rol.Voluntario;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,9 +11,9 @@ import org.junit.Test;
 public class AprobarPublicacion {
     Persona persona;
     Organizacion veteCan;
-    Publicacion publicacion;
-    Publicacion publicacion2;
-    Publicacion publicacion3;
+    PublicacionGenerica publicacion;
+    PublicacionGenerica publicacion2;
+    PublicacionGenerica publicacion3;
     Voluntario voluntario;
 
     @Before
@@ -21,10 +21,11 @@ public class AprobarPublicacion {
     public void Instanciar(){
         persona = new Persona();
         veteCan = new Organizacion();
-        publicacion = new Publicacion();
-        publicacion2 = new Publicacion();
-        publicacion3 = new Publicacion();
+        publicacion = new PublicacionGenerica();
+        publicacion2 = new PublicacionGenerica();
+        publicacion3 = new PublicacionGenerica();
         voluntario = new Voluntario();
+        persona.setRol(voluntario);
 
         publicacion.setDescripcion("mascota1");
         publicacion2.setDescripcion("mascota2");
@@ -35,19 +36,23 @@ public class AprobarPublicacion {
     public void aprobarPublicacionTest(){
 
         veteCan.generarVoluntario(persona);
-        //veteCan.getPublicaciones();
 
         veteCan.getPublicaciones().add(publicacion);
-        System.out.println(veteCan.getPublicaciones().size());
         veteCan.getPublicaciones().add(publicacion2);
-        System.out.println(veteCan.getPublicaciones().size());
         veteCan.getPublicaciones().add(publicacion3);
-        System.out.println(veteCan.getPublicaciones().size());
 
-        veteCan.controlarPublicaciones(persona);
-        System.out.println(veteCan.getPublicaciones().size());
+        Assert.assertEquals("SIN_REVISAR",publicacion.getEstadoDePublicacion().toString());
+        Assert.assertEquals("SIN_REVISAR",publicacion2.getEstadoDePublicacion().toString());
+        Assert.assertEquals("SIN_REVISAR",publicacion2.getEstadoDePublicacion().toString());
 
-        Assert.assertTrue(veteCan.getPublicaciones().size() == 0);
+        persona.aprobarPublicacion(veteCan.getPublicaciones().get(0),veteCan);
+        persona.aprobarPublicacion(veteCan.getPublicaciones().get(1),veteCan);
+        persona.aprobarPublicacion(veteCan.getPublicaciones().get(2),veteCan);
+
+        Assert.assertEquals("ACEPTADO",publicacion.getEstadoDePublicacion().toString());
+        Assert.assertEquals("ACEPTADO",publicacion2.getEstadoDePublicacion().toString());
+        Assert.assertEquals("ACEPTADO",publicacion2.getEstadoDePublicacion().toString());
+
     }
 
 }

@@ -1,9 +1,8 @@
 package domain.models.entities.mascotas;
 
 import domain.models.entities.personas.Persona;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PreguntaAdopcion;
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.rol.Voluntario;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.List;
 public class Organizacion {
     private String nombre;
     private List<Persona> voluntarios = new ArrayList<>();
-    private List<Publicacion> publicaciones = new ArrayList<>();
+    private List<PublicacionGenerica> publicaciones = new ArrayList<>();
     private List<PreguntaAdopcion> preguntasAdopcion;
     private Lugar ubicacion;
 
@@ -36,11 +35,11 @@ public class Organizacion {
 
     public void agregarVoluntario(Persona voluntario){ this.voluntarios.add(voluntario);}
 
-    public List<Publicacion> getPublicaciones() {
+    public List<PublicacionGenerica> getPublicaciones() {
         return publicaciones;
     }
 
-    public void setPublicaciones(List<Publicacion> publicaciones) {
+    public void setPublicaciones(List<PublicacionGenerica> publicaciones) {
         this.publicaciones = publicaciones;
     }
 

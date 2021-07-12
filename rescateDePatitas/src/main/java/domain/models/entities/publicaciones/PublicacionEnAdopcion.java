@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PublicacionEnAdopcion extends PublicacionGenerica{
     private List<RespuestaSobrePregunta> respuestasOrganizacion;
-    private List<RespuestaSobrePregunta> respuestasGenerales;
+    private List<RespuestaSobrePregunta> respuestasGenerales;//
     private Organizacion organizacion;
     private Mascota mascota;
 

@@ -2,11 +2,11 @@ package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
-import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.PublicacionGenerica;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Rescatista implements Rol {
@@ -40,10 +40,10 @@ public class Rescatista implements Rol {
 
     @Override
 
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {}
+    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {}
 
     @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
     }
 
     @Override

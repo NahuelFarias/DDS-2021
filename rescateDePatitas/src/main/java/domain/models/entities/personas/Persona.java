@@ -156,11 +156,11 @@ public class Persona extends Persistente {
         return this.usuario.iniciarSesion(user, contrasenia, this);
     }
     
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
+    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
         this.rol.aprobarPublicacion(unaPublicacion, organizacion);
     }
 
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
     }
 

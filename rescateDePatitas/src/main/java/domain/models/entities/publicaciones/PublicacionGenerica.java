@@ -1,6 +1,8 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.personas.Persona;
 
 import java.util.Date;
 
@@ -44,4 +46,5 @@ public class PublicacionGenerica {
         this.tipoPublicacion = tipoPublicacion;
     }
 
+    public Mascota getMascota(){return new Mascota(new Persona());};
 }

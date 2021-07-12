@@ -9,6 +9,7 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
@@ -32,6 +33,8 @@ public class PerdiMiMascota {
     List<Contacto> contactos;
     Contacto contacto1, contacto2;
     EditorDeFotos editor;
+    GestorDePublicaciones gestor;
+    Mascota.MascotaDTO mascotaDTO;
 
 
     @Before
@@ -43,10 +46,7 @@ public class PerdiMiMascota {
 
         contacto1 = new Contacto("Maria Victoria", "Sanchez", "1155555555", "mvicsanchez@gmail.com", Estrategia.SMS);
         contacto2 = new Contacto("Agustin", "Greco", "1166666666", "agugreco@gmail.com", Estrategia.SMS);
-    }
 
-    @Test
-    public void crearPersonaConMascotasTest() {
         contactos.add(contacto1);
         contactos.add(contacto2);
 
@@ -89,14 +89,22 @@ public class PerdiMiMascota {
         editor = new EditorDeFotos();
         fotos= editor.redimensionarFotos(fotos);
 
-        Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
+        mascotaDTO = new Mascota.MascotaDTO();
         mascotaDTO.inicializar(persona,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasConRtas, fotos);
-        persona.registrarMascota(mascotaDTO);
 
-        Date fechaActual = new Date();
+
+    }
+
+    @Test
+    public void crearPersonaConMascotasTest() {
+        persona.registrarMascota(mascotaDTO);
         persona.getRol().perdiUnaMascota(persona.getRol().getMascotas().get(0));
 
-        Assert.assertEquals(fechaActual, persona.getRol().getMascotas().get(0).getFechaDesdeQueEstaPerdida());
+        gestor = GestorDePublicaciones.getInstancia();
+
+        Assert.assertEquals(persona,gestor.getPublicaciones().get(0).getMascota().getPersona());
+        Assert.assertEquals("Susana",gestor.getPublicaciones().get(0).getMascota().getNombre());
+        Assert.assertEquals("gato",gestor.getPublicaciones().get(0).getMascota().getEspecie());
     }
 }

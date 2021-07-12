@@ -71,7 +71,6 @@ public class EncontreSinChapita {
         org2.setUbicacion(new Lugar(-34.5888834,-58.5455626));
         organizaciones.add(org2);
 
-
         org3 = new Organizacion();
         org3.setNombre("El Hogar de Claudia");
         org3.setUbicacion(new Lugar(-34.6038713,-58.5754228));

@@ -1,14 +1,13 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.*;
-import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.entities.publicaciones.PreguntaAdopcion;
-import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
         unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
     }
 
@@ -59,7 +58,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion) {
+    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
         unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
     }
 

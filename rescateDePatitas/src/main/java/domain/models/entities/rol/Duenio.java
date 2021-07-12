@@ -70,9 +70,9 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){ }
+    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){ }
     @Override
-    public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
     }
 
     public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<RespuestaSobrePregunta> respuestasOrganizacion,

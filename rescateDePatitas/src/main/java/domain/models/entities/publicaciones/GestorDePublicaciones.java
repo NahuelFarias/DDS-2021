@@ -78,9 +78,9 @@ public class GestorDePublicaciones{
         publicacion.setRescatista(rescatista);
         Organizacion organizacion = this.buscarOrganizacionMasCercana(datosMascota.getLugar());
         publicacion.setOrganizacion(organizacion);
+        publicacion.setTipoPublicacion("Mascota perdida no registrada");
 
         publicaciones.add(publicacion);
-
 
         //Datos Publicacion:
         //-Fecha
@@ -96,6 +96,9 @@ public class GestorDePublicaciones{
         PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
         publicacion.setAdoptante(adoptante);
         publicacion.setPreferenciasYcomodidades(respuestasGenerales);
+        publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
+
+
     }
 
     public void generarRecomendacionesSemanales(){

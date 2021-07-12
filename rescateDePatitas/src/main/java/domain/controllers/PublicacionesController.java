@@ -1,6 +1,6 @@
 package domain.controllers;
 
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.repositories.RepositorioDePublicaciones;
 
 
@@ -20,7 +20,7 @@ public class PublicacionesController {
     }
 
 
-    public void crearPublicacion(Publicacion publicacion){
+    public void crearPublicacion(PublicacionGenerica publicacion){
         this.validarDatos();
         this.repositorio.agregar(publicacion);
     }
