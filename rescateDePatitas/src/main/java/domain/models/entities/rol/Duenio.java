@@ -2,13 +2,10 @@ package domain.models.entities.rol;
 
 import com.google.zxing.WriterException;
 import domain.models.entities.mascotas.*;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.publicaciones.*;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.repositories.RepositorioDeUsuarios;
 
 import java.io.IOException;
@@ -34,6 +31,11 @@ public class Duenio implements Rol{
     @Override
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
                                           String descripcion, Lugar lugar) {
+    }
+
+    @Override
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaPerdida datosMascotaPerdida) {
+
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
@@ -72,8 +74,9 @@ public class Duenio implements Rol{
     @Override
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
     }
-    public void encontreMiMascotaPerdida(Mascota mascotaPerdida , Contacto contactoDuenio){
-        mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
+    public void encontreMiMascotaPerdida(Persona duenio , PublicacionPerdidaRegistrada publicacion){
+        //mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
+        //Creo que este no es necesario (Sole). Puede perder una mascota sin haberla registrado, no ser duenio.
         //TODO Tendria que avisarle al rescatista que hizo la publicacion
     }
 

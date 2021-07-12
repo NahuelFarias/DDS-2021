@@ -1,19 +1,21 @@
 package domain.models.entities.publicaciones;
 
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Lugar;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.personas.Persona;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class GestorDePublicaciones {
     private static GestorDePublicaciones instancia;
-    private List<PublicacionGenerica> publicaciones;
+    private List<PublicacionGenerica> publicaciones = new ArrayList<>();
     private List<String> preguntasAdopcion;
     private List<Organizacion> organizaciones;
+
+    //public GestorDePublicaciones(){
+      //  this.publicaciones = new ArrayList<>();
+    //}
 
     public static GestorDePublicaciones getInstancia() {
         if (instancia == null) {
@@ -22,9 +24,14 @@ public class GestorDePublicaciones {
         return instancia;
     }
 
+    public List<PublicacionGenerica> getPublicaciones() {
+        return publicaciones;
+    }
+
     public Organizacion buscarOrganizacionMasCercana(Lugar lugar){
         //TODO
-        return organizaciones.get(0);
+        Organizacion organizacion = new Organizacion();
+        return organizacion;
     }
 
     public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasOrganizacion,
@@ -61,23 +68,25 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionPerdidaNoRegistrada(List<Foto> fotos, String descripcion, Lugar lugar){
+    public void generarPublicacionPerdidaNoRegistrada(Persona rescatista, DatosMascotaPerdida datosMascota){
         PublicacionPerdidaNoRegistrada publicacion = new PublicacionPerdidaNoRegistrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-        publicacion.setDescripcion(descripcion);
-        publicacion.setFotos(fotos);
-        publicacion.setLugar(lugar);
+        publicacion.setDescripcion(datosMascota.getDescripcion());
+        publicacion.setFotos(datosMascota.getFotos());
+        publicacion.setLugar(datosMascota.getLugar());
         publicacion.setFecha(new Date());
-        Organizacion organizacion = this.buscarOrganizacionMasCercana(lugar);
+        publicacion.setRescatista(rescatista);
+        Organizacion organizacion = this.buscarOrganizacionMasCercana(datosMascota.getLugar());
         publicacion.setOrganizacion(organizacion);
 
         publicaciones.add(publicacion);
+
 
         //Datos Publicacion:
         //-Fecha
         //-Fotos
         //-Descripcion de como la encontro
-        //-Lugar (seleccionable a traves de un mapa) Pongo un string por el momento
+        //-Lugar (seleccionable a traves de un mapa)
         //-Asignar organizacion mas cercana
 
     }
@@ -90,6 +99,7 @@ public class GestorDePublicaciones {
     }
 
     public void generarRecomendacionesSemanales(){
+        //TODO
 
     }
 

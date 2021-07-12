@@ -2,11 +2,8 @@ package domain.models.entities.personas;
 
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.*;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
-import domain.models.entities.publicaciones.Publicacion;
+import domain.models.entities.publicaciones.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.entities.rol.Rol;
 
 import domain.models.repositories.RepositorioDeUsuarios;
@@ -133,11 +130,20 @@ public class Persona extends Persistente {
                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
         }
+      //  if(rol.getNombre() == "RESCATISTA"){ //No se si esto se usa en alguna parte o puedo borrarlo
+      //      contactos.forEach( c -> c.notificarContacto(contactoRescatista.getNombre() + " encontro su mascota!\n" +
+      //                   "Sus medios de contacto son:\n" + "Telefono: " +
+       //                   contactoRescatista.getNumeroCompleto() + "\n" +
+        //                     "Email: " + contactoRescatista.getEmail()));
+        //}
+    }
+
+    public void notificarContactosRescatista(Contacto contactoDuenio) {
         if(rol.getNombre() == "RESCATISTA"){
-            contactos.forEach( c -> c.notificarContacto(contactoRescatista.getNombre() + " encontro su mascosta!\n" +
-                         "Sus medios de contacto son:\n" + "Telefono: " +
-                          contactoRescatista.getNumeroCompleto() + "\n" +
-                             "Email: " + contactoRescatista.getEmail()));
+            contactos.forEach( c -> c.notificarContacto(contactoDuenio.getNombre() + " encontro su mascota en tu publicacion!\n" +
+                    "Sus medios de contacto son:\n" + "Telefono: " +
+                    contactoDuenio.getNumeroCompleto() + "\n" +
+                    "Email: " + contactoDuenio.getEmail()));
         }
     }
 
@@ -158,18 +164,19 @@ public class Persona extends Persistente {
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, List<Foto> fotos,
                                           String descripcion, Lugar lugar) {
-        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto, fotos, descripcion, lugar);
+        //Con chapita
+        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista, fotos, descripcion, lugar);
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
-        this.rol.encontreUnaMascotaPerdidaSinChapita(mascotaPerdida);
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datos) {
+        this.rol.encontreUnaMascotaPerdidaSinChapita(this,datos);
     }
 
-    public void encontreMiMascotaPerdida(Mascota mascotaPerdida, Contacto contacto)  {
-        // this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contacto);
-        // TODO: Revisar ya que se cambio el metodo encontreMiMascotaPerdida
+    public void encontreMiMascotaPerdida(PublicacionPerdidaNoRegistrada publicacion,Contacto contacto)  {
+        publicacion.getRescatista().notificarContactosRescatista(contacto);
+
     }
 
     public String hasheoPersona(){

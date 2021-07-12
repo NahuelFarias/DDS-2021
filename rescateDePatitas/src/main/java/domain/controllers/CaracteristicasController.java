@@ -21,7 +21,6 @@ public class CaracteristicasController {
         this.repositorio = new RepositorioDeCaracteristicas();
     }
 
-
     public void crearCaracteristica(String descripcion, List<String> respuestasPosibles){
         this.validarDatos(descripcion,respuestasPosibles);
         Caracteristica caracteristica = new Caracteristica();

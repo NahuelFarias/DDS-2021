@@ -133,10 +133,7 @@ public class Mascota extends Persistente {
     }
 
     public void avisarQueMePerdi() {
-        fechaDesdeQueEstaPerdida = new Date();
-        System.out.println(fechaDesdeQueEstaPerdida);
-        //TODO Adecuar a nuevo modelo con publicaciones
-        GestorDePublicaciones gestor = new GestorDePublicaciones();
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionPerdidaRegistrada(this);
     }
 

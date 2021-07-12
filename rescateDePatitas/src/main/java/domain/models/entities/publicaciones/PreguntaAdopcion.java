@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PreguntaAdopcion {
     private String pregunta;
-    private List<String> respuestas; //Por ejemplo,se cargan las respuestas posibles o -1 si es respuesta libre
+    private List<String> respuestas;
 
     public PreguntaAdopcion() {
         this.respuestas = new ArrayList<String>();

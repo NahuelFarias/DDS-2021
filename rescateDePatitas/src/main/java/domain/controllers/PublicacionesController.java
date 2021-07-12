@@ -21,7 +21,7 @@ public class PublicacionesController {
 
 
     public void crearPublicacion(Publicacion publicacion){
-        this.validarDatos(); //TODO
+        this.validarDatos();
         this.repositorio.agregar(publicacion);
     }
 

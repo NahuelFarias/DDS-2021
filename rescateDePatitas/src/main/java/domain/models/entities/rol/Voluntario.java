@@ -50,6 +50,11 @@ public class Voluntario implements Rol {
 
     }
 
+    @Override
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaPerdida datosMascotaPerdida) {
+
+    }
+
     public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
     }
 

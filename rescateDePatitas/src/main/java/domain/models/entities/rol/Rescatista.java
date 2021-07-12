@@ -1,14 +1,10 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.*;
-
-import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Publicacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
-import domain.models.entities.publicaciones.PublicacionPerdidaNoRegistrada;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,17 +58,16 @@ public class Rescatista implements Rol {
         DatosMascotaPerdida datos = new DatosMascotaPerdida(fotos, descripcion, lugar);
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
-       Publicacion publicacion = new Publicacion();
-       publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-       publicacion.setDescripcion(mascotaPerdida.getDescripcion());
+    //public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
+      // Publicacion publicacion = new Publicacion();
+      // publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
+      // publicacion.setDescripcion(mascotaPerdida.getDescripcion());
 
-    }
+    //}
 
-    public void encontreUnaMascotaPerdidaSinChapita(List<Foto> fotos,String descripcion,Lugar lugar) {
-        GestorDePublicaciones gestor = new GestorDePublicaciones();
-        gestor.generarPublicacionPerdidaNoRegistrada(fotos,descripcion,lugar);
-        //TODO el metodo anterior deberia cambiarse a este
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionPerdidaNoRegistrada(rescatista,datosMascota);
     }
 
     @Override
