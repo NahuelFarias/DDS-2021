@@ -1,27 +1,27 @@
 package domain.models.entities.mascotas;
 
 public class Lugar {
-    private String latitud;
-    private String longitud;
+    private double latitud;
+    private double longitud;
 
-    public Lugar(String latitud, String longitud) {
+    public Lugar(double latitud, double longitud) {
         setLatitud(latitud);
         setLongitud(longitud);
     }
 
-    public String getLatitud() {
+    public double getLatitud() {
         return this.latitud;
     }
 
-    public String getLongitud() {
+    public double getLongitud() {
         return this.longitud;
     }
 
-    public void setLatitud(String latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public void setLongitud(String longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 }

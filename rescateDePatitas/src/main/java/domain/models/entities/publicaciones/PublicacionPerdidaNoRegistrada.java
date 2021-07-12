@@ -18,6 +18,10 @@ public class PublicacionPerdidaNoRegistrada extends PublicacionGenerica{
     private Organizacion organizacion;
     private Persona rescatista;
 
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
     public void setOrganizacion(Organizacion organizacion){
         this.organizacion = organizacion;
     }

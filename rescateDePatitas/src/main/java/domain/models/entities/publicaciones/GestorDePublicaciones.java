@@ -2,20 +2,15 @@ package domain.models.entities.publicaciones;
 
 import domain.models.entities.mascotas.*;
 import domain.models.entities.personas.Persona;
+import services.ComparadorDistancias;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class GestorDePublicaciones {
+public class GestorDePublicaciones{
     private static GestorDePublicaciones instancia;
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
     private List<String> preguntasAdopcion;
-    private List<Organizacion> organizaciones;
-
-    //public GestorDePublicaciones(){
-      //  this.publicaciones = new ArrayList<>();
-    //}
+    private List<Organizacion> organizaciones = new ArrayList<>();
 
     public static GestorDePublicaciones getInstancia() {
         if (instancia == null) {
@@ -24,13 +19,18 @@ public class GestorDePublicaciones {
         return instancia;
     }
 
+    public void setOrganizaciones(List<Organizacion> organizaciones) {
+        this.organizaciones = organizaciones;
+    }
+
     public List<PublicacionGenerica> getPublicaciones() {
         return publicaciones;
     }
 
-    public Organizacion buscarOrganizacionMasCercana(Lugar lugar){
-        //TODO
-        Organizacion organizacion = new Organizacion();
+
+    public Organizacion buscarOrganizacionMasCercana(Lugar lugarEncuentro){
+        ComparadorDistancias comparador = new ComparadorDistancias();
+        Organizacion organizacion = Collections.min(organizaciones,Comparator.comparing(o->comparador.comparar(o.getUbicacion(),lugarEncuentro)));
         return organizacion;
     }
 

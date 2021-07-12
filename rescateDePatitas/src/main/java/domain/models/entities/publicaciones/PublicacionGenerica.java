@@ -1,5 +1,7 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.mascotas.Organizacion;
+
 import java.util.Date;
 
 public class PublicacionGenerica {
@@ -15,6 +17,8 @@ public class PublicacionGenerica {
     public void setEstadoDePublicacion(EstadoDePublicacion estadoDePublicacion) {
         this.estadoDePublicacion = estadoDePublicacion;
     }
+
+    public Organizacion getOrganizacion(){return new Organizacion();}
 
     public String getDescripcion() {
         return descripcion;
@@ -39,4 +43,5 @@ public class PublicacionGenerica {
     public void setTipoPublicacion(String tipoPublicacion) {
         this.tipoPublicacion = tipoPublicacion;
     }
+
 }

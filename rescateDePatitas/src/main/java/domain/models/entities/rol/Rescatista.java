@@ -58,13 +58,6 @@ public class Rescatista implements Rol {
         DatosMascotaPerdida datos = new DatosMascotaPerdida(fotos, descripcion, lugar);
     }
 
-    //public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
-      // Publicacion publicacion = new Publicacion();
-      // publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-      // publicacion.setDescripcion(mascotaPerdida.getDescripcion());
-
-    //}
-
     public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionPerdidaNoRegistrada(rescatista,datosMascota);

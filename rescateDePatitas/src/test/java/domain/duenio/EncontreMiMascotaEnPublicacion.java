@@ -71,7 +71,7 @@ public class EncontreMiMascotaEnPublicacion {
         fotos.add(foto);
         editor = new EditorDeFotos();
         fotos= editor.redimensionarFotos(fotos);
-        lugar = new Lugar("123456","654321");
+        lugar = new Lugar(-34.6692966,-58.4766928);
         datosMascota = new DatosMascotaPerdida(fotos,"La encontre en buen estado.",lugar);
 
         rescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota);

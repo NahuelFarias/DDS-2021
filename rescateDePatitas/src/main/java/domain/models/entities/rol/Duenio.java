@@ -74,11 +74,6 @@ public class Duenio implements Rol{
     @Override
     public void rechazarPublicacion(Publicacion unaPublicacion, Organizacion organizacion){
     }
-    public void encontreMiMascotaPerdida(Persona duenio , PublicacionPerdidaRegistrada publicacion){
-        //mascotaPerdida.avisarQueMeEcontraron(contactoDuenio);
-        //Creo que este no es necesario (Sole). Puede perder una mascota sin haberla registrado, no ser duenio.
-        //TODO Tendria que avisarle al rescatista que hizo la publicacion
-    }
 
     public void darEnAdopcion(Mascota mascota, Organizacion organizacion,List<RespuestaSobrePregunta> respuestasOrganizacion,
                               List<RespuestaSobrePregunta> respuestasGenerales){

@@ -109,7 +109,7 @@ public class RescatistaNotifica {
 
     @Test
     public void elRescatistaEncuentraUnaMascotaConQR() {
-        Lugar lugar = new Lugar("1231231", "4342342");
+        Lugar lugar = new Lugar(-34.6692966,-58.4766928);
         Mascota mascotaPerdida = personaDuenio.getRol().getMascotas().get(0);
 
         personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0), fotos, "En una plaza toda sucia", lugar);

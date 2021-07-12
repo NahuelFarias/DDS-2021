@@ -14,8 +14,7 @@ public class Organizacion {
     private List<Persona> voluntarios = new ArrayList<>();
     private List<Publicacion> publicaciones = new ArrayList<>();
     private List<PreguntaAdopcion> preguntasAdopcion;
-    private String latitud;
-    private String longitud;
+    private Lugar ubicacion;
 
 //  getters & setters
 
@@ -53,20 +52,12 @@ public class Organizacion {
         this.preguntasAdopcion = preguntasAdopcion;
     }
 
-    public String getLatitud() {
-        return latitud;
+    public Lugar getUbicacion() {
+        return ubicacion;
     }
 
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    public String getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+    public void setUbicacion(Lugar ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public void generarVoluntario(Persona persona){
