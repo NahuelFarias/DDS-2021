@@ -8,6 +8,7 @@ import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 
 import java.util.List;
 
@@ -33,10 +34,6 @@ public class Voluntario implements Rol {
         return null;
     }
 
-    @Override
-    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
-        unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
-    }
 
     @Override
     public void perdiUnaMascota(Mascota mascota){
@@ -54,8 +51,6 @@ public class Voluntario implements Rol {
 
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
-    }
 
     @Override
     public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
@@ -63,8 +58,22 @@ public class Voluntario implements Rol {
     }
 
     @Override
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
+        unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
+    }
+    @Override
+    public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
+        unaPublicacion.setEstadoDePublicacion(EstadoDePublicacion.EN_REVISION);
+    }
+
+    @Override
     public boolean tieneUsuario(Persona persona){
         return false;
+    }
+
+    @Override
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales) {
+
     }
 
     public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){

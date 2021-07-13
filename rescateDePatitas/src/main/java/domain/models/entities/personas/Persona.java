@@ -130,12 +130,7 @@ public class Persona extends Persistente {
                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
         }
-      //  if(rol.getNombre() == "RESCATISTA"){ //No se si esto se usa en alguna parte o puedo borrarlo
-      //      contactos.forEach( c -> c.notificarContacto(contactoRescatista.getNombre() + " encontro su mascota!\n" +
-      //                   "Sus medios de contacto son:\n" + "Telefono: " +
-       //                   contactoRescatista.getNumeroCompleto() + "\n" +
-        //                     "Email: " + contactoRescatista.getEmail()));
-        //}
+
     }
 
     public void notificarContactosRescatista(Contacto contactoDuenio) {
@@ -164,6 +159,10 @@ public class Persona extends Persistente {
         this.rol.rechazarPublicacion(unaPublicacion, organizacion);
     }
 
+    public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
+        this.rol.enRevisionPublicacion(unaPublicacion, organizacion);
+    }
+
     public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, List<Foto> fotos,
                                           String descripcion, Lugar lugar) {
         //Con chapita
@@ -188,7 +187,6 @@ public class Persona extends Persistente {
         return md5;
     }
 
-     // en usuario ?
     public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
                             Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
 
@@ -216,8 +214,6 @@ public class Persona extends Persistente {
         GestorDePublicaciones gestor = new GestorDePublicaciones();
         gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
     }
-
-
 
 
     public void inicializar(PersonaDTO persona) {

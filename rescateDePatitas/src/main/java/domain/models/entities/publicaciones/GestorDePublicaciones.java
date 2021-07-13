@@ -40,6 +40,7 @@ public class GestorDePublicaciones{
         publicacion.setFecha(new Date());
         publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
         publicacion.setPreguntasGenerales(respuestasGenerales);
+        publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
         publicacion.setMascota(mascota);
         publicacion.setOrganizacion(organizacion);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
