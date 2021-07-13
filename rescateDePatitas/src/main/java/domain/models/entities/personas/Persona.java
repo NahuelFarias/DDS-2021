@@ -210,7 +210,6 @@ public class Persona extends Persistente {
     }
 
     public void intencionDeAdoptar(List<RespuestaSobrePregunta> respuestasGenerales,Lugar ubicacion){
-        //TODO Debe estar asociado a una organizacion
         GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
         PublicacionIntencionAdoptar nuevaPublicacion = gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
 

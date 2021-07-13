@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public class PublicacionPerdidaNoRegistrada extends PublicacionGenerica{
-    private String tipoPublicacion;
-    private Date fecha;
     private String descripcion;
     private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
     private List<Foto> fotos;
