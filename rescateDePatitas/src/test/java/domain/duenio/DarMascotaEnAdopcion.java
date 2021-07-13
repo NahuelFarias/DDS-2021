@@ -1,16 +1,18 @@
 package domain.duenio;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import domain.controllers.CaracteristicasController;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import services.EditorDeFotos;
@@ -30,6 +32,11 @@ public class DarMascotaEnAdopcion {
     Contacto contacto1,contacto2;
     EditorDeFotos editor;
     Organizacion organizacion;
+    RespuestaSobrePregunta rt1, rt2;
+    List<RespuestaSobrePregunta> respuestasOrganizacion;
+    List<RespuestaSobrePregunta> respuestasGenerales;
+    PreguntaAdopcion preguntaTieneGatos;
+    PreguntaAdopcion preguntaTienePatio;
 
 
     @Before
@@ -65,16 +72,6 @@ public class DarMascotaEnAdopcion {
 
         persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996,contactos);
 
-        System.out.println ("Datos del Dueño");
-        System.out.println ("Nombre:" + persona.getNombre());
-        System.out.println ("Apellido:" + persona.getApellido());
-        System.out.println ("Direccion:" + persona.getDireccion());
-        System.out.println ("Tipo de documento:" + persona.getTipoDoc());
-        System.out.println ("Numero de documento:" + persona.getNroDoc());
-        System.out.println ("Fecha de nacimiento:" + persona.getFechaDeNacimiento());
-        System.out.println ("-------------");
-
-        //Agrego el rol duenio a la persona para que pueda registrar sus mascotas
         persona.setRol(duenio);
 
         //Registro de 1 mascota
@@ -84,12 +81,10 @@ public class DarMascotaEnAdopcion {
         caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
         caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
 
-        //Armo la lista de caracteristicas para agregar a la mascota
         caracteristicasConRtas = new ArrayList<>();
         caracteristicasConRtas.add(caracteristicaConRta1);
         caracteristicasConRtas.add(caracteristicaConRta2);
 
-        //Redimensiono las fotos para agregar a la mascota
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
@@ -102,28 +97,6 @@ public class DarMascotaEnAdopcion {
                 "gato", "hembra", caracteristicasConRtas, fotos);
         persona.registrarMascota(mascotaDTO);
 
-        //Listo los datos de la mascota 1 cargada
-        System.out.println ("Datos de la Mascota");
-        mascota = persona.getRol().getMascotas().get(0);
-
-        System.out.println ("ID Mascota:" + mascota.getIdMascota());
-        System.out.println ("Nombre:" + mascota.getNombre());
-        System.out.println ("Apodo:" + mascota.getApodo());
-        System.out.println ("Edad:" + mascota.getEdad());
-        System.out.println ("Descripcion:" + mascota.getDescripcion());
-        System.out.println ("Especie:" + mascota.getEspecie());
-        System.out.println ("Genero:" + mascota.getGenero());
-        String descripcion1 = mascota.getCaracteristicas().get(0).getDescripcion();
-        String respuesta1 = mascota.getCaracteristicas().get(0).getRespuestaElegida();
-        System.out.println (descripcion1 + ":"+respuesta1);
-        String descripcion2 = mascota.getCaracteristicas().get(1).getDescripcion();
-        String respuesta2 = mascota.getCaracteristicas().get(1).getRespuestaElegida();
-        System.out.println (descripcion2 + ":"+respuesta2);
-        System.out.println ("-------------");
-
-        //Registro de mascota 2
-
-        //Agrego las caracteristicas con su respuesta elegida para registrar la mascota
         caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
         caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
 
@@ -131,7 +104,6 @@ public class DarMascotaEnAdopcion {
         caracteristicasConRtas2.add(caracteristicaConRta3);
         caracteristicasConRtas2.add(caracteristicaConRta4);
 
-        //Redimensiono la foto de la mascota 2
         ArrayList<Foto> fotos2 = new ArrayList<>();
         Foto foto2 = new Foto();
         foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
@@ -143,32 +115,46 @@ public class DarMascotaEnAdopcion {
                 "gato", "hembra", caracteristicasConRtas, fotos);
         persona.registrarMascota(mascotaDTO);
 
-        //Listo los datos de la mascota 2
-
-        mascota2 = persona.getRol().getMascotas().get(1);
-        System.out.println ("Datos de la Mascota");
-        System.out.println ("ID Mascota:" + mascota2.getIdMascota());
-        System.out.println ("Nombre:" + mascota2.getNombre());
-        System.out.println ("Apodo:" + mascota2.getApodo());
-        System.out.println ("Edad:" + mascota2.getEdad());
-        System.out.println ("Descripcion:" + mascota2.getDescripcion());
-        System.out.println ("Especie:" + mascota2.getEspecie());
-        System.out.println ("Genero:" + mascota2.getGenero());
-        descripcion1 = mascota2.getCaracteristicas().get(0).getDescripcion();
-        respuesta1 = mascota2.getCaracteristicas().get(0).getRespuestaElegida();
-        System.out.println (descripcion1 + ":"+respuesta1);
-        descripcion2 = mascota2.getCaracteristicas().get(1).getDescripcion();
-        respuesta2 = mascota2.getCaracteristicas().get(1).getRespuestaElegida();
-        System.out.println (descripcion2 + ":"+respuesta2);
-
-        System.out.println ("-------------");
-
         organizacion = new Organizacion();
 
-        //persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,rtasOrganizacion,rtasGenerales);
-        //Organizacion organizacion, List<RespuestaSobrePregunta > respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales
+        preguntaTieneGatos = new PreguntaAdopcion();
+        preguntaTieneGatos.setPregunta("Tiene gatos?");
+        preguntaTienePatio = new PreguntaAdopcion();
+        preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 
+        respuestasOrganizacion = new ArrayList<>();
+        rt1 = new RespuestaSobrePregunta();
+        rt1.setPregunta(preguntaTieneGatos);
+        rt1.setRespuesta("Si");
 
+        rt2 = new RespuestaSobrePregunta();
+        rt2.setPregunta(preguntaTienePatio);
+        rt2.setRespuesta("No");
+
+        respuestasOrganizacion.add(rt1);
+        respuestasOrganizacion.add(rt2);
+
+        preguntaTieneGatos = new PreguntaAdopcion();
+        preguntaTieneGatos.setPregunta("Tiene gatos?");
+        preguntaTienePatio = new PreguntaAdopcion();
+        preguntaTienePatio.setPregunta("Tiene patio en su casa?");
+
+        respuestasGenerales = new ArrayList<>();
+        rt1 = new RespuestaSobrePregunta();
+        rt1.setPregunta(preguntaTieneGatos);
+        rt1.setRespuesta("Si");
+
+        rt2 = new RespuestaSobrePregunta();
+        rt2.setPregunta(preguntaTienePatio);
+        rt2.setRespuesta("No");
+
+        respuestasGenerales.add(rt1);
+        respuestasGenerales.add(rt2);
+
+        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        Assert.assertEquals("Mascota dada en adopcion",gestor.getPublicaciones().get(0).getTipoPublicacion());
+        Assert.assertEquals(persona.getRol().getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());
     }
 
 }
