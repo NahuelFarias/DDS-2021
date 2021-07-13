@@ -24,8 +24,7 @@ public interface Rol {
 
     void perdiUnaMascota(Mascota mascota);
 
-    void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
-                                   String descripcion, Lugar lugar);
+    void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto,DatosMascotaPerdida datos);
 
     void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascotaPerdida);
 

@@ -1,7 +1,5 @@
 package domain.duenio;
 
-import domain.controllers.CaracteristicasController;
-import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
@@ -10,10 +8,10 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.rol.Duenio;
-import domain.models.entities.rol.Rescatista;
+
 import org.junit.Before;
 import org.junit.Test;
-import services.EditorDeFotos;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,20 +22,10 @@ public class NotificarPosibleAdopcionAlDuenio {
     Persona personaDuenio;
     Persona adoptante;
     Duenio duenio;
-    Rescatista rescatista;
-
-    CaracteristicasController controller;
-    CaracteristicaConRta caracteristicaConRta1;
-    CaracteristicaConRta caracteristicaConRta2;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
-    List<Caracteristica> caracteristicas;
-    ArrayList<String> rtas, rtas2;
-
-    Contacto contacto1,contacto2,contacto3;
+    Contacto contacto1,contacto2;
     List<Contacto> contactos, contactosRescatista;
-    Foto foto;
     List<Foto> fotos;
-    EditorDeFotos editor;
 
     @Before
     public void instanciar() throws IOException {

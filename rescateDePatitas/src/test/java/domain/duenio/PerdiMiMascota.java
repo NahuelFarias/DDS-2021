@@ -97,7 +97,7 @@ public class PerdiMiMascota {
     }
 
     @Test
-    public void crearPersonaConMascotasTest() {
+    public void perdiMiMascotaTest() {
         persona.registrarMascota(mascotaDTO);
         persona.getRol().perdiUnaMascota(persona.getRol().getMascotas().get(0));
 

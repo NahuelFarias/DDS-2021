@@ -41,8 +41,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
-                                          String descripcion, Lugar lugar) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto,DatosMascotaPerdida datosMascota) {
 
     }
 

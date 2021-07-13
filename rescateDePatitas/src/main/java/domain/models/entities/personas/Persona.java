@@ -124,7 +124,7 @@ public class Persona extends Persistente {
         contactos.add(contacto);
     }
 
-    public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista) {
+    public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista, DatosMascotaPerdida datos) {
         if(rol.getNombre() == "DUENIO") {
            contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() +  " fue encontrada!\n" +
                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
@@ -163,10 +163,9 @@ public class Persona extends Persistente {
         this.rol.enRevisionPublicacion(unaPublicacion, organizacion);
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, List<Foto> fotos,
-                                          String descripcion, Lugar lugar) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista,DatosMascotaPerdida datosMascota) {
         //Con chapita
-        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista, fotos, descripcion, lugar);
+        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista,datosMascota);
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datos) {
@@ -211,9 +210,8 @@ public class Persona extends Persistente {
 
     public void intencionDeAdoptar(List<RespuestaSobrePregunta> respuestasGenerales,Lugar ubicacion){
         GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
-        PublicacionIntencionAdoptar nuevaPublicacion = gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
+        gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
 
-        nuevaPublicacion.setOrganizacion(gestor.buscarOrganizacionMasCercana(ubicacion));
     }
 
 

@@ -6,6 +6,7 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
@@ -34,7 +35,7 @@ public class RescatistaNotifica {
     Foto foto;
     List<Foto> fotos;
     EditorDeFotos editor;
-
+    GestorDePublicaciones gestor;
     @Before
     public void instanciar() throws IOException {
         personaDuenio = new Persona();
@@ -109,9 +110,10 @@ public class RescatistaNotifica {
 
     @Test
     public void elRescatistaEncuentraUnaMascotaConQR() {
-        Lugar lugar = new Lugar(-34.6692966,-58.4766928);
         Mascota mascotaPerdida = personaDuenio.getRol().getMascotas().get(0);
+        DatosMascotaPerdida datosMascota = new DatosMascotaPerdida(fotos,"En una plaza toda sucia",new Lugar(-34.6692966,-58.4766928));
 
-        personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0), fotos, "En una plaza toda sucia", lugar);
+        personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0),datosMascota);
+
     }
 }

@@ -105,6 +105,7 @@ public class EncontreMiMascotaEnPublicacion {
         rescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
         publicacion = gestor.getPublicaciones().get(0);
         personaDuenio.encontreMiMascotaPerdida((PublicacionPerdidaNoRegistrada) publicacion,contactoD1);
+
     }
 
 }

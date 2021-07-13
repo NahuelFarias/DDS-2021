@@ -141,8 +141,8 @@ public class Mascota extends Persistente {
         return fechaDesdeQueEstaPerdida;
     }
 
-    public void avisarQueMeEcontraron(Contacto contacto) {
-        persona.notificarContactos(this, contacto);
+    public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaPerdida datos) {
+        persona.notificarContactos(this, contacto,datos);
     }
 
     public void inicializar(MascotaDTO mascota){

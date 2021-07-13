@@ -29,8 +29,7 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
-                                          String descripcion, Lugar lugar) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto,DatosMascotaPerdida datos) {
     }
 
     @Override
@@ -38,8 +37,6 @@ public class Duenio implements Rol{
 
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Mascota mascotaPerdida) {
-    }
 
     @Override
     public List<Mascota> getMascotas() {
@@ -86,6 +83,7 @@ public class Duenio implements Rol{
     public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
 
     }
+
 
 
 

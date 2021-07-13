@@ -27,8 +27,9 @@ public class DarMascotaEnAdopcion {
     CaracteristicasController controller;
     CaracteristicaConRta caracteristicaConRta1, caracteristicaConRta2, caracteristicaConRta3, caracteristicaConRta4;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas, caracteristicasConRtas2;
-    Mascota mascota,mascota2;
+    List<Caracteristica> caracteristicas;
     List<Contacto> contactos;
+    List<Foto> fotos;
     Contacto contacto1,contacto2;
     EditorDeFotos editor;
     Organizacion organizacion;
@@ -60,10 +61,6 @@ public class DarMascotaEnAdopcion {
         rtas2.add("Ninguno de estos");
         controller.crearCaracteristica("Color principal", rtas2);
         //Termino de cargar caracteristicas al repositorio
-    }
-
-    @Test
-    public void darEnAdopcionMiMascota() {
 
         contacto1 = new Contacto("Maria Victoria","Sanchez","1155555555","mvicsanchez@gmail.com", Estrategia.SMS);
         contacto2 = new Contacto("Agustin","Greco","1166666666","agugreco@gmail.com", Estrategia.SMS);
@@ -73,8 +70,6 @@ public class DarMascotaEnAdopcion {
         persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333,27081996,contactos);
 
         persona.setRol(duenio);
-
-        //Registro de 1 mascota
 
         List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
 
@@ -150,6 +145,11 @@ public class DarMascotaEnAdopcion {
 
         respuestasGenerales.add(rt1);
         respuestasGenerales.add(rt2);
+
+    }
+
+    @Test
+    public void darEnAdopcionMiMascota() {
 
         persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();

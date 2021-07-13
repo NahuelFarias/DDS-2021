@@ -47,4 +47,8 @@ public class PublicacionGenerica {
     }
 
     public Mascota getMascota(){return new Mascota(new Persona());};
+
+    public Persona getAdoptante() {
+        return null;
+    }
 }

@@ -6,10 +6,8 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
-import domain.models.entities.publicaciones.PublicacionGenerica;
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
+import domain.models.entities.publicaciones.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +19,6 @@ import java.util.List;
 public class IntentoDeAdopcion {
 
     Persona persona;
-
     Contacto contacto1;
     List<Contacto> contactos;
 
@@ -34,6 +31,8 @@ public class IntentoDeAdopcion {
 
     PreguntaAdopcion preguntaTieneGatos;
     PreguntaAdopcion preguntaTienePatio;
+    PublicacionIntencionAdoptar publicacion;
+
     @Before
     public void instanciar() throws IOException {
         //persona
@@ -99,6 +98,12 @@ public class IntentoDeAdopcion {
     }
     @Test
     public void personaGeneraPublicacionParaAdoptar(){
+
         persona.intencionDeAdoptar(respuestas,ubicacion);
+        gestor = GestorDePublicaciones.getInstancia();
+
+        Assert.assertEquals("Intencion de adoptar una mascota",gestor.getPublicaciones().get(0).getTipoPublicacion());
+        Assert.assertEquals(persona,gestor.getPublicaciones().get(0).getAdoptante());
+
     }
 }

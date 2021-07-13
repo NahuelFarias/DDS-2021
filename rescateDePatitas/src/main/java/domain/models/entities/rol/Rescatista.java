@@ -34,13 +34,22 @@ public class Rescatista implements Rol {
         mascotasRescatadas.add(mascota);
     }
 
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, DatosMascotaPerdida datos) {
+        //con chapita
+        mascotaPerdida.avisarQueMeEcontraron(contacto,datos);
+    }
+
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionPerdidaNoRegistrada(rescatista,datosMascota);
+    }
+
     @Override
     public String getNombre() {
         return nombre;
     }
 
     @Override
-
     public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {}
 
     @Override
@@ -55,18 +64,6 @@ public class Rescatista implements Rol {
     @Override
     public void perdiUnaMascota(Mascota mascota) {
 
-    }
-
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, List<Foto> fotos,
-                                          String descripcion, Lugar lugar) {
-        mascotaPerdida.avisarQueMeEcontraron(contacto);
-        // Los datos del rescatista estan reflejados en inicializar de Persona
-        DatosMascotaPerdida datos = new DatosMascotaPerdida(fotos, descripcion, lugar);
-    }
-
-    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
-        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionPerdidaNoRegistrada(rescatista,datosMascota);
     }
 
     @Override
