@@ -1,6 +1,6 @@
 package domain.services;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
