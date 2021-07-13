@@ -5,6 +5,7 @@ import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,11 @@ public class Rescatista implements Rol {
     }
 
     @Override
+    public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
+
+    }
+
+    @Override
     public void perdiUnaMascota(Mascota mascota) {
 
     }
@@ -67,6 +73,11 @@ public class Rescatista implements Rol {
     public boolean tieneUsuario(Persona persona){
 
         return false;
+    }
+
+    @Override
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales) {
+
     }
 
 }

@@ -58,8 +58,8 @@ public class EncontreMiMascotaEnPublicacion {
         personaRescatista = new Persona();
         rescatista = new Rescatista();
         personaRescatista.setRol(rescatista);
-        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, 27081998, contactosRescatista);
 
+        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, 27081998, contactosRescatista);
         fotos = new ArrayList<>();
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");

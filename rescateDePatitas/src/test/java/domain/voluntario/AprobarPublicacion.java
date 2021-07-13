@@ -46,12 +46,12 @@ public class AprobarPublicacion {
         Assert.assertEquals("SIN_REVISAR",publicacion2.getEstadoDePublicacion().toString());
 
         persona.aprobarPublicacion(veteCan.getPublicaciones().get(0),veteCan);
-        persona.aprobarPublicacion(veteCan.getPublicaciones().get(1),veteCan);
-        persona.aprobarPublicacion(veteCan.getPublicaciones().get(2),veteCan);
+        persona.rechazarPublicacion(veteCan.getPublicaciones().get(1),veteCan);
+        persona.enRevisionPublicacion(veteCan.getPublicaciones().get(2),veteCan);
 
         Assert.assertEquals("ACEPTADO",publicacion.getEstadoDePublicacion().toString());
-        Assert.assertEquals("ACEPTADO",publicacion2.getEstadoDePublicacion().toString());
-        Assert.assertEquals("ACEPTADO",publicacion2.getEstadoDePublicacion().toString());
+        Assert.assertEquals("RECHAZADO",publicacion2.getEstadoDePublicacion().toString());
+        Assert.assertEquals("EN_REVISION",publicacion3.getEstadoDePublicacion().toString());
 
     }
 

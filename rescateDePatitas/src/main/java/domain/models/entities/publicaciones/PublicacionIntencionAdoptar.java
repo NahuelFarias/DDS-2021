@@ -1,5 +1,6 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
 
 import java.util.ArrayList;
@@ -17,6 +18,17 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
     List<RespuestaSobrePregunta> preferenciasYcomodidades;
     Persona adoptante;
     Scheduler scheduler;
+    private Organizacion organizacion;
+
+    @Override
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
+    }
+
 
     public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() {
         return preferenciasYcomodidades;
@@ -58,5 +70,6 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
             se.printStackTrace();
         }
     }
+
 
 }
