@@ -130,12 +130,7 @@ public class Persona extends Persistente {
                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
         }
-      //  if(rol.getNombre() == "RESCATISTA"){ //No se si esto se usa en alguna parte o puedo borrarlo
-      //      contactos.forEach( c -> c.notificarContacto(contactoRescatista.getNombre() + " encontro su mascota!\n" +
-      //                   "Sus medios de contacto son:\n" + "Telefono: " +
-       //                   contactoRescatista.getNumeroCompleto() + "\n" +
-        //                     "Email: " + contactoRescatista.getEmail()));
-        //}
+
     }
 
     public void notificarContactosRescatista(Contacto contactoDuenio) {
@@ -213,7 +208,7 @@ public class Persona extends Persistente {
 
     public void intencionDeAdoptar(List<RespuestaSobrePregunta> respuestasGenerales,Lugar ubicacion){
         //TODO Debe estar asociado a una organizacion
-        GestorDePublicaciones gestor = new GestorDePublicaciones();
+        GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
         PublicacionIntencionAdoptar nuevaPublicacion = gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
 
         nuevaPublicacion.setOrganizacion(gestor.buscarOrganizacionMasCercana(ubicacion));

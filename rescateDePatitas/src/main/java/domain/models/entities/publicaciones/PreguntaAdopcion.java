@@ -7,7 +7,10 @@ public class PreguntaAdopcion {
     private String pregunta;
     private List<String> respuestas;
 
+
+
     public PreguntaAdopcion() {
+
         this.respuestas = new ArrayList<String>();
     }
 
