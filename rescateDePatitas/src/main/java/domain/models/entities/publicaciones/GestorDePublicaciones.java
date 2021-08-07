@@ -6,7 +6,7 @@ import services.ComparadorDistancias;
 
 import java.util.*;
 
-public class GestorDePublicaciones{
+public class GestorDePublicaciones {
     private static GestorDePublicaciones instancia;
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
     private List<String> preguntasAdopcion;
@@ -28,14 +28,14 @@ public class GestorDePublicaciones{
     }
 
 
-    public Organizacion buscarOrganizacionMasCercana(Lugar lugarEncuentro){
+    public Organizacion buscarOrganizacionMasCercana(Lugar lugarEncuentro) {
         ComparadorDistancias comparador = new ComparadorDistancias();
-        Organizacion organizacion = Collections.min(organizaciones,Comparator.comparing(o->comparador.comparar(o.getUbicacion(),lugarEncuentro)));
+        Organizacion organizacion = Collections.min(organizaciones, Comparator.comparing(o -> comparador.comparar(o.getUbicacion(), lugarEncuentro)));
         return organizacion;
     }
 
     public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasOrganizacion,
-                                             List<RespuestaSobrePregunta> respuestasGenerales,Organizacion organizacion){
+                                             List<RespuestaSobrePregunta> respuestasGenerales, Organizacion organizacion) {
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
         publicacion.setFecha(new Date());
         publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
@@ -55,7 +55,7 @@ public class GestorDePublicaciones{
 
     }
 
-    public void generarPublicacionPerdidaRegistrada(Mascota mascota){
+    public void generarPublicacionPerdidaRegistrada(Mascota mascota) {
         PublicacionPerdidaRegistrada publicacion = new PublicacionPerdidaRegistrada();
         publicacion.setFecha(new Date());
         publicacion.setMascota(mascota);
@@ -69,7 +69,7 @@ public class GestorDePublicaciones{
 
     }
 
-    public void generarPublicacionPerdidaNoRegistrada(Persona rescatista, DatosMascotaPerdida datosMascota){
+    public void generarPublicacionPerdidaNoRegistrada(Persona rescatista, DatosMascotaPerdida datosMascota) {
         PublicacionPerdidaNoRegistrada publicacion = new PublicacionPerdidaNoRegistrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
         publicacion.setDescripcion(datosMascota.getDescripcion());
@@ -92,7 +92,7 @@ public class GestorDePublicaciones{
 
     }
 
-    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<RespuestaSobrePregunta> respuestasGenerales){
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<RespuestaSobrePregunta> respuestasGenerales) {
         //Pasamos directamente las preguntas
         PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
         publicacion.setAdoptante(adoptante);
@@ -103,11 +103,18 @@ public class GestorDePublicaciones{
 
     }
 
-    public void generarRecomendacionesSemanales(){
+    public void generarRecomendacionesSemanales() {
         //TODO
 
     }
 
 
-
+    public List<PublicacionEnAdopcion> getPublicacionesDeAdopcion() {
+        List<PublicacionEnAdopcion> publicaciones = new ArrayList<>();
+        for (PublicacionGenerica publicacion : this.publicaciones) {
+            if (publicacion.getTipoPublicacion() == "Mascota dada en adopcion")
+                publicaciones.add((PublicacionEnAdopcion) publicacion);
+        }
+        return publicaciones;
+    }
 }

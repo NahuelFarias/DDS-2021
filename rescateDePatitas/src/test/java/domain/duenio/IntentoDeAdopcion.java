@@ -18,7 +18,7 @@ import java.util.List;
 
 public class IntentoDeAdopcion {
 
-    Persona persona;
+    Persona persona,persona2;
     Contacto contacto1;
     List<Contacto> contactos;
 
@@ -37,6 +37,7 @@ public class IntentoDeAdopcion {
     public void instanciar() throws IOException {
         //persona
         persona = new Persona();
+        persona2 = new Persona();
 
 
         contactos = new ArrayList<>();

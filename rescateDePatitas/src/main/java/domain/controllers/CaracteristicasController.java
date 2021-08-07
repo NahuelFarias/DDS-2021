@@ -13,23 +13,24 @@ public class CaracteristicasController {
 
     public static CaracteristicasController getInstancia() {
         if (instancia == null) {
-            instancia=new CaracteristicasController();
+            instancia = new CaracteristicasController();
         }
         return instancia;
     }
-    private CaracteristicasController(){
+
+    private CaracteristicasController() {
         this.repositorio = new RepositorioDeCaracteristicas();
     }
 
-    public void crearCaracteristica(String descripcion, List<String> respuestasPosibles){
-        this.validarDatos(descripcion,respuestasPosibles);
+    public void crearCaracteristica(String descripcion, List<String> respuestasPosibles) {
+        this.validarDatos(descripcion, respuestasPosibles);
         Caracteristica caracteristica = new Caracteristica();
         caracteristica.setDescripcion(descripcion);
         caracteristica.setRespuestasPosibles(respuestasPosibles);
         this.repositorio.agregar(caracteristica);
     }
 
-    public void modificar(String descripcion,Caracteristica caracteristica){
+    public void modificar(String descripcion, Caracteristica caracteristica) {
 //        this.validarDatos(caracteristicaDTO);
 //        Optional<Caracteristica> caracteristicaAmodificar = this.repositorio.buscar(descripcion);
 //        if (!caracteristicaAmodificar.isPresent()){
@@ -39,7 +40,7 @@ public class CaracteristicasController {
 //        this.repositorio.modificar(caracteristicaAmodificar.get());
     }
 
-    public void eliminar(String descripcion){
+    public void eliminar(String descripcion) {
 //        Optional<Caracteristica> caracteristicaAEliminar = this.repositorio.buscar(descripcion);
 //        if (!caracteristicaAEliminar.isPresent()){
 //            throw new CaracteristicaNoEncontradaException("La caracteristica" + descripcion + "no existe");
@@ -48,16 +49,18 @@ public class CaracteristicasController {
 //        this.repositorio.eliminar(caracteristicaAEliminar.get());
     }
 
-    private void validarDatos(String descripcion, List<String> respuestasPosibles){
-        if(descripcion== null){
+    private void validarDatos(String descripcion, List<String> respuestasPosibles) {
+        if (descripcion == null) {
             throw new CaracteristicaSinDescripcionException("La caracteristica no tiene descripcion");
         }
-        if(respuestasPosibles==null){
+        if (respuestasPosibles == null) {
             throw new CaracteristicaSinDescripcionException("La caracteristica no tiene respuestas posibles");
         }
     }
 
-    public RepositorioDeCaracteristicas getRepositorio(){ return repositorio;}
+    public RepositorioDeCaracteristicas getRepositorio() {
+        return repositorio;
+    }
 
 
 }

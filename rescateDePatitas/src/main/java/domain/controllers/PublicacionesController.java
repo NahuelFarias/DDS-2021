@@ -11,25 +11,28 @@ public class PublicacionesController {
 
     public static PublicacionesController getInstancia() {
         if (instancia == null) {
-            instancia=new PublicacionesController();
+            instancia = new PublicacionesController();
         }
         return instancia;
     }
-    private PublicacionesController(){
+
+    private PublicacionesController() {
         this.repositorio = new RepositorioDePublicaciones();
     }
 
 
-    public void crearPublicacion(PublicacionGenerica publicacion){
+    public void crearPublicacion(PublicacionGenerica publicacion) {
         this.validarDatos();
         this.repositorio.agregar(publicacion);
     }
 
 
-    private void validarDatos(){
+    private void validarDatos() {
         //TODO
     }
 
-    public RepositorioDePublicaciones getRepositorio(){ return repositorio;}
+    public RepositorioDePublicaciones getRepositorio() {
+        return repositorio;
+    }
 
 }

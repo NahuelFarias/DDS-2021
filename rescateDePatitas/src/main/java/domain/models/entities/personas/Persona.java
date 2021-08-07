@@ -203,7 +203,7 @@ public class Persona extends Persistente {
     }
 
     public void notificarPosibleAdopcion(Mascota mascota,Persona adoptante){
-        contactos.forEach(contacto -> contacto.notificarContacto("Alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
+        contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
                 "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
@@ -212,6 +212,15 @@ public class Persona extends Persistente {
         GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionIntencionAdoptar(this,respuestasGenerales);
 
+    }
+
+    public List<PublicacionEnAdopcion> accederPublicacionesDeAdopcion(){
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        return gestor.getPublicacionesDeAdopcion();
+    }
+
+    public void quieroAdoptar(Mascota mascotaEnAdopcion){
+        mascotaEnAdopcion.meQuiereAdoptar(this);
     }
 
 

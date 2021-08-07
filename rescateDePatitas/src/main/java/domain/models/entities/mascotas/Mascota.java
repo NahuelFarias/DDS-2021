@@ -31,7 +31,7 @@ public class Mascota extends Persistente {
     public Mascota(Persona persona) {
         this.caracteristicas = new ArrayList<>();
         this.fotos = new ArrayList<>();
-        this.idMascota= getIdMascota() + 1;
+        this.idMascota = getIdMascota() + 1;
         this.persona = persona;
         this.fotos = new ArrayList<>();
     }
@@ -52,7 +52,9 @@ public class Mascota extends Persistente {
         this.apodo = apodo;
     }
 
-    public Integer getIdMascota() { return idMascota; }
+    public Integer getIdMascota() {
+        return idMascota;
+    }
 
     public String getDescripcion() {
         return descripcion;
@@ -110,7 +112,9 @@ public class Mascota extends Persistente {
         this.fotos = fotos;
     }
 
-    public void agregarFoto(Foto foto){ fotos.add(foto); }
+    public void agregarFoto(Foto foto) {
+        fotos.add(foto);
+    }
 
     public Persona getPersona() {
         return persona;
@@ -124,12 +128,12 @@ public class Mascota extends Persistente {
 
         Configuracion configuracion = new Configuracion();
 
-        String url = configuracion.leerPropiedad("url") + "/" +idMascota.toString();
+        String url = configuracion.leerPropiedad("url") + "/" + idMascota.toString();
 
         String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
 
         GeneradorQR generador = new GeneradorQR();
-        generador.generarQR(url,pathGuardar,"jpg",500,500);
+        generador.generarQR(url, pathGuardar, "jpg", 500, 500);
     }
 
     public void avisarQueMePerdi() {
@@ -142,10 +146,10 @@ public class Mascota extends Persistente {
     }
 
     public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaPerdida datos) {
-        persona.notificarContactos(this, contacto,datos);
+        persona.notificarContactos(this, contacto, datos);
     }
 
-    public void inicializar(MascotaDTO mascota){
+    public void inicializar(MascotaDTO mascota) {
         this.apodo = mascota.apodo;
         this.nombre = mascota.nombre;
         this.edad = mascota.edad;
@@ -162,8 +166,8 @@ public class Mascota extends Persistente {
         return fotosOriginales;
     }
 
-    public void meQuiereAdoptar(Persona adoptante){
-        this.persona.notificarPosibleAdopcion(this,adoptante);
+    public void meQuiereAdoptar(Persona adoptante) {
+        this.persona.notificarPosibleAdopcion(this, adoptante);
     }
 
 

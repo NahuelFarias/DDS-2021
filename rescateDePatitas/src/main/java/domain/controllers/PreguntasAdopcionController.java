@@ -4,7 +4,6 @@ import domain.models.entities.publicaciones.PreguntaAdopcion;
 import domain.models.repositories.RepositorioDePreguntasAdopcion;
 
 
-
 import java.util.List;
 
 public class PreguntasAdopcionController {
@@ -14,26 +13,29 @@ public class PreguntasAdopcionController {
 
     public static PreguntasAdopcionController getInstancia() {
         if (instancia == null) {
-            instancia=new PreguntasAdopcionController();
+            instancia = new PreguntasAdopcionController();
         }
         return instancia;
     }
-    private PreguntasAdopcionController(){
+
+    private PreguntasAdopcionController() {
         this.repositorio = new RepositorioDePreguntasAdopcion();
     }
 
 
-    public void crearPregunta(PreguntaAdopcion pregunta){
+    public void crearPregunta(PreguntaAdopcion pregunta) {
         this.validarDatos(pregunta.getPregunta(), pregunta.getRespuestas());
         this.repositorio.agregar(pregunta);
     }
 
 
-    private void validarDatos(String descripcion, List<String> respuestasPosibles){
+    private void validarDatos(String descripcion, List<String> respuestasPosibles) {
         //TODO
     }
 
-    public RepositorioDePreguntasAdopcion getRepositorio(){ return repositorio;}
+    public RepositorioDePreguntasAdopcion getRepositorio() {
+        return repositorio;
+    }
 
 
 }

@@ -33,7 +33,9 @@ public class Organizacion {
         this.voluntarios = voluntarios;
     }
 
-    public void agregarVoluntario(Persona voluntario){ this.voluntarios.add(voluntario);}
+    public void agregarVoluntario(Persona voluntario) {
+        this.voluntarios.add(voluntario);
+    }
 
     public List<PublicacionGenerica> getPublicaciones() {
         return publicaciones;
@@ -59,18 +61,18 @@ public class Organizacion {
         this.ubicacion = ubicacion;
     }
 
-    public void generarVoluntario(Persona persona){
+    public void generarVoluntario(Persona persona) {
         Voluntario voluntario = new Voluntario();
         voluntario.setOrganizacion(this);
         persona.setRol(voluntario);
         voluntarios.add(persona);
     }
 
-    public void controlarPublicaciones(Persona persona){
-        this.getPublicaciones().forEach(publicacion -> persona.aprobarPublicacion(publicacion,this));
+    public void controlarPublicaciones(Persona persona) {
+        this.getPublicaciones().forEach(publicacion -> persona.aprobarPublicacion(publicacion, this));
     }
 
-    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){
+    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta) {
         this.preguntasAdopcion.add(pregunta);
     }
 

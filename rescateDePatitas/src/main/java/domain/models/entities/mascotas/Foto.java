@@ -6,7 +6,7 @@ public class Foto {
 
     private String URLfoto;
 
-    public Foto editarFoto(){
+    public Foto editarFoto() {
         EditorDeFotos editor = new EditorDeFotos();
         return editor.ajustarCalidad(this);
     }

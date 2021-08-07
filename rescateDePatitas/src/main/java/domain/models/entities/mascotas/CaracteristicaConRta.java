@@ -5,7 +5,7 @@ public class CaracteristicaConRta {
     private String descripcion;
     private String respuestaElegida;
 
-    public CaracteristicaConRta(String descripcion, String respuestaElegida){
+    public CaracteristicaConRta(String descripcion, String respuestaElegida) {
         this.descripcion = descripcion;
         this.respuestaElegida = respuestaElegida;
     }
@@ -18,6 +18,8 @@ public class CaracteristicaConRta {
         this.descripcion = descripcion;
     }
 
-    public String getRespuestaElegida() { return this.respuestaElegida; }
+    public String getRespuestaElegida() {
+        return this.respuestaElegida;
+    }
 
 }
