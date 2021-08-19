@@ -1,7 +1,7 @@
 package domain.models.entities.mascotas;
 
 import domain.models.entities.personas.Persona;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.rol.Voluntario;
 
@@ -12,7 +12,7 @@ public class Organizacion {
     private String nombre;
     private List<Persona> voluntarios = new ArrayList<>();
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
-    private List<PreguntaAdopcion> preguntasAdopcion;
+    private List<Pregunta> preguntas;
     private Lugar ubicacion;
 
 //  getters & setters
@@ -45,12 +45,12 @@ public class Organizacion {
         this.publicaciones = publicaciones;
     }
 
-    public List<PreguntaAdopcion> getPreguntasAdopcion() {
-        return preguntasAdopcion;
+    public List<Pregunta> getPreguntasAdopcion() {
+        return preguntas;
     }
 
-    public void setPreguntasAdopcion(List<PreguntaAdopcion> preguntasAdopcion) {
-        this.preguntasAdopcion = preguntasAdopcion;
+    public void setPreguntasAdopcion(List<Pregunta> preguntasAdopcion) {
+        this.preguntas = preguntasAdopcion;
     }
 
     public Lugar getUbicacion() {
@@ -72,8 +72,8 @@ public class Organizacion {
         this.getPublicaciones().forEach(publicacion -> persona.aprobarPublicacion(publicacion, this));
     }
 
-    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta) {
-        this.preguntasAdopcion.add(pregunta);
+    public void agregarPreguntaAdopcion(Pregunta pregunta) {
+        this.preguntas.add(pregunta);
     }
 
 }

@@ -1,6 +1,6 @@
 package domain.controllers;
 
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.repositories.RepositorioDePreguntasAdopcion;
 
 
@@ -23,7 +23,7 @@ public class PreguntasAdopcionController {
     }
 
 
-    public void crearPregunta(PreguntaAdopcion pregunta) {
+    public void crearPregunta(Pregunta pregunta) {
         this.validarDatos(pregunta.getPregunta(), pregunta.getRespuestas());
         this.repositorio.agregar(pregunta);
     }

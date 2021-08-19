@@ -29,8 +29,8 @@ public class IntentoDeAdopcion {
     RespuestaSobrePregunta rt1, rt2;
     List<RespuestaSobrePregunta> respuestas;
 
-    PreguntaAdopcion preguntaTieneGatos;
-    PreguntaAdopcion preguntaTienePatio;
+    Pregunta preguntaTieneGatos;
+    Pregunta preguntaTienePatio;
     PublicacionIntencionAdoptar publicacion;
 
     @Before
@@ -78,9 +78,9 @@ public class IntentoDeAdopcion {
         //preferencias y comodidades
 
 
-        preguntaTieneGatos= new PreguntaAdopcion();
+        preguntaTieneGatos= new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
-        preguntaTienePatio = new PreguntaAdopcion();
+        preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 
         respuestas = new ArrayList<>();

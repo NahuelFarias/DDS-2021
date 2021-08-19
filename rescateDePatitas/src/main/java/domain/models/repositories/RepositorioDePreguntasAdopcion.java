@@ -1,6 +1,6 @@
 package domain.models.repositories;
 
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class RepositorioDePreguntasAdopcion {
 
     private static RepositorioDePreguntasAdopcion instancia;
-    public List<PreguntaAdopcion> preguntas = new ArrayList<PreguntaAdopcion>();
+    public List<Pregunta> preguntas = new ArrayList<Pregunta>();
 
 
     public static RepositorioDePreguntasAdopcion getInstancia() {
@@ -18,22 +18,22 @@ public class RepositorioDePreguntasAdopcion {
         return instancia;
     }
 
-    public void agregar(PreguntaAdopcion pregunta){
+    public void agregar(Pregunta pregunta){
         this.preguntas.add(pregunta);
     }
 
-    public List<PreguntaAdopcion> buscarTodos(){
+    public List<Pregunta> buscarTodos(){
         return preguntas;
 
     }
 
-    public void eliminar(PreguntaAdopcion pregunta){
+    public void eliminar(Pregunta pregunta){
         //TODO
     }
 
-    public PreguntaAdopcion buscar(String descripcion){
+    public Pregunta buscar(String descripcion){
         //TODO caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
-        PreguntaAdopcion pregunta = new PreguntaAdopcion();
+        Pregunta pregunta = new Pregunta();
         return pregunta;
     }
 }
