@@ -1,9 +1,7 @@
 package domain.sistema;
 
-import domain.controllers.CaracteristicasController;
 import domain.controllers.PreguntasAdopcionController;
-import domain.models.entities.mascotas.Caracteristica;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,13 +11,13 @@ import java.util.List;
 
 public class AgregarPreguntaAdopcion {
     PreguntasAdopcionController controller;
-    PreguntaAdopcion pregunta;
+    Pregunta pregunta;
     List<String> respuestas;
 
     @Before
     public void instanciar() throws IOException {
         controller = PreguntasAdopcionController.getInstancia();
-        pregunta = new PreguntaAdopcion();
+        pregunta = new Pregunta();
         respuestas = new ArrayList<>();
         respuestas.add("si");
         respuestas.add("no");
@@ -27,7 +25,7 @@ public class AgregarPreguntaAdopcion {
         pregunta.setRespuestas(respuestas);
         controller.crearPregunta(pregunta);
 
-        pregunta = new PreguntaAdopcion();
+        pregunta = new Pregunta();
         respuestas = new ArrayList<>();
         respuestas.add("si");
         respuestas.add("no");
@@ -35,7 +33,7 @@ public class AgregarPreguntaAdopcion {
         pregunta.setRespuestas(respuestas);
         controller.crearPregunta(pregunta);
 
-        pregunta = new PreguntaAdopcion();
+        pregunta = new Pregunta();
         respuestas = new ArrayList<>();
         respuestas.add("si");
         respuestas.add("no");
@@ -43,7 +41,7 @@ public class AgregarPreguntaAdopcion {
         pregunta.setRespuestas(respuestas);
         controller.crearPregunta(pregunta);
 
-        pregunta = new PreguntaAdopcion();
+        pregunta = new Pregunta();
         respuestas = new ArrayList<>();
         respuestas.add("chico");
         respuestas.add("mediano");
@@ -52,13 +50,12 @@ public class AgregarPreguntaAdopcion {
         pregunta.setPregunta("Tamaño que prefiere");
         pregunta.setRespuestas(respuestas);
         controller.crearPregunta(pregunta);
-
     }
 
     @Test
     public void agregarPreguntasAdopcionTest() {
 
-        List<PreguntaAdopcion> preguntasAdopcion = controller.getRepositorio().preguntas;
+        List<Pregunta> preguntasAdopcion = controller.getRepositorio().preguntas;
 
         for(int i = 0; i < preguntasAdopcion.size(); i++) {
             System.out.println(preguntasAdopcion.get(i).getPregunta() + ":");

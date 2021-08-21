@@ -7,7 +7,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
@@ -36,8 +36,8 @@ public class DarMascotaEnAdopcion {
     RespuestaSobrePregunta rt1, rt2;
     List<RespuestaSobrePregunta> respuestasOrganizacion;
     List<RespuestaSobrePregunta> respuestasGenerales;
-    PreguntaAdopcion preguntaTieneGatos;
-    PreguntaAdopcion preguntaTienePatio;
+    Pregunta preguntaTieneGatos;
+    Pregunta preguntaTienePatio;
 
 
     @Before
@@ -112,9 +112,9 @@ public class DarMascotaEnAdopcion {
 
         organizacion = new Organizacion();
 
-        preguntaTieneGatos = new PreguntaAdopcion();
+        preguntaTieneGatos = new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
-        preguntaTienePatio = new PreguntaAdopcion();
+        preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 
         respuestasOrganizacion = new ArrayList<>();
@@ -129,9 +129,9 @@ public class DarMascotaEnAdopcion {
         respuestasOrganizacion.add(rt1);
         respuestasOrganizacion.add(rt2);
 
-        preguntaTieneGatos = new PreguntaAdopcion();
+        preguntaTieneGatos = new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
-        preguntaTienePatio = new PreguntaAdopcion();
+        preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 
         respuestasGenerales = new ArrayList<>();

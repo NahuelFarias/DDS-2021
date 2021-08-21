@@ -1,10 +1,10 @@
 package domain.models.entities.publicaciones;
 
 public class RespuestaSobrePregunta {
-    private PreguntaAdopcion pregunta; //TODO: Ver las preferencias y comodidades son lo mismo
+    private Pregunta pregunta;
     private String respuesta;
 
-    public void setPregunta(PreguntaAdopcion pregunta) {
+    public void setPregunta(Pregunta pregunta) {
         this.pregunta = pregunta;
     }
 

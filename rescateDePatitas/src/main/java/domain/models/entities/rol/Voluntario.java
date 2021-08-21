@@ -4,7 +4,7 @@ import domain.models.entities.mascotas.*;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
-import domain.models.entities.publicaciones.PreguntaAdopcion;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.PublicacionGenerica;
@@ -75,7 +75,7 @@ public class Voluntario implements Rol {
 
     }
 
-    public void agregarPreguntaAdopcion(PreguntaAdopcion pregunta){
+    public void agregarPreguntaAdopcion(Pregunta pregunta){
         this.organizacion.agregarPreguntaAdopcion(pregunta);
     }
 
