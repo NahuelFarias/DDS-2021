@@ -20,4 +20,5 @@ public class AdapterTwilioSMS implements AdapterNotificadorSMS {
 
         System.out.println(message.getSid());
     }
+
 }

@@ -23,4 +23,5 @@ public class NotificadorEmail implements EstrategiaDeNotificacion{
             e.printStackTrace();
         }
     }
+
 }

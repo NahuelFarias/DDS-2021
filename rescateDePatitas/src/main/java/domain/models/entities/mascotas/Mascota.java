@@ -23,7 +23,6 @@ public class Mascota extends Persistente {
     private String especie;
     private String genero;
     private Organizacion organizacion;
-    private Date fechaDesdeQueEstaPerdida; //sacar?
     private List<CaracteristicaConRta> caracteristicas;
     private List<Foto> fotos;
     private Persona persona;
@@ -48,10 +47,6 @@ public class Mascota extends Persistente {
         return apodo;
     }
 
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
-    }
-
     public Integer getIdMascota() {
         return idMascota;
     }
@@ -68,24 +63,12 @@ public class Mascota extends Persistente {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
-
     public String getEspecie() {
         return especie;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
-
     public String getGenero() {
         return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
     }
 
     public Organizacion getOrganizacion() {
@@ -141,12 +124,8 @@ public class Mascota extends Persistente {
         gestor.generarPublicacionPerdidaRegistrada(this);
     }
 
-    public Date getFechaDesdeQueEstaPerdida() {
-        return fechaDesdeQueEstaPerdida;
-    }
-
     public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaPerdida datos) {
-        persona.notificarContactos(this, contacto, datos);
+        this.persona.notificarContactos(this, contacto, datos);
     }
 
     public void inicializar(MascotaDTO mascota) {

@@ -1,9 +1,6 @@
 package domain.persona;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -22,7 +19,6 @@ public class verPublicacionesTest {
     Persona persona, adoptante;
     Contacto contacto;
     List<Contacto> contactos;
-    GestorDePublicaciones gestor;
     List<RespuestaSobrePregunta> respuestasOrganizacion;
     List<RespuestaSobrePregunta> respuestasGenerales;
     Organizacion organizacion;

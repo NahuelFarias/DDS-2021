@@ -67,4 +67,5 @@ public class AdapterJavaMailEmail implements AdapterNotificadorEmail{
         t.connect((String) this.properties.get("mail.smtp.user"), (String) this.properties.get("mail.smtp.password"));
         t.sendMessage(contenedor, contenedor.getAllRecipients());
     }
+
 }

@@ -13,4 +13,5 @@ public class NotificadorWhatsapp implements EstrategiaDeNotificacion{
     public void enviarNotificacion(Contacto contacto) {
         this.adapter.enviarWhatsapp(contacto);
     }
+
 }
