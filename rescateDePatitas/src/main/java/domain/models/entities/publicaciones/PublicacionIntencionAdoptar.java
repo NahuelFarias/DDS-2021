@@ -1,9 +1,10 @@
 package domain.models.entities.publicaciones;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -50,15 +51,19 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
         try {
             scheduler = StdSchedulerFactory.getDefaultScheduler();
 
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonAdoptante = gson.toJson(adoptante);
+            String jsonPreferenciasYComodidades = gson.toJson(preferenciasYcomodidades);
+
             JobDetail job = newJob(MatchearPublicacionesEnAdopcion.class)
                     .withIdentity("job", "group")
-                    //.usingJobData("adoptante", adoptante)
-                    //.usingJobData("preferenciasYComodidades", )
+                    .usingJobData("adoptante", jsonAdoptante)
+                    .usingJobData("preferenciasYComodidades", jsonPreferenciasYComodidades)
                     .build();
 
             int diaDeLaSemana = Calendar.getInstance().DAY_OF_WEEK;
             int horaDelDia = Calendar.getInstance().HOUR_OF_DAY;
-            String periodicidad = "0 0 " +horaDelDia + " ? * " + diaDeLaSemana;
+            String periodicidad = "0 0 " + horaDelDia + " ? * " + diaDeLaSemana;
 
             CronTrigger trigger = newTrigger()
                     .withIdentity("trigger", "group")
