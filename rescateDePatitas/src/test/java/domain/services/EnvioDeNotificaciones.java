@@ -40,6 +40,6 @@ public class EnvioDeNotificaciones {
         } catch (InvalidParameterException e) {
             Logger.getLogger("Error al enviar mail").log(Level.SEVERE, null, e);
         }
-
     }
+
 }

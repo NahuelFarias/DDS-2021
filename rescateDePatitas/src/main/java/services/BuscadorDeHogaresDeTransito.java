@@ -12,7 +12,7 @@ import java.io.IOException;
 public class BuscadorDeHogaresDeTransito {
     private static BuscadorDeHogaresDeTransito instancia = null;
     //TODO: Mover urlAPIHogares a un archivo config
-    private static final String urlAPIHogares = "https://api.refugiosdds.com.ar/api/";
+    private final String urlAPIHogares = Configuracion.leerPropiedad("URL_API_HOGARES");;
     private Retrofit retrofit;
 
     private BuscadorDeHogaresDeTransito() {

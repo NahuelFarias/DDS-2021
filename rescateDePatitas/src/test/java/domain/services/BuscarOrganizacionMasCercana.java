@@ -4,6 +4,7 @@ package domain.services;
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import services.ComparadorDistancias;
@@ -48,9 +49,7 @@ public class BuscarOrganizacionMasCercana {
         org5.setUbicacion(new Lugar(-34.6766714,-58.4790033));
         organizaciones.add(org5);
 
-
         puntoEncuentro = new Lugar(-34.6621347,-58.4803575); //Campus
-        //-34.6096596,-58.4214778 punto cercano a Ayudacan
 
         gestor = GestorDePublicaciones.getInstancia();
         gestor.setOrganizaciones(organizaciones);
@@ -60,7 +59,6 @@ public class BuscarOrganizacionMasCercana {
     @Test
     public void compararDistancias(){
         orgMasCercana = gestor.buscarOrganizacionMasCercana(puntoEncuentro);
-        System.out.println(orgMasCercana.getNombre());
-
+        Assert.assertEquals("El refugio",orgMasCercana.getNombre());
     }
 }

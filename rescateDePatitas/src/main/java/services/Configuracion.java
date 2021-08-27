@@ -6,22 +6,15 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 
-public class Configuracion {
+public final class Configuracion {
 
-
-    public String leerPropiedad(String propiedad){
+    public static String leerPropiedad(String propiedad){
         String valor = null;
 
-
         try {
-
             Properties propiedades = new Properties();
-
             propiedades.load(new FileInputStream("src/main/resources/config.properties"));
-
              valor = propiedades.getProperty(propiedad);
-
-
         } catch (FileNotFoundException e) {
             System.out.println("Error: El archivo no existe.");
         } catch (IOException e) {
@@ -30,27 +23,21 @@ public class Configuracion {
         return valor;
     }
 
-    public void leerArchivoCompleto(){
+    public static void leerArchivoCompleto(){
 
         try {
-
             Properties propiedades = new Properties();
-
             propiedades.load(new FileInputStream("src/main/resources/config.properties"));
-
             Enumeration<Object> claves = propiedades.keys();
-
             while (claves.hasMoreElements()) {
                 Object clave = claves.nextElement();
                 System.out.println(clave.toString() + " = " + propiedades.get(clave).toString());
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("Error: El archivo no existe.");
         } catch (IOException e) {
             System.out.println("Error: No se puede leer el archivo.");
         }
-
     }
 
 }
