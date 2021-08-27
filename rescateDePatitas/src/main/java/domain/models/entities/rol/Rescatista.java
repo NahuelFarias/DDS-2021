@@ -1,6 +1,7 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.*;
+import domain.models.entities.publicaciones.Cuestionario;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -73,7 +74,7 @@ public class Rescatista implements Rol {
     }
 
     @Override
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, Cuestionario cuestionarioDeAdopcion, List<RespuestaSobrePregunta> respuestasGenerales) {
 
     }
 

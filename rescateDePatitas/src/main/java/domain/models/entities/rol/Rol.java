@@ -3,6 +3,7 @@ package domain.models.entities.rol;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.Cuestionario;
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 
@@ -30,7 +31,7 @@ public interface Rol {
 
     boolean tieneUsuario(Persona persona);
 
-    void darEnAdopcion(Mascota mascota,Organizacion organizacion,List<RespuestaSobrePregunta> respuestasOrganizacion,
+    void darEnAdopcion(Mascota mascota, Organizacion organizacion, Cuestionario cuestionarioDeAdopcion,
                        List<RespuestaSobrePregunta> respuestasGenerales);
 
 }

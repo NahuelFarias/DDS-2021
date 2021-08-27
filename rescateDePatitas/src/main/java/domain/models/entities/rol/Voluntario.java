@@ -3,12 +3,9 @@ package domain.models.entities.rol;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.publicaciones.EstadoDePublicacion;
-import domain.models.entities.publicaciones.Pregunta;
+import domain.models.entities.publicaciones.*;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
-import domain.models.entities.publicaciones.PublicacionGenerica;
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
 
 import java.util.List;
 
@@ -71,7 +68,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, Cuestionario cuestionarioDeAdopcion, List<RespuestaSobrePregunta> respuestasGenerales) {
 
     }
 

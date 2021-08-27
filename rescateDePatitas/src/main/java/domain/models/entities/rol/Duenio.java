@@ -5,6 +5,7 @@ import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.Cuestionario;
 
 import domain.models.repositories.RepositorioDeUsuarios;
 
@@ -67,9 +68,9 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void darEnAdopcion(Mascota mascota,Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota,Organizacion organizacion, Cuestionario cuestionarioDeAdopcion, List<RespuestaSobrePregunta> respuestasGenerales) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionEnAdopcion(mascota,respuestasOrganizacion,respuestasGenerales,organizacion);
+        gestor.generarPublicacionEnAdopcion(mascota,cuestionarioDeAdopcion,respuestasGenerales,organizacion);
 
     }
 

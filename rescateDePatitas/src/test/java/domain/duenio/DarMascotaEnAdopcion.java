@@ -6,6 +6,7 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.Cuestionario;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.publicaciones.RespuestaSobrePregunta;
@@ -33,11 +34,17 @@ public class DarMascotaEnAdopcion {
     Contacto contacto1,contacto2;
     EditorDeFotos editor;
     Organizacion organizacion;
-    RespuestaSobrePregunta rt1, rt2;
+    RespuestaSobrePregunta rt1, rt2,rt3,rt4;
     List<RespuestaSobrePregunta> respuestasOrganizacion;
+    Cuestionario cuestionarioDeAdopcion;
+    List<RespuestaSobrePregunta> respuestasCuestionario;
+    List<Pregunta> preguntasCuestionario;
     List<RespuestaSobrePregunta> respuestasGenerales;
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
+    Pregunta preg1;
+    Pregunta preg2;
+
 
 
     @Before
@@ -112,6 +119,20 @@ public class DarMascotaEnAdopcion {
 
         organizacion = new Organizacion();
 
+        respuestasGenerales = new ArrayList<>();
+        rt1 = new RespuestaSobrePregunta();
+        rt1.setPregunta(preguntaTieneGatos);
+        rt1.setRespuesta("Si");
+
+        rt2 = new RespuestaSobrePregunta();
+        rt2.setPregunta(preguntaTienePatio);
+        rt2.setRespuesta("No");
+
+        respuestasGenerales.add(rt1);
+        respuestasGenerales.add(rt2);
+
+// preguntas propias de la org
+
         preguntaTieneGatos = new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
         preguntaTienePatio = new Pregunta();
@@ -128,29 +149,36 @@ public class DarMascotaEnAdopcion {
 
         respuestasOrganizacion.add(rt1);
         respuestasOrganizacion.add(rt2);
+// cuestionario
+        cuestionarioDeAdopcion = new Cuestionario();
+        cuestionarioDeAdopcion.setTipo("Adopcion");
 
-        preguntaTieneGatos = new Pregunta();
-        preguntaTieneGatos.setPregunta("Tiene gatos?");
-        preguntaTienePatio = new Pregunta();
-        preguntaTienePatio.setPregunta("Tiene patio en su casa?");
+        preg1 = new Pregunta();
+        preg1.setPregunta("Edad");
+        preg2= new Pregunta();
+        preg2.setPregunta("Raza");
 
-        respuestasGenerales = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
-        rt1.setPregunta(preguntaTieneGatos);
-        rt1.setRespuesta("Si");
+        rt3 = new RespuestaSobrePregunta();
+        rt3.setRespuesta("1");
+        rt4 = new RespuestaSobrePregunta();
+        rt4.setRespuesta("Collie");
 
-        rt2 = new RespuestaSobrePregunta();
-        rt2.setPregunta(preguntaTienePatio);
-        rt2.setRespuesta("No");
+        preguntasCuestionario = new ArrayList<>();
+        preguntasCuestionario.add(preg2);
+        preguntasCuestionario.add(preg1);
 
-        respuestasGenerales.add(rt1);
-        respuestasGenerales.add(rt2);
+        respuestasCuestionario = new ArrayList<>();
+        respuestasCuestionario.add(rt3);
+        respuestasCuestionario.add(rt4);
+
+        cuestionarioDeAdopcion.setPreguntas(preguntasCuestionario);
+        cuestionarioDeAdopcion.setRespuestas(respuestasCuestionario);
 
     }
 
     @Test
     public void darEnAdopcionMiMascota() {
-        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
+        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,cuestionarioDeAdopcion,respuestasGenerales);
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         Assert.assertEquals("Mascota dada en adopcion",gestor.getPublicaciones().get(0).getTipoPublicacion());
         Assert.assertEquals(persona.getRol().getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());

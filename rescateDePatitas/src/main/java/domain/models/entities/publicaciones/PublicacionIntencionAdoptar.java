@@ -16,7 +16,9 @@ import static org.quartz.CronScheduleBuilder.*;
 
 
 public class PublicacionIntencionAdoptar extends PublicacionGenerica{
-    List<RespuestaSobrePregunta> preferenciasYcomodidades;
+//    List<RespuestaSobrePregunta> preferenciasYcomodidades;
+    Cuestionario cuestionarioPreferencias;
+    Cuestionario cuestionarioComodidades;
     Persona adoptante;
     Scheduler scheduler;
     private Organizacion organizacion;
@@ -30,14 +32,26 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
         this.organizacion = organizacion;
     }
 
-
-    public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() {
-        return preferenciasYcomodidades;
+    public Cuestionario getCuestionarioPreferencias() {
+        return cuestionarioPreferencias;
     }
 
-    public void setPreferenciasYcomodidades(List<RespuestaSobrePregunta> preferenciasYcomodidades) {
-        this.preferenciasYcomodidades = preferenciasYcomodidades;
+    public void setCuestionarioPreferencias(Cuestionario cuestionarioPreferencias) {
+        this.cuestionarioPreferencias = cuestionarioPreferencias;
     }
+
+    public Cuestionario getCuestionarioComodidades() {
+        return cuestionarioComodidades;
+    }
+
+    public void setCuestionarioComodidades(Cuestionario cuestionarioComodidades) {
+        this.cuestionarioComodidades = cuestionarioComodidades;
+    }
+//    public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() { return preferenciasYcomodidades; }
+
+//    public void setPreferenciasYcomodidades(List<RespuestaSobrePregunta> preferenciasYcomodidades) { this.preferenciasYcomodidades = preferenciasYcomodidades; }
+
+
 
     public Persona getAdoptante() {
         return adoptante;
@@ -53,7 +67,7 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonAdoptante = gson.toJson(adoptante);
-            String jsonPreferenciasYComodidades = gson.toJson(preferenciasYcomodidades);
+           String jsonPreferenciasYComodidades = gson.toJson(preferenciasYcomodidades);
 
             JobDetail job = newJob(MatchearPublicacionesEnAdopcion.class)
                     .withIdentity("job", "group")

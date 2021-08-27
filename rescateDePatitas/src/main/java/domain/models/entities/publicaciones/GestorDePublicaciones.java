@@ -34,13 +34,14 @@ public class GestorDePublicaciones {
         return organizacion;
     }
 
-    public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasOrganizacion,
+    public void generarPublicacionEnAdopcion(Mascota mascota, Cuestionario cuestionarioDeAdopcion ,
                                              List<RespuestaSobrePregunta> respuestasGenerales, Organizacion organizacion) {
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
         publicacion.setFecha(new Date());
-        publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
-        publicacion.setPreguntasGenerales(respuestasGenerales);
-        publicacion.setPreguntasOrganizacion(respuestasOrganizacion);
+//        publicacion.setRespuestasOrganizacion(respuestasOrganizacion);
+        publicacion.setCuestionario(cuestionarioDeAdopcion);
+        publicacion.setRespuestasGenerales(respuestasGenerales);
+//        publicacion.setRespuestasOrganizacion(respuestasOrganizacion);
         publicacion.setMascota(mascota);
         publicacion.setOrganizacion(organizacion);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
@@ -92,12 +93,13 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionIntencionAdoptar(Persona adoptante, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, Cuestionario cuestionarioPref,Cuestionario cuestionarioCom) {
         //Pasamos directamente las preguntas
         PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
         publicacion.setAdoptante(adoptante);
-        publicacion.setPreferenciasYcomodidades(respuestasGenerales);
-        publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
+        publicacion.setCuestionarioComodidades(cuestionarioCom);
+        publicacion.setCuestionarioPreferencias(cuestionarioPref);
+                publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
 
         publicaciones.add(publicacion);
 
