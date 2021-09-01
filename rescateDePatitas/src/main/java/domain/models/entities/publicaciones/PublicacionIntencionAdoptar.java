@@ -16,7 +16,7 @@ import static org.quartz.CronScheduleBuilder.*;
 
 
 public class PublicacionIntencionAdoptar extends PublicacionGenerica{
-//    List<RespuestaSobrePregunta> preferenciasYcomodidades;
+    List<RespuestaSobrePregunta> preferenciasYcomodidades;
     Cuestionario cuestionarioPreferencias;
     Cuestionario cuestionarioComodidades;
     Persona adoptante;
