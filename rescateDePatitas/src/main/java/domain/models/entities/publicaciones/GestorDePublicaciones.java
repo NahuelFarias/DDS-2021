@@ -34,13 +34,18 @@ public class GestorDePublicaciones {
         return organizacion;
     }
 
-    public void generarPublicacionEnAdopcion(Mascota mascota, Cuestionario cuestionarioDeAdopcion ,
+    public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasDeLaOrg,
                                              List<RespuestaSobrePregunta> respuestasGenerales, Organizacion organizacion) {
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
+        List<RespuestaSobrePregunta> respuestasCuestionario = new ArrayList<>();
+        Cuestionario cuestionario = new Cuestionario("Adopcion");
+        cuestionario.setRespuestas(respuestasCuestionario);
+        cuestionario.agregarRespuestas(respuestasDeLaOrg);
+        cuestionario.agregarRespuestas(respuestasGenerales);
+
         publicacion.setFecha(new Date());
-//        publicacion.setRespuestasOrganizacion(respuestasOrganizacion);
-        publicacion.setCuestionario(cuestionarioDeAdopcion);
-        publicacion.setRespuestasGenerales(respuestasGenerales);
+        publicacion.setCuestionario(cuestionario);
+//        publicacion.setRespuestasGenerales(respuestasGenerales);
 //        publicacion.setRespuestasOrganizacion(respuestasOrganizacion);
         publicacion.setMascota(mascota);
         publicacion.setOrganizacion(organizacion);
