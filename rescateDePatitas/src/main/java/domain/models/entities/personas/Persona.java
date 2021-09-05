@@ -1,29 +1,41 @@
 package domain.models.entities.personas;
 
+import com.twilio.rest.api.v2010.account.incomingphonenumber.Local;
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.rol.Rol;
 
-import domain.models.repositories.RepositorioDeUsuarios;
-
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "persona")
 public class Persona extends Persistente {
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellido")
     private String apellido;
-    private Integer fechaDeNacimiento;
+    @Column(name = "fechaDeNacimiento", columnDefinition = "DATE")
+    private LocalDate fechaDeNacimiento;
+    @Enumerated(EnumType.STRING)
     private TipoDeDocumento tipoDoc;
+    @Column(name = "numeroDocumento")
     private Integer nroDoc;
+    @Column(name = "direccion")
     private String direccion;
+    @OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Contacto> contactos;
+    @Transient
     private Rol rol;
+    @Transient
     private Usuario usuario;
 
     //en un controller
-    private RepositorioDeUsuarios repositorioDeUsuarios;
+    // private RepositorioDeUsuarios repositorioDeUsuarios;
 
     public Persona() {
         this.contactos = new ArrayList<>();
@@ -47,11 +59,11 @@ public class Persona extends Persistente {
         this.apellido = apellido;
     }
 
-    public Integer getFechaDeNacimiento() {
+    public LocalDate getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(Integer fechaDeNacimiento) {
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
@@ -104,7 +116,7 @@ public class Persona extends Persistente {
     // methods
 
     public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos ){
+                            Integer nroDoc,LocalDate fechaDeNacimiento,List<Contacto> contactos ){
         setNombre(nombre);
         setApellido(apellido);
         setDireccion(direccion);
@@ -177,6 +189,7 @@ public class Persona extends Persistente {
 
     }
 
+    // TODO: Para que se usa esta funcion?
     public String hasheoPersona(){
 
         String cadena = String.valueOf(this.fechaDeNacimiento) + String.valueOf(this.nroDoc) ;
@@ -186,8 +199,9 @@ public class Persona extends Persistente {
         return md5;
     }
 
-    public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,Integer fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
+    // TODO: Para que se usa esta funcion?
+    /* public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
+                            Integer nroDoc,LocalDate fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
 
         Persona persona = new Persona();
         this.inicializar(nombre, apellido,direccion,tipoDoc,nroDoc,fechaDeNacimiento,contactos);
@@ -200,7 +214,7 @@ public class Persona extends Persistente {
             Usuario usuario = new Usuario(nombreDeUsuario,pwd);
             this.repositorioDeUsuarios.aniadir(usuario);
         }
-    }
+    }*/
 
     public void notificarPosibleAdopcion(Mascota mascota,Persona adoptante){
         contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
@@ -239,7 +253,7 @@ public class Persona extends Persistente {
     public static class PersonaDTO {
         private String nombre;
         private String apellido;
-        private Integer fechaDeNacimiento;
+        private LocalDate fechaDeNacimiento;
         private TipoDeDocumento tipoDoc;
         private Integer nroDoc;
         private String direccion;
@@ -251,11 +265,11 @@ public class Persona extends Persistente {
             this.apellido = apellido;
         }
 
-        public Integer getFechaDeNacimiento() {
+        public LocalDate getFechaDeNacimiento() {
             return fechaDeNacimiento;
         }
 
-        public void setFechaDeNacimiento(Integer fechaDeNacimiento) {
+        public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
             this.fechaDeNacimiento = fechaDeNacimiento;
         }
 
@@ -320,7 +334,7 @@ public class Persona extends Persistente {
         }
 
         public void inicializar(String nombre,String apellido, String direccion,TipoDeDocumento tipoDoc,Integer nroDoc,
-               Integer fechaDeNacimiento,List<Contacto> contactos) {
+               LocalDate fechaDeNacimiento,List<Contacto> contactos) {
             this.apellido = apellido;
             this.nombre = nombre;
             this.fechaDeNacimiento = fechaDeNacimiento;

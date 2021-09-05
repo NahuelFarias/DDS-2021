@@ -13,6 +13,7 @@ import org.junit.Test;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class IntentoDeAdopcion {
         contacto1 = new Contacto("Aracely", "Amaro", "+541168648864", "ara6amaro@gmail.com", Estrategia.EMAIL);
         contactos.add(contacto1);
 
-        persona.inicializar("Aracely", "Amaro", "qwerty 890", TipoDeDocumento.DNI,33333333,27081998, contactos);
+        persona.inicializar("Aracely", "Amaro", "qwerty 890", TipoDeDocumento.DNI,33333333, LocalDate.of(1987, 9, 24), contactos);
 
         //organizaciones
         organizaciones= new ArrayList<>();

@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import services.EditorDeFotos;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class PersonaConMascota {
         contactos.add(contacto1);
         contactos.add(contacto2);
 
-        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA",TipoDeDocumento.DNI,3333333,27081996,contactos);
+        persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA",TipoDeDocumento.DNI,3333333, LocalDate.of(1987, 9, 24),contactos);
 
         System.out.println ("Datos del Dueño");
         System.out.println ("Nombre:" + persona.getNombre());

@@ -14,6 +14,7 @@ import org.junit.Test;
 import services.EditorDeFotos;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class EncontreMiMascotaEnPublicacion {
         rescatista = new Rescatista();
         personaRescatista.setRol(rescatista);
 
-        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, 27081998, contactosRescatista);
+        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, LocalDate.of(1987, 9, 24), contactosRescatista);
         fotos = new ArrayList<>();
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");

@@ -10,12 +10,13 @@ import domain.models.entities.rol.Duenio;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertSame;
 
-public class verPublicacionesTest {
+public class VerPublicacionesTest {
     Persona persona, adoptante;
     Contacto contacto;
     List<Contacto> contactos;
@@ -41,7 +42,7 @@ public class verPublicacionesTest {
         contacto = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();
         contactos.add(contacto);
-        persona.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996,contactos);
+        persona.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
 
         mascotaDTO.inicializar(persona, "Susana", "Susi", 2, "tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasconRtas, fotos);
@@ -57,7 +58,7 @@ public class verPublicacionesTest {
         contacto = new Contacto("Fernando", "Casas", "+541111111111", "fernandocasas1234@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();
         contactos.add(contacto);
-        adoptante.inicializar("Fernando", "Casas", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996,contactos);
+        adoptante.inicializar("Fernando", "Casas", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
 
     }
 
