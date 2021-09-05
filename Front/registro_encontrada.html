@@ -69,8 +69,8 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse justify-content-between text-center" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
                     <a href="index.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
@@ -104,8 +104,7 @@
                     <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
                     <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i
-                                class="fas fa-user"></i></a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
                             <a href="login.html" class="dropdown-item">Iniciar sesion</a>
@@ -126,11 +125,11 @@
                 <p class="lead">Llená este formulario para que la ayudemos a encontrar a su dueño</p>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn" type="submit"
+                        <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn-grande" type="submit"
                             href="login.html">Ingresá</a>
                     </div>
                     <div class="col-sm-6">
-                        <h3 class="lead">¿Querés crearla?</h3><a class="btn" type="submit"
+                        <h3 class="lead">¿Querés crearla?</h3><a class="btn-grande" type="submit"
                             href="registro_duenio.html">Registrate</a>
                     </div>
                 </div>
@@ -291,7 +290,7 @@
 
                                 </div>
                                 <div class="col-sm-12 text-right">
-                                    <button class="btn" type="submit">+ Agregar</button>
+                                    <a class="btn-mis" type="submit">+ Agregar</a>
                                 </div>
                             </div>
                             <!-------------------Datos de la mascota----------------->
@@ -329,8 +328,8 @@
                                 <div class="invalid-feedback">
                                     Ingresá una descripción.
                                 </div>
-
                             </div>
+
                             <hr class="my-4">
                             <h4 class="mb-3">Fotos de la mascota</h4>
                             <div class="row g-3">
@@ -342,7 +341,7 @@
                                 </div>
 
                                 <div class="col-sm-12 text-right">
-                                    <button class="btn" type="submit">+ Otra foto</button>
+                                    <a class="btn-mis" type="submit">+ Otra foto</a>
                                 </div>
 
                             </div>
@@ -351,14 +350,80 @@
                             <h4 class="mb-3">¿Dónde la encontraste?</h4>
                             <p>Seleccioná la ubicación en el mapa:</p>
                             <div class="row g-3">
-                                <div class="map" >
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                <div class="map">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
+                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                        loading="lazy"></iframe>
                                 </div>
                             </div>
 
                             <hr class="my-4">
+                            <h4 class="mb-3">Hogar de tránsito</h4>
+                            <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
+                                tránsito.</p>
+                                <p>Seleccioná el hogar en el mapa para obtener su dirección y teléfono.</p>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
+                            <div class="col-sm-3">
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Hasta 5km</option>
+                                    <option>Hasta 10km</option>
+                                    <option>Todos</option>
+                                </select>
+                            </div>
+                            <div class="row g-3">
+                                <div class="map">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
+                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                        loading="lazy"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="country" class="form-label">Nombre Hogar:</label>
+                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
+                                <div class="invalid-feedback">
+                                    El código postal es obligatorio.
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresá un país válido.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="country" class="form-label">Dirección:</label>
+                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
+                                <div class="invalid-feedback">
+                                    El código postal es obligatorio.
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresá un país válido.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="country" class="form-label">Teléfono:</label>
+                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
+                                <div class="invalid-feedback">
+                                    El código postal es obligatorio.
+                                </div>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresá un país válido.
+                                </div>
+                            </div>
+                    
+                            <hr class="my-4">
+                            <div class="container">
+                                <div class=" text-center form-check">
+                                    <input type="checkbox" class="form-check-input" id="save-info">
+                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al dueño.</label>
+                                </div>
+                            </div>
                             <div class="text-center">
-                                <button class="btn" type="submit">Publicar mascota encontrada</button>
+                                <a class="btn-grande" type="submit" style="color: #fff;"
+                                    href="registro_encontrada_ok.html">Publicar mascota encontrada</a>
                             </div>
                         </div>
                     </form>
@@ -375,41 +440,25 @@
     </div>
     <!-- Datos de registro-->
 
-    <!-- Footer -->
-    <footer id="contacto" class="text-center text-lg-start text-muted">
-        <!-- Section: Social media -->
-        <section class="redes d-flex justify-content-center justify-content-lg-between p-4 border-bottom border-top">
-            <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
-                <span>Conectate con nosotros en nuestras redes sociales:</span>
-            </div>
-            <!-- Left -->
 
-            <!-- Right -->
-            <div>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </section>
-        <!-- Section: Social media -->
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
 
         <!-- Section: Links  -->
-        <section class="footer-info wow fadeInUp" data-wow-delay="0.1s">
+        <section class="footer-info">
+            <div class="wave-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+                    <path fill="#eff9ff" fill-opacity="1"
+                        d="M0,128L80,144C160,160,320,192,480,197.3C640,203,800,181,960,176C1120,171,1280,181,1360,186.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+                    </path>
+                </svg>
+            </div>
             <div class="container text-center text-md-start mt-5">
                 <!-- Grid row -->
                 <div class="row mt-3">
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
-
                         <h6 class="text-uppercase fw-bold mb-4">
                             <img src="img/logo2.svg" alt="logo" width="50" height="50">Rescate de patitas
                         </h6>
@@ -467,13 +516,21 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             Contacto
                         </h6>
+                        <p>
+                            <a href="" class="me-4 text-center">
+                                <i class="fab fa-2x fa-instagram"></i>
+                            </a>
+                            <a href="" class="me-4 text-center">
+                                <i class="fab fa-2x fa-facebook-f"></i>
+                            </a>
+                        </p>
                         <p><i class="fas fa-home me-3"></i> Buenos Aires, Argentina</p>
                         <p>
                             <i class="fas fa-envelope me-3"></i>
                             rescatedds@gmail.com
                         </p>
                         <p><i class="fas fa-phone me-3"></i> + 54 11 1234 5678</p>
-                        <p><i class="fas fa-print me-3"></i> + 54 11 5678 8910</p>
+
                     </div>
                     <!-- Grid column -->
                 </div>

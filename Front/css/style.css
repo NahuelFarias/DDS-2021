@@ -25,12 +25,12 @@ a {
 a:hover,
 a:active,
 a:focus {
-  color: #eff9ff;
+  color: #0094df;
   outline: none;
   text-decoration: none;
 }
 
-.btn:focus,
+.btn1:focus,
 .form-control:focus {
   box-shadow: none;
 }
@@ -75,6 +75,7 @@ a:focus {
   position: relative;
   height: 35px;
   background: #eff9ff;
+  padding-bottom: 60px;
 }
 
 .top-bar .top-bar-left {
@@ -177,7 +178,7 @@ a:focus {
 .navbar .navbar-brand {
   margin: 0;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 0px;
   font-weight: 800;
   letter-spacing: 0px;
@@ -242,6 +243,10 @@ a:focus {
   }
 }
 
+.navbar-collapse {
+  text-align: center;
+}
+
 @media (max-width: 991.98px) {
   .navbar {
     padding: 15px;
@@ -267,11 +272,15 @@ a:focus {
 .hero {
   position: relative;
   width: 100%;
-  margin-bottom: 45px;
-  margin-top: 45px;
+  margin-bottom: 0px;
   padding: 10px;
+ 
   background: #eff9ff;
   overflow: hidden;
+}
+
+.top{
+  padding-top: 60px;
 }
 
 .hero .container-fluid {
@@ -729,16 +738,26 @@ a:focus {
 }
 
 .adopcion .adopcion-text p {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.adopcion .adopcion-item a.btn {
-  padding: 0;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #023c5a;
+.adopcion .adopcion-item a.btn{
+
+  color: #ffffff;
+  background: #ff3e7e;
   transition: 0.3s;
+}
+
+a.btn-mis{
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #eff9ff;
+  background: #ff3e7e;
+  transition: 0.3s;
+  border-radius: 30px;
+  text-align: center;
 }
 
 .adopcion .adopcion-item a.btn i {
@@ -746,7 +765,7 @@ a:focus {
 }
 
 .adopcion .adopcion-item a.btn:hover {
-  color: #ff3e7e;
+  color: #ffcc00;
 }
 
 .adopcion .adopcion-meta {
@@ -849,14 +868,14 @@ a:focus {
 .portfolio .portfolio-item {
   position: relative;
   margin-bottom: 30px;
-  overflow: hidden;
+  overflow: visible;
   transition: 0.3s;
 }
 
 .portfolio .portfolio-wrap {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .portfolio img {
@@ -881,12 +900,11 @@ a:focus {
 
 .single .single-content {
   position: relative;
-  margin-bottom: 30px;
   overflow: hidden;
 }
 
 .single .single-content img {
-  margin-bottom: 20px;
+
   width: 100%;
 }
 
@@ -1263,7 +1281,7 @@ a:focus {
 
 .sidebar .category-widget ul li span {
   display: inline-block;
-  float: right;
+
 }
 
 .sidebar .sidebar-widget .tag-widget {
@@ -1350,19 +1368,19 @@ a:focus {
   font-weight: 300;
 }
 
-.btn {
-  padding: 12px 20px;
-  font-size: 14px;
+.btn1 {
+  padding: 8px 12px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
   color: #eff9ff;
   background: #ff3e7e;
-  border-radius: 0;
   transition: 0.3s;
   border-radius: 25px;
+  text-align: center;
 }
 
-.btn:hover {
+.btn1:hover {
   color: #023c5a;
   background: #ffcc00;
 }
@@ -1415,3 +1433,195 @@ a:focus {
 }
 
 /*******************************/
+
+.btn-rojo{
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #eff9ff;
+  background: #ff1100;
+  transition: 0.3s;
+  border-radius: 30px;
+  text-align: center;
+}
+
+
+.btn-rojo:hover {
+  color: #ffffff;
+  background: #c9240e;
+}
+
+.btn-grande {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #eff9ff;
+  background: #ff3e7e;
+  border-radius: 0;
+  transition: 0.3s;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.btn-grande:hover {
+  color: #023c5a;
+  background: #ffcc00;
+}
+
+.wave-container {
+  position: relative;
+  background: #ffffff;
+  color: #FFF;
+  text-align: center;
+  overflow: hidden;
+}
+.wave-container > svg {
+  display: block;
+}
+
+
+/*******************************/
+/*********** Blog CSS **********/
+/*******************************/
+.blog {
+  position: relative;
+  width: 100%;
+  padding: 45px 0;
+  padding-top: 100px;
+}
+
+.blog .blog-carousel {
+  position: relative;
+  width: calc(100% + 30px);
+  left: -15px;
+  right: -15px;
+}
+
+.blog .blog-item {
+  position: relative;
+  margin: 0 15px;
+}
+
+.blog .blog-page .blog-item {
+  margin: 0 0 30px 0;
+}
+
+.blog .blog-img {
+  position: relative;
+  width: 100%;
+}
+
+.blog .blog-img img {
+  width: 100%;
+}
+
+.blog .blog-text {
+  background-color: #eff9ff;
+  position: relative;
+  padding: 25px 30px;
+  border-right: 1px solid rgba(0, 0, 0, .07);
+  border-bottom: 1px solid rgba(0, 0, 0, .07);
+  border-left: 1px solid rgba(0, 0, 0, .07);
+}
+
+.blog .blog-text h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.blog .blog-text p {
+  margin-bottom: 10px;
+}
+
+.blog .blog-item a.btn {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #343148;
+  transition: .3s;
+}
+
+.blog .blog-item a.btn i {
+  margin-left: 5px;
+}
+
+.blog .blog-item a.btn:hover {
+  color: #F7CAC9;
+}
+
+.blog .blog-meta {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.blog .blog-meta p {
+  margin: 0 10px 0 0;
+  font-size: 13px;
+}
+
+.blog .blog-meta i {
+  margin-right: 5px;
+}
+
+.blog .blog-meta p:last-child {
+  margin: 0;
+}
+
+.blog .owl-nav {
+  width: 150px;
+  margin: 32px auto 0 auto;
+  display: flex;
+}
+
+.blog .owl-nav .owl-prev,
+.blog .owl-nav .owl-next {
+  margin-left: 15px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffcc00;
+  background: #023c5a;
+  font-size: 22px;
+  transition: .3s;
+}
+
+.blog .owl-nav .owl-prev:hover,
+.blog .owl-nav .owl-next:hover {
+  color: #023c5a;
+  background: #ffcc00;
+}
+
+.blog .pagination .page-link {
+  color: #023c5a;
+  border-radius: 0;
+  border-color: #023c5a;
+}
+
+.blog .pagination .page-link:hover,
+.blog .pagination .page-item.active .page-link {
+  color: #ffcc00;
+  background: #023c5a;
+}
+
+.blog .pagination .disabled .page-link {
+  color: #999999;
+}
+
+.wavyy {
+  text-decoration-line:  underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #ffcc00;
+}
+
+.wavyp {
+  text-decoration-line:  underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #f32b56;
+}
+

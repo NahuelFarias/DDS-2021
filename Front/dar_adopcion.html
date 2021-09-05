@@ -27,8 +27,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="js/map.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
@@ -51,7 +49,7 @@
                 <div class="col-md-4">
                     <div class="top-bar-right">
                         <div class="social">
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-facebook-f" href="www.instagram.com"></i></a>
                             <a href=""><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -75,30 +73,30 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota.html" class="dropdown-item">Registrar</a>
-                            <a href="#" class="dropdown-item">Perdí mi mascota 🙁</a>
+                            <a href="#" class="dropdown-item active">Registrar</a>
+                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_encontrada.html" class="dropdown-item active">Encontré una mascota</a>
+                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
                             <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="en_adopcion.html" class="dropdown-item">Adoptar</a>
-                            <a href="dar_en_adopcion.html" class="dropdown-item">Dar en adopcion </a>
+                            <a href="#adoptar" class="dropdown-item">Adoptar</a>
+                            <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Asociaciones</a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="#" class="dropdown-item">Ingresar</a>
-                            <a href="asociaciones.html" class="dropdown-item">Listado</a>
-                            <a href="registro_asociacion.html" class="dropdown-item">Registrar mi Asociación</a>
+                            <a href="#" class="dropdown-item">Listado</a>
+                            <a href="#" class="dropdown-item">Registrar mi Asociación</a>
                         </div>
                     </div>
                     <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
@@ -107,7 +105,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i
                                 class="fas fa-user"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
+                            <a href="register.html" class="dropdown-item">Crear cuenta</a>
                             <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
@@ -122,25 +120,24 @@
         <div class="container">
             <div class="py-5 text-center">
                 <br> <br>
-                <h2>¡Encontraste una mascota y conocemos a su dueño!</h2>
-                <p class="lead">Llená este formulario para que pueda contactarse con vos</p>
+                <h2 class="wavyy">Dar en adopción</h2>
+                <p class="lead">Ingresá tus datos y los de la mascota.</p>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn-grande" type="submit"
-                            href="login.html">Ingresá</a>
+                        <h3 class="lead">¿Ya tenés una cuenta?</h3>
+                        <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
                     </div>
                     <div class="col-sm-6">
-                        <h3 class="lead">¿Querés crearla?</h3><a class="btn-grande" type="submit"
-                            href="register.html">Registrate</a>
+                        <h3 class="lead">¿Querés crearla?</h3>
+                        <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8">
-
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <h4 class="mb-3">Tus datos para contactarte</h4>
+                            <h4 class="mb-3 wavyp">Tus datos:</h4>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
@@ -216,6 +213,7 @@
                                     Por favor, ingresá un país válido.
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <label for="state" class="form-label">Provincia</label>
                                 <select class="form-select" id="state" required>
@@ -236,7 +234,7 @@
                             </div>
                             <hr class="my-4">
 
-                            <h4 class="mb-3">Tus contactos</h4>
+                            <h4 class="mb-3 wavyp">Tus contactos:</h4>
 
                             <div class="row g-3">
 
@@ -293,10 +291,35 @@
                                 <div class="col-sm-12 text-right">
                                     <a class="btn-mis" type="submit">+ Agregar</a>
                                 </div>
+
                             </div>
-                            <!-------------------Datos de la mascota----------------->
                             <hr class="my-4">
-                            <h4 class="mb-3">Sobre la mascota</h4>
+                            <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Ingrese un nombre válido.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Apodo</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Ingrese un apellido válido.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="firstName" class="form-label">Edad</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Ingrese un nombre válido.
+                                </div>
+                            </div>
 
                             <div class="col-sm-3">
                                 <label for="lastName" class="form-label">Especie</label>
@@ -306,7 +329,7 @@
                                     <option>Perro</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Especie.
+                                    Ingrese un apellido válido.
                                 </div>
                             </div>
 
@@ -325,14 +348,14 @@
                             <div class="col-sm-12">
                                 <label for="email" class="form-label">Descripción</label>
                                 <input type="email" class="form-control" id="email"
-                                    placeholder="Describí en qué estado la encontraste">
+                                    placeholder="Describila físicamente">
                                 <div class="invalid-feedback">
-                                    Ingresá una descripción.
+                                    Por favor, ingresá un correo electrónico válido.
                                 </div>
 
                             </div>
                             <hr class="my-4">
-                            <h4 class="mb-3">Fotos de la mascota</h4>
+                            <h4 class="mb-3 wavyp">Fotos de tu mascota:</h4>
                             <div class="row g-3">
                                 <div class="col-sm-12">
                                     <div class="form-group">
@@ -340,106 +363,80 @@
                                         <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 text-right">
                                     <a class="btn-mis" type="submit">+ Otra foto</a>
                                 </div>
-
                             </div>
+                            
                             <hr class="my-4">
 
-                            <h4 class="mb-3">¿Dónde la encontraste?</h4>
-                            <p>Seleccioná la ubicación en el mapa:</p>
+                            <h4 class="mb-3 wavyp">Más info:</h4>
                             <div class="row g-3">
-                                <div class="map" >
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                <div class="col-sm-4">
+                                    <label for="lastName" class="form-label">¿Está castrado/a?</label>
+                                    <select class="form-select" id="state" required>
+                                        <option value="">...</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label for="lastName" class="form-label">¿Toma medicación?</label>
+                                    <select class="form-select" id="state" required>
+                                        <option value="">...</option>
+                                        <option>Sí</option>
+                                        <option>No</option>
+                                    </select>
                                 </div>
                             </div>
-
-
-
-                            <hr class="my-4">
-                            <h4 class="mb-3">Hogar de tránsito</h4>
-                            <p>Si no podés darle tránsito hasta que encuentre a su dueño, comunicate con un hogar de
-                                tránsito.</p>
-                                <p>Seleccioná el hogar en el mapa para obtener su dirección y teléfono.</p>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">¿Tiene algún problema de salud?</label>
+                                <input type="text" class="form-control" placeholder="Mencionalo si lo tiene"
+                                    value="" required>
+                                <div class="invalid-feedback">
+                                    Ingrese un correo electrónico válido.
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="lastName" class="form-label">¿Puede convivir con gatos?</label>
                                 <select class="form-select" id="state" required>
                                     <option value="">...</option>
-                                    <option>Hasta 5km</option>
-                                    <option>Hasta 10km</option>
-                                    <option>Todos</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
                                 </select>
                             </div>
-                            <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
-                            </div>
 
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Nombre Hogar:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Dirección:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Teléfono:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-                            <div class="container">
-                                <div class=" text-center form-check">
-                                    <input type="checkbox" class="form-check-input" id="save-info">
-                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al dueño</label>
-                                </div>
-                                
-                            </div>
-                            <div class="text-center">
-                                <a class="btn-grande" type="submit" href="registro_encontrada_qr_ok.html" style="color: #fff;">Reportar al dueño</a>
+                            <div class="col-sm-4">
+                                <label for="lastName" class="form-label">¿Y con perros?</label>
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Sí</option>
+                                    <option>No</option>
+                                </select>
                             </div>
                         </div>
-                    </form>
+
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <a class="btn-grande text-uppercase fw-bold mb-2" href="dar_adopcion_ok.html"
+                                type="submit">Publicar mascota</a>
+                        </div>
                 </div>
+                </form>
                 <!--------------------------------------------Foto derecha--------------------------------------------->
-                <div class="col-lg-3">
-                    <div class="col-md-5 col-lg-4 order-md-last">
-                        <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
-                    </div>
+            <div class="col-lg-3">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
                 </div>
             </div>
+            </div>
+            
         </div>
-        <br>
+    </div>
+    <hr class="my-4">
     </div>
     <!-- Datos de registro-->
-
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">

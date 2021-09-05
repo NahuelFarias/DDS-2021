@@ -62,42 +62,44 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="index_log.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link">Inicio</a>
+                    <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota.html" class="dropdown-item active">Registrar</a>
+                            <a href="registro_mascota_log.html" class="dropdown-item">Registrar</a>
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota</a>
+                            <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="adoptar.html" class="dropdown-item">Adoptar</a>
+                            <a href="adoptar_log" class="dropdown-item active">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
                     <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
                     <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresá</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sole G. <i
+                                class="fas fa-user-alt"></i> </a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="#" class="dropdown-item">Mi cuenta</a>
+                            <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
+                            <a href="index.html" class="dropdown-item">Cerrar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -106,22 +108,162 @@
     </div>
     <!--Nav Bar End -->
 
-    <!-- Datos de registro-->
-    <div class="register">
-        <div class="container">
-            <div class="py-5 text-center">
-                <br> <br>
-                <h2>¡Registro exitoso!</h2>
-                <p class="lead">Nos contactaremos con vos para enviarte la chapita QR a la dirección que ingresaste.</p>
-                <i class="far fa-7x fa-check-circle" style="color: green;"></i>
-                <br>
-                <img class="img-fluid" src="img/sin11.png" alt="">
-            </div>
+    <div class="container top" >
+        <div class="py-5 text-center">
+            <br> <br>
+            <h2>¿No encontraste lo que buscabas?</h2>
+            <p class="lead">Llená este formulario para que podamos enviarte semanalmente publicaciones de tu interés.
+            </p>
         </div>
-        
-        <br>
+
+        <form class="text-center text-md-left">
+            <hr class="my-4">
+            <fieldset class="form-group">
+                <div class="row text-center text-md-left">
+                    <div class="col-sm-2 fw-bold text-center text-md-left">Sobre la mascota:</div>
+                    <div class="col-sm-3 ">
+                        <legend class="col-form-label col-sm-2 pt-0 fw-bold text-center text-md-left">Especie: </legend>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Perro
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Gato
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
+                                value="option3">
+                            <label class="form-check-label" for="gridRadios3">
+                                Indistinta
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <legend class="col-form-label col-sm-1 pt-0 fw-bold text-center text-md-left">Sexo: </legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Hembra
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Macho
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios3"
+                                value="option3">
+                            <label class="form-check-label" for="gridRadios3">
+                                Indistinto
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-3">
+                        <legend class="col-form-label col-sm-1 pt-0 fw-bold text-center text-md-left">Edad: </legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Cachorro
+                            </label>
+                            <small>(Menor a 1 año)</small>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Joven
+                            </label>
+                            <small>(De 1 a 5 años)</small>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios3"
+                                value="option3">
+                            <label class="form-check-label" for="gridRadios3">
+                                Adulto
+                            </label>
+                            <small>(Mayor a 5 años)</small>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <hr class="my-4">
+            <div class="form-group row">
+                <div class="col-sm-2 fw-bold text-center text-md-left">Sobre vos:</div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Tengo patio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Tengo al menos un gato
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Tengo al menos un perro
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Puedo hacerme cargo de la castración
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Puedo comprar la medicación que necesite
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Estoy poco tiempo en mi casa
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Puedo sacarlo a pasear todos los días
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+        </form>
     </div>
-    <!-- Datos de registro-->
+
+    <div class="col-sm-12 text-center py-5">
+        <p>
+            
+            <a class="btn-grande text-uppercase" style="color: #fff" type="submit" href="adopcion_suscripcion_log_ok.html">Suscribirme</a>
+        </p>
+    </div>
+
+
+
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
