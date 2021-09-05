@@ -15,7 +15,7 @@ import static org.quartz.TriggerBuilder.*;
 import static org.quartz.CronScheduleBuilder.*;
 
 
-public class PublicacionIntencionAdoptar extends PublicacionGenerica{
+public class PublicacionIntencionAdopcion extends PublicacionGenerica{
     List<RespuestaSobrePregunta> preferenciasYcomodidades;
     Cuestionario cuestionarioPreferencias;
     Cuestionario cuestionarioComodidades;

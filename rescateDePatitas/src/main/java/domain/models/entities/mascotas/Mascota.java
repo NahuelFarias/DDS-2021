@@ -10,7 +10,6 @@ import domain.models.entities.personas.Persona;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -121,7 +120,7 @@ public class Mascota extends Persistente {
 
     public void avisarQueMePerdi() {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionPerdidaRegistrada(this);
+        gestor.generarPublicacionMascotaPerdida(this);
     }
 
     public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaPerdida datos) {

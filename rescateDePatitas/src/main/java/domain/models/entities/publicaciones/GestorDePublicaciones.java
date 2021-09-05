@@ -61,7 +61,7 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionPerdidaRegistrada(Mascota mascota) {
+    public void generarPublicacionMascotaPerdida(Mascota mascota) {
         PublicacionPerdidaRegistrada publicacion = new PublicacionPerdidaRegistrada();
         publicacion.setFecha(new Date());
         publicacion.setMascota(mascota);
@@ -75,8 +75,8 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionPerdidaNoRegistrada(Persona rescatista, DatosMascotaPerdida datosMascota) {
-        PublicacionPerdidaNoRegistrada publicacion = new PublicacionPerdidaNoRegistrada();
+    public void generarPublicacionMascotaEncontrada(Persona rescatista, DatosMascotaPerdida datosMascota) {
+        PublicacionMascotaEncontrada publicacion = new PublicacionMascotaEncontrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
         publicacion.setDescripcion(datosMascota.getDescripcion());
         publicacion.setFotos(datosMascota.getFotos());
@@ -100,7 +100,7 @@ public class GestorDePublicaciones {
 
     public void generarPublicacionIntencionAdoptar(Persona adoptante, Cuestionario cuestionarioPref,Cuestionario cuestionarioCom) {
         //Pasamos directamente las preguntas
-        PublicacionIntencionAdoptar publicacion = new PublicacionIntencionAdoptar();
+        PublicacionIntencionAdopcion publicacion = new PublicacionIntencionAdopcion();
         publicacion.setAdoptante(adoptante);
         publicacion.setCuestionarioComodidades(cuestionarioCom);
         publicacion.setCuestionarioPreferencias(cuestionarioPref);

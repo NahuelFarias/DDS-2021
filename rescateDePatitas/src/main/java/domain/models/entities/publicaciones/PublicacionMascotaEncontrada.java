@@ -8,7 +8,7 @@ import domain.models.entities.personas.Persona;
 import java.util.Date;
 import java.util.List;
 
-public class PublicacionPerdidaNoRegistrada extends PublicacionGenerica{
+public class PublicacionMascotaEncontrada extends PublicacionGenerica{
     private String descripcion;
     private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
     private List<Foto> fotos;

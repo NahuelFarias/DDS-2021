@@ -31,7 +31,7 @@ public class IntentoDeAdopcion {
 
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
-    PublicacionIntencionAdoptar publicacion;
+    PublicacionIntencionAdopcion publicacion;
     Cuestionario cuestionarioPref;
     Cuestionario cuestionarioCom;
     List<RespuestaSobrePregunta> respuestasCuestionarioPref;

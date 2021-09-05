@@ -7,8 +7,7 @@ import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PublicacionGenerica;
-import domain.models.entities.publicaciones.PublicacionPerdidaNoRegistrada;
-import domain.models.entities.rol.Duenio;
+import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
@@ -104,7 +103,7 @@ public class EncontreMiMascotaEnPublicacion {
     public void duenioEncuentraASuMascotaPerdida(){
         rescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
         publicacion = gestor.getPublicaciones().get(0);
-        personaDuenio.encontreMiMascotaPerdida((PublicacionPerdidaNoRegistrada) publicacion,contactoD1);
+        personaDuenio.encontreMiMascotaPerdida((PublicacionMascotaEncontrada) publicacion,contactoD1);
 
     }
 

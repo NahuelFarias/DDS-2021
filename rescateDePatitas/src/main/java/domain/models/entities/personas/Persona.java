@@ -172,7 +172,7 @@ public class Persona extends Persistente {
         this.rol.encontreUnaMascotaPerdidaSinChapita(this,datos);
     }
 
-    public void encontreMiMascotaPerdida(PublicacionPerdidaNoRegistrada publicacion,Contacto contacto)  {
+    public void encontreMiMascotaPerdida(PublicacionMascotaEncontrada publicacion, Contacto contacto)  {
         publicacion.getRescatista().notificarContactosRescatista(contacto);
 
     }

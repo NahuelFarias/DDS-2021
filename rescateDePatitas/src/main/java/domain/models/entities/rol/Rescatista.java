@@ -1,7 +1,6 @@
 package domain.models.entities.rol;
 
 import domain.models.entities.mascotas.*;
-import domain.models.entities.publicaciones.Cuestionario;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -42,7 +41,7 @@ public class Rescatista implements Rol {
 
     public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionPerdidaNoRegistrada(rescatista,datosMascota);
+        gestor.generarPublicacionMascotaEncontrada(rescatista,datosMascota);
     }
 
     @Override
