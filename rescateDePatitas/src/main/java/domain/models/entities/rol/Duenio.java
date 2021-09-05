@@ -68,9 +68,9 @@ public class Duenio implements Rol{
     }
 
     @Override
-    public void darEnAdopcion(Mascota mascota,Organizacion organizacion, Cuestionario cuestionarioDeAdopcion, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota,Organizacion organizacion, List<RespuestaSobrePregunta> respuestasDeLaOrg, List<RespuestaSobrePregunta> respuestasGenerales) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionEnAdopcion(mascota,cuestionarioDeAdopcion,respuestasGenerales,organizacion);
+        gestor.generarPublicacionEnAdopcion(mascota,respuestasDeLaOrg,respuestasGenerales,organizacion);
 
     }
 

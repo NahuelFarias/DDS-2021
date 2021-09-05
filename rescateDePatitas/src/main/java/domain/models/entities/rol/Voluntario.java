@@ -68,7 +68,7 @@ public class Voluntario implements Rol {
     }
 
     @Override
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, Cuestionario cuestionarioDeAdopcion, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasDeLaOrg, List<RespuestaSobrePregunta> respuestasGenerales) {
 
     }
 

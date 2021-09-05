@@ -19,7 +19,7 @@ public class verPublicacionesTest {
     Persona persona, adoptante;
     Contacto contacto;
     List<Contacto> contactos;
-//    List<RespuestaSobrePregunta> respuestasOrganizacion;
+    List<RespuestaSobrePregunta> respuestasOrganizacion;
     Cuestionario cuestionarioAdopcion;
     List<RespuestaSobrePregunta> respuestasGenerales;
     Organizacion organizacion;
@@ -48,12 +48,11 @@ public class verPublicacionesTest {
         persona.registrarMascota(mascotaDTO);
         mascotaDadaEnAdopcion = persona.getRol().getMascotas().get(0);
         organizacion = new Organizacion();
-//        respuestasOrganizacion = new ArrayList<>();
-        cuestionarioAdopcion = new Cuestionario();
+        respuestasOrganizacion = new ArrayList<>();
+        cuestionarioAdopcion = new Cuestionario("Adopcion");
         respuestasGenerales = new ArrayList<>();
 
-//        persona.getRol().darEnAdopcion(mascotaDadaEnAdopcion, organizacion, respuestasOrganizacion, respuestasGenerales);
-        persona.getRol().darEnAdopcion(mascotaDadaEnAdopcion, organizacion, cuestionarioAdopcion, respuestasGenerales);
+        persona.getRol().darEnAdopcion(mascotaDadaEnAdopcion, organizacion, respuestasOrganizacion, respuestasGenerales);
         adoptante = new Persona();
         contacto = new Contacto("Fernando", "Casas", "+541111111111", "fernandocasas1234@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();

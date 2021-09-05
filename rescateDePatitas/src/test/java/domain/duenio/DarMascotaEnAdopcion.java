@@ -37,7 +37,6 @@ public class DarMascotaEnAdopcion {
     RespuestaSobrePregunta rt1, rt2,rt3,rt4;
     List<RespuestaSobrePregunta> respuestasOrganizacion;
     Cuestionario cuestionarioDeAdopcion;
-    List<RespuestaSobrePregunta> respuestasCuestionario;
     List<Pregunta> preguntasCuestionario;
     List<RespuestaSobrePregunta> respuestasGenerales;
     Pregunta preguntaTieneGatos;
@@ -132,26 +131,30 @@ public class DarMascotaEnAdopcion {
         respuestasGenerales.add(rt2);
 
 // preguntas propias de la org
-
+/*
         preguntaTieneGatos = new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
         preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
-
+*/
         respuestasOrganizacion = new ArrayList<>();
         rt1 = new RespuestaSobrePregunta();
-        rt1.setPregunta(preguntaTieneGatos);
-        rt1.setRespuesta("Si");
+        preg1= new Pregunta();
+        preg1.setPregunta("Raza");
+        rt1.setPregunta(preg1);
+        rt1.setRespuesta("Collie");
 
         rt2 = new RespuestaSobrePregunta();
-        rt2.setPregunta(preguntaTienePatio);
-        rt2.setRespuesta("No");
+        preg2 = new Pregunta();
+        preg2.setPregunta("Es amigable con niños?");
+        rt2.setPregunta(preg2);
+        rt2.setRespuesta("Si");
 
         respuestasOrganizacion.add(rt1);
         respuestasOrganizacion.add(rt2);
-// cuestionario
+/* // cuestionario
         cuestionarioDeAdopcion = new Cuestionario();
-        cuestionarioDeAdopcion.setTipo("Adopcion");
+
 
         preg1 = new Pregunta();
         preg1.setPregunta("Edad");
@@ -173,16 +176,18 @@ public class DarMascotaEnAdopcion {
 
         cuestionarioDeAdopcion.setPreguntas(preguntasCuestionario);
         cuestionarioDeAdopcion.setRespuestas(respuestasCuestionario);
-
+*/
     }
+
 
     @Test
     public void darEnAdopcionMiMascota() {
-        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,cuestionarioDeAdopcion,respuestasGenerales);
+        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         Assert.assertEquals("Mascota dada en adopcion",gestor.getPublicaciones().get(0).getTipoPublicacion());
         Assert.assertEquals(persona.getRol().getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());
-    //TODO
+        //TODO
     }
+
 
 }

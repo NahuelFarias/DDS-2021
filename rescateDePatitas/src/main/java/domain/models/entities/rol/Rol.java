@@ -31,7 +31,7 @@ public interface Rol {
 
     boolean tieneUsuario(Persona persona);
 
-    void darEnAdopcion(Mascota mascota, Organizacion organizacion, Cuestionario cuestionarioDeAdopcion,
+    void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasDeLaOrg,
                        List<RespuestaSobrePregunta> respuestasGenerales);
 
 }

@@ -104,7 +104,7 @@ public class IntentoDeAdopcion {
         respuestas.add(rt2);
 
         //Cuestionario Preferencias
-        cuestionarioPref = new Cuestionario();
+        cuestionarioPref = new Cuestionario("Preferencias");
         preg1 = new Pregunta();
         preg2 = new Pregunta();
         preg1.setPregunta("Tamaño");
@@ -124,7 +124,7 @@ public class IntentoDeAdopcion {
         respuestasCuestionarioPref.add(rt2);
 
         //Cuestionario Comodidades
-        cuestionarioCom = new Cuestionario();
+        cuestionarioCom = new Cuestionario("Comodidades");
 
         preg3 = new Pregunta();
         preg4 = new Pregunta();
