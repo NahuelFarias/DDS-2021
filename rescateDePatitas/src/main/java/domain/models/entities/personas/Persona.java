@@ -29,9 +29,9 @@ public class Persona extends Persistente {
     private String direccion;
     @OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Contacto> contactos;
-    @Transient
+    @OneToOne //TODO Falta la parte del Rol
     private Rol rol;
-    @Transient
+    @OneToOne //TODO Falta la parte del Usuario
     private Usuario usuario;
 
     //en un controller

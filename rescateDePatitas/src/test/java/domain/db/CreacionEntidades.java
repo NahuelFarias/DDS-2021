@@ -55,13 +55,13 @@ public class CreacionEntidades {
         Assert.assertEquals("Eze", eze.getNombre());
     }
 
-    // TODO revisar el tema del delete
+    @Test
+    public void eliminandoAEze(){
+        Persona eze = (Persona) EntityManagerHelper.createQuery("from Persona where nombre = 'Eze' and id = 1").getSingleResult();
 
-    /*    @Test
-    public void eliminandooAEze(){
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.createQuery("Delete from 'Persona' where nombre = 'Eze'");
+        EntityManagerHelper.getEntityManager().remove(eze);
         EntityManagerHelper.commit();
-    }*/
+    }
 
 }

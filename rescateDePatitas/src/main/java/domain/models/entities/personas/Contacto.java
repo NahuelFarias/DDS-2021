@@ -17,7 +17,6 @@ import java.io.IOException;
 @Table(name = "contacto")
 public class Contacto extends Persistente {
     @ManyToOne
-    @JoinColumn(name = "persona_id", referencedColumnName = "id")
     private Persona persona;
     // Atributos
     @Column(name = "nombre")
@@ -28,8 +27,7 @@ public class Contacto extends Persistente {
     private String numeroCompleto;
     @Column(name = "email")
     private String email;
-    // Como lo llevo a la base? Es un ENUM
-    @Transient
+    @Enumerated(EnumType.STRING)
     private Estrategia estrategiaDeEnvio;
     @Transient
     private MetodoDeEnvio metodoDeEnvio;
