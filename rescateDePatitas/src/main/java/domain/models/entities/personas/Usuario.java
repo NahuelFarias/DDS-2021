@@ -1,13 +1,22 @@
 package domain.models.entities.personas;
 
+import domain.models.entities.Persistente;
 import domain.models.entities.validacion.validadores.ValidadorCaracteres;
 import domain.models.entities.validacion.validadores.ValidadorLongitud;
 import org.mindrot.jbcrypt.BCrypt;
 
-public class Usuario {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "usuario")
+public class Usuario extends Persistente {
+    @Transient
     private static int workload = 12;
+    @Column(name = "nombreDeUsuario")
     private String nombreDeUsuario;
+    @Column(name = "contrasenia")
     private String hashContrasenia;
+    @Transient
     private Integer fallosAlIniciarSesion = 0;
 
     public Usuario(String user, String contrasenia) {

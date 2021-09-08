@@ -29,9 +29,10 @@ public class Persona extends Persistente {
     private String direccion;
     @OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Contacto> contactos;
-    @Transient
+    @Transient // TODO Definir esta relacion
     private Rol rol;
-    @Transient
+    @OneToOne // TODO Esta es una relacion unidireccional - Pasar al MD
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     //en un controller

@@ -1,18 +1,27 @@
 package domain.models.entities.mascotas;
 
+import domain.models.entities.Persistente;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.rol.Voluntario;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Organizacion {
+@Entity
+@Table(name = "organizacion")
+public class Organizacion extends Persistente {
+    @Column(name = "nombre")
     private String nombre;
+    @Transient // TODO Relacion no tenida en cuenta en el MD
     private List<Persona> voluntarios = new ArrayList<>();
+    @Transient
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
+    @Transient
     private List<Pregunta> preguntas;
+    @OneToOne
     private Lugar ubicacion;
 
 //  getters & setters

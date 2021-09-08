@@ -8,28 +8,42 @@ import domain.models.entities.Persistente;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
+@Table(name = "mascota")
 public class Mascota extends Persistente {
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apodo")
     private String apodo;
-    private static Integer idMascota = 0;
+    @Transient
+    private static Integer idMascota = 0; // TODO Ya no es necesario?
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "edad")
     private Integer edad;
+    @Column(name = "especie")
     private String especie;
+    @Column(name = "genero")
     private String genero;
+    @OneToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
+    @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<CaracteristicaConRta> caracteristicas;
+    @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
+    @Transient // TODO No es la persona en si, sino el rol?
     private Persona persona;
 
     public Mascota(Persona persona) {
         this.caracteristicas = new ArrayList<>();
         this.fotos = new ArrayList<>();
-        this.idMascota = getIdMascota() + 1;
+        //this.idMascota = getIdMascota() + 1;
         this.persona = persona;
         this.fotos = new ArrayList<>();
     }

@@ -1,7 +1,17 @@
 package domain.models.entities.mascotas;
 
-public class Lugar {
+import domain.models.entities.Persistente;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ubicacion")
+public class Lugar extends Persistente {
+    @Column(name = "latitud")
     private double latitud;
+    @Column(name = "longitud")
     private double longitud;
 
     public Lugar(double latitud, double longitud) {
