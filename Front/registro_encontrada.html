@@ -6,6 +6,7 @@
     <title>RESCATE DE PATITAS</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
+
     <!-- Favicon -->
     <link href="img/favicon2.png" rel="icon" />
 
@@ -27,8 +28,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="js/map.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
@@ -62,59 +61,57 @@
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->
-    <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <a href="index.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-between text-center" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
                     <a href="index.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota.html" class="dropdown-item">Registrar</a>
-                            <a href="#" class="dropdown-item">Perdí mi mascota 🙁</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
+                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada.html" class="dropdown-item active">Encontré una mascota</a>
                             <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="en_adopcion.html" class="dropdown-item">Adoptar</a>
-                            <a href="dar_en_adopcion.html" class="dropdown-item">Dar en adopcion </a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="#" class="dropdown-item">Adoptar</a>
+                            <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Asociaciones</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item">Ingresar</a>
-                            <a href="asociaciones.html" class="dropdown-item">Listado</a>
-                            <a href="registro_asociacion.html" class="dropdown-item">Registrar mi Asociación</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
                         </div>
                     </div>
-                    <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresá</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="register.html" class="dropdown-item active">Crear cuenta</a>
                             <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
     <!--Nav Bar End -->
+
 
     <!-- Datos de registro-->
     <div class="register">
@@ -139,13 +136,13 @@
 
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <h4 class="mb-3">Tus datos para contactarte</h4>
+                            <h4 class="mb-3 wavyp">Tus datos:</h4>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
                                     required>
                                 <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
+                                    Ingresá un nombre válido.
                                 </div>
                             </div>
 
@@ -154,75 +151,87 @@
                                 <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
                                     required>
                                 <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
+                                    Ingresá un apellido válido.
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <label for="firstName" class="form-label">Fecha de nacimiento</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
+                                    required>
                                 <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
+                                    Ingresá tu fecha de nacimiento.
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 ">
                                 <label for="lastName" class="form-label">Tipo</label>
                                 <select class="form-select" id="state" required>
                                     <option value="">...</option>
                                     <option>DNI</option>
+                                    <option>LC</option>
                                     <option>Pasaporte</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
+                                    Seleccioná el tipo de documento.
                                 </div>
                             </div>
-                            <div class="col-sm-5">
-                                <label for="lastName" class="form-label">Número documento</label>
+                            <div class="col-sm-3">
+                                <label for="lastName" class="form-label">Nro documento</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
                                 <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
+                                    Ingresá un número de documento válido.
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="hola@ejemplo.com">
                                 <div class="invalid-feedback">
                                     Por favor, ingresá un correo electrónico válido.
                                 </div>
                             </div>
-                            <div class="col-12">
+
+                            <div class="row py-3">
+                                <div class="col-md-4">
+                                    <label for="country" class="form-label">País</label>
+                                    <select class="form-select" id="country" required>
+                                        <option value="">Elegí...</option>
+                                        <option>Argentina</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá un país válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="state" class="form-label">Provincia/Estado</label>
+                                    <select class="form-select" id="state" required>
+                                        <option value="">Elegí...</option>
+                                        <option>Buenos Aires</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá una provincia.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="state" class="form-label">Localidad</label>
+                                    <select class="form-select" id="state" required>
+                                        <option value="">Elegí...</option>
+                                        <option>Olivos</option>
+                                        <option>Vicente López</option>
+                                        <option>Florida</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá una localidad.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7">
                                 <label for="address" class="form-label">Dirección</label>
                                 <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
                                     required>
                                 <div class="invalid-feedback">
                                     Por favor, ingresá la dirección.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="address2" class="form-label">Dirección 2 <span
-                                        class="text-muted">(Opcional)</span></label>
-                                <input type="text" class="form-control" id="address2" placeholder="Departamento">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">País</label>
-                                <select class="form-select" id="country" required>
-                                    <option value="">Elegí...</option>
-                                    <option>Argentina</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="state" class="form-label">Provincia</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">Elegí...</option>
-                                    <option>Buenos Aires</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá una provincia.
                                 </div>
                             </div>
 
@@ -233,9 +242,10 @@
                                     El código postal es obligatorio.
                                 </div>
                             </div>
+
                             <hr class="my-4">
 
-                            <h4 class="mb-3">Tus contactos</h4>
+                            <h4 class="mb-3 wavyp">Tus contactos:</h4>
 
                             <div class="row g-3">
 
@@ -292,6 +302,7 @@
                                 <div class="col-sm-12 text-right">
                                     <a class="btn-mis" type="submit">+ Agregar</a>
                                 </div>
+
                             </div>
                             <!-------------------Datos de la mascota----------------->
                             <hr class="my-4">
@@ -362,7 +373,7 @@
                             <h4 class="mb-3">Hogar de tránsito</h4>
                             <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
                                 tránsito.</p>
-                                <p>Seleccioná el hogar en el mapa para obtener su dirección y teléfono.</p>
+                                <p>Seleccioná un radio de cercanía</p>
                             <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
                             <div class="col-sm-3">
                                 <select class="form-select" id="state" required>
@@ -372,46 +383,12 @@
                                     <option>Todos</option>
                                 </select>
                             </div>
-                            <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
-                            </div>
 
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Nombre Hogar:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Dirección:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Teléfono:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
+                            <div class="col-sm-12">
+                                <label for="email" class="form-label">Info de hogares:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Nombre hogar                    Direccion                      Telefono          "
+                                    readonly></textarea>
                             </div>
                     
                             <hr class="my-4">

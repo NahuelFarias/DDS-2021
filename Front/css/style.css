@@ -1335,6 +1335,9 @@ a.btn-mis{
 /*******************************/
 /*************Footer************/
 /*******************************/
+.bg-blue{
+  background-color: #eff9ff;
+}
 
 .footer-info {
   color : #023c5a;
@@ -1407,10 +1410,6 @@ a.btn-mis{
   .bd-placeholder-img-lg {
       font-size: 3.5rem;
   }
-}
-
-.register{
-  background-color: #eff9ff;
 }
 
 /*******************************/

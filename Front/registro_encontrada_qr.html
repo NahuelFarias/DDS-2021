@@ -27,8 +27,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="js/map.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
@@ -62,7 +60,7 @@
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->
-    <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <a href="index.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
@@ -73,48 +71,44 @@
                 <div class="navbar-nav ml-auto">
                     <a href="index.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota.html" class="dropdown-item">Registrar</a>
-                            <a href="#" class="dropdown-item">Perdí mi mascota 🙁</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
+                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_encontrada.html" class="dropdown-item active">Encontré una mascota</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
                             <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="en_adopcion.html" class="dropdown-item">Adoptar</a>
-                            <a href="dar_en_adopcion.html" class="dropdown-item">Dar en adopcion </a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="#" class="dropdown-item">Adoptar</a>
+                            <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Asociaciones</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item">Ingresar</a>
-                            <a href="asociaciones.html" class="dropdown-item">Listado</a>
-                            <a href="registro_asociacion.html" class="dropdown-item">Registrar mi Asociación</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
                         </div>
                     </div>
-                    <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i
-                                class="fas fa-user"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="register.html" class="dropdown-item active">Crear cuenta</a>
                             <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
     <!--Nav Bar End -->
 
     <!-- Datos de registro-->

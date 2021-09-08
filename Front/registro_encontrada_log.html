@@ -71,30 +71,35 @@
                 <div class="navbar-nav ml-auto">
                     <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota_log.html" class="dropdown-item active">Registrar</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="perdidas_log.html" class="dropdown-item">Ver mascotas perdidas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="registro_encontrada_log.html" class="dropdown-item active">Encontré una mascota</a>
                             <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="adoptar_log" class="dropdown-item">Adoptar</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="adopcion_log.html" class="dropdown-item">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
-                    <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sole G. <i
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
                                 class="fas fa-user-alt"></i> </a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Mi cuenta</a>
@@ -118,13 +123,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
                             <!-------------------Datos de la mascota----------------->
                             <hr class="my-4">
                             <h4 class="mb-3 wavyp">Sobre la mascota</h4>
-
                             <div class="col-sm-3">
                                 <label for="lastName" class="form-label">Especie</label>
                                 <select class="form-select" id="state" required>
@@ -156,7 +159,6 @@
                                 <div class="invalid-feedback">
                                     Ingresá una descripción.
                                 </div>
-
                             </div>
                             <hr class="my-4">
                             <h4 class="mb-3 wavyp">Fotos de la mascota</h4>
@@ -190,7 +192,7 @@
                             <h4 class="mb-3">Hogar de tránsito</h4>
                             <p>Si no podés darle tránsito hasta que encuentre a su dueño, comunicate con un hogar de
                                 tránsito.</p>
-                                <p>Seleccioná el hogar en el mapa para obtener su dirección y teléfono.</p>
+                            <p>Seleccioná el hogar en el mapa para obtener su dirección y teléfono.</p>
                             <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
                             <div class="col-sm-3">
                                 <select class="form-select" id="state" required>
@@ -200,58 +202,25 @@
                                     <option>Todos</option>
                                 </select>
                             </div>
-                            <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
+
+                            <div class="col-sm-12">
+                                <label for="email" class="form-label">Info de hogares:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Nombre hogar                    Direccion                      Telefono          "
+                                    readonly></textarea>
                             </div>
 
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Nombre Hogar:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Dirección:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">Teléfono:</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" readonly>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-                    
                             <hr class="my-4">
                             <div class="container">
                                 <div class=" text-center form-check">
                                     <input type="checkbox" class="form-check-input" id="save-info">
-                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al dueño.</label>
+                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de
+                                        contacto al dueño.</label>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <a class="btn-grande" type="submit" style="color: #fff;"
-                                    href="registro_encontrada_log_ok.html">Publicar mascota encontrada</a>
+                                    href="publicacion_enviada_log.html">Publicar mascota encontrada</a>
                             </div>
                         </div>
                     </form>

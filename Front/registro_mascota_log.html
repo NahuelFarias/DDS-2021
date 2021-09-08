@@ -62,7 +62,7 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="" class="navbar-brand">
+            <a href="index_log.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -71,30 +71,35 @@
                 <div class="navbar-nav ml-auto">
                     <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item active">Registrar</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="perdidas_log.html" class="dropdown-item">Ver mascotas perdidas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="adopcion_log.html" class="dropdown-item">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
-                    <a href="#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sole G. <i
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
                                 class="fas fa-user-alt"></i> </a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Mi cuenta</a>
@@ -120,30 +125,32 @@
                 <div class="col-lg-8">
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
+                            <hr class="my-4">
                             <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="firstName" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
                                     required>
                                 <div class="invalid-feedback">
-                                    Ingresá el nombre de tu mascota.
+                                    Ingrese un nombre válido.
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="lastName" class="form-label">Apodo</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
                                     required>
                                 <div class="invalid-feedback">
-                                    Ingresá un apodo.
+                                    Ingrese un apellido válido.
                                 </div>
                             </div>
 
                             <div class="col-sm-2">
                                 <label for="firstName" class="form-label">Edad</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                    autocomplete="off" required>
                                 <div class="invalid-feedback">
-                                    Ingresá la edad aproximada.
+                                    Ingrese un nombre válido.
                                 </div>
                             </div>
 
@@ -155,7 +162,7 @@
                                     <option>Perro</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Seleccioná la especie.
+                                    Ingrese un apellido válido.
                                 </div>
                             </div>
 
@@ -167,18 +174,29 @@
                                     <option>Macho</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Seleccioná el sexo.
+                                    Por favore, elegí el sexo.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="lastName" class="form-label">Tamaño</label>
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Chica</option>
+                                    <option>Mediana</option>
+                                    <option>Grande</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, elegí el tamaño.
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
                                 <label for="email" class="form-label">Descripción</label>
-                                <input type="email" class="form-control" id="email"
-                                    placeholder="Describila físicamente">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 <div class="invalid-feedback">
                                     Por favor, ingresá una descripción.
                                 </div>
-
                             </div>
                             <hr class="my-4">
                             <h4 class="mb-3 wavyp">Fotos de tu mascota:</h4>
@@ -189,66 +207,69 @@
                                         <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 text-right">
                                     <a class="btn-mis" type="submit">+ Otra foto</a>
                                 </div>
-
-                            </div>
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 wavyp">Características:</h4>
-                            <div class="row g-3">
-                                <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">Color principal</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">...</option>
-                                        <option>Marrón claro</option>
-                                        <option>Marrón oscuro</option>
-                                        <option>Negro</option>
-                                        <option>Blanco</option>
-                                        <option>Otro</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">Color secundario</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">...</option>
-                                        <option>Marrón claro</option>
-                                        <option>Marrón oscuro</option>
-                                        <option>Negro</option>
-                                        <option>Blanco</option>
-                                        <option>Otro</option>
-                                        <option>No tiene</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">¿Toma medicación?</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">...</option>
-                                        <option>Si</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label for="lastName" class="form-label">¿Está castrado/a?</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">...</option>
-                                        <option>Si</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-
                             </div>
 
                             <hr class="my-4">
-                            <div class="text-center">
-                                <a class="btn-grande btn-lg btn-login text-uppercase fw-bold mb-2"
-                                    href="registro_mascota_log _ok.html" type="submit">Registrar mascota</a>
+
+                            <h4 class="mb-3 wavyp">Más info:</h4>
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede convivir con gatos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede convivir con perros
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede convivir con niños
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Está castrada
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Necesita medicación/cuidado especial
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Es muy activa
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede estar sola sin problemas
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <a class="btn-grande text-uppercase fw-bold mb-2" href="registro_mascota_log_ok.html"
+                                type="submit">Registrar mascota</a>
+                        </div>
                         </div>
                     </form>
                 </div>

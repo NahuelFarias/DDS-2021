@@ -71,30 +71,35 @@
                 <div class="navbar-nav ml-auto">
                     <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota_log.html" class="dropdown-item">Registrar</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="perdidas_log.html" class="dropdown-item">Ver mascotas perdidas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota</a>
                             <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="adoptar_log" class="dropdown-item active">Adoptar</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="adopcion_log.html" class="dropdown-item active">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
-                    <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sole G. <i
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
                                 class="fas fa-user-alt"></i> </a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="#" class="dropdown-item">Mi cuenta</a>
@@ -111,7 +116,7 @@
     <div class="container top" >
         <div class="py-5 text-center">
             <br> <br>
-            <h2>¿No encontraste lo que buscabas?</h2>
+            <h2>¿No encontraste lo que buscabas? <i class="far fa-question-circle" style="color:#ffcc00;"></i></h2>
             <p class="lead">Llená este formulario para que podamos enviarte semanalmente publicaciones de tu interés.
             </p>
         </div>
@@ -120,8 +125,8 @@
             <hr class="my-4">
             <fieldset class="form-group">
                 <div class="row text-center text-md-left">
-                    <div class="col-sm-2 fw-bold text-center text-md-left">Sobre la mascota:</div>
-                    <div class="col-sm-3 ">
+                    <div class="col-sm-2 fw-bold text-center text-md-left wavyy">Sobre la mascota:</div>
+                    <div class="col-sm-2 ">
                         <legend class="col-form-label col-sm-2 pt-0 fw-bold text-center text-md-left">Especie: </legend>
                         <div class="form-check ">
                             <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
@@ -137,16 +142,9 @@
                                 Gato
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
-                                value="option3">
-                            <label class="form-check-label" for="gridRadios3">
-                                Indistinta
-                            </label>
-                        </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <legend class="col-form-label col-sm-1 pt-0 fw-bold text-center text-md-left">Sexo: </legend>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios1"
@@ -162,11 +160,29 @@
                                 Macho
                             </label>
                         </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <legend class="col-form-label col-sm-1 pt-0 fw-bold text-center text-md-left">Tamaño: </legend>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios2" id="gridRadios3"
-                                value="option3">
-                            <label class="form-check-label" for="gridRadios3">
-                                Indistinto
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                Chico
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Mediano
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios2"
+                                value="option2">
+                            <label class="form-check-label" for="gridRadios2">
+                                Grande
                             </label>
                         </div>
                     </div>
@@ -175,7 +191,7 @@
                     <div class="col-sm-3">
                         <legend class="col-form-label col-sm-1 pt-0 fw-bold text-center text-md-left">Edad: </legend>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios1"
+                            <input class="form-check-input" type="radio" name="gridRadios4" id="gridRadios1"
                                 value="option1" checked>
                             <label class="form-check-label" for="gridRadios1">
                                 Cachorro
@@ -183,7 +199,7 @@
                             <small>(Menor a 1 año)</small>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios2"
+                            <input class="form-check-input" type="radio" name="gridRadios4" id="gridRadios2"
                                 value="option2">
                             <label class="form-check-label" for="gridRadios2">
                                 Joven
@@ -191,7 +207,7 @@
                             <small>(De 1 a 5 años)</small>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios3" id="gridRadios3"
+                            <input class="form-check-input" type="radio" name="gridRadios4" id="gridRadios3"
                                 value="option3">
                             <label class="form-check-label" for="gridRadios3">
                                 Adulto
@@ -203,7 +219,7 @@
             </fieldset>
             <hr class="my-4">
             <div class="form-group row">
-                <div class="col-sm-2 fw-bold text-center text-md-left">Sobre vos:</div>
+                <div class="col-sm-2 fw-bold text-center text-md-left wavyy">Sobre vos:</div>
                 <div class="col-sm-5">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
@@ -214,23 +230,30 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                         <label class="form-check-label" for="gridCheck1">
-                            Tengo al menos un gato
+                            Tengo algún gato
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                         <label class="form-check-label" for="gridCheck1">
-                            Tengo al menos un perro
+                            Tengo algún perro
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Tengo algún niño
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                         <label class="form-check-label" for="gridCheck1">
                             Puedo hacerme cargo de la castración
                         </label>
                     </div>
-                </div>
-                <div class="col-sm-5">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck1">
                         <label class="form-check-label" for="gridCheck1">
