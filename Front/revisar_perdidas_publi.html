@@ -27,8 +27,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="js/map.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
@@ -64,50 +62,53 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="index_log.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link">Inicio</a>
+                    <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi mascota</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_mascota.html" class="dropdown-item">Registrar</a>
-                            <a href="#" class="dropdown-item">Perdí mi mascota 🙁</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="registro_mascota_log.html" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="#" class="dropdown-item">Ver perdidas</a>
+                            <a href="revisar_perdidas.html" class="dropdown-item active">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_encontrada.html" class="dropdown-item active">Encontré una mascota</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota</a>
                             <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="revisar_encontradas.html" class="dropdown-item">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="en_adopcion.html" class="dropdown-item">Adoptar</a>
-                            <a href="dar_en_adopcion.html" class="dropdown-item">Dar en adopcion </a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="adopcion_log.html" class="dropdown-item">Adoptar</a>
+                            <a href="dar_adopcion_log.html" class="dropdown-item">Dar en adopcion </a>
+                            <a href="revisar_adopciones.html" class="dropdown-item">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Asociaciones</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item">Ingresar</a>
-                            <a href="asociaciones.html" class="dropdown-item">Listado</a>
-                            <a href="registro_asociacion.html" class="dropdown-item">Registrar mi Asociación</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="#contacto" class="dropdown-item">Contacto</a>
                         </div>
                     </div>
-                    <a href="index.html#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-item nav-link">Contacto</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingresá</a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
+                                class="fas fa-user-alt"></i> </a>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <a href="#" class="dropdown-item">Mi cuenta</a>
+                            <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
+                            <a href="mis_mascotas.html" class="dropdown-item">Mi asociación</a>
+                            <a href="index.html" class="dropdown-item">Cerrar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -118,23 +119,124 @@
 
 
 
-    <!-- Datos de registro-->
-    <div class="register">
-        <div class="container">
-            <div class="py-5 text-center">
-                <br> <br>
-                <h2>¡Publicaste una mascota perdida!</h2>
-                <p class="lead">Te contactaremos si aparece el dueño</p>
-                <i class="far fa-7x fa-check-circle" style="color: green;"></i>
-                <br>
-                <img class="img-fluid" src="img/sin11.png" alt="">
+    <!-- Single Post Start-->
+    <div class="single">
+        <div class="container top">
+            <div class="row">
+                <h3>Publicacion Nro 12345</h3>
+                <p>Fecha: 19/08/2021</p>
+                <div class="col-lg-6">
+                    <div class="single-content wow fadeInUp">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="img/perro1.jpg" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/perro1.jpg" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="img/perro1.jpg" alt="Third slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="sidebar">
+                        <div class="sidebar-widget wow fadeInUp">
+                            <h4 class=" wavyp">Mascota perdida</h4>
+                            <div class="text-widget">
+                                <div class="text-widget">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Nombre: Ambar</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>Apodo: Ambi</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Sexo: Hembra</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>Tamaño: Mediano</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Edad: 5 años</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>Castrada: Sí</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <p>Sociable con gatos: No</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p>Sociable con perros: Sí</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <p>Sociable con niños: Sí</p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                    <h6>Más info:</h6>
+                                    Lorem ipsum dolor sit amet elit. Integer lorem augue purus mollis sapien, non eros
+                                    leo in nunc. Donec a nulla vel turpis tempor ac vel justo. In hac platea nec eros.
+                                    Nunc eu enim non turpis id augue.
+                                    </p>
+
+                                    <div class="conteiner">
+                                        <div class="row  justify-content-center">
+                                            <div class="py-2 col-4">
+                                                <a class="btn-grande" href="revisar_encontradas.html"
+                                                    style="background-color: green;">APROBAR</a>
+                                            </div>
+                                            <div class=" py-2 col-4">
+                                                <a class="btn-grande" href="revisar_encontradas.html"
+                                                    style="background-color: red;">RECHAZAR</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
-        
-        <br>
     </div>
-    <!-- Datos de registro-->
+    </div>
 
+    </div>
+
+    <!-- Single Post End-->
 
 
     <!-- Footer -->
