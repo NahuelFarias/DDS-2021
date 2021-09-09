@@ -67,12 +67,14 @@ public class PublicacionIntencionAdoptar extends PublicacionGenerica{
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonAdoptante = gson.toJson(adoptante);
-           String jsonPreferenciasYComodidades = gson.toJson(preferenciasYcomodidades);
+           String jsonPreferencias = gson.toJson(cuestionarioPreferencias);
+           String jsonComodidades = gson.toJson(cuestionarioComodidades);
 
             JobDetail job = newJob(MatchearPublicacionesEnAdopcion.class)
                     .withIdentity("job", "group")
                     .usingJobData("adoptante", jsonAdoptante)
-                    .usingJobData("preferenciasYComodidades", jsonPreferenciasYComodidades)
+                    .usingJobData("preferencias", jsonPreferencias)
+                    .usingJobData("comodidades", jsonComodidades)
                     .build();
 
             int diaDeLaSemana = Calendar.getInstance().DAY_OF_WEEK;

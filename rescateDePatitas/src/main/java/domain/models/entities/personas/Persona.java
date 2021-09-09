@@ -214,6 +214,17 @@ public class Persona extends Persistente {
 
     }
 
+    public void notificar(ArrayList hypervinculosPublicacionesEnAdopcion){
+        String hypervinculosSinFormato = "";
+        for(int i=0; i < hypervinculosPublicacionesEnAdopcion.size(); i++){
+            hypervinculosSinFormato = hypervinculosPublicacionesEnAdopcion.get(i) + "\n";
+        }
+        String hypervinculosConFormato = hypervinculosSinFormato;
+
+        contactos.forEach((contacto -> contacto.notificarContacto(
+                "Pensamos que estas mascotas pueden interesarte:\n" + hypervinculosConFormato)));
+    }
+
     public List<PublicacionEnAdopcion> accederPublicacionesDeAdopcion(){
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         return gestor.getPublicacionesDeAdopcion();
