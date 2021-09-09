@@ -1,5 +1,6 @@
 package domain.models.entities.personas;
 
+import domain.models.entities.Persistente;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.notificaciones.estrategias.NotificadorEmail;
@@ -9,15 +10,28 @@ import domain.models.entities.notificaciones.estrategias.adapters.email.AdapterJ
 import domain.models.entities.notificaciones.estrategias.adapters.sms.AdapterTwilioSMS;
 import domain.models.entities.notificaciones.estrategias.adapters.wpp.AdapterTwilioWhatsapp;
 
+import javax.persistence.*;
 import java.io.IOException;
 
-public class Contacto {
+@Entity
+@Table(name = "contacto")
+public class Contacto extends Persistente {
+    @ManyToOne
+    private Persona persona;
+    // Atributos
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellido")
     private String apellido;
+    @Column(name = "telefono")
     private String numeroCompleto;
+    @Column(name = "email")
     private String email;
+    @Enumerated(EnumType.STRING)
     private Estrategia estrategiaDeEnvio;
+    @Transient
     private MetodoDeEnvio metodoDeEnvio;
+    @Transient
     private String mensaje;
 
     public Contacto(String nombre, String apellido, String numeroCompleto, String email, Estrategia estrategiaDeEnvio) {
@@ -26,6 +40,10 @@ public class Contacto {
         setNumeroCompleto(numeroCompleto);
         setEmail(email);
         setEstrategiaDeEnvio(estrategiaDeEnvio);
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public void notificarContacto(String mensaje) {

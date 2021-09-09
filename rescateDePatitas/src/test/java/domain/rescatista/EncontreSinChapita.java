@@ -13,6 +13,7 @@ import services.EditorDeFotos;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class EncontreSinChapita {
         contactos = new ArrayList<>();
         contactos.add(contacto1);
         contactos.add(contacto2);
-        personaRescatista.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996,contactos);
+        personaRescatista.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
 
         rescatista = new Rescatista();
         personaRescatista.setRol(rescatista);

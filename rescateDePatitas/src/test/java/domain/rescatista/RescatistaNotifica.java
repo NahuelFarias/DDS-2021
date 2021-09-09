@@ -14,6 +14,7 @@ import org.junit.Test;
 import services.EditorDeFotos;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class RescatistaNotifica {
         contactos = new ArrayList<>();
         contactos.add(contacto1);
         contactos.add(contacto2);
-        personaDuenio.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996,contactos);
+        personaDuenio.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
 
         duenio = new Duenio();
 
@@ -99,7 +100,7 @@ public class RescatistaNotifica {
         contactosRescatista = new ArrayList<>();
         contactosRescatista.add(contacto3);
 
-        personaRescatista.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, 30031998, contactosRescatista);
+        personaRescatista.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, LocalDate.of(1987, 9, 24), contactosRescatista);
 
         rescatista = new Rescatista();
 

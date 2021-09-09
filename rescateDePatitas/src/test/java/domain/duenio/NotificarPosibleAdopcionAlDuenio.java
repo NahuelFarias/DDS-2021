@@ -14,6 +14,7 @@ import org.junit.Test;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class NotificarPosibleAdopcionAlDuenio {
         contacto1 = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();
         contactos.add(contacto1);
-        personaDuenio.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, 27081996,contactos);
+        personaDuenio.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
         duenio = new Duenio();
         personaDuenio.setRol(duenio);
 
@@ -53,7 +54,7 @@ public class NotificarPosibleAdopcionAlDuenio {
         contactosRescatista = new ArrayList<>();
         contactosRescatista.add(contacto2);
 
-        adoptante.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, 30031998, contactosRescatista);
+        adoptante.inicializar("Roberto Francisco", "Ginez", "Brasil 1112,CABA", TipoDeDocumento.DNI, 33311111, LocalDate.of(1987, 9, 24), contactosRescatista);
 
     }
 

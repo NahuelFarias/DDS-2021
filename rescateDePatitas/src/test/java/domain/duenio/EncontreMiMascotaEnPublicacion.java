@@ -7,14 +7,14 @@ import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PublicacionGenerica;
-import domain.models.entities.publicaciones.PublicacionPerdidaNoRegistrada;
-import domain.models.entities.rol.Duenio;
+import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
 import services.EditorDeFotos;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class EncontreMiMascotaEnPublicacion {
         rescatista = new Rescatista();
         personaRescatista.setRol(rescatista);
 
-        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, 27081998, contactosRescatista);
+        personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, LocalDate.of(1987, 9, 24), contactosRescatista);
         fotos = new ArrayList<>();
         foto = new Foto();
         foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
@@ -104,7 +104,7 @@ public class EncontreMiMascotaEnPublicacion {
     public void duenioEncuentraASuMascotaPerdida(){
         rescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
         publicacion = gestor.getPublicaciones().get(0);
-        personaDuenio.encontreMiMascotaPerdida((PublicacionPerdidaNoRegistrada) publicacion,contactoD1);
+        personaDuenio.encontreMiMascotaPerdida((PublicacionMascotaEncontrada) publicacion,contactoD1);
 
     }
 
