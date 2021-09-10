@@ -5,11 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.stream.JsonReader;
 import domain.models.entities.personas.Persona;
+import domain.models.repositories.RepositorioDePersonas;
 import org.quartz.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MatchearPublicacionesEnAdopcion implements Job {
@@ -19,17 +21,19 @@ public class MatchearPublicacionesEnAdopcion implements Job {
         GestorDePublicaciones gestorDePublicaciones = GestorDePublicaciones.getInstancia();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+
         //Recupera los datos de la publicacion
         Cuestionario preferencias = gson
-                .fromJson((JsonReader) dataMap.get("preferencias"), RespuestaSobrePregunta.class);
+                .fromJson((String) dataMap.get("preferencias"), Cuestionario.class);
         Cuestionario comodidades = gson
-                .fromJson((JsonReader) dataMap.get("comodidades"), RespuestaSobrePregunta.class);
-        Persona adoptante = gson.fromJson((JsonElement) dataMap.get("adoptante"), Persona.class);
+                .fromJson((String) dataMap.get("comodidades"), Cuestionario.class);
+        Persona adoptante = gson.fromJson((String) dataMap.get("adoptante"), Persona.class);
 
 
         List<PublicacionEnAdopcion> publicacionesEnAdopcion = gestorDePublicaciones.getPublicacionesDeAdopcion();
         publicacionesEnAdopcion.stream().filter(publicacion ->
-                compararpublicacion(preferencias, publicacion) && compararpublicacion(comodidades, publicacion));
+                compararpublicacion(preferencias, publicacion))
+                .forEach(publicacion -> System.out.println(publicacion.getMascota().getApodo()));
 
         //TODO: Hacer que devuelva el hipervinculo a la publicacion. Probablemente sera posible en la ultima entrega
         ArrayList hypervinculosPublicacionesEnAdopcion = new ArrayList<>();
@@ -37,7 +41,9 @@ public class MatchearPublicacionesEnAdopcion implements Job {
 
         //Notifica a la persona unicamente si se encontraron publicaciones coincidentes en el periodo de tiempo
         if(!hypervinculosPublicacionesEnAdopcion.isEmpty()){
-            adoptante.notificar(hypervinculosPublicacionesEnAdopcion);
+//            hypervinculosPublicacionesEnAdopcion.forEach(x ->
+//                    System.out.println(x));
+            //adoptante.notificarMascotasEnAdopcion(hypervinculosPublicacionesEnAdopcion);
         }
 
 
