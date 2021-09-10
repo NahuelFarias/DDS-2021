@@ -223,7 +223,7 @@ public class Persona extends Persistente {
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void intencionDeAdoptar(Cuestionario cuestionarioPreferencias,Cuestionario cuestionarioComodidades,Lugar ubicacion){
+    public void intencionDeAdoptar(Cuestionario cuestionarioPreferencias,Cuestionario cuestionarioComodidades){
         GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionIntencionAdoptar(this,cuestionarioPreferencias,cuestionarioComodidades);
 

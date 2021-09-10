@@ -16,11 +16,11 @@ import static org.quartz.CronScheduleBuilder.*;
 
 
 public class PublicacionIntencionAdopcion extends PublicacionGenerica{
-    List<RespuestaSobrePregunta> preferenciasYcomodidades;
-    Cuestionario cuestionarioPreferencias;
-    Cuestionario cuestionarioComodidades;
-    Persona adoptante;
-    Scheduler scheduler;
+    private List<RespuestaSobrePregunta> preferenciasYcomodidades;
+    private Cuestionario cuestionarioPreferencias;
+    private Cuestionario cuestionarioComodidades;
+    private Persona adoptante;
+    private Scheduler scheduler;
     private Organizacion organizacion;
 
     @Override

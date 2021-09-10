@@ -149,7 +149,7 @@ public class IntentoDeAdopcion {
     @Test
     public void personaGeneraPublicacionParaAdoptar(){
 
-        persona.intencionDeAdoptar(cuestionarioPref,cuestionarioCom,ubicacion);
+        persona.intencionDeAdoptar(cuestionarioPref,cuestionarioCom);
         gestor = GestorDePublicaciones.getInstancia();
 
         Assert.assertEquals("Intencion de adoptar una mascota",gestor.getPublicaciones().get(0).getTipoPublicacion());
