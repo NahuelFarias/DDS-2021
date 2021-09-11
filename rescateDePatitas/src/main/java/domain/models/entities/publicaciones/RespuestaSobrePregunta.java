@@ -8,6 +8,8 @@ public class RespuestaSobrePregunta {
         this.pregunta = pregunta;
     }
 
+    public Pregunta getPregunta() {return pregunta; }
+
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
