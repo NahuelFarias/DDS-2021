@@ -24,7 +24,6 @@ public class PublicacionEnAdopcion extends PublicacionGenerica{
 
 //    public List<RespuestaSobrePregunta> getRespuestasOrganizacion() { return respuestasOrganizacion; }
 
-
     public List<RespuestaSobrePregunta> getRespuestasGenerales() {
         return respuestasGenerales;
     }

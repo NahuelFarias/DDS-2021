@@ -21,7 +21,7 @@ public class Mascota extends Persistente {
     @Column(name = "apodo")
     private String apodo;
     @Transient
-    private static Integer idMascota = 0; // TODO Ya no es necesario?
+    private static Integer codigo = 0; // TODO Ya no es necesario?
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "edad")
@@ -61,7 +61,7 @@ public class Mascota extends Persistente {
     }
 
     public Integer getIdMascota() {
-        return idMascota;
+        return codigo;
     }
 
     public String getDescripcion() {
@@ -124,9 +124,9 @@ public class Mascota extends Persistente {
 
         Configuracion configuracion = new Configuracion();
 
-        String url = configuracion.leerPropiedad("url") + "/" + idMascota.toString();
+        String url = configuracion.leerPropiedad("url") + "/" + codigo.toString();
 
-        String pathGuardar = configuracion.leerPropiedad("pathQR") + idMascota.toString() + ".jpg";
+        String pathGuardar = configuracion.leerPropiedad("pathQR") + codigo.toString() + ".jpg";
 
         GeneradorQR generador = new GeneradorQR();
         generador.generarQR(url, pathGuardar, "jpg", 500, 500);
