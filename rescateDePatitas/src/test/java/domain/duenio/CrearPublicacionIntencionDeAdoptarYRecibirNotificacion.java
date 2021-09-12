@@ -40,10 +40,10 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
     Contacto contacto;
     EditorDeFotos editor;
     Organizacion organizacion;
-    RespuestaSobrePregunta rt1, rt2, rt3, rt4, respuestaCuestionarioPreferencias, respuestaCuestionarioComodidades1, respuestaCuestionarioComodidades2;
-    List<RespuestaSobrePregunta> respuestasOrganizacion, respuestasCuestionarioPreferencias, respuestasCuestionarioComodidades;
-    Cuestionario cuestionarioPreferencias, cuestionarioComodidades;
-    List<Pregunta> preguntasCuestionario, preguntasCuestionarioPreferencias, preguntasCuestionarioComodidades;
+    RespuestaSobrePregunta rt1, rt2, rt3, rt4, respuestaCuestionarioPreferenciasYComodidades1, respuestaCuestionarioPreferenciasYComodidades2, respuestaCuestionarioPreferenciasYComodidades3;
+    List<RespuestaSobrePregunta> respuestasOrganizacion, respuestasCuestionarioPreferenciasYComodidades;
+    Cuestionario cuestionarioPreferenciasYComodidades;
+    List<Pregunta> preguntasCuestionarioPreferenciasYComodidades;
     List<RespuestaSobrePregunta> respuestasGenerales1, respuestasGenerales2;
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
@@ -164,32 +164,31 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
 
 
 
-        preguntasCuestionarioPreferencias = new ArrayList<>();
-        preguntasCuestionarioPreferencias.add(preg2);
-        cuestionarioPreferencias = new Cuestionario("preferencias");
-        cuestionarioPreferencias.setPreguntas(preguntasCuestionarioPreferencias);
-        respuestasCuestionarioPreferencias = new ArrayList<>();
-        respuestaCuestionarioPreferencias = new RespuestaSobrePregunta();
-        respuestaCuestionarioPreferencias.setPregunta(preg2);
-        respuestaCuestionarioPreferencias.setRespuesta("Si");
-        respuestasCuestionarioPreferencias.add(respuestaCuestionarioPreferencias);
-        cuestionarioPreferencias.setRespuestas(respuestasCuestionarioPreferencias);
+        preguntasCuestionarioPreferenciasYComodidades = new ArrayList<>();
+        preguntasCuestionarioPreferenciasYComodidades.add(preg2);
+        preguntasCuestionarioPreferenciasYComodidades.add(preguntaTieneGatos);
+        preguntasCuestionarioPreferenciasYComodidades.add(preguntaTienePatio);
 
-        preguntasCuestionarioComodidades = new ArrayList<>();
-        preguntasCuestionarioComodidades.add(preguntaTieneGatos);
-        preguntasCuestionarioComodidades.add(preguntaTienePatio);
-        cuestionarioComodidades = new Cuestionario("comodidades");
-        cuestionarioComodidades.setPreguntas(preguntasCuestionarioComodidades);
-        respuestasCuestionarioComodidades = new ArrayList<>();
-        respuestaCuestionarioComodidades1 = new RespuestaSobrePregunta();
-        respuestaCuestionarioComodidades1.setPregunta(preguntaTieneGatos);
-        respuestaCuestionarioComodidades1.setRespuesta("Si");
-        respuestasCuestionarioComodidades.add(respuestaCuestionarioComodidades1);
-        respuestaCuestionarioComodidades2 = new RespuestaSobrePregunta();
-        respuestaCuestionarioComodidades2.setPregunta(preguntaTienePatio);
-        respuestaCuestionarioComodidades2.setRespuesta("Si");
-        respuestasCuestionarioComodidades.add(respuestaCuestionarioComodidades2);
-        cuestionarioComodidades.setRespuestas(respuestasCuestionarioComodidades);
+        cuestionarioPreferenciasYComodidades = new Cuestionario("preferencias y comodidades");
+        cuestionarioPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
+        respuestasCuestionarioPreferenciasYComodidades = new ArrayList<>();
+        respuestaCuestionarioPreferenciasYComodidades1 = new RespuestaSobrePregunta();
+        respuestaCuestionarioPreferenciasYComodidades1.setPregunta(preg2);
+        respuestaCuestionarioPreferenciasYComodidades1.setRespuesta("Si");
+        respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades1);
+
+
+        cuestionarioPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
+        respuestaCuestionarioPreferenciasYComodidades2 = new RespuestaSobrePregunta();
+        respuestaCuestionarioPreferenciasYComodidades2.setPregunta(preguntaTieneGatos);
+        respuestaCuestionarioPreferenciasYComodidades2.setRespuesta("Si");
+        respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades2);
+
+        respuestaCuestionarioPreferenciasYComodidades3 = new RespuestaSobrePregunta();
+        respuestaCuestionarioPreferenciasYComodidades3.setPregunta(preguntaTienePatio);
+        respuestaCuestionarioPreferenciasYComodidades3.setRespuesta("Si");
+        respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades3);
+        cuestionarioPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
     }
 
 
@@ -203,7 +202,7 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
 
         persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(1),organizacion, respuestasOrganizacion, respuestasGenerales2 );
 
-        persona.intencionDeAdoptar(cuestionarioPreferencias, cuestionarioComodidades);
+        persona.intencionDeAdoptar(cuestionarioPreferenciasYComodidades);
 
         try {
             Thread.sleep(150000);

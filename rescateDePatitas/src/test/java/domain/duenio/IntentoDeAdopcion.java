@@ -33,14 +33,11 @@ public class IntentoDeAdopcion {
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
     PublicacionIntencionAdopcion publicacion;
-    Cuestionario cuestionarioPref;
-    Cuestionario cuestionarioCom;
-    List<RespuestaSobrePregunta> respuestasCuestionarioPref;
-    List<Pregunta> preguntasCuestionarioPref;
+    Cuestionario cuestionarioPreferenciasYComodidades;
+    List<RespuestaSobrePregunta> respuestasCuestionarioPreferenciasYComodidades;
+    List<Pregunta> preguntasCuestionarioPreferenciasYComodidades;
     RespuestaSobrePregunta r1,r2,r3,r4;
     Pregunta preg1,preg2,preg3,preg4;
-    List<RespuestaSobrePregunta> respuestasCuestionarioCom;
-    List<Pregunta> preguntasCuestionarioCom;
 
 
     @Before
@@ -104,8 +101,8 @@ public class IntentoDeAdopcion {
         respuestas.add(rt1);
         respuestas.add(rt2);
 
-        //Cuestionario Preferencias
-        cuestionarioPref = new Cuestionario("Preferencias");
+        //Cuestionario PreferenciasYComodidades
+        cuestionarioPreferenciasYComodidades = new Cuestionario("preferencias y comodidades");
         preg1 = new Pregunta();
         preg2 = new Pregunta();
         preg1.setPregunta("Tamaño");
@@ -113,19 +110,18 @@ public class IntentoDeAdopcion {
 
         r1 = new RespuestaSobrePregunta();
         r2 = new RespuestaSobrePregunta();
+        r1.setPregunta(preg1);
         r1.setRespuesta("Grande");
+        r2.setPregunta(preg2);
         r2.setRespuesta("Cachorro");
 
-        preguntasCuestionarioPref = new ArrayList<>();
-        preguntasCuestionarioPref.add(preg1);
-        preguntasCuestionarioPref.add(preg2);
+        preguntasCuestionarioPreferenciasYComodidades = new ArrayList<>();
+        preguntasCuestionarioPreferenciasYComodidades.add(preg1);
+        preguntasCuestionarioPreferenciasYComodidades.add(preg2);
 
-        respuestasCuestionarioPref = new ArrayList<>();
-        respuestasCuestionarioPref.add(rt1);
-        respuestasCuestionarioPref.add(rt2);
-
-        //Cuestionario Comodidades
-        cuestionarioCom = new Cuestionario("Comodidades");
+        respuestasCuestionarioPreferenciasYComodidades = new ArrayList<>();
+        respuestasCuestionarioPreferenciasYComodidades.add(rt1);
+        respuestasCuestionarioPreferenciasYComodidades.add(rt2);
 
         preg3 = new Pregunta();
         preg4 = new Pregunta();
@@ -134,22 +130,23 @@ public class IntentoDeAdopcion {
 
         r3 = new RespuestaSobrePregunta();
         r4 = new RespuestaSobrePregunta();
+        r3.setPregunta(preg3);
         r3.setRespuesta("Si");
+        r4.setPregunta(preg4);
         r4.setRespuesta("No");
 
-        preguntasCuestionarioCom = new ArrayList<>();
-        preguntasCuestionarioCom.add(preg3);
-        preguntasCuestionarioCom.add(preg4);
+        preguntasCuestionarioPreferenciasYComodidades.add(preg3);
+        preguntasCuestionarioPreferenciasYComodidades.add(preg4);
 
-        respuestasCuestionarioCom = new ArrayList<>();
-        respuestasCuestionarioCom.add(r3);
-        respuestasCuestionarioCom.add(r4);
+        respuestasCuestionarioPreferenciasYComodidades.add(r3);
+        respuestasCuestionarioPreferenciasYComodidades.add(r4);
 
+        cuestionarioPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
     }
     @Test
     public void personaGeneraPublicacionParaAdoptar(){
 
-        persona.intencionDeAdoptar(cuestionarioPref,cuestionarioCom);
+        persona.intencionDeAdoptar(cuestionarioPreferenciasYComodidades);
         gestor = GestorDePublicaciones.getInstancia();
 
         Assert.assertEquals("Intencion de adoptar una mascota",gestor.getPublicaciones().get(0).getTipoPublicacion());

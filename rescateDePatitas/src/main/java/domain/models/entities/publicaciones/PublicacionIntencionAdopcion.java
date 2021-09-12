@@ -6,6 +6,7 @@ import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,14 +19,11 @@ import static org.quartz.CronScheduleBuilder.*;
 
 
 public class PublicacionIntencionAdopcion extends PublicacionGenerica{
-    private List<RespuestaSobrePregunta> preferenciasYcomodidades;
-    private Cuestionario cuestionarioPreferencias;
-    private Cuestionario cuestionarioComodidades;
+    private Cuestionario cuestionarioPreferenciasYComodidades;
     private Persona adoptante;
     private Scheduler scheduler;
     private Organizacion organizacion;
 
-    public PublicacionIntencionAdopcion() {this.inicializarScheduler();}
 
     @Override
     public Organizacion getOrganizacion() {
@@ -36,21 +34,14 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
         this.organizacion = organizacion;
     }
 
-    public Cuestionario getCuestionarioPreferencias() {
-        return cuestionarioPreferencias;
+    public Cuestionario getCuestionarioPreferenciasYComodidades() {
+        return cuestionarioPreferenciasYComodidades;
     }
 
-    public void setCuestionarioPreferencias(Cuestionario cuestionarioPreferencias) {
-        this.cuestionarioPreferencias = cuestionarioPreferencias;
+    public void setCuestionarioPreferenciasYComodidades(Cuestionario cuestionarioPreferenciasYComodidades) {
+        this.cuestionarioPreferenciasYComodidades = cuestionarioPreferenciasYComodidades;
     }
 
-    public Cuestionario getCuestionarioComodidades() {
-        return cuestionarioComodidades;
-    }
-
-    public void setCuestionarioComodidades(Cuestionario cuestionarioComodidades) {
-        this.cuestionarioComodidades = cuestionarioComodidades;
-    }
 //    public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() { return preferenciasYcomodidades; }
 
 //    public void setPreferenciasYcomodidades(List<RespuestaSobrePregunta> preferenciasYcomodidades) { this.preferenciasYcomodidades = preferenciasYcomodidades; }
@@ -72,16 +63,21 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
             scheduler.start();
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String jsonAdoptante = gson.toJson(adoptante);
-           String jsonPreferencias = gson.toJson(cuestionarioPreferencias);
-           String jsonComodidades = gson.toJson(cuestionarioComodidades);
+
+            //TODO: Errores
+            //String jsonAdoptante = gson.toJson(adoptante);
+            //String jsonPreferenciasYComodidades = gson.toJson(cuestionarioPreferenciasYComodidades);
            //String jsonContactos = gson.toJson(adoptante.getContactos());
+
+            ArrayList<String> preguntas = obtenerListaDePreguntas();
+            ArrayList<String> respuestas = obtenerListaDeRespuestas();
 
             JobDetail job = newJob(MatchearPublicacionesEnAdopcion.class)
                     .withIdentity("job", "group")
-                    .usingJobData("adoptante", jsonAdoptante)
-                    .usingJobData("preferencias", jsonPreferencias)
-                    .usingJobData("comodidades", jsonComodidades)
+                    //.usingJobData("adoptante", jsonAdoptante)
+                    //.usingJobData("preferenciasYComodidades", jsonPreferenciasYComodidades)
+                    .usingJobData("preguntas", gson.toJson(preguntas))
+                    .usingJobData("respuestas", gson.toJson(respuestas))
                     .build();
 
             int diaDeLaSemana = Calendar.getInstance().DAY_OF_WEEK;
@@ -103,6 +99,26 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
         }   catch (SchedulerException se) {
             se.printStackTrace();
         }
+    }
+
+    public ArrayList<String> obtenerListaDePreguntas(){
+
+        ArrayList<String> preguntas = new ArrayList<>();
+        cuestionarioPreferenciasYComodidades.getRespuestas().forEach(respuestaSobrePregunta ->
+            preguntas.add(respuestaSobrePregunta.getPregunta().getPregunta())
+                );
+
+        return preguntas;
+    }
+
+    public ArrayList<String> obtenerListaDeRespuestas(){
+
+        ArrayList<String> respuestas = new ArrayList<>();
+        cuestionarioPreferenciasYComodidades.getRespuestas().stream().forEach(respuestaSobrePregunta ->
+                respuestas.add(respuestaSobrePregunta.getRespuesta())
+        );
+
+        return respuestas;
     }
 
 

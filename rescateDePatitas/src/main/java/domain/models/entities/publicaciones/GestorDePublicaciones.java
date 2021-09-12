@@ -98,13 +98,13 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionIntencionAdoptar(Persona adoptante, Cuestionario cuestionarioPref,Cuestionario cuestionarioCom) {
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, Cuestionario cuestionarioPreferenciasYComodidades) {
         //Pasamos directamente las preguntas
         PublicacionIntencionAdopcion publicacion = new PublicacionIntencionAdopcion();
         publicacion.setAdoptante(adoptante);
-        publicacion.setCuestionarioComodidades(cuestionarioCom);
-        publicacion.setCuestionarioPreferencias(cuestionarioPref);
-                publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
+        publicacion.setCuestionarioPreferenciasYComodidades(cuestionarioPreferenciasYComodidades);
+        publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
+        publicacion.inicializarScheduler();
 
         publicaciones.add(publicacion);
 

@@ -223,17 +223,17 @@ public class Persona extends Persistente {
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void intencionDeAdoptar(Cuestionario cuestionarioPreferencias,Cuestionario cuestionarioComodidades){
+    public void intencionDeAdoptar(Cuestionario cuestionarioPreferenciasYComodidades){
         GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionIntencionAdoptar(this,cuestionarioPreferencias,cuestionarioComodidades);
+        gestor.generarPublicacionIntencionAdoptar(this,cuestionarioPreferenciasYComodidades);
 
     }
 
     public void notificarMascotasEnAdopcion(ArrayList hypervinculosPublicacionesEnAdopcion){
-        String hypervinculosSinFormato = "Prueba";
-//        for(int i=0; i < hypervinculosPublicacionesEnAdopcion.size(); i++){
-//            hypervinculosSinFormato = hypervinculosPublicacionesEnAdopcion.get(i) + "\n";
-//        }
+        String hypervinculosSinFormato = "";
+        for(int i=0; i < hypervinculosPublicacionesEnAdopcion.size(); i++){
+            hypervinculosSinFormato = hypervinculosPublicacionesEnAdopcion.get(i) + "\n";
+        }
         String hypervinculosConFormato = hypervinculosSinFormato;
 
         contactos.forEach((contacto -> contacto.notificarContacto(
