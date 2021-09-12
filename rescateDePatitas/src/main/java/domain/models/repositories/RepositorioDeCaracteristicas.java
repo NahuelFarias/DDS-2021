@@ -9,7 +9,6 @@ public class RepositorioDeCaracteristicas {
     private static RepositorioDeCaracteristicas instancia;
     public List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
 
-
     public static RepositorioDeCaracteristicas getInstancia() {
         if (instancia == null) {
             instancia=new RepositorioDeCaracteristicas();
