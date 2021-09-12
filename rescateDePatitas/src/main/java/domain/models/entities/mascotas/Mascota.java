@@ -2,6 +2,9 @@ package domain.models.entities.mascotas;
 
 import com.google.zxing.WriterException;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.rol.Duenio;
+import domain.models.entities.rol.Rescatista;
+import domain.models.entities.rol.Rol;
 import services.Configuracion;
 import services.GeneradorQR;
 import domain.models.entities.Persistente;
@@ -16,6 +19,10 @@ import java.util.List;
 @Entity
 @Table(name = "mascota")
 public class Mascota extends Persistente {
+    @ManyToOne
+    private Duenio duenio;
+    @ManyToOne
+    private Rescatista rescatista;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apodo")
@@ -37,7 +44,7 @@ public class Mascota extends Persistente {
     private List<CaracteristicaConRta> caracteristicas;
     @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
-    @Transient // TODO No es la persona en si, sino el rol?
+    @ManyToOne // TODO No es la persona en si, sino el rol?
     private Persona persona;
 
     public Mascota(Persona persona) {

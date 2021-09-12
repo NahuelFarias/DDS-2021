@@ -15,7 +15,7 @@ import java.util.List;
 public class Organizacion extends Persistente {
     @Column(name = "nombre")
     private String nombre;
-    @Transient // TODO Relacion no tenida en cuenta en el MD
+    @Transient
     private List<Persona> voluntarios = new ArrayList<>();
     @Transient
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();

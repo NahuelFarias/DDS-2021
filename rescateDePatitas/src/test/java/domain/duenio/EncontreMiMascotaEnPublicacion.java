@@ -8,6 +8,7 @@ import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
+import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +25,7 @@ public class EncontreMiMascotaEnPublicacion {
     Persona personaDuenio;
     Persona personaRescatista;
     Rescatista rescatista;
+    Duenio duenio;
 
     Contacto contactoR1,contactoR2,contactoD1;
     List<Contacto> contactos, contactosRescatista;
@@ -42,6 +44,7 @@ public class EncontreMiMascotaEnPublicacion {
     public void instanciar() throws IOException {
 
         personaDuenio = new Persona();
+        duenio = new Duenio();
         //Llena los contactos en el formulario
         contactoD1 = new Contacto("Aracely", "Amaro", "+541168648864", "ara6amaro@gmail.com", Estrategia.EMAIL);
         List<Contacto> contactosDuenio = new ArrayList<>();
@@ -57,7 +60,8 @@ public class EncontreMiMascotaEnPublicacion {
         contactosRescatista.add(contactoR2);
         personaRescatista = new Persona();
         rescatista = new Rescatista();
-        personaRescatista.setRol(rescatista);
+        personaRescatista.addRol(rescatista);
+        personaRescatista.setRolElegido(rescatista);
 
         personaRescatista.inicializar("Sole", "Grilletta", "Urquiza 3835,CABA", TipoDeDocumento.DNI, 33333333, LocalDate.of(1987, 9, 24), contactosRescatista);
         fotos = new ArrayList<>();
@@ -102,10 +106,9 @@ public class EncontreMiMascotaEnPublicacion {
     }
     @Test
     public void duenioEncuentraASuMascotaPerdida(){
-        rescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
+        personaRescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
         publicacion = gestor.getPublicaciones().get(0);
         personaDuenio.encontreMiMascotaPerdida((PublicacionMascotaEncontrada) publicacion,contactoD1);
-
     }
 
 }

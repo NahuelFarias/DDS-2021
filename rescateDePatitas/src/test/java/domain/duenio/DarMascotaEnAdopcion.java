@@ -183,10 +183,10 @@ public class DarMascotaEnAdopcion {
 
     @Test
     public void darEnAdopcionMiMascota() {
-        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
+        persona.darEnAdopcion(persona.getMascotas().get(0),organizacion,respuestasOrganizacion,respuestasGenerales);
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         Assert.assertEquals("Mascota dada en adopcion",gestor.getPublicaciones().get(0).getTipoPublicacion());
-        Assert.assertEquals(persona.getRol().getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());
+        Assert.assertEquals(persona.getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());
         //TODO
     }
 

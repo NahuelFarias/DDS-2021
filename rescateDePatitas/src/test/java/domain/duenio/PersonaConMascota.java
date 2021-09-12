@@ -106,7 +106,7 @@ public class PersonaConMascota {
 
         //Listo los datos de la mascota 1 cargada
         System.out.println ("Datos de la Mascota");
-        mascota = persona.getRol().getMascotas().get(0);
+        mascota = persona.getMascotas().get(0);
 
         System.out.println ("ID Mascota:" + mascota.getIdMascota());
         System.out.println ("Nombre:" + mascota.getNombre());
@@ -147,7 +147,7 @@ public class PersonaConMascota {
 
         //Listo los datos de la mascota 2
 
-        mascota2 = persona.getRol().getMascotas().get(1);
+        mascota2 = persona.getMascotas().get(1);
         System.out.println ("Datos de la Mascota");
         System.out.println ("ID Mascota:" + mascota2.getIdMascota());
         System.out.println ("Nombre:" + mascota2.getNombre());

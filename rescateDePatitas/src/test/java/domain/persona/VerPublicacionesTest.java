@@ -47,13 +47,13 @@ public class VerPublicacionesTest {
         mascotaDTO.inicializar(persona, "Susana", "Susi", 2, "tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasconRtas, fotos);
         persona.registrarMascota(mascotaDTO);
-        mascotaDadaEnAdopcion = persona.getRol().getMascotas().get(0);
+        mascotaDadaEnAdopcion = persona.getMascotas().get(0);
         organizacion = new Organizacion();
         respuestasOrganizacion = new ArrayList<>();
         cuestionarioAdopcion = new Cuestionario("Adopcion");
         respuestasGenerales = new ArrayList<>();
 
-        persona.getRol().darEnAdopcion(mascotaDadaEnAdopcion, organizacion, respuestasOrganizacion, respuestasGenerales);
+        persona.darEnAdopcion(mascotaDadaEnAdopcion, organizacion, respuestasOrganizacion, respuestasGenerales);
         adoptante = new Persona();
         contacto = new Contacto("Fernando", "Casas", "+541111111111", "fernandocasas1234@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();

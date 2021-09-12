@@ -195,17 +195,17 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
     @Test
     public void CreoPublicacionesIntencionDeAdoptaryEsperoLaNotificacion() {
         //Pongo una Mascota en adopcion
-        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(0), organizacion, respuestasOrganizacion, respuestasGenerales1 );
+        persona.darEnAdopcion(persona.getMascotas().get(0), organizacion, respuestasOrganizacion, respuestasGenerales1 );
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         Assert.assertEquals("Mascota dada en adopcion", gestor.getPublicaciones().get(0).getTipoPublicacion());
-        Assert.assertEquals(persona.getRol().getMascotas().get(0), gestor.getPublicaciones().get(0).getMascota());
+        Assert.assertEquals(persona.getMascotas().get(0), gestor.getPublicaciones().get(0).getMascota());
 
-        persona.getRol().darEnAdopcion(persona.getRol().getMascotas().get(1),organizacion, respuestasOrganizacion, respuestasGenerales2 );
+        persona.darEnAdopcion(persona.getMascotas().get(1),organizacion, respuestasOrganizacion, respuestasGenerales2 );
 
         persona.intencionDeAdoptar(cuestionarioPreferenciasYComodidades);
 
         try {
-            Thread.sleep(150000);
+            Thread.sleep(15000);
         } catch (InterruptedException e) {}
     }
 }

@@ -54,7 +54,8 @@ public class PerdiMiMascota {
         persona.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24), contactos);
 
         //Agrego el rol duenio a la persona para que pueda registrar sus mascotas
-        persona.setRol(duenio);
+        persona.addRol(duenio);
+        persona.setRolElegido(duenio);
 
         //Cargo caracteristicas al repositorio con el controller
         controller = CaracteristicasController.getInstancia();
@@ -94,13 +95,13 @@ public class PerdiMiMascota {
         mascotaDTO.inicializar(persona,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
                 "gato", "hembra", caracteristicasConRtas, fotos);
 
-
     }
 
     @Test
     public void perdiMiMascotaTest() {
         persona.registrarMascota(mascotaDTO);
-        persona.getRol().perdiUnaMascota(persona.getRol().getMascotas().get(0));
+
+        persona.perdiUnaMascota(persona.getMascotas().get(0));
 
         gestor = GestorDePublicaciones.getInstancia();
 

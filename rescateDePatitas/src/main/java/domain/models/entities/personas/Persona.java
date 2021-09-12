@@ -1,11 +1,13 @@
 package domain.models.entities.personas;
 
-import com.twilio.rest.api.v2010.account.incomingphonenumber.Local;
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
+import domain.models.entities.rol.Duenio;
+import domain.models.entities.rol.Rescatista;
 import domain.models.entities.rol.Rol;
+import domain.models.entities.rol.Voluntario;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,17 +31,44 @@ public class Persona extends Persistente {
     private String direccion;
     @OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Contacto> contactos;
-    @Transient // TODO Definir esta relacion
-    private Rol rol;
-    @OneToOne // TODO Esta es una relacion unidireccional - Pasar al MD
+    @OneToMany(mappedBy = "persona", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<Rol> rolesDisponibles;
+    @Transient
+    private Rol rolElegido;
+    @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
-    //en un controller
-    // private RepositorioDeUsuarios repositorioDeUsuarios;
-
     public Persona() {
         this.contactos = new ArrayList<>();
+        this.rolesDisponibles = new ArrayList<>();
+    }
+
+    public void inicializar(String nombre, String apellido, String direccion, TipoDeDocumento tipoDoc,
+                            Integer nroDoc, LocalDate fechaDeNacimiento, List<Contacto> contactos) {
+        setNombre(nombre);
+        setApellido(apellido);
+        setDireccion(direccion);
+        setNroDoc(nroDoc);
+        setTipoDoc(tipoDoc);
+        setFechaDeNacimiento(fechaDeNacimiento);
+        setContactos(contactos);
+    }
+
+    public Rol getRolElegido() {
+        return rolElegido;
+    }
+
+    public List<Rol> getRolesDisponibles() {
+        return rolesDisponibles;
+    }
+
+    public Rol getRol(int i) {
+        return rolesDisponibles.get(i);
+    }
+
+    public void setRolElegido(Rol rolElegido) {
+        this.rolElegido = rolElegido;
     }
 
     //getters & setters
@@ -93,10 +122,16 @@ public class Persona extends Persistente {
     }
 
     public Rol getRol() {
-        return rol;
+        return rolElegido;
     }
 
-    public void setRol(Rol rol){this.rol = rol;}
+    public void setRol(Rol rol) {
+        this.rolElegido = rol;
+    }
+
+    public void addRol(Rol rol) {
+        this.rolesDisponibles.add(rol);
+    }
 
     public List<Contacto> getContactos() {
         return contactos;
@@ -114,88 +149,131 @@ public class Persona extends Persistente {
         this.usuario = usuario;
     }
 
+    public List<Mascota> getMascotas() {
+        if (comprobarRol("DUENIO")) {
+            Duenio duenio = (Duenio) rolElegido;
+            return duenio.getMascotas();
+        } else if (comprobarRol("RESCATISTA")) {
+            Rescatista duenio = (Rescatista) rolElegido;
+            return duenio.getMascotas();
+        }
+        return null;
+    }
+
     // methods
 
-    public void inicializar(String nombre, String apellido, String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,LocalDate fechaDeNacimiento,List<Contacto> contactos ){
-        setNombre(nombre);
-        setApellido(apellido);
-        setDireccion(direccion);
-        setNroDoc(nroDoc);
-        setTipoDoc(tipoDoc);
-        setFechaDeNacimiento(fechaDeNacimiento);
-        setContactos(contactos);
-    }
-
-    public void registrarMascota(Mascota.MascotaDTO mascota){
-        this.rol.registrarMascota(mascota,this);
-    }
-
-    public void agregarContacto(String nombre, String apellido, String numero, String email, Estrategia estrategiaDeEnvio){
-        Contacto contacto = new Contacto(nombre,apellido,numero,email, estrategiaDeEnvio);
+    public void agregarContacto(String nombre, String apellido, String numero, String email, Estrategia estrategiaDeEnvio) {
+        Contacto contacto = new Contacto(nombre, apellido, numero, email, estrategiaDeEnvio);
 
         contactos.add(contacto);
     }
 
     public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista, DatosMascotaPerdida datos) {
-        if(rol.getNombre() == "DUENIO") {
-           contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() +  " fue encontrada!\n" +
-                   "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
-                   "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
+        if (rolElegido.getTipo().equals("DUENIO")) {
+            contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() + " fue encontrada!\n" +
+                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
+                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
         }
 
     }
 
+    public void crearUsuario(String user, String contrasenia) {
+        Usuario usuario = new Usuario(user, contrasenia);
+        setUsuario(usuario);
+    }
+
+    public void registrarMascota(Mascota.MascotaDTO mascota) {
+        if (rolElegido.getTipo().equals("DUENIO")) {
+            Duenio duenio = (Duenio) rolElegido;
+            duenio.registrarMascota(mascota, this);
+        }
+    }
+
     public void notificarContactosRescatista(Contacto contactoDuenio) {
-        if(rol.getNombre() == "RESCATISTA"){
-            contactos.forEach( c -> c.notificarContacto(contactoDuenio.getNombre() + " encontro su mascota en tu publicacion!\n" +
+        if (rolElegido.getTipo().equals("RESCATISTA")) {
+            contactos.forEach(c -> c.notificarContacto(contactoDuenio.getNombre() + " encontro su mascota en tu publicacion!\n" +
                     "Sus medios de contacto son:\n" + "Telefono: " +
                     contactoDuenio.getNumeroCompleto() + "\n" +
                     "Email: " + contactoDuenio.getEmail()));
         }
     }
 
-    public void crearUsuario(String user, String contrasenia){
-        Usuario usuario = new Usuario(user, contrasenia);
-        setUsuario(usuario);
-    }
 
     public Boolean iniciarSesion(String user, String contrasenia) {
         return this.usuario.iniciarSesion(user, contrasenia, this);
     }
-    
-    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
-        this.rol.aprobarPublicacion(unaPublicacion, organizacion);
+
+    public boolean comprobarRol(String rol) {
+        return rolElegido.getTipo().equals(rol);
     }
 
-    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
-        this.rol.rechazarPublicacion(unaPublicacion, organizacion);
+    //Voluntario//
+    public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
+        if (this.comprobarRol("VOLUNTARIO")) {
+            Voluntario rolActual = (Voluntario) rolElegido;
+            rolActual.aprobarPublicacion(unaPublicacion, organizacion);
+        }
     }
 
-    public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion){
-        this.rol.enRevisionPublicacion(unaPublicacion, organizacion);
+    public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
+        if (this.comprobarRol("VOLUNTARIO")) {
+            Voluntario rolActual = (Voluntario) rolElegido;
+            rolActual.rechazarPublicacion(unaPublicacion, organizacion);
+        }
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista,DatosMascotaPerdida datosMascota) {
+    public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
+        if (this.comprobarRol("VOLUNTARIO")) {
+            Voluntario rolActual = (Voluntario) rolElegido;
+            rolActual.enRevisionPublicacion(unaPublicacion, organizacion);
+        }
+    }
+
+    //Rescatista//
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, DatosMascotaPerdida
+            datosMascota) {
         //Con chapita
-        this.rol.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista,datosMascota);
+        if (this.comprobarRol("RESCATISTA")) {
+            Rescatista rolActual = (Rescatista) rolElegido;
+            rolActual.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista, datosMascota);
+        }
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datos) {
-        this.rol.encontreUnaMascotaPerdidaSinChapita(this,datos);
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaPerdida datos) {
+        if (this.comprobarRol("RESCATISTA")) {
+            Rescatista rolActual = (Rescatista) rolElegido;
+            rolActual.encontreUnaMascotaPerdidaSinChapita(this, datos);
+        }
     }
 
-    public void encontreMiMascotaPerdida(PublicacionMascotaEncontrada publicacion, Contacto contacto)  {
+
+    //Duenio//
+    public void encontreMiMascotaPerdida(PublicacionMascotaEncontrada publicacion, Contacto contacto) {
         publicacion.getRescatista().notificarContactosRescatista(contacto);
 
     }
 
+    public void perdiUnaMascota(Mascota mascota) {
+        if (this.comprobarRol("DUENIO")) {
+            Duenio rolActual = (Duenio) rolElegido;
+            rolActual.perdiUnaMascota(mascota);
+        }
+    }
+
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales1) {
+        if (this.comprobarRol("DUENIO")) {
+            Duenio rolActual = (Duenio) rolElegido;
+            rolActual.darEnAdopcion(mascota, organizacion, respuestasOrganizacion, respuestasGenerales1);
+        }
+
+    }
+
     // TODO: Para que se usa esta funcion?
-    public String hasheoPersona(){
+    public String hasheoPersona() {
 
-        String cadena = String.valueOf(this.fechaDeNacimiento) + String.valueOf(this.nroDoc) ;
+        String cadena = String.valueOf(this.fechaDeNacimiento) + String.valueOf(this.nroDoc);
 
-        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex( cadena );
+        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(cadena);
 
         return md5;
     }
@@ -217,21 +295,21 @@ public class Persona extends Persistente {
         }
     }*/
 
-    public void notificarPosibleAdopcion(Mascota mascota,Persona adoptante){
-        contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() +  "!\n" +
+    public void notificarPosibleAdopcion(Mascota mascota, Persona adoptante) {
+        contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() + "!\n" +
                 "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void intencionDeAdoptar(Cuestionario cuestionarioPreferenciasYComodidades){
-        GestorDePublicaciones gestor =  GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionIntencionAdoptar(this,cuestionarioPreferenciasYComodidades);
+    public void intencionDeAdoptar(Cuestionario cuestionarioPreferenciasYComodidades) {
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionIntencionAdoptar(this, cuestionarioPreferenciasYComodidades);
 
     }
 
-    public void notificarMascotasEnAdopcion(ArrayList hypervinculosPublicacionesEnAdopcion){
+    public void notificarMascotasEnAdopcion(ArrayList hypervinculosPublicacionesEnAdopcion) {
         String hypervinculosSinFormato = "";
-        for(int i=0; i < hypervinculosPublicacionesEnAdopcion.size(); i++){
+        for (int i = 0; i < hypervinculosPublicacionesEnAdopcion.size(); i++) {
             hypervinculosSinFormato = hypervinculosPublicacionesEnAdopcion.get(i) + "\n";
         }
         String hypervinculosConFormato = hypervinculosSinFormato;
@@ -240,12 +318,12 @@ public class Persona extends Persistente {
                 "Pensamos que estas mascotas pueden interesarte:\n" + hypervinculosConFormato)));
     }
 
-    public List<PublicacionEnAdopcion> accederPublicacionesDeAdopcion(){
+    public List<PublicacionEnAdopcion> accederPublicacionesDeAdopcion() {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         return gestor.getPublicacionesDeAdopcion();
     }
 
-    public void quieroAdoptar(Mascota mascotaEnAdopcion){
+    public void quieroAdoptar(Mascota mascotaEnAdopcion) {
         mascotaEnAdopcion.meQuiereAdoptar(this);
     }
 
@@ -258,7 +336,7 @@ public class Persona extends Persistente {
         this.nroDoc = persona.getNroDoc();
         this.direccion = persona.getDireccion();
         this.contactos = persona.getContactos();
-        this.rol = persona.getRol();
+        this.rolElegido = persona.getRoElegido();
         this.usuario = persona.getUsuario();
     }
 
@@ -317,8 +395,8 @@ public class Persona extends Persistente {
             this.contactos = contactos;
         }
 
-        public Rol getRol() {
-            return rol;
+        public Rol getRoElegido() {
+            return this.rol;
         }
 
         public void setRol(Rol rol) {
@@ -345,8 +423,8 @@ public class Persona extends Persistente {
             return apellido;
         }
 
-        public void inicializar(String nombre,String apellido, String direccion,TipoDeDocumento tipoDoc,Integer nroDoc,
-               LocalDate fechaDeNacimiento,List<Contacto> contactos) {
+        public void inicializar(String nombre, String apellido, String direccion, TipoDeDocumento tipoDoc, Integer nroDoc,
+                                LocalDate fechaDeNacimiento, List<Contacto> contactos) {
             this.apellido = apellido;
             this.nombre = nombre;
             this.fechaDeNacimiento = fechaDeNacimiento;
@@ -360,3 +438,6 @@ public class Persona extends Persistente {
     }
 
 }
+
+
+

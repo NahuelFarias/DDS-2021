@@ -60,7 +60,7 @@ public class NotificarPosibleAdopcionAlDuenio {
 
     @Test
     public void notificarPosibleAdopcionAlDuenio() {
-        Mascota mascota = personaDuenio.getRol().getMascotas().get(0);
+        Mascota mascota = personaDuenio.getMascotas().get(0);
         mascota.meQuiereAdoptar(adoptante);
     }
 }
