@@ -3,33 +3,24 @@ package domain.models.entities.publicaciones;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 
-import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "publicacion_en_adopcion")
 public class PublicacionEnAdopcion extends PublicacionGenerica{
-//    private List<RespuestaSobrePregunta> respuestasOrganizacion;
-    private List<RespuestaSobrePregunta> respuestasGenerales;//
+    @ManyToOne
     private Organizacion organizacion;
+    @OneToOne
     private Mascota mascota;
-    private Cuestionario cuestionariodeAdopcion;
+    @OneToOne
+    private CuestionarioContestado cuestionariodeAdopcion;
 
-    public Cuestionario getCuestionario() {
+    public CuestionarioContestado getCuestionario() {
         return cuestionariodeAdopcion;
     }
 
-    public void setCuestionario(Cuestionario cuestionario) {
-        this.cuestionariodeAdopcion = cuestionario;
-    }
-
-//    public void setRespuestasOrganizacion(List<RespuestaSobrePregunta> respuestasOrganizacion) { this.respuestasOrganizacion = respuestasOrganizacion; }
-
-//    public List<RespuestaSobrePregunta> getRespuestasOrganizacion() { return respuestasOrganizacion; }
-
-    public List<RespuestaSobrePregunta> getRespuestasGenerales() {
-        return respuestasGenerales;
-    }
-
-    public void setRespuestasGenerales(List<RespuestaSobrePregunta> respuestasGenerales) {
-        this.respuestasGenerales = respuestasGenerales;
+    public void setCuestionario(CuestionarioContestado cuestionarioContestado) {
+        this.cuestionariodeAdopcion = cuestionarioContestado;
     }
 
     public Organizacion getOrganizacion() {

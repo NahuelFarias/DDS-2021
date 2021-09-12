@@ -1,7 +1,7 @@
 package domain.sistema;
 
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.mascotas.Caracteristica;
+import domain.models.entities.publicaciones.Pregunta;
 import org.junit.Test;
 
 
@@ -40,12 +40,12 @@ public class AgregarCaracteristicas {
         rtas4.add("No");
         c.crearCaracteristica("Toma medicacion", rtas4);
 
-        List<Caracteristica> caracteristicas = c.getRepositorio().caracteristicas;
+        List<Pregunta> caracteristicas = c.getRepositorio().caracteristicas;
 
         for(int i = 0; i < caracteristicas.size(); i++) {
-            System.out.println(caracteristicas.get(i).getDescripcion() + ":");
-            for(int j = 0; j < caracteristicas.get(i).getRespuestasPosibles().size(); j++){
-                System.out.println(caracteristicas.get(i).getRespuestasPosibles().get(j));
+            System.out.println(caracteristicas.get(i).getPregunta() + ":");
+            for(int j = 0; j < caracteristicas.get(i).getRespuestas().size(); j++){
+                System.out.println(caracteristicas.get(i).getRespuestas().get(j));
             }
         }
 

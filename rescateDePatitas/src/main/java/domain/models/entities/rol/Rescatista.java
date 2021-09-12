@@ -33,12 +33,12 @@ public class Rescatista extends Rol {
         mascotasRescatadas.add(mascota);
     }
 
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, DatosMascotaPerdida datos) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, DatosMascotaEncontrada datos) {
         //con chapita
         mascotaPerdida.avisarQueMeEcontraron(contacto,datos);
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista,DatosMascotaPerdida datosMascota) {
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaEncontrada datosMascota) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionMascotaEncontrada(rescatista,datosMascota);
     }

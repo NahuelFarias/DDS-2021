@@ -34,7 +34,7 @@ public class EncontreMiMascotaEnPublicacion {
     EditorDeFotos editor;
 
     PublicacionGenerica publicacion;
-    DatosMascotaPerdida datosMascota;
+    DatosMascotaEncontrada datosMascota;
     Lugar lugar;
     GestorDePublicaciones gestor;
     Organizacion org1,org2,org3,org4,org5;
@@ -71,7 +71,7 @@ public class EncontreMiMascotaEnPublicacion {
         editor = new EditorDeFotos();
         fotos= editor.redimensionarFotos(fotos);
         lugar = new Lugar(-34.6692966,-58.4766928);
-        datosMascota = new DatosMascotaPerdida(fotos,"La encontre en buen estado.",lugar);
+        datosMascota = new DatosMascotaEncontrada(fotos,"La encontre en buen estado.",lugar);
 
         organizaciones = new ArrayList<>();
 

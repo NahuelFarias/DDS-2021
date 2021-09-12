@@ -5,8 +5,6 @@ import domain.models.entities.mascotas.*;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.personas.Persona;
 
-import domain.models.repositories.RepositorioDeUsuarios;
-
 import javax.persistence.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class Duenio extends Rol{
         mascotas.add(mascota);
     }
 
-    public void darEnAdopcion(Mascota mascota,Organizacion organizacion, List<RespuestaSobrePregunta> respuestasDeLaOrg, List<RespuestaSobrePregunta> respuestasGenerales) {
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaConcreta> respuestasDeLaOrg, List<RespuestaConcreta> respuestasGenerales) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         gestor.generarPublicacionEnAdopcion(mascota,respuestasDeLaOrg,respuestasGenerales,organizacion);
 

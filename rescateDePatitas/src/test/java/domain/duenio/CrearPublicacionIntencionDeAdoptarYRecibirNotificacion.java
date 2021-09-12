@@ -6,10 +6,10 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.publicaciones.Cuestionario;
+import domain.models.entities.publicaciones.CuestionarioContestado;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
+import domain.models.entities.publicaciones.RespuestaConcreta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
+
+public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion { /*
     //Email que va a recibir la notificacion
     private static final String EMAIL = "pedrokuljich@gmail.com";
 
@@ -34,17 +35,17 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
     RepositorioDeCaracteristicas repoCaracteristicas;
     CaracteristicasController controller;
     CaracteristicaConRta caracteristicaConRta1, caracteristicaConRta2, caracteristicaConRta3, caracteristicaConRta4;
-    List<Caracteristica> caracteristicas;
+    List<Pregunta> caracteristicas;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas, caracteristicasConRtas2;
     List<Contacto> contactos;
     Contacto contacto;
     EditorDeFotos editor;
     Organizacion organizacion;
-    RespuestaSobrePregunta rt1, rt2, rt3, rt4, respuestaCuestionarioPreferenciasYComodidades1, respuestaCuestionarioPreferenciasYComodidades2, respuestaCuestionarioPreferenciasYComodidades3;
-    List<RespuestaSobrePregunta> respuestasOrganizacion, respuestasCuestionarioPreferenciasYComodidades;
-    Cuestionario cuestionarioPreferenciasYComodidades;
+    RespuestaConcreta rt1, rt2, rt3, rt4, respuestaCuestionarioPreferenciasYComodidades1, respuestaCuestionarioPreferenciasYComodidades2, respuestaCuestionarioPreferenciasYComodidades3;
+    List<RespuestaConcreta> respuestasOrganizacion, respuestasCuestionarioPreferenciasYComodidades;
+    CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades;
     List<Pregunta> preguntasCuestionarioPreferenciasYComodidades;
-    List<RespuestaSobrePregunta> respuestasGenerales1, respuestasGenerales2;
+    List<RespuestaConcreta> respuestasGenerales1, respuestasGenerales2;
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
     Pregunta preg1;
@@ -79,10 +80,10 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
         persona.inicializar("Pedro Elias", "Kuljich", "Calle Falsa 123, CABA", TipoDeDocumento.DNI, 3141592, LocalDate.of(2000, 3, 3), contactos);
         persona.setRol(duenio);
 
-        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+        List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
 
-        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(), "Si");
-        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(), "Negro");
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(), "Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(), "Negro");
 
         caracteristicasConRtas = new ArrayList<>();
         caracteristicasConRtas.add(caracteristicaConRta1);
@@ -100,8 +101,8 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
                 "gato", "hembra", caracteristicasConRtas, fotos);
         persona.registrarMascota(mascotaDTO);
 
-        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(), "Si");
-        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(), "Marron");
+        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(), "Si");
+        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(), "Marron");
 
         caracteristicasConRtas2 = new ArrayList<>();
         caracteristicasConRtas2.add(caracteristicaConRta3);
@@ -127,18 +128,18 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
         preguntaTienePatio.setPregunta("Tiene patio?");
 
         respuestasGenerales1 = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
+        rt1 = new RespuestaConcreta();
         rt1.setPregunta(preguntaTieneGatos);
         rt1.setRespuesta("Si");
 
-        rt2 = new RespuestaSobrePregunta();
+        rt2 = new RespuestaConcreta();
         rt2.setPregunta(preguntaTienePatio);
         rt2.setRespuesta("No");
 
         respuestasGenerales1.add(rt1);
         respuestasGenerales1.add(rt2);
 
-        rt3 = new RespuestaSobrePregunta();
+        rt3 = new RespuestaConcreta();
         rt3.setPregunta(preguntaTienePatio);
         rt3.setRespuesta("Si");
 
@@ -147,13 +148,13 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
         respuestasGenerales2.add(rt3);
 
         respuestasOrganizacion = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
+        rt1 = new RespuestaConcreta();
         preg1 = new Pregunta();
         preg1.setPregunta("Raza");
         rt1.setPregunta(preg1);
         rt1.setRespuesta("Collie");
 
-        rt2 = new RespuestaSobrePregunta();
+        rt2 = new RespuestaConcreta();
         preg2 = new Pregunta();
         preg2.setPregunta("Es amigable con niños?");
         rt2.setPregunta(preg2);
@@ -169,26 +170,26 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
         preguntasCuestionarioPreferenciasYComodidades.add(preguntaTieneGatos);
         preguntasCuestionarioPreferenciasYComodidades.add(preguntaTienePatio);
 
-        cuestionarioPreferenciasYComodidades = new Cuestionario("preferencias y comodidades");
-        cuestionarioPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
+        cuestionarioContestadoPreferenciasYComodidades = new CuestionarioContestado();
+        cuestionarioContestadoPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
         respuestasCuestionarioPreferenciasYComodidades = new ArrayList<>();
-        respuestaCuestionarioPreferenciasYComodidades1 = new RespuestaSobrePregunta();
+        respuestaCuestionarioPreferenciasYComodidades1 = new RespuestaConcreta();
         respuestaCuestionarioPreferenciasYComodidades1.setPregunta(preg2);
         respuestaCuestionarioPreferenciasYComodidades1.setRespuesta("Si");
         respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades1);
 
 
-        cuestionarioPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
-        respuestaCuestionarioPreferenciasYComodidades2 = new RespuestaSobrePregunta();
+        cuestionarioContestadoPreferenciasYComodidades.setPreguntas(preguntasCuestionarioPreferenciasYComodidades);
+        respuestaCuestionarioPreferenciasYComodidades2 = new RespuestaConcreta();
         respuestaCuestionarioPreferenciasYComodidades2.setPregunta(preguntaTieneGatos);
         respuestaCuestionarioPreferenciasYComodidades2.setRespuesta("Si");
         respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades2);
 
-        respuestaCuestionarioPreferenciasYComodidades3 = new RespuestaSobrePregunta();
+        respuestaCuestionarioPreferenciasYComodidades3 = new RespuestaConcreta();
         respuestaCuestionarioPreferenciasYComodidades3.setPregunta(preguntaTienePatio);
         respuestaCuestionarioPreferenciasYComodidades3.setRespuesta("Si");
         respuestasCuestionarioPreferenciasYComodidades.add(respuestaCuestionarioPreferenciasYComodidades3);
-        cuestionarioPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
+        cuestionarioContestadoPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
     }
 
 
@@ -202,10 +203,10 @@ public class CrearPublicacionIntencionDeAdoptarYRecibirNotificacion {
 
         persona.darEnAdopcion(persona.getMascotas().get(1),organizacion, respuestasOrganizacion, respuestasGenerales2 );
 
-        persona.intencionDeAdoptar(cuestionarioPreferenciasYComodidades);
+        persona.intencionDeAdoptar(cuestionarioContestadoPreferenciasYComodidades);
 
         try {
             Thread.sleep(15000);
         } catch (InterruptedException e) {}
-    }
+    } */
 }

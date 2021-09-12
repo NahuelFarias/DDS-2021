@@ -6,10 +6,10 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.publicaciones.Cuestionario;
+import domain.models.entities.publicaciones.CuestionarioContestado;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
-import domain.models.entities.publicaciones.RespuestaSobrePregunta;
+import domain.models.entities.publicaciones.RespuestaConcreta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
@@ -29,17 +29,17 @@ public class DarMascotaEnAdopcion {
     CaracteristicasController controller;
     CaracteristicaConRta caracteristicaConRta1, caracteristicaConRta2, caracteristicaConRta3, caracteristicaConRta4;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas, caracteristicasConRtas2;
-    List<Caracteristica> caracteristicas;
+    List<Pregunta> caracteristicas;
     List<Contacto> contactos;
     List<Foto> fotos;
     Contacto contacto1,contacto2;
     EditorDeFotos editor;
     Organizacion organizacion;
-    RespuestaSobrePregunta rt1, rt2,rt3,rt4;
-    List<RespuestaSobrePregunta> respuestasOrganizacion;
-    Cuestionario cuestionarioDeAdopcion;
+    RespuestaConcreta rt1, rt2,rt3,rt4;
+    List<RespuestaConcreta> respuestasOrganizacion;
+    CuestionarioContestado cuestionarioContestadoDeAdopcion;
     List<Pregunta> preguntasCuestionario;
-    List<RespuestaSobrePregunta> respuestasGenerales;
+    List<RespuestaConcreta> respuestasGenerales;
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
     Pregunta preg1;
@@ -78,10 +78,10 @@ public class DarMascotaEnAdopcion {
 
         persona.setRol(duenio);
 
-        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+        List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
 
-        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
-        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Negro");
 
         caracteristicasConRtas = new ArrayList<>();
         caracteristicasConRtas.add(caracteristicaConRta1);
@@ -99,8 +99,8 @@ public class DarMascotaEnAdopcion {
                 "gato", "hembra", caracteristicasConRtas, fotos);
         persona.registrarMascota(mascotaDTO);
 
-        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
-        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
+        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"No");
+        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Marron");
 
         caracteristicasConRtas2 = new ArrayList<>();
         caracteristicasConRtas2.add(caracteristicaConRta3);
@@ -120,11 +120,11 @@ public class DarMascotaEnAdopcion {
         organizacion = new Organizacion();
 
         respuestasGenerales = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
+        rt1 = new RespuestaConcreta();
         rt1.setPregunta(preguntaTieneGatos);
         rt1.setRespuesta("Si");
 
-        rt2 = new RespuestaSobrePregunta();
+        rt2 = new RespuestaConcreta();
         rt2.setPregunta(preguntaTienePatio);
         rt2.setRespuesta("No");
 
@@ -139,13 +139,13 @@ public class DarMascotaEnAdopcion {
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 */
         respuestasOrganizacion = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
+        rt1 = new RespuestaConcreta();
         preg1= new Pregunta();
         preg1.setPregunta("Raza");
         rt1.setPregunta(preg1);
         rt1.setRespuesta("Collie");
 
-        rt2 = new RespuestaSobrePregunta();
+        rt2 = new RespuestaConcreta();
         preg2 = new Pregunta();
         preg2.setPregunta("Es amigable con niños?");
         rt2.setPregunta(preg2);

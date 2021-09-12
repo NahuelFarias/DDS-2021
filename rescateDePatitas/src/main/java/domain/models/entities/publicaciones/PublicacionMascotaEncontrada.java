@@ -5,15 +5,21 @@ import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "publicacion_mascota_encontrada")
 public class PublicacionMascotaEncontrada extends PublicacionGenerica{
-    private String descripcion;
-    private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
+    @OneToMany(mappedBy = "publicacionMascotaEncontrada", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
+    @OneToOne
     private Lugar lugar;
+    @ManyToOne
     private Organizacion organizacion;
+    // TODO esto funciona?
+    @ManyToOne
     private Persona rescatista;
 
     public Organizacion getOrganizacion() {
@@ -26,22 +32,6 @@ public class PublicacionMascotaEncontrada extends PublicacionGenerica{
 
     public void setLugar(Lugar lugar) {
         this.lugar = lugar;
-    }
-
-    public EstadoDePublicacion getEstadoDePublicacion() {
-        return estadoDePublicacion;
-    }
-
-    public void setEstadoDePublicacion(EstadoDePublicacion estadoDePublicacion) {
-        this.estadoDePublicacion = estadoDePublicacion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public List<Foto> getFotos() {

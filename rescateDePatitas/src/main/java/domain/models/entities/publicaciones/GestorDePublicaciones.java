@@ -4,12 +4,14 @@ import domain.models.entities.mascotas.*;
 import domain.models.entities.personas.Persona;
 import services.ComparadorDistancias;
 
+import java.time.LocalDate;
 import java.util.*;
 
+// No lo persitimos porque este tomaria las Publicaciones ya persistidas
+// Esta entidad se centra en el comportamiento
 public class GestorDePublicaciones {
     private static GestorDePublicaciones instancia;
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
-    private List<String> preguntasAdopcion;
     private List<Organizacion> organizaciones = new ArrayList<>();
 
     public static GestorDePublicaciones getInstancia() {
@@ -34,17 +36,17 @@ public class GestorDePublicaciones {
         return organizacion;
     }
 
-    public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaSobrePregunta> respuestasDeLaOrg,
-                                             List<RespuestaSobrePregunta> respuestasGenerales, Organizacion organizacion) {
+    public void generarPublicacionEnAdopcion(Mascota mascota, List<RespuestaConcreta> respuestasDeLaOrg,
+                                             List<RespuestaConcreta> respuestasGenerales, Organizacion organizacion) {
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
-        List<RespuestaSobrePregunta> respuestasCuestionario = new ArrayList<>();
-        Cuestionario cuestionario = new Cuestionario("Adopcion");
-        cuestionario.setRespuestas(respuestasCuestionario);
-        cuestionario.agregarRespuestas(respuestasDeLaOrg);
-        cuestionario.agregarRespuestas(respuestasGenerales);
+        List<RespuestaConcreta> respuestasCuestionario = new ArrayList<>();
+        CuestionarioContestado cuestionarioContestado = new CuestionarioContestado();
+        cuestionarioContestado.setRespuestas(respuestasCuestionario);
+        cuestionarioContestado.agregarRespuestas(respuestasDeLaOrg);
+        cuestionarioContestado.agregarRespuestas(respuestasGenerales);
 
-        publicacion.setFecha(new Date());
-        publicacion.setCuestionario(cuestionario);
+        publicacion.setFecha(LocalDate.now());
+        publicacion.setCuestionario(cuestionarioContestado);
 //        publicacion.setRespuestasGenerales(respuestasGenerales);
 //        publicacion.setRespuestasOrganizacion(respuestasOrganizacion);
         publicacion.setMascota(mascota);
@@ -63,7 +65,7 @@ public class GestorDePublicaciones {
 
     public void generarPublicacionMascotaPerdida(Mascota mascota) {
         PublicacionPerdidaRegistrada publicacion = new PublicacionPerdidaRegistrada();
-        publicacion.setFecha(new Date());
+        publicacion.setFecha(LocalDate.now());
         publicacion.setMascota(mascota);
         publicacion.setTipoPublicacion("Mascota perdida registrada");
         publicaciones.add(publicacion);
@@ -75,13 +77,13 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionMascotaEncontrada(Persona rescatista, DatosMascotaPerdida datosMascota) {
+    public void generarPublicacionMascotaEncontrada(Persona rescatista, DatosMascotaEncontrada datosMascota) {
         PublicacionMascotaEncontrada publicacion = new PublicacionMascotaEncontrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
         publicacion.setDescripcion(datosMascota.getDescripcion());
         publicacion.setFotos(datosMascota.getFotos());
         publicacion.setLugar(datosMascota.getLugar());
-        publicacion.setFecha(new Date());
+        publicacion.setFecha(LocalDate.now());
         publicacion.setRescatista(rescatista);
         Organizacion organizacion = this.buscarOrganizacionMasCercana(datosMascota.getLugar());
         publicacion.setOrganizacion(organizacion);
@@ -98,11 +100,11 @@ public class GestorDePublicaciones {
 
     }
 
-    public void generarPublicacionIntencionAdoptar(Persona adoptante, Cuestionario cuestionarioPreferenciasYComodidades) {
+    public void generarPublicacionIntencionAdoptar(Persona adoptante, CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades) {
         //Pasamos directamente las preguntas
         PublicacionIntencionAdopcion publicacion = new PublicacionIntencionAdopcion();
         publicacion.setAdoptante(adoptante);
-        publicacion.setCuestionarioPreferenciasYComodidades(cuestionarioPreferenciasYComodidades);
+        publicacion.setCuestionarioPreferenciasYComodidades(cuestionarioContestadoPreferenciasYComodidades);
         publicacion.setTipoPublicacion("Intencion de adoptar una mascota");
         publicacion.inicializarScheduler();
 

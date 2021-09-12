@@ -3,27 +3,32 @@ package domain.models.entities.publicaciones;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import domain.models.entities.mascotas.Organizacion;
-import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-import org.quartz.SimpleScheduleBuilder.*;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
-import static org.quartz.CronScheduleBuilder.*;
 
-
+@Entity
+@Table(name = "publicacion_intencion_adopcion")
 public class PublicacionIntencionAdopcion extends PublicacionGenerica{
-    private Cuestionario cuestionarioPreferenciasYComodidades;
+    @OneToOne
+    private CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades;
+    @OneToOne
     private Persona adoptante;
+    @Transient
     private Scheduler scheduler;
+    @OneToOne
     private Organizacion organizacion;
-
 
     @Override
     public Organizacion getOrganizacion() {
@@ -34,19 +39,13 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
         this.organizacion = organizacion;
     }
 
-    public Cuestionario getCuestionarioPreferenciasYComodidades() {
-        return cuestionarioPreferenciasYComodidades;
+    public CuestionarioContestado getCuestionarioPreferenciasYComodidades() {
+        return cuestionarioContestadoPreferenciasYComodidades;
     }
 
-    public void setCuestionarioPreferenciasYComodidades(Cuestionario cuestionarioPreferenciasYComodidades) {
-        this.cuestionarioPreferenciasYComodidades = cuestionarioPreferenciasYComodidades;
+    public void setCuestionarioPreferenciasYComodidades(CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades) {
+        this.cuestionarioContestadoPreferenciasYComodidades = cuestionarioContestadoPreferenciasYComodidades;
     }
-
-//    public List<RespuestaSobrePregunta> getPreferenciasYcomodidades() { return preferenciasYcomodidades; }
-
-//    public void setPreferenciasYcomodidades(List<RespuestaSobrePregunta> preferenciasYcomodidades) { this.preferenciasYcomodidades = preferenciasYcomodidades; }
-
-
 
     public Persona getAdoptante() {
         return adoptante;
@@ -104,7 +103,7 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
     public ArrayList<String> obtenerListaDePreguntas(){
 
         ArrayList<String> preguntas = new ArrayList<>();
-        cuestionarioPreferenciasYComodidades.getRespuestas().forEach(respuestaSobrePregunta ->
+        cuestionarioContestadoPreferenciasYComodidades.getRespuestas().forEach(respuestaSobrePregunta ->
             preguntas.add(respuestaSobrePregunta.getPregunta().getPregunta())
                 );
 
@@ -114,7 +113,7 @@ public class PublicacionIntencionAdopcion extends PublicacionGenerica{
     public ArrayList<String> obtenerListaDeRespuestas(){
 
         ArrayList<String> respuestas = new ArrayList<>();
-        cuestionarioPreferenciasYComodidades.getRespuestas().stream().forEach(respuestaSobrePregunta ->
+        cuestionarioContestadoPreferenciasYComodidades.getRespuestas().stream().forEach(respuestaSobrePregunta ->
                 respuestas.add(respuestaSobrePregunta.getRespuesta())
         );
 

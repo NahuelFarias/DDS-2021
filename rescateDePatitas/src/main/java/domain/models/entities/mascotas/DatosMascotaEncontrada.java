@@ -1,13 +1,21 @@
 package domain.models.entities.mascotas;
 
+import domain.models.entities.Persistente;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class DatosMascotaPerdida {
+@Entity
+@Table(name = "datos_mascota_perdida")
+public class DatosMascotaEncontrada extends Persistente {
+    @OneToMany(mappedBy = "datosMascotaEncontrada", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Foto> fotos;
+    @Column(name = "descripcion")
     private String descripcion;
+    @OneToOne
     private Lugar lugar;
 
-    public DatosMascotaPerdida(List<Foto> fotos, String descripcion, Lugar lugar) {
+    public DatosMascotaEncontrada(List<Foto> fotos, String descripcion, Lugar lugar) {
         setFotos(fotos);
         setDescripcion(descripcion);
         setLugar(lugar);

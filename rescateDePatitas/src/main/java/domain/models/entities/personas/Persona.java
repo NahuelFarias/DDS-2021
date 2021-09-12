@@ -168,7 +168,7 @@ public class Persona extends Persistente {
         contactos.add(contacto);
     }
 
-    public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista, DatosMascotaPerdida datos) {
+    public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista, DatosMascotaEncontrada datos) {
         if (rolElegido.getTipo().equals("DUENIO")) {
             contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() + " fue encontrada!\n" +
                     "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
@@ -230,7 +230,7 @@ public class Persona extends Persistente {
     }
 
     //Rescatista//
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, DatosMascotaPerdida
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, DatosMascotaEncontrada
             datosMascota) {
         //Con chapita
         if (this.comprobarRol("RESCATISTA")) {
@@ -239,7 +239,7 @@ public class Persona extends Persistente {
         }
     }
 
-    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaPerdida datos) {
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaEncontrada datos) {
         if (this.comprobarRol("RESCATISTA")) {
             Rescatista rolActual = (Rescatista) rolElegido;
             rolActual.encontreUnaMascotaPerdidaSinChapita(this, datos);
@@ -260,7 +260,7 @@ public class Persona extends Persistente {
         }
     }
 
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaSobrePregunta> respuestasOrganizacion, List<RespuestaSobrePregunta> respuestasGenerales1) {
+    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaConcreta> respuestasOrganizacion, List<RespuestaConcreta> respuestasGenerales1) {
         if (this.comprobarRol("DUENIO")) {
             Duenio rolActual = (Duenio) rolElegido;
             rolActual.darEnAdopcion(mascota, organizacion, respuestasOrganizacion, respuestasGenerales1);
@@ -301,9 +301,9 @@ public class Persona extends Persistente {
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
     }
 
-    public void intencionDeAdoptar(Cuestionario cuestionarioPreferenciasYComodidades) {
+    public void intencionDeAdoptar(CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades) {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
-        gestor.generarPublicacionIntencionAdoptar(this, cuestionarioPreferenciasYComodidades);
+        gestor.generarPublicacionIntencionAdoptar(this, cuestionarioContestadoPreferenciasYComodidades);
 
     }
 

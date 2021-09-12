@@ -1,7 +1,6 @@
 package domain.duenio;
 
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
@@ -10,6 +9,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
@@ -73,10 +73,10 @@ public class PerdiMiMascota {
         //Termino de cargar caracteristicas al repositorio
 
         //Registro de 1 mascota
-        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+        List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
 
-        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(), "Si");
-        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(), "Negro");
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(), "Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(), "Negro");
 
         //Armo la lista de caracteristicas para agregar a la mascota
         caracteristicasConRtas = new ArrayList<CaracteristicaConRta>();

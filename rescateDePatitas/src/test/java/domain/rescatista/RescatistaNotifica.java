@@ -7,6 +7,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class RescatistaNotifica {
     CaracteristicaConRta caracteristicaConRta1;
     CaracteristicaConRta caracteristicaConRta2;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas;
-    List<Caracteristica> caracteristicas;
+    List<Pregunta> caracteristicas;
     ArrayList<String> rtas, rtas2;
 
     Contacto contacto1,contacto2,contacto3;
@@ -71,8 +72,8 @@ public class RescatistaNotifica {
 
         caracteristicas = controller.getRepositorio().caracteristicas;
 
-        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
-        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Negro");
 
         caracteristicasConRtas = new ArrayList<>();
         caracteristicasConRtas.add(caracteristicaConRta1);
@@ -112,7 +113,7 @@ public class RescatistaNotifica {
     @Test
     public void elRescatistaEncuentraUnaMascotaConQR() {
         Mascota mascotaPerdida = personaDuenio.getMascotas().get(0);
-        DatosMascotaPerdida datosMascota = new DatosMascotaPerdida(fotos,"En una plaza toda sucia",new Lugar(-34.6692966,-58.4766928));
+        DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada(fotos,"En una plaza toda sucia",new Lugar(-34.6692966,-58.4766928));
 
         personaRescatista.encontreUnaMascotaPerdida(mascotaPerdida, personaRescatista.getContactos().get(0),datosMascota);
 

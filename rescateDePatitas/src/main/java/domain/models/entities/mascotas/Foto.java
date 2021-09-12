@@ -1,19 +1,22 @@
 package domain.models.entities.mascotas;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import services.EditorDeFotos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "foto")
 public class Foto extends Persistente {
     @ManyToOne
     private Mascota mascota;
+    @ManyToOne
+    private DatosMascotaEncontrada datosMascotaEncontrada;
+    @ManyToOne
+    private PublicacionMascotaEncontrada publicacionMascotaEncontrada;
     // Atributos
     @Column(name = "urlFoto")
     private String URLfoto;

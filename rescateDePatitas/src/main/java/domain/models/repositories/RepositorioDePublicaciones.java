@@ -31,9 +31,9 @@ public class RepositorioDePublicaciones extends RepositorioGenerico{
         //TODO
     }
 
-    public PublicacionGenerica buscar(String id){
+    /*public PublicacionGenerica buscar(String id){
         //TODO caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
         PublicacionGenerica publicacion = new PublicacionGenerica();
         return publicacion;
-    }
+    }*/
 }

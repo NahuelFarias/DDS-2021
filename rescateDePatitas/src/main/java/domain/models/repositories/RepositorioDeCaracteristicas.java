@@ -1,13 +1,14 @@
 package domain.models.repositories;
 
-import domain.models.entities.mascotas.Caracteristica;
+import domain.models.entities.publicaciones.Pregunta;
+import org.hibernate.jpa.spi.ParameterRegistration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioDeCaracteristicas {
     private static RepositorioDeCaracteristicas instancia;
-    public List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
+    public List<Pregunta> caracteristicas = new ArrayList<Pregunta>();
 
     public static RepositorioDeCaracteristicas getInstancia() {
         if (instancia == null) {
@@ -16,22 +17,22 @@ public class RepositorioDeCaracteristicas {
         return instancia;
     }
 
-    public void agregar(Caracteristica caracteristica){
+    public void agregar(Pregunta caracteristica){
         this.caracteristicas.add(caracteristica);
     }
 
-    public List<Caracteristica> buscarTodos(){
+    public List<Pregunta> buscarTodos(){
         return caracteristicas;
 
     }
 
-    public void eliminar(Caracteristica caracteristica){
+    public void eliminar(Pregunta caracteristica){
         //TODO
     }
 
-    public Caracteristica buscar(String descripcion){
+    public Pregunta buscar(String descripcion){
         //TODO caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
-        Caracteristica caracteristica = new Caracteristica();
+        Pregunta caracteristica = new Pregunta();
         return caracteristica;
     }
 }

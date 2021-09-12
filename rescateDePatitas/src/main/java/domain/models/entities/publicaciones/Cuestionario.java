@@ -1,31 +1,21 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.Persistente;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class Cuestionario {
+@Entity
+@Table(name = "cuestionario")
+public class Cuestionario extends Persistente {
+    @OneToMany(mappedBy = "cuestionario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Pregunta> preguntas;
-    private List<RespuestaSobrePregunta> respuestas;
-    private String tipo;
 
-    public Cuestionario(String tipo){
-        this.tipo=tipo;
-    }
     public void setPreguntas(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
-    public void setRespuestas(List<RespuestaSobrePregunta> respuestas) {
-        this.respuestas = respuestas;
-    }
-
-    public void agregarRespuestas(List<RespuestaSobrePregunta> listaRespuestas ){
-        respuestas.addAll(listaRespuestas);
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public List<RespuestaSobrePregunta> getRespuestas() {
-        return respuestas;
+    public List<Pregunta> getPreguntas() {
+        return preguntas;
     }
 }

@@ -31,7 +31,7 @@ public class EncontreSinChapita {
     GestorDePublicaciones gestor;
     Lugar lugar;
     String descripcion;
-    DatosMascotaPerdida datosMascota;
+    DatosMascotaEncontrada datosMascota;
     Organizacion org1,org2,org3,org4,org5,orgMasCercana;
     List<Organizacion> organizaciones;
 
@@ -58,7 +58,7 @@ public class EncontreSinChapita {
         lugar = new Lugar(-34.6692966,-58.4766928);
         descripcion = "La encontre el dia 7/7 en buen estado.";
 
-        datosMascota = new DatosMascotaPerdida(fotos,descripcion,lugar);
+        datosMascota = new DatosMascotaEncontrada(fotos,descripcion,lugar);
 
         organizaciones = new ArrayList<>();
 

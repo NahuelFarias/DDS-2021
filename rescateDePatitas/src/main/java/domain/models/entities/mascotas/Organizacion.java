@@ -3,7 +3,9 @@ package domain.models.entities.mascotas;
 import domain.models.entities.Persistente;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.Pregunta;
+import domain.models.entities.publicaciones.PublicacionEnAdopcion;
 import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.Voluntario;
 
 import javax.persistence.*;
@@ -13,13 +15,18 @@ import java.util.List;
 @Entity
 @Table(name = "organizacion")
 public class Organizacion extends Persistente {
+    @OneToMany(mappedBy = "organizacion", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<PublicacionEnAdopcion> publicacionEnAdopcion;
+    @OneToMany(mappedBy = "organizacion", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<PublicacionMascotaEncontrada> publicacionMascotaEncontradas;
+    // Atributos
     @Column(name = "nombre")
     private String nombre;
     @Transient
     private List<Persona> voluntarios = new ArrayList<>();
     @Transient
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
-    @Transient
+    @OneToMany(mappedBy = "organizacion", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Pregunta> preguntas;
     @OneToOne
     private Lugar ubicacion;

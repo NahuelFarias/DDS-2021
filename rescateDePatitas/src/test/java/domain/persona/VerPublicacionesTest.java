@@ -20,9 +20,9 @@ public class VerPublicacionesTest {
     Persona persona, adoptante;
     Contacto contacto;
     List<Contacto> contactos;
-    List<RespuestaSobrePregunta> respuestasOrganizacion;
-    Cuestionario cuestionarioAdopcion;
-    List<RespuestaSobrePregunta> respuestasGenerales;
+    List<RespuestaConcreta> respuestasOrganizacion;
+    CuestionarioContestado cuestionarioContestadoAdopcion;
+    List<RespuestaConcreta> respuestasGenerales;
     Organizacion organizacion;
     Mascota.MascotaDTO mascotaDTO;
     List<CaracteristicaConRta> caracteristicasconRtas;
@@ -50,7 +50,7 @@ public class VerPublicacionesTest {
         mascotaDadaEnAdopcion = persona.getMascotas().get(0);
         organizacion = new Organizacion();
         respuestasOrganizacion = new ArrayList<>();
-        cuestionarioAdopcion = new Cuestionario("Adopcion");
+        cuestionarioContestadoAdopcion = new CuestionarioContestado();
         respuestasGenerales = new ArrayList<>();
 
         persona.darEnAdopcion(mascotaDadaEnAdopcion, organizacion, respuestasOrganizacion, respuestasGenerales);

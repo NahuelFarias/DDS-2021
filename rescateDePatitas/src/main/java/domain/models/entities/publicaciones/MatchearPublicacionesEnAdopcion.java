@@ -2,17 +2,11 @@ package domain.models.entities.publicaciones;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.stream.JsonReader;
 import domain.models.entities.personas.Persona;
-import domain.models.repositories.RepositorioDePersonas;
 import org.quartz.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MatchearPublicacionesEnAdopcion implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -51,7 +45,7 @@ public class MatchearPublicacionesEnAdopcion implements Job {
 
     //Compara si para cada pregunta en el cuestionario1, existe una pregunta igual con respuesta igual
     public boolean compararpublicacion(ArrayList<String> preguntas, ArrayList<String> respuestas, PublicacionEnAdopcion publicacionEnAdopcion) {
-        Cuestionario cuestionario2 = publicacionEnAdopcion.getCuestionario();
+        CuestionarioContestado cuestionarioContestado2 = publicacionEnAdopcion.getCuestionario();
 //        boolean answer = cuestionario1.getRespuestas().stream().allMatch(respuestaSobrePregunta -> {
 //            Optional<RespuestaSobrePregunta> match = cuestionario2.getRespuestas().stream()
 //                    .filter(respuesta -> respuesta.getPregunta() == respuestaSobrePregunta.getPregunta())
@@ -61,10 +55,10 @@ public class MatchearPublicacionesEnAdopcion implements Job {
 //        return true;
 //        });
         boolean answer = true;
-        if (cuestionario2.getRespuestas().isEmpty()) {return false;}
+        if (cuestionarioContestado2.getRespuestas().isEmpty()) {return false;}
         for(int i = 0; i < preguntas.size(); i++) {
             int index = i;
-            if(!cuestionario2.getRespuestas().stream().anyMatch(respuestaSobrePregunta ->
+            if(!cuestionarioContestado2.getRespuestas().stream().anyMatch(respuestaSobrePregunta ->
                     respuestaSobrePregunta.getPregunta().getPregunta() == preguntas.get(index) &&
                     respuestaSobrePregunta.getRespuesta() == respuestas.get(index))){
                 answer = false;

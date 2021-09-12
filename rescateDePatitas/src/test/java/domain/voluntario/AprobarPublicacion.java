@@ -2,7 +2,9 @@ package domain.voluntario;
 
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
+import domain.models.entities.publicaciones.PublicacionEnAdopcion;
 import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.models.entities.rol.Voluntario;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,9 +23,9 @@ public class AprobarPublicacion {
     public void Instanciar(){
         persona = new Persona();
         veteCan = new Organizacion();
-        publicacion = new PublicacionGenerica();
-        publicacion2 = new PublicacionGenerica();
-        publicacion3 = new PublicacionGenerica();
+        publicacion = new PublicacionEnAdopcion();
+        publicacion2 = new PublicacionIntencionAdopcion();
+        publicacion3 = new PublicacionEnAdopcion();
         voluntario = new Voluntario();
         persona.setRol(voluntario);
 

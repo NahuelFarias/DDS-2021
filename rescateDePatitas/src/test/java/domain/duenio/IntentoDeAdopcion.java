@@ -27,16 +27,16 @@ public class IntentoDeAdopcion {
     GestorDePublicaciones gestor;
     Organizacion org1,org2,org3,org4;
     List<Organizacion> organizaciones;
-    RespuestaSobrePregunta rt1, rt2;
-    List<RespuestaSobrePregunta> respuestas;
+    RespuestaConcreta rt1, rt2;
+    List<RespuestaConcreta> respuestas;
 
     Pregunta preguntaTieneGatos;
     Pregunta preguntaTienePatio;
     PublicacionIntencionAdopcion publicacion;
-    Cuestionario cuestionarioPreferenciasYComodidades;
-    List<RespuestaSobrePregunta> respuestasCuestionarioPreferenciasYComodidades;
+    CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades;
+    List<RespuestaConcreta> respuestasCuestionarioPreferenciasYComodidades;
     List<Pregunta> preguntasCuestionarioPreferenciasYComodidades;
-    RespuestaSobrePregunta r1,r2,r3,r4;
+    RespuestaConcreta r1,r2,r3,r4;
     Pregunta preg1,preg2,preg3,preg4;
 
 
@@ -90,11 +90,11 @@ public class IntentoDeAdopcion {
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
 
         respuestas = new ArrayList<>();
-        rt1 = new RespuestaSobrePregunta();
+        rt1 = new RespuestaConcreta();
         rt1.setPregunta(preguntaTieneGatos);
         rt1.setRespuesta("Si");
 
-        rt2 = new RespuestaSobrePregunta();
+        rt2 = new RespuestaConcreta();
         rt2.setPregunta(preguntaTienePatio);
         rt2.setRespuesta("No");
 
@@ -102,14 +102,14 @@ public class IntentoDeAdopcion {
         respuestas.add(rt2);
 
         //Cuestionario PreferenciasYComodidades
-        cuestionarioPreferenciasYComodidades = new Cuestionario("preferencias y comodidades");
+        cuestionarioContestadoPreferenciasYComodidades = new CuestionarioContestado();
         preg1 = new Pregunta();
         preg2 = new Pregunta();
         preg1.setPregunta("Tamaño");
         preg2.setPregunta("Edad");
 
-        r1 = new RespuestaSobrePregunta();
-        r2 = new RespuestaSobrePregunta();
+        r1 = new RespuestaConcreta();
+        r2 = new RespuestaConcreta();
         r1.setPregunta(preg1);
         r1.setRespuesta("Grande");
         r2.setPregunta(preg2);
@@ -128,8 +128,8 @@ public class IntentoDeAdopcion {
         preg3.setPregunta("¿Tiene Patio?");
         preg4.setPregunta("¿Tiene un canil cerca?");
 
-        r3 = new RespuestaSobrePregunta();
-        r4 = new RespuestaSobrePregunta();
+        r3 = new RespuestaConcreta();
+        r4 = new RespuestaConcreta();
         r3.setPregunta(preg3);
         r3.setRespuesta("Si");
         r4.setPregunta(preg4);
@@ -141,12 +141,12 @@ public class IntentoDeAdopcion {
         respuestasCuestionarioPreferenciasYComodidades.add(r3);
         respuestasCuestionarioPreferenciasYComodidades.add(r4);
 
-        cuestionarioPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
+        cuestionarioContestadoPreferenciasYComodidades.setRespuestas(respuestasCuestionarioPreferenciasYComodidades);
     }
     @Test
     public void personaGeneraPublicacionParaAdoptar(){
 
-        persona.intencionDeAdoptar(cuestionarioPreferenciasYComodidades);
+        persona.intencionDeAdoptar(cuestionarioContestadoPreferenciasYComodidades);
         gestor = GestorDePublicaciones.getInstancia();
 
         Assert.assertEquals("Intencion de adoptar una mascota",gestor.getPublicaciones().get(0).getTipoPublicacion());

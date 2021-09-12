@@ -1,15 +1,27 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 
-public class PublicacionGenerica {
-    private Date fecha;
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class PublicacionGenerica {
+    @Id
+    // TODO Preguntar porque si sacamos esta strategy rompe todo
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private int id;
+    @Column(name = "fecha", columnDefinition = "DATE")
+    private LocalDate fecha;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Enumerated(EnumType.STRING)
     private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
+    @Column(name = "tipoPublicacion")
     private String tipoPublicacion;
 
     public EstadoDePublicacion getEstadoDePublicacion() {
@@ -30,11 +42,11 @@ public class PublicacionGenerica {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

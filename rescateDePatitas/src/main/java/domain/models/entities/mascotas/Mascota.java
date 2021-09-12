@@ -4,7 +4,6 @@ import com.google.zxing.WriterException;
 import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
-import domain.models.entities.rol.Rol;
 import services.Configuracion;
 import services.GeneradorQR;
 import domain.models.entities.Persistente;
@@ -44,7 +43,7 @@ public class Mascota extends Persistente {
     private List<CaracteristicaConRta> caracteristicas;
     @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
-    @ManyToOne // TODO No es la persona en si, sino el rol?
+    @ManyToOne
     private Persona persona;
 
     public Mascota(Persona persona) {
@@ -144,7 +143,7 @@ public class Mascota extends Persistente {
         gestor.generarPublicacionMascotaPerdida(this);
     }
 
-    public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaPerdida datos) {
+    public void avisarQueMeEcontraron(Contacto contacto, DatosMascotaEncontrada datos) {
         this.persona.notificarContactos(this, contacto, datos);
     }
 

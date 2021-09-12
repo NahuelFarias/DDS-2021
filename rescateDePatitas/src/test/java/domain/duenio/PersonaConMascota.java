@@ -1,7 +1,6 @@
 package domain.duenio;
 
 import domain.controllers.CaracteristicasController;
-import domain.models.entities.mascotas.Caracteristica;
 import domain.models.entities.mascotas.CaracteristicaConRta;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
@@ -9,6 +8,7 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDeCaracteristicas;
@@ -81,10 +81,10 @@ public class PersonaConMascota {
 
         //Registro de 1 mascota
 
-        List<Caracteristica> caracteristicas = controller.getRepositorio().caracteristicas;
+        List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
 
-        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"Si");
-        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Negro");
+        caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"Si");
+        caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Negro");
 
         //Armo la lista de caracteristicas para agregar a la mascota
         caracteristicasConRtas = new ArrayList<>();
@@ -126,8 +126,8 @@ public class PersonaConMascota {
         //Registro de mascota 2
 
         //Agrego las caracteristicas con su respuesta elegida para registrar la mascota
-        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getDescripcion(),"No");
-        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getDescripcion(),"Marron");
+        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"No");
+        caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Marron");
 
         caracteristicasConRtas2 = new ArrayList<>();
         caracteristicasConRtas2.add(caracteristicaConRta3);
