@@ -87,8 +87,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
-                            <a href="#" class="dropdown-item">Dar en adopcion </a>
+                            <a href="adopcion.html" class="dropdown-item">Adoptar</a>
+                            <a href="dar_adopcion.html" class="dropdown-item active">Dar en adopcion </a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -102,7 +102,7 @@
                         <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item active">Iniciar sesion</a>
+                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -111,61 +111,96 @@
     </nav>
     <!--Nav Bar End -->
 
-    <div class="container-fluid top">
-        <div class="py-5 text-center">
+    <!-- Datos de registro-->
+    <div class="register">
+        <div class="container">
+            <div class="py-5 text-center">
+                <br> <br>
+                <h2 class="wavyy">Mascota encontrada</h2>
+                <p class="lead">Último paso: elegí una asociación y contestá sus preguntas</p>
 
-            <!-- Service Start -->
-            <div class="service">
-                <div class="container">
-                    <div class="section-header text-center wow zoomIn">
-                        <p>Elegí tu rol para</p>
-                        <h2>INGRESAR</h2>
-                    </div>
-                    <div class="row justify-content-center">
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <h4 class="mb-3 wavyp">Asociaciones:</h4>
 
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="rol-item">
-                                <a href="index_log.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-dog"></i>
+                            <p>Seleccioná la asociación en el mapa:</p>
+                            <div class="row g-3">
+                                <div class="map">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
+                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                        loading="lazy"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Datos de la asociación elegida"></textarea>
+                            </div>
+                            <hr class="my-4">
+
+                            <h4 class="mb-3 wavyp">Preguntas de la asociación:</h4>
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Está castrada
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Es muy activa
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Necesita medicación/cuidado especial
+                                        </label>
                                     </div>
 
-                                    <h3>Dueño</h3>
-                                    <p>Agregá, modificá o eliminá tus mascotas ingresadas</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="rol-item">
-                                <a href="#">
-                                    <div class="service-icon">
-                                        <i class="fab fa-gratipay"></i>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede estar sola sin problemas
+                                        </label>
                                     </div>
-                                    <h3>Rescatista</h3>
-                                    <p>Publicá y controlá las mascotas que encontraste</p>
-                                </a>
-                            </div>
-                        </div>
+                                </div>
 
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="rol-item">
-                                <a href="index_log_voluntario.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-hands-helping"></i>
-                                    </div>
-
-                                    <h3>Ayudar</h3>
-                                    <p>Postulate para ser voluntario de una organizacion</p>
-                                </a>
                             </div>
+
                         </div>
+                        <div class="col-sm-12">
+                            <label for="">Pregunta con respuesta texto:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Respuesta"></textarea>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <a class="btn-grande text-uppercase fw-bold mb-2" href="publicacion_enviada.html"
+                                type="submit">Dar en adopción</a>
+                        </div>
+                </div>
+                </form>
+                <!--------------------------------------------Foto derecha--------------------------------------------->
+                <div class="col-lg-3">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
                     </div>
                 </div>
             </div>
-            <!-- Service End -->
         </div>
     </div>
+    <!-- Datos de registro-->
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">

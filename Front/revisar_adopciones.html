@@ -60,35 +60,32 @@
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->
-    <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
+    <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="index_log_voluntario.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link">Inicio</a>
+                    <a href="index_log.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
-                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="revisar_perdidas.html" class="dropdown-item active">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="revisar_encontradas.html" class="dropdown-item">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
-                            <a href="#" class="dropdown-item">Dar en adopcion </a>
+                            <a href="revisar_adopciones.html" class="dropdown-item">Revisar publicaciones</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -99,73 +96,142 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
+                                class="fas fa-user-alt"></i> </a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item active">Iniciar sesion</a>
+                            <a href="#" class="dropdown-item">Mi cuenta</a>
+                            <a href="mis_mascotas.html" class="dropdown-item">Mi asociación</a>
+                            <a href="cambiar_rol.html" class="dropdown-item active">Cambiar rol</a>
+                            <a href="index.html" class="dropdown-item">Cerrar sesion</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-    <!--Nav Bar End -->
-
-    <div class="container-fluid top">
-        <div class="py-5 text-center">
-
-            <!-- Service Start -->
-            <div class="service">
-                <div class="container">
-                    <div class="section-header text-center wow zoomIn">
-                        <p>Elegí tu rol para</p>
-                        <h2>INGRESAR</h2>
-                    </div>
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="rol-item">
-                                <a href="index_log.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-dog"></i>
-                                    </div>
-
-                                    <h3>Dueño</h3>
-                                    <p>Agregá, modificá o eliminá tus mascotas ingresadas</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="rol-item">
-                                <a href="#">
-                                    <div class="service-icon">
-                                        <i class="fab fa-gratipay"></i>
-                                    </div>
-                                    <h3>Rescatista</h3>
-                                    <p>Publicá y controlá las mascotas que encontraste</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="rol-item">
-                                <a href="index_log_voluntario.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-hands-helping"></i>
-                                    </div>
-
-                                    <h3>Ayudar</h3>
-                                    <p>Postulate para ser voluntario de una organizacion</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service End -->
         </div>
     </div>
+    <!--Nav Bar End -->
+
+
+    <!-- Blog Start -->
+    <div class="blog top">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <p>Pendientes de aprobación</p>
+                <h2>Adopciones</h2>
+            </div>
+            
+            <div class="row blog-page">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/perro1.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="revisar_encontradas_publi.html">Revisar <i
+                                    class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/gato.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="">Revisar <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/perro2.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="">Revisar <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/gato3.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="">Revisar <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/perro3.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="">Revisar <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="img/gato4.jpg" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Lorem ipsum dolor</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur facili ornare velit non vulpte
+                                liqum metus tortor
+                            </p>
+                            <a class="btn-mis" href="">Revisar <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class=" text-right">
+                <a class="btn-grande" href="adopcion_suscripcion_log.html">No encontré lo que buscaba <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Portfolio End -->
+
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">

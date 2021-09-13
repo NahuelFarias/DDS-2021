@@ -60,112 +60,194 @@
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->
-    <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
+    <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="index_log_rescatista.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link">Inicio</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
-                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="perdidas_log.html" class="dropdown-item">Ver mascotas perdidas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré sin QR</a>
+                            <a href="registro_encontrada_qr_log.html" class="dropdown-item active">Encontré con QR</a>
+                            <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
-                            <a href="#" class="dropdown-item">Dar en adopcion </a>
+                            <a href="adopcion_log.html" class="dropdown-item">Adoptar</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="index_log_rescatista.html#nosotros" class="dropdown-item">Conocenos</a>
                             <a href="#contacto" class="dropdown-item">Contacto</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Sole G. <i
+                                class="fas fa-user-alt"></i> </a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item active">Iniciar sesion</a>
+                            <a href="#" class="dropdown-item">Mi cuenta</a>
+                            <a href="cambiar_rol.html" class="dropdown-item">Cambiar rol</a>
+                            <a href="index.html" class="dropdown-item">Cerrar sesion</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-    <!--Nav Bar End -->
-
-    <div class="container-fluid top">
-        <div class="py-5 text-center">
-
-            <!-- Service Start -->
-            <div class="service">
-                <div class="container">
-                    <div class="section-header text-center wow zoomIn">
-                        <p>Elegí tu rol para</p>
-                        <h2>INGRESAR</h2>
-                    </div>
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="rol-item">
-                                <a href="index_log.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-dog"></i>
-                                    </div>
-
-                                    <h3>Dueño</h3>
-                                    <p>Agregá, modificá o eliminá tus mascotas ingresadas</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="rol-item">
-                                <a href="#">
-                                    <div class="service-icon">
-                                        <i class="fab fa-gratipay"></i>
-                                    </div>
-                                    <h3>Rescatista</h3>
-                                    <p>Publicá y controlá las mascotas que encontraste</p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="rol-item">
-                                <a href="index_log_voluntario.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-hands-helping"></i>
-                                    </div>
-
-                                    <h3>Ayudar</h3>
-                                    <p>Postulate para ser voluntario de una organizacion</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service End -->
         </div>
     </div>
+    <!--Nav Bar End -->
+
+    <!-- Datos de registro-->
+    <div class="register">
+        <div class="container">
+            <div class="py-5 text-center">
+                <br> <br>
+                <h2>¡Encontraste una mascota y conocemos a su dueño!</h2>
+                <p class="lead">Llená este formulario para que pueda contactarse con vos</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="row g-3">
+                                <h4 class="text-center">Escaneá el código QR de la chapita </h4>
+                                <div class="text-center">
+                                    <i class="fas fa-7x fa-qrcode"></i>
+                                </div>
+
+                            </div>
+                            <!-------------------Datos de la mascota----------------->
+                            <hr class="my-4">
+                            <h4 class="mb-3">Sobre la mascota</h4>
+
+                            <div class="col-sm-3">
+                                <label for="lastName" class="form-label">Especie</label>
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Gato</option>
+                                    <option>Perro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Especie.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="lastName" class="form-label">Sexo</label>
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Hembra</option>
+                                    <option>Macho</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Sexo.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <label for="email" class="form-label">Descripción</label>
+                                <input type="email" class="form-control" id="email"
+                                    placeholder="Describí en qué estado la encontraste">
+                                <div class="invalid-feedback">
+                                    Ingresá una descripción.
+                                </div>
+
+                            </div>
+                            <hr class="my-4">
+                            <h4 class="mb-3">Fotos de la mascota</h4>
+                            <div class="row g-3">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">Subí una o varias fotos</label>
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 text-right">
+                                    <a class="btn-mis" type="submit">+ Otra foto</a>
+                                </div>
+
+                            </div>
+                            <hr class="my-4">
+
+                            <h4 class="mb-3">¿Dónde la encontraste?</h4>
+                            <p>Seleccioná la ubicación en el mapa:</p>
+                            <div class="row g-3">
+                                <div class="map">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
+                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                        loading="lazy"></iframe>
+                                </div>
+                            </div>
+
+
+
+                            <hr class="my-4">
+                            <h4 class="mb-3">Hogar de tránsito</h4>
+                            <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
+                                tránsito.</p>
+                                <p>Seleccioná un radio de cercanía</p>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
+                            <div class="col-sm-3">
+                                <select class="form-select" id="state" required>
+                                    <option value="">...</option>
+                                    <option>Hasta 5km</option>
+                                    <option>Hasta 10km</option>
+                                    <option>Todos</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <label for="email" class="form-label">Info de hogares:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Nombre hogar                    Direccion                      Telefono          "
+                                    readonly></textarea>
+                            </div>
+
+                            <hr class="my-4">
+                            <div class="container">
+                                <div class=" text-center form-check">
+                                    <input type="checkbox" class="form-check-input" id="save-info">
+                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de
+                                        contacto al dueño</label>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <a class="btn-grande" type="submit" href="registro_encontrada_qr_ok.html"
+                                    style="color: #fff;">Reportar al dueño</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--------------------------------------------Foto derecha--------------------------------------------->
+                <div class="col-lg-3">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <!-- Datos de registro-->
+
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
@@ -285,6 +367,9 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="js/html5-qrcode.min.js"></script>
+    <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
+    <script src="js/html5-qrcode-demo.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
