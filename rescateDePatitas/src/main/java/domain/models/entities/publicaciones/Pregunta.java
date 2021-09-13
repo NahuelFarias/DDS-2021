@@ -21,6 +21,7 @@ public class Pregunta extends Persistente {
     @Column(name = "pregunta")
     private String pregunta;
     @ElementCollection
+    //Se genera la tabla pregunta_respuestas
     private List<String> respuestas;
     @Column(name = "tipoDePregunta")
     private String tipoDePregunta;

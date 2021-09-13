@@ -102,7 +102,6 @@ public class EncontreSinChapita {
         gestor = GestorDePublicaciones.getInstancia();
 
         System.out.println("Fecha de publicacion:"+gestor.getPublicaciones().get(0).getFecha());
-        System.out.println("Descripcion: "+ gestor.getPublicaciones().get(0).getDescripcion());
         System.out.println("Asociacion asignada: "+ gestor.getPublicaciones().get(0).getOrganizacion().getNombre());
         assertEquals(gestor.getPublicaciones().size(),3);
     }

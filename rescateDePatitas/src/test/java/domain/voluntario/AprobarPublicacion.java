@@ -29,9 +29,6 @@ public class AprobarPublicacion {
         voluntario = new Voluntario();
         persona.setRol(voluntario);
 
-        publicacion.setDescripcion("mascota1");
-        publicacion2.setDescripcion("mascota2");
-        publicacion3.setDescripcion("mascota3");
     }
 
     @Test
