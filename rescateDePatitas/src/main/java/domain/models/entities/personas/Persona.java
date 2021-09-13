@@ -268,7 +268,8 @@ public class Persona extends Persistente {
 
     }
 
-    // TODO: Para que se usa esta funcion?
+    //TODO Ver como la aplicamos, es para cuando una persona no tiene un usuario
+    // pero necesitamos encontrarla en la base de datos o repositorio
     public String hasheoPersona() {
 
         String cadena = String.valueOf(this.fechaDeNacimiento) + String.valueOf(this.nroDoc);
@@ -278,22 +279,6 @@ public class Persona extends Persistente {
         return md5;
     }
 
-    // TODO: Para que se usa esta funcion?
-    /* public void login(String nombre, String apellido,String direccion,TipoDeDocumento tipoDoc,
-                            Integer nroDoc,LocalDate fechaDeNacimiento,List<Contacto> contactos,String nombreDeUsuario,String pwd){
-
-        Persona persona = new Persona();
-        this.inicializar(nombre, apellido,direccion,tipoDoc,nroDoc,fechaDeNacimiento,contactos);
-
-        if(this.rol.tieneUsuario(persona)) {
-            System.out.println("Usted ya tiene un usuario");
-        }
-        else{
-            persona.setUsuario(usuario);
-            Usuario usuario = new Usuario(nombreDeUsuario,pwd);
-            this.repositorioDeUsuarios.aniadir(usuario);
-        }
-    }*/
 
     public void notificarPosibleAdopcion(Mascota mascota, Persona adoptante) {
         contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() + "!\n" +

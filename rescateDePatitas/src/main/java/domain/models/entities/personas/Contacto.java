@@ -1,5 +1,6 @@
 package domain.models.entities.personas;
 
+import com.sun.istack.internal.NotNull;
 import domain.models.entities.Persistente;
 import domain.models.entities.notificaciones.MetodoDeEnvio;
 import domain.models.entities.notificaciones.estrategias.Estrategia;

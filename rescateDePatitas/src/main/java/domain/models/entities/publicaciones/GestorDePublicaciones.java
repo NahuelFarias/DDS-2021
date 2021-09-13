@@ -80,9 +80,7 @@ public class GestorDePublicaciones {
     public void generarPublicacionMascotaEncontrada(Persona rescatista, DatosMascotaEncontrada datosMascota) {
         PublicacionMascotaEncontrada publicacion = new PublicacionMascotaEncontrada();
         publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-        publicacion.setDescripcion(datosMascota.getDescripcion());
-        publicacion.setFotos(datosMascota.getFotos());
-        publicacion.setLugar(datosMascota.getLugar());
+        publicacion.setDatosMascotaEncontrada(datosMascota);
         publicacion.setFecha(LocalDate.now());
         publicacion.setRescatista(rescatista);
         Organizacion organizacion = this.buscarOrganizacionMasCercana(datosMascota.getLugar());
@@ -109,11 +107,6 @@ public class GestorDePublicaciones {
         publicacion.inicializarScheduler();
 
         publicaciones.add(publicacion);
-
-    }
-
-    public void generarRecomendacionesSemanales() {
-        //TODO
 
     }
 
