@@ -43,4 +43,6 @@ public class Foto extends Persistente {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
+
+    //TODO Agregar setter y getters para atributos
 }
