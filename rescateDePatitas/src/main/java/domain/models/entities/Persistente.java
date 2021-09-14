@@ -1,7 +1,17 @@
 package domain.models.entities;
 
-public class Persistente {
-    private Integer id;
 
-    public Integer getId() {return id;}
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class Persistente {
+        @Id
+        @GeneratedValue
+        private int id;
+
+        public int getId () {
+        return id;
+        }
 }

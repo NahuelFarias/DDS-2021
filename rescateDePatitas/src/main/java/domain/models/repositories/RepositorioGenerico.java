@@ -1,6 +1,7 @@
 package domain.models.repositories;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,13 @@ public class RepositorioGenerico <T extends Persistente> {
         return this.coleccionDeElementos;
     }
 
-    public Optional<T> buscar(Integer id){
+    /*public Optional<T> buscar(Integer id){
         //SELECT
         return this.coleccionDeElementos
                 .stream()
                 .filter(e -> e.getId().equals(id))
                         .findFirst();
-    }
+    }*/
 
     public void agregar(T elemento){
         //INSERT

@@ -1,19 +1,25 @@
 package domain.models.entities.rol;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.Persistente;
 import domain.models.entities.personas.Persona;
 
-import java.util.List;
+import javax.persistence.*;
 
-public interface Rol {
+@Entity
+@Table
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Rol extends Persistente {
+    @Column(name = "tipoDeRol")
+    private String tipo;
+    @ManyToOne
+    private Persona persona;
 
-    void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero,List<CaracteristicaConRta> caracteristicas, Persona persona);
+    public Rol(String rescatista) {
+        this.tipo = rescatista;
+    }
 
-
-    void aprobarPublicacion(Publicacion unaPublicacion);
-
-    List<Mascota> getMascotas();
+    public String getTipo() {
+        return this.tipo;
+    }
 
 }

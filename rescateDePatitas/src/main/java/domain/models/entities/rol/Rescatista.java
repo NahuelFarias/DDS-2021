@@ -1,27 +1,48 @@
 package domain.models.entities.rol;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Publicacion;
+import domain.models.entities.mascotas.*;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+@Entity
+@Table(name = "rescatista")
+public class Rescatista extends Rol {
+    @OneToMany(mappedBy = "rescatista", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<Mascota> mascotasRescatadas = new ArrayList<>();
 
+    public Rescatista(){
+        super("RESCATISTA");
+    }
 
-public class Rescatista implements Rol {
-
-    private final Integer id = 2;
-    private final String nombre = "RESCATISTA";
-
-    @Override
-    public void registrarMascota(String nombre, String apodo, Integer edad, String descripcion, String especie, String genero, List<CaracteristicaConRta> caracteristicas, Persona persona) {
+    public void registrarMascota(Mascota.MascotaDTO mascota, Persona persona) {
 
     }
 
-    @Override
     public List<Mascota> getMascotas() {
-        return null;
+        return mascotasRescatadas;
     }
-    @Override
-    public void aprobarPublicacion(Publicacion unaPublicacion){}
+
+    public void agregarMascota(Mascota.MascotaDTO mascotaDTO){
+        Persona duenio = mascotaDTO.getPersona();
+        Mascota mascota = new Mascota(duenio);
+        mascota.inicializar(mascotaDTO);
+        mascotasRescatadas.add(mascota);
+    }
+
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contacto, DatosMascotaEncontrada datos) {
+        //con chapita
+        mascotaPerdida.avisarQueMeEcontraron(contacto,datos);
+    }
+
+    public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaEncontrada datosMascota) {
+        GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionMascotaEncontrada(rescatista,datosMascota);
+    }
+
+
 }
+
