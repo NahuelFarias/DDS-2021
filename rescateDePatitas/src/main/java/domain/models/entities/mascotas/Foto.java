@@ -21,6 +21,9 @@ public class Foto extends Persistente {
     @Column(name = "fecha", columnDefinition = "DATE")
     private LocalDate fecha;
 
+    public Foto(){
+        this.fecha = LocalDate.now();
+    }
     public Foto editarFoto() {
         EditorDeFotos editor = new EditorDeFotos();
         return editor.ajustarCalidad(this);
@@ -40,5 +43,13 @@ public class Foto extends Persistente {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
+    public void setDatosMascotaEncontrada(DatosMascotaEncontrada datosMascotaEncontrada) {
+        this.datosMascotaEncontrada = datosMascotaEncontrada;
     }
 }

@@ -35,7 +35,7 @@ public class Persona extends Persistente {
     private List<Rol> rolesDisponibles;
     @Transient
     private Rol rolElegido;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 

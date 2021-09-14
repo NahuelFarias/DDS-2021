@@ -12,7 +12,7 @@ public class DatosMascotaEncontrada extends Persistente {
     private List<Foto> fotos;
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Lugar lugar;
 
     public DatosMascotaEncontrada(List<Foto> fotos, String descripcion, Lugar lugar) {

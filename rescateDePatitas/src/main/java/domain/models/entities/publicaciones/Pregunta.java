@@ -12,7 +12,7 @@ import java.util.List;
 public class Pregunta extends Persistente {
     @ManyToOne
     private Organizacion organizacion;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Cuestionario cuestionario;
     // TODO que pasa si lo borramos? -> Hicimos una prueba con Cuestionario Contestado
     @OneToMany(mappedBy = "pregunta", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -27,6 +27,30 @@ public class Pregunta extends Persistente {
     private String tipoDePregunta;
     @Column(name = "visible")
     private Boolean visible;
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
+    }
+
+    public Cuestionario getCuestionario() {
+        return cuestionario;
+    }
+
+    public void setCuestionario(Cuestionario cuestionario) {
+        this.cuestionario = cuestionario;
+    }
+
+    public List<RespuestaConcreta> getRespuestasConcretas() {
+        return respuestasConcretas;
+    }
+
+    public void setRespuestasConcretas(List<RespuestaConcreta> respuestasConcretas) {
+        this.respuestasConcretas = respuestasConcretas;
+    }
 
     public Pregunta() {
         this.respuestas = new ArrayList<String>();

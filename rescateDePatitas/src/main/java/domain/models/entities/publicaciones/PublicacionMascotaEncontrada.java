@@ -13,11 +13,11 @@ import java.util.List;
 @Entity
 @Table(name = "publicacion_mascota_encontrada")
 public class PublicacionMascotaEncontrada extends PublicacionGenerica{
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private DatosMascotaEncontrada datosMascotaEncontrada;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Organizacion organizacion;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Persona rescatista;
 
     public Organizacion getOrganizacion() {

@@ -43,7 +43,7 @@ public class Mascota extends Persistente {
     private List<CaracteristicaConRta> caracteristicas;
     @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
 
     public Mascota(Persona persona) {

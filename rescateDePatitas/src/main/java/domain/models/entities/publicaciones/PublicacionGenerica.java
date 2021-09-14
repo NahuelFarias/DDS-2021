@@ -21,6 +21,9 @@ public abstract class PublicacionGenerica {
     @Column(name = "tipoPublicacion")
     private String tipoPublicacion;
 
+    public PublicacionGenerica(){
+            this.setFecha(LocalDate.now());
+    }
     public EstadoDePublicacion getEstadoDePublicacion() {
         return estadoDePublicacion;
     }

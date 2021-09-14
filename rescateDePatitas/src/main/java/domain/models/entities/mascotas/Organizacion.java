@@ -28,7 +28,7 @@ public class Organizacion extends Persistente {
     private List<PublicacionGenerica> publicaciones = new ArrayList<>();
     @OneToMany(mappedBy = "organizacion", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Pregunta> preguntas;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Lugar ubicacion;
 
 //  getters & setters
