@@ -15,6 +15,8 @@ public class Foto extends Persistente {
     private Mascota mascota;
     @ManyToOne
     private DatosMascotaEncontrada datosMascotaEncontrada;
+    @ManyToOne
+    private PublicacionMascotaEncontrada publicacionMascotaEncontrada;
     // Atributos
     @Column(name = "urlFoto")
     private String URLfoto;
