@@ -46,6 +46,14 @@ public class Mascota extends Persistente {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
 
+    public void setDuenio(Duenio duenio) {
+        this.duenio = duenio;
+    }
+
+    public void setRescatista(Rescatista rescatista) {
+        this.rescatista = rescatista;
+    }
+
     public Mascota(Persona persona) {
         this.caracteristicas = new ArrayList<>();
         this.fotos = new ArrayList<>();
