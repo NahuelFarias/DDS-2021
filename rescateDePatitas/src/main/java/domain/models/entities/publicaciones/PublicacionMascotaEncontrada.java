@@ -1,5 +1,6 @@
 package domain.models.entities.publicaciones;
 
+import domain.models.entities.mascotas.DatosMascotaEncontrada;
 import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Organizacion;
@@ -12,14 +13,11 @@ import java.util.List;
 @Entity
 @Table(name = "publicacion_mascota_encontrada")
 public class PublicacionMascotaEncontrada extends PublicacionGenerica{
-    @OneToMany(mappedBy = "publicacionMascotaEncontrada", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    private List<Foto> fotos;
-    @OneToOne
-    private Lugar lugar;
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    private DatosMascotaEncontrada datosMascotaEncontrada;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Organizacion organizacion;
-    // TODO esto funciona?
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Persona rescatista;
 
     public Organizacion getOrganizacion() {
@@ -30,27 +28,19 @@ public class PublicacionMascotaEncontrada extends PublicacionGenerica{
         this.organizacion = organizacion;
     }
 
-    public void setLugar(Lugar lugar) {
-        this.lugar = lugar;
-    }
-
-    public List<Foto> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(List<Foto> fotos) {
-        this.fotos = fotos;
-    }
-
-    public Lugar getLugar() {
-        return lugar;
-    }
-
     public Persona getRescatista() {
         return rescatista;
     }
 
     public void setRescatista(Persona rescatista) {
         this.rescatista = rescatista;
+    }
+
+    public DatosMascotaEncontrada getDatosMascotaEncontrada() {
+        return datosMascotaEncontrada;
+    }
+
+    public void setDatosMascotaEncontrada(DatosMascotaEncontrada datosMascotaEncontrada) {
+        this.datosMascotaEncontrada = datosMascotaEncontrada;
     }
 }

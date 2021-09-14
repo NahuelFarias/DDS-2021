@@ -187,7 +187,6 @@ public class DarMascotaEnAdopcion {
         GestorDePublicaciones gestor = GestorDePublicaciones.getInstancia();
         Assert.assertEquals("Mascota dada en adopcion",gestor.getPublicaciones().get(0).getTipoPublicacion());
         Assert.assertEquals(persona.getMascotas().get(0),gestor.getPublicaciones().get(0).getMascota());
-        //TODO
     }
 
 

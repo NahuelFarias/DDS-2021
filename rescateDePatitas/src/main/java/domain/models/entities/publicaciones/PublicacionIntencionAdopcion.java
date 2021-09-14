@@ -5,15 +5,13 @@ import com.google.gson.GsonBuilder;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.quartz.*;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
@@ -21,7 +19,7 @@ import static org.quartz.TriggerBuilder.*;
 @Entity
 @Table(name = "publicacion_intencion_adopcion")
 public class PublicacionIntencionAdopcion extends PublicacionGenerica{
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST})
     private CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades;
     @OneToOne
     private Persona adoptante;

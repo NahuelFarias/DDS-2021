@@ -43,8 +43,16 @@ public class Mascota extends Persistente {
     private List<CaracteristicaConRta> caracteristicas;
     @OneToMany(mappedBy = "mascota", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<Foto> fotos;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
+
+    public void setDuenio(Duenio duenio) {
+        this.duenio = duenio;
+    }
+
+    public void setRescatista(Rescatista rescatista) {
+        this.rescatista = rescatista;
+    }
 
     public Mascota(Persona persona) {
         this.caracteristicas = new ArrayList<>();

@@ -86,4 +86,5 @@ public class Usuario extends Persistente {
 
         return(password_verified);
     }
+
 }

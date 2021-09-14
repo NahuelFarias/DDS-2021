@@ -23,6 +23,14 @@ public class CaracteristicaConRta extends Persistente {
         this.respuestaElegida = respuestaElegida;
     }
 
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
+    public void setRespuestaElegida(String respuestaElegida) {
+        this.respuestaElegida = respuestaElegida;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

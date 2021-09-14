@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "datos_mascota_perdida")
+@Table(name = "datos_mascota_encontrada")
 public class DatosMascotaEncontrada extends Persistente {
     @OneToMany(mappedBy = "datosMascotaEncontrada", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Foto> fotos;
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Lugar lugar;
 
     public DatosMascotaEncontrada(List<Foto> fotos, String descripcion, Lugar lugar) {

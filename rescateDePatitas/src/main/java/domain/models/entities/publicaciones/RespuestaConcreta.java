@@ -11,7 +11,7 @@ public class RespuestaConcreta extends Persistente {
     @ManyToOne
     private CuestionarioContestado cuestionarioContestado;
     //Atributos
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Pregunta pregunta;
     @Column(name = "respuesta")
     private String respuesta;

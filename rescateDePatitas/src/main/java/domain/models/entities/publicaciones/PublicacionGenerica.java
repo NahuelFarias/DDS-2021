@@ -1,6 +1,5 @@
 package domain.models.entities.publicaciones;
 
-import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.mascotas.Organizacion;
 import domain.models.entities.personas.Persona;
@@ -17,13 +16,14 @@ public abstract class PublicacionGenerica {
     private int id;
     @Column(name = "fecha", columnDefinition = "DATE")
     private LocalDate fecha;
-    @Column(name = "descripcion")
-    private String descripcion;
     @Enumerated(EnumType.STRING)
     private EstadoDePublicacion estadoDePublicacion = EstadoDePublicacion.SIN_REVISAR;
     @Column(name = "tipoPublicacion")
     private String tipoPublicacion;
 
+    public PublicacionGenerica(){
+            this.setFecha(LocalDate.now());
+    }
     public EstadoDePublicacion getEstadoDePublicacion() {
         return estadoDePublicacion;
     }
@@ -33,14 +33,6 @@ public abstract class PublicacionGenerica {
     }
 
     public Organizacion getOrganizacion(){return new Organizacion();}
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public LocalDate getFecha() {
         return fecha;
