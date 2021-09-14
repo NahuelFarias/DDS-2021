@@ -365,7 +365,6 @@ public class CreacionEntidades {
         EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
         EntityManagerHelper.commit();
 
-
     }
 
 }
