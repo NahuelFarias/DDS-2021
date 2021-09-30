@@ -1,17 +1,17 @@
 package domain.models.repositories;
 
-import domain.models.entities.Persistente;
-import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.repositories.daos.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class RepositorioGenerico <T extends Persistente> {
 
+public class RepositorioGenerico <T> {
+    protected DAO<T> dao;
     private List<T> coleccionDeElementos;
 
-    protected RepositorioGenerico(){
+    public RepositorioGenerico(DAO<T> dao) {
+        this.dao = dao;
         this.coleccionDeElementos = new ArrayList<>();
     }
 

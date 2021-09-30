@@ -2,9 +2,12 @@ package domain.controllers;
 
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.repositories.RepositorioDePublicaciones;
+import domain.models.repositories.factories.FactoryRepositorio;
+import domain.models.repositories.daos.DAO;
 
 
 public class PublicacionesController {
+    /*
     private static PublicacionesController instancia;
     private RepositorioDePublicaciones repositorio;
 
@@ -34,5 +37,5 @@ public class PublicacionesController {
     public RepositorioDePublicaciones getRepositorio() {
         return repositorio;
     }
-
+*/
 }
