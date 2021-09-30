@@ -1,9 +1,19 @@
+:root{
+  --color-primary:#0094DF;
+  --color-typeface:#023C5A;
+  --color-accent:#FF3E7E;
+  --color-background:#FFFFFF;
+  --color-background2:#EFF9FF;
+  --color-accent2:#FFCC00;
+}
+
 /*******************************/
 /********* General CSS *********/
 /*******************************/
+
 body {
-  color: #023c5a;
-  background: #ffffff;
+  color: var(--color-typeface);
+  background: var(--color-background);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -14,18 +24,18 @@ h4,
 h5,
 h6 {
   font-family: "Fredoka One", sans-serif;
-  color: #023c5a;
+  color: var(--color-typeface);
 }
 
 a {
-  color: #023c5a;
+  color: var(--color-typeface);
   transition: 0.3s;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #0094df;
+  color: var(--color-primary);
   outline: none;
   text-decoration: none;
 }
@@ -42,7 +52,7 @@ a:focus {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #ff3e7e;
+  background: var(--color-accent);
   width: 44px;
   height: 44px;
   text-align: center;
@@ -56,15 +66,15 @@ a:focus {
 }
 
 .back-to-top:hover {
-  background: #ffcc00;
+  background: var(--color-accent2);
 }
 
 .back-to-top:hover i {
-  color: #ff3e7e;
+  color: var(--color-accent);
 }
 
 .back-to-top i {
-  color: #ffffff;
+  color: var(--color-background);
   padding-top: 10px;
 }
 
@@ -74,7 +84,7 @@ a:focus {
 .top-bar {
   position: relative;
   height: 35px;
-  background: #eff9ff;
+  background: var(--color-background2);
   padding-bottom: 60px;
 }
 
@@ -107,12 +117,12 @@ a:focus {
 
 .top-bar .text i {
   font-size: 13px;
-  color: #023c5a;
+  color: var(--color-typeface);
   margin-right: 5px;
 }
 
 .top-bar .text h2 {
-  color: #023c5a;
+  color: var(--color-typeface);
   font-weight: 400;
   font-size: 13px;
   letter-spacing: 1px;
@@ -120,7 +130,7 @@ a:focus {
 }
 
 .top-bar .text p {
-  color: #023c5a;
+  color: var(--color-typeface);
   font-size: 14px;
   font-weight: 400;
   margin: 0 0 0 5px;
@@ -140,7 +150,7 @@ a:focus {
   width: 35px;
   height: 100%;
   font-size: 16px;
-  color: #f32b56;
+  color: var(--color-accent);
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -149,8 +159,8 @@ a:focus {
 }
 
 .top-bar .social a:hover {
-  color: #023c5a;
-  background: #ffffff;
+  color: var(--color-typeface);
+  background: var(--color-background);
 }
 
 @media (min-width: 992px) {
@@ -177,7 +187,7 @@ a:focus {
 
 .navbar .navbar-brand {
   margin: 0;
-  color: #ffffff;
+  color: var(--color-background);
   font-size: 18px;
   line-height: 0px;
   font-weight: 800;
@@ -186,13 +196,13 @@ a:focus {
 }
 
 .navbar .navbar-brand span {
-  color: #023c5a;
+  color: var(--color-typeface);
   text-transform: lowercase;
   transition: 0.5s;
 }
 
 .navbar.nav-sticky .navbar-brand span {
-  color: #ffffff;
+  color: var(--color-background);
 }
 
 .navbar .navbar-brand img {
@@ -205,7 +215,7 @@ a:focus {
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
   padding: 10px 10px 8px 10px;
-  color: #ffffff;
+  color: var(--color-background);
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -218,7 +228,7 @@ a:focus {
   margin-top: 0;
   border: 0;
   border-radius: 0;
-  background: #f8f9fa;
+  background: #0095dfc4;
 }
 
 @media (min-width: 992px) {
@@ -227,13 +237,13 @@ a:focus {
     width: 100%;
     top: 35px;
     padding: 10px 60px;
-    background: #0094df !important;
+    background: var(--color-primary) !important;
     z-index: 9;
   }
 
   .navbar.nav-sticky {
     padding: 10px 60px;
-    background: #0094df !important;
+    background: var(--color-primary) !important;
   }
 
   .navbar a.nav-link {
@@ -250,11 +260,11 @@ a:focus {
 @media (max-width: 991.98px) {
   .navbar {
     padding: 15px;
-    background: #0094df !important;
+    background: var(--color-primary) !important;
   }
 
   .navbar .navbar-brand span {
-    color: #ffffff;
+    color: var(--color-background);
   }
 
   .navbar a.nav-link {
@@ -274,8 +284,7 @@ a:focus {
   width: 100%;
   margin-bottom: 0px;
   padding: 10px;
- 
-  background: #eff9ff;
+  background: var(--color-background2);
   overflow: hidden;
 }
 
@@ -307,14 +316,14 @@ a:focus {
 }
 
 .hero .hero-text h1 {
-  color: #023c5a;
+  color: var(--color-typeface);
   font-size: 60px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
 .hero .hero-text p {
-  color: #023c5a;
+  color: var(--color-typeface);
   font-size: 18px;
   margin-bottom: 25px;
 }
@@ -324,16 +333,16 @@ a:focus {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #eff9ff;
-  background: #ff3e7e;
+  color: var(--color-background2);
+  background: var(--color-accent);
   border-radius: 0;
   transition: 0.3s;
   border-radius: 25px;
 }
 
 .hero .hero-btn .btn:hover {
-  color: #023c5a;
-  background: #ffcc00;
+  color: var(--color-typeface);
+  background: var(--color-accent2);
 }
 
 .hero .hero-btn .btn:first-child {
@@ -412,7 +421,7 @@ a:focus {
   position: relative;
   font-size: 16px;
   font-weight: 600;
-  background: #ffffff;
+  background: var(--color-background);
 }
 
 .section-header p::after {
@@ -422,7 +431,7 @@ a:focus {
   top: 11px;
   right: -30px;
   left: -30px;
-  background: #ffcc00;
+  background: var(--color-accent2);
   z-index: -1;
 }
 
@@ -476,15 +485,15 @@ a:focus {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #eff9ff;
-  background: #ff3e7e;
+  color: var(--color-background2);
+  background: var(--color-accent);
   border-radius: 20px;
   transition: 0.3s;
 }
 
 .about .about-text a.btn:hover {
-  color: #023c5a;
-  background: #ffcc00;
+  color: var(--color-typeface);
+  background: var(--color-accent2);
 }
 
 @media (max-width: 767.98px) {
@@ -524,14 +533,14 @@ a:focus {
 }
 
 .service .service-item:hover {
-  background: #023c5a;
-  color: #ffffff;
+  background: var(--color-typeface);
+  color: var(--color-background);
 }
 
 .service .rol-item:hover,
 .service .rol-item.active {
-  background: #023c5a;
-  color: #ffffff;
+  background: var(--color-typeface);
+  color: var(--color-background);
 }
 
 .service .service-icon {
@@ -548,7 +557,7 @@ a:focus {
 .service .service-icon i {
   position: relative;
   font-size: 50px;
-  color: #023c5a;
+  color: var(--color-typeface);
   z-index: 3;
 }
 
@@ -562,7 +571,7 @@ a:focus {
   display: block;
   width: 80px;
   height: 80px;
-  background: #ffcc00;
+  background: var(--color-accent2);
   border-radius: 50%;
   animation: pulse-border 2000ms ease-out infinite;
 }
@@ -577,7 +586,7 @@ a:focus {
   display: block;
   width: 80px;
   height: 80px;
-  background: #ffcc00;
+  background: var(--color-accent2);
   border-radius: 50%;
   transition: all 200ms;
 }
@@ -602,12 +611,12 @@ a:focus {
 
 .service .service-item:hover h3,
 .service .service-item.active h3 {
-  color: #ff3e7e;
+  color: var(--color-accent);
 }
 
 .service .rol-item:hover h3,
 .service .rol-item.active h3 {
-  color: #ff3e7e;
+  color: var(--color-accent);
 }
 
 .service .service-item p {
@@ -645,7 +654,7 @@ a:focus {
   padding: 13px;
   border-radius: 100px;
   border: 1px solid rgba(0, 0, 0, 0.07);
-  background: #ffcc00;
+  background: var(--color-accent2);
   transition: 0.5s;
 }
 
@@ -654,7 +663,7 @@ a:focus {
   margin-top: -70px;
   padding: 75px 25px 25px 25px;
   text-align: center;
-  background: #eff9ff;
+  background: var(--color-background2);
   border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
@@ -680,16 +689,16 @@ a:focus {
 }
 
 .asoc .owl-item.center .asoc-text {
-  background: #023c5a;
+  background: var(--color-typeface);
 }
 
 .asoc .owl-item.center .asoc-text h3 {
-  color: #ff3e7e;
+  color: var(--color-accent);
 }
 
 .asoc .owl-item.center .asoc-text p,
 .asoc .owl-item.center .asoc-text h4 {
-  color: #ffffff;
+  color: var(--color-background);
 }
 
 .asoc .owl-dots {
@@ -703,11 +712,11 @@ a:focus {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #023c5a;
+  background: var(--color-typeface);
 }
 
 .asoc .owl-dot.active {
-  background: #ff3e7e;
+  background: var(--color-accent);
 }
 
 /*******************************/
@@ -731,7 +740,7 @@ a:focus {
   margin: 0 15px;
   border: 1px solid rgba(0, 0, 0, 0.07);
 
-  background: #eff9ff;
+  background: var(--color-background2);
 }
 
 .adopcion .adopcion-page .adopcion-item {
@@ -763,8 +772,8 @@ a:focus {
 
 .adopcion .adopcion-item a.btn{
 
-  color: #ffffff;
-  background: #ff3e7e;
+  color: var(--color-background);
+  background: var(--color-accent);
   transition: 0.3s;
 }
 
@@ -773,8 +782,8 @@ a.btn-mis{
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #eff9ff;
-  background: #ff3e7e;
+  color: var(--color-background2);
+  background: var(--color-accent);
   transition: 0.3s;
   border-radius: 30px;
   text-align: center;
@@ -785,7 +794,7 @@ a.btn-mis{
 }
 
 .adopcion .adopcion-item a.btn:hover {
-  color: #ffcc00;
+  color: var(--color-accent2);
 }
 
 .adopcion .adopcion-meta {
@@ -821,28 +830,28 @@ a.btn-mis{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
-  background: #023c5a;
+  color: var(--color-background);
+  background: var(--color-typeface);
   font-size: 22px;
   transition: 0.3s;
 }
 
 .adopcion .owl-nav .owl-prev:hover,
 .adopcion .owl-nav .owl-next:hover {
-  color: #ff3e7e;
-  background: #ffcc00;
+  color: var(--color-accent);
+  background: var(--color-accent2);
 }
 
 .adopcion .pagination .page-link {
-  color: #023c5a;
+  color: var(--color-typeface);
   border-radius: 0;
-  border-color: #023c5a;
+  border-color: var(--color-typeface);
 }
 
 .adopcion .pagination .page-link:hover,
 .adopcion .pagination .page-item.active .page-link {
-  color: #f7cac9;
-  background: #023c5a;
+  color: var(--color-background2);
+  background: var(--color-typeface);
 }
 
 .adopcion .pagination .disabled .page-link {
@@ -870,19 +879,19 @@ a.btn-mis{
   display: inline-block;
   margin: 5px;
   padding: 6px 12px;
-  color: #023c5a;
+  color: var(--color-typeface);
   font-size: 14px;
   font-weight: 400;
   border-radius: 0;
   background: none;
-  border: 1px solid #023c5a;
+  border: 1px solid var(--color-typeface);
   transition: 0.3s;
 }
 
 .portfolio #portfolio-filter li:hover,
 .portfolio #portfolio-filter li.filter-active {
-  background: #023c5a;
-  color: #f7cac9;
+  background: var(--color-typeface);
+  color: var(--color-background2);
 }
 
 .portfolio .portfolio-item {
@@ -944,14 +953,14 @@ a.btn-mis{
 }
 
 .single .single-tags a:hover {
-  color: #F7CAC9;
-  background: #343148;
+  color: var(--color-background2);
+  background: var(--color-typeface);
 }
 
 .single .single-bio {
   margin-bottom: 45px;
   padding: 30px;
-  background: #f3f6ff;
+  background: var(--color-background2);
   display: flex;
 }
 
@@ -1058,115 +1067,18 @@ a.btn-mis{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #343148;
-  background: #F7CAC9;
+  color: var(--color-typeface);
+  background:var(--color-background2);
   font-size: 16px;
   transition: .3s;
 }
 
 .single .related-slider .owl-nav .owl-prev:hover,
 .single .related-slider .owl-nav .owl-next:hover {
-  color: #F7CAC9;
-  background: #343148;
+  color: var(--color-background2);
+  background: var(--color-typeface);
 }
 
-.single .single-comment {
-  position: relative;
-  margin-bottom: 45px;
-}
-
-.single .single-comment h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.single .comment-list {
-  list-style: none;
-  padding: 0;
-}
-
-.single .comment-child {
-  list-style: none;
-}
-
-.single .comment-body {
-  display: flex;
-  margin-bottom: 30px;
-}
-
-.single .comment-img {
-  width: 60px;
-}
-
-.single .comment-img img {
-  width: 100%;
-}
-
-.single .comment-text {
-  padding-left: 15px;
-  width: calc(100% - 60px);
-}
-
-.single .comment-text h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 3px;
-}
-
-.single .comment-text span {
-  display: block;
-  font-size: 14px;
-  font-weight: 300;
-  margin-bottom: 5px;
-}
-
-.single .comment-text .btn {
-  padding: 3px 10px;
-  font-size: 14px;
-  color: #343148;
-  background: #dddddd;
-  border-radius: 0;
-}
-
-.single .comment-text .btn:hover {
-  background: #F7CAC9;
-}
-
-.single .comment-form {
-  position: relative;
-}
-
-.single .comment-form h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.single .comment-form form {
-  padding: 30px;
-  background: #f3f6ff;
-}
-
-.single .comment-form form .form-group:last-child {
-  margin: 0;
-}
-
-.single .comment-form input,
-.single .comment-form textarea {
-  border-radius: 0;
-}
-
-.single .comment-form .btn {
-  padding: 15px 30px;
-  color: #F7CAC9;
-  background: #343148;
-}
-
-.single .comment-form .btn:hover {
-  color: #343148;
-  background: #F7CAC9;
-}
 
 
 /**********************************/
