@@ -1,6 +1,7 @@
 package domain.models.repositories.daos;
 
 import domain.models.entities.Persistente;
+import domain.models.repositories.BusquedaCondicional;
 
 import java.util.List;
 
@@ -38,6 +39,15 @@ public class DAOMemoria<T> implements DAO<T> {
     @Override
     public void eliminar(Object unObjeto) {
         this.entidades.remove(unObjeto);
+    }
+
+    @Override
+    public T buscar(BusquedaCondicional condicional) {
+        return (T) this.entidades
+                .stream()
+                .filter(condicional.getCondicionPredicado())
+                .findFirst()
+                .get();
     }
 }
 

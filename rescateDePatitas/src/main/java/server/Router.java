@@ -25,6 +25,7 @@ public class Router {
 
     private static void configure(){
         HomeController homeController = new HomeController();
-        Spark.get("/home", homeController::mostrarHome, Router.engine);
+        Spark.get("/", homeController::mostrarHome, Router.engine);
+        Spark.get("/login",homeController::login,Router.engine);
     }
 }

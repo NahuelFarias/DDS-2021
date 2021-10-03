@@ -1,45 +1,45 @@
 package domain.models.repositories;
 
+import db.EntityManagerHelper;
 import domain.models.repositories.daos.DAO;
 
-import java.util.ArrayList;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
 public class RepositorioGenerico <T> {
     protected DAO<T> dao;
-    private List<T> coleccionDeElementos;
 
     public RepositorioGenerico(DAO<T> dao) {
         this.dao = dao;
-        this.coleccionDeElementos = new ArrayList<>();
     }
 
-    public List<T> buscarTodos() {
-        return this.coleccionDeElementos;
+    public void setDao(DAO<T> dao) {
+        this.dao = dao;
     }
 
-    /*public Optional<T> buscar(Integer id){
-        //SELECT
-        return this.coleccionDeElementos
-                .stream()
-                .filter(e -> e.getId().equals(id))
-                        .findFirst();
-    }*/
-
-    public void agregar(T elemento){
-        //INSERT
-        this.coleccionDeElementos.add(elemento);
+    public void agregar(Object unObjeto){
+        this.dao.agregar(unObjeto);
     }
 
-    public void modificar(T elemento){
-        //UPDATE
-        //TODO
+    public void modificar(Object unObjeto){
+        this.dao.modificar(unObjeto);
     }
 
-    public void eliminar(T elemento){
-        //DELETE
-        this.coleccionDeElementos.remove(elemento);
+    public void eliminar(Object unObjeto){
+        this.dao.eliminar(unObjeto);
+    }
+
+    public List<T> buscarTodos(){
+        return this.dao.buscarTodos();
+    }
+
+    public T buscar(int id){
+        return this.dao.buscar(id);
+    }
+
+    public CriteriaBuilder criteriaBuilder(){
+        return EntityManagerHelper.getEntityManager().getCriteriaBuilder();
     }
 
 

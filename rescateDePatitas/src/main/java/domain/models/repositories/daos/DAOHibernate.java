@@ -1,6 +1,7 @@
 package domain.models.repositories.daos;
 
 import db.EntityManagerHelper;
+import domain.models.repositories.BusquedaCondicional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -46,5 +47,12 @@ public class DAOHibernate<T> implements DAO<T> {
         EntityManagerHelper.getEntityManager().getTransaction().begin();
         EntityManagerHelper.getEntityManager().remove(unObjeto);
         EntityManagerHelper.getEntityManager().getTransaction().commit();
+    }
+
+    @Override
+    public T buscar(BusquedaCondicional condicional) {
+        return (T) EntityManagerHelper.getEntityManager()
+                .createQuery(condicional.getCondicionCritero())
+                .getSingleResult();
     }
 }

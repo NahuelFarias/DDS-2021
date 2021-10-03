@@ -14,5 +14,8 @@ public class HomeController {
         return new ModelAndView(new HashMap<>(), "index.hbs");
     }
 
+    public ModelAndView login(Request request, Response response) {
 
+        return new ModelAndView(new HashMap<>(), "login.hbs");
+    }
 }
