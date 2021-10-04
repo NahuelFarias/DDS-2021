@@ -1,6 +1,7 @@
 package domain.models.repositories.testMemoData;
 
 import domain.models.entities.Persistente;
+import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
 
@@ -16,6 +17,8 @@ public class Data {
             entidades = DataUsuario.getList();
         } else if (type.getName().equals(Persona.class.getName())) {
             entidades = DataPersona.getList();
+        } else if (type.getName().equals(Mascota.class.getName())) {
+            entidades = DataMascota.getList();
         }
 
         return entidades;

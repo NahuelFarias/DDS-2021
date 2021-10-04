@@ -6,7 +6,6 @@ import services.EditorDeFotos;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "foto")

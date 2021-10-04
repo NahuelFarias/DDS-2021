@@ -1,7 +1,6 @@
 package domain.controllers;
 
 import domain.models.entities.personas.Usuario;
-import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioDeUsuarios;
 import domain.models.repositories.factories.FactoryRepositorioUsuarios;
 import spark.ModelAndView;

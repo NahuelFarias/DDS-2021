@@ -238,23 +238,24 @@
           <h2>Adoptá</h2>
         </div>
         <div class="owl-carousel adopcion-carousel wow fadeInUp" data-wow-delay="0.1s">
-          <div class="adopcion-item">
+            {{#each mascotas}}
+            <div class="adopcion-item">
             <div class="adopcion-img">
-              <img src="img/perro1.jpg" alt="Adopcion" />
+              <img src="{{{primeraURL}}}" alt="Adopcion" />
             </div>
             <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>5 años</p>
-                <p><i class="fas fa-map-marker-alt"></i>Chacarita</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
+                <h2>{{nombre}}</h2>
+                <div class="adopcion-meta">
+                    <p><i class="far fa-calendar"></i>5 años</p>
+                    <p><i class="fas fa-map-marker-alt"></i>Chacarita</p>
+                </div>
+                <p>
+                    {{descripcion}}
+                </p>
               <a class="btn" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
+            {{/each}}
           <div class="adopcion-item">
             <div class="adopcion-img">
               <img src="img/gato2.jpg" alt="Adopcion" />

@@ -1,6 +1,7 @@
 package server;
 
 import domain.controllers.HomeController;
+import domain.controllers.LoginController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -26,6 +27,8 @@ public class Router {
     private static void configure(){
         HomeController homeController = new HomeController();
         Spark.get("/", homeController::mostrarHome, Router.engine);
-        Spark.get("/login",homeController::login,Router.engine);
+
+        LoginController loginController = new LoginController();
+        Spark.get("/login",loginController::inicio,Router.engine);
     }
 }

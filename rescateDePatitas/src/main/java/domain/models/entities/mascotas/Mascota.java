@@ -45,6 +45,11 @@ public class Mascota extends Persistente {
     private List<Foto> fotos;
     @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
+    private String primeraURL;
+
+    public void setPrimeraURL(String url) {
+        this.primeraURL = url;
+    }
 
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;
@@ -120,6 +125,8 @@ public class Mascota extends Persistente {
 
     public void setFotos(List<Foto> fotos) {
         this.fotos = fotos;
+        String url = fotos.get(0).getURLfoto();
+        this.setPrimeraURL(url);
     }
 
     public void agregarFoto(Foto foto) {
