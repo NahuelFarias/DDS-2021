@@ -25,6 +25,12 @@ public class Foto extends Persistente {
     public Foto(){
         this.fecha = LocalDate.now();
     }
+
+    public Foto(String url){
+        this.fecha = LocalDate.now();
+        this.URLfoto = url;
+    }
+
     public Foto editarFoto() {
         EditorDeFotos editor = new EditorDeFotos();
         return editor.ajustarCalidad(this);

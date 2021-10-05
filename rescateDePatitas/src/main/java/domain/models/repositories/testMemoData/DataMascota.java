@@ -49,34 +49,72 @@ public class DataMascota {
             caracteristicasConRtas.add(caracteristicaConRta2);
 
 
-            EditorDeFotos editor = new EditorDeFotos();
-
             List<Foto> fotos = new ArrayList<>();
-            Foto foto = new Foto();
-            foto.setURLfoto("img/perro1.jpg");
+            Foto foto = new Foto("img/perro1.jpg");
+            Foto foto12 = new Foto("img/perro2.jpg");
+            Foto foto13 = new Foto("img/perro3.jpg");
             fotos.add(foto);
-            fotos= editor.redimensionarFotos(fotos);
+            fotos.add(foto13);
+            fotos.add(foto12);
 
             List<Foto> fotos2 = new ArrayList<>();
-            Foto foto2 = new Foto();
-            foto2.setURLfoto("img/perro3.jpg");
+            Foto foto2 = new Foto("img/perro2.jpg");
             fotos2.add(foto2);
-            fotos2= editor.redimensionarFotos(fotos2);
+
+            List<Foto> fotos3 = new ArrayList<>();
+            Foto foto3 = new Foto("img/gato.jpg");
+            fotos3.add(foto3);
+
+            List<Foto> fotos4 = new ArrayList<>();
+            Foto foto4 = new Foto("img/perro4.jpg");
+            fotos4.add(foto4);
+
+            List<Foto> fotos5 = new ArrayList<>();
+            Foto foto5 = new Foto("img/gato2.jpg");
+            fotos5.add(foto5);
 
             Mascota susana = new Mascota(duenio);
             susana.setNombre("Susana");
+            susana.setEspecie("Perro");
+            susana.setEdad(1);
+            susana.setGenero("Hembra");
             susana.setFotos(fotos);
-            susana.setDescripcion("Holaalalalalalaalalala");
+            susana.setDescripcion("Es una perra tranquila y cariñosa.");
 
             Mascota rafa = new Mascota(duenio);
             rafa.setNombre("Rafa");
+            rafa.setEspecie("Perro");
+            rafa.setGenero("Macho");
+            rafa.setEdad(2);
             rafa.setFotos(fotos2);
-            rafa.setDescripcion("Chauauauauauauauua");
+            rafa.setDescripcion("Es una perro acostumbrado a vivir con otros perros");
 
-            //mascotaDTO.inicializar(duenio,"Susana","Susi",2,"tiene una mancha blanca en una pata.",
-            //        "gato", "hembra", caracteristicasConRtas, fotos);
+            Mascota agata = new Mascota(duenio);
+            agata.setNombre("Agata");
+            agata.setEspecie("Gato");
+            agata.setGenero("Hembra");
+            agata.setEdad(3);
+            agata.setFotos(fotos3);
+            agata.setDescripcion("orem ipsum dolor sit amet, consectetur adipiscing elit. ");
 
-            addAll(susana, rafa);
+            Mascota toby = new Mascota(duenio);
+            toby.setNombre("Toby");
+            toby.setEspecie("Perro");
+            toby.setGenero("Macho");
+            toby.setEdad(4);
+            toby.setFotos(fotos4);
+            toby.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+
+            Mascota michi = new Mascota(duenio);
+            michi.setNombre("Michi");
+            michi.setEdad(5);
+            michi.setEspecie("Gato");
+            michi.setGenero("Macho");
+            michi.setFotos(fotos5);
+            michi.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+
+
+            addAll(susana, rafa, agata, toby, michi);
         }
         return (List<Persistente>)(List<?>) mascotas;
     }

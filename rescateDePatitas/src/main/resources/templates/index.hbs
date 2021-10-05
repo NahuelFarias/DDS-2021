@@ -62,7 +62,7 @@
     <!-- Nav Bar Start -->
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
+                            <a href="perdidas" class="dropdown-item">Ver mascotas perdidas</a>
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="encontradas" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -241,14 +241,20 @@
             {{#each mascotas}}
             <div class="adopcion-item">
             <div class="adopcion-img">
-              <img src="{{{primeraURL}}}" alt="Adopcion" />
+              <img src="{{{previewImg}}}" alt="Adopcion" />
             </div>
+
             <div class="adopcion-text">
                 <h2>{{nombre}}</h2>
                 <div class="adopcion-meta">
-                    <p><i class="far fa-calendar"></i>5 años</p>
-                    <p><i class="fas fa-map-marker-alt"></i>Chacarita</p>
+                    <p><i class="far fa-calendar"></i>{{edad}} años</p>
+                    <p><i class="fas fa-map-marker-alt"></i>{{especie}}</p>
                 </div>
+                {{#each fotos}}
+                    <p>
+                    {{uRLfoto}}
+                    </p>
+                {{/each}}
                 <p>
                     {{descripcion}}
                 </p>
@@ -256,91 +262,6 @@
             </div>
           </div>
             {{/each}}
-          <div class="adopcion-item">
-            <div class="adopcion-img">
-              <img src="img/gato2.jpg" alt="Adopcion" />
-            </div>
-            <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>5 meses</p>
-                <p><i class="fas fa-map-marker-alt"></i>Lugano</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
-              <a class="btn" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="adopcion-item">
-            <div class="adopcion-img">
-              <img src="img/perro3.jpg" alt="Adopcion" />
-            </div>
-            <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>10 meses</p>
-                <p><i class="fas fa-map-marker-alt"></i>Recoleta</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
-              <a class="btn" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="adopcion-item">
-            <div class="adopcion-img">
-              <img src="img/gato.jpg" alt="Adopcion" />
-            </div>
-            <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>3 años</p>
-                <p><i class="fas fa-map-marker-alt"></i>Villa del parque</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
-              <a class="btn" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="adopcion-item">
-            <div class="adopcion-img">
-              <img src="img/perro2.jpg" alt="Adopcion" />
-            </div>
-            <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>2 años</p>
-                <p><i class="fas fa-map-marker-alt"></i>Olivos</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
-              <a class="btn" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-          <div class="adopcion-item">
-            <div class="adopcion-img">
-              <img src="img/gato3.jpg" alt="Adopcion" />
-            </div>
-            <div class="adopcion-text">
-              <h2>Lorem ipsum dolor</h2>
-              <div class="adopcion-meta">
-                <p><i class="far fa-calendar"></i>3 meses</p>
-                <p><i class="fas fa-map-marker-alt"></i>Avellaneda</p>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet elit. Neca pretim miura bitur
-                facili ornare velit non vulpte liqum metus tortor
-              </p>
-              <a class="btn" href="">Ver perfil<i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

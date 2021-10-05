@@ -2,6 +2,7 @@ package server;
 
 import domain.controllers.HomeController;
 import domain.controllers.LoginController;
+import domain.controllers.MascotaController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -30,5 +31,10 @@ public class Router {
 
         LoginController loginController = new LoginController();
         Spark.get("/login",loginController::inicio,Router.engine);
+
+        MascotaController mascotaController = new MascotaController();
+        Spark.get("/perdidas", mascotaController::mostrarPerdidas, Router.engine);
+
+        Spark.get("/encontradas", mascotaController::mostrarEncontradas, Router.engine);
     }
 }
