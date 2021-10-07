@@ -14,6 +14,10 @@ public class Lugar extends Persistente {
     @Column(name = "longitud")
     private double longitud;
 
+    public Lugar(){
+
+    }
+
     public Lugar(double latitud, double longitud) {
         setLatitud(latitud);
         setLongitud(longitud);

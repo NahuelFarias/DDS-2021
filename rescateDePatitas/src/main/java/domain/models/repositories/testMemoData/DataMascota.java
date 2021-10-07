@@ -1,5 +1,6 @@
 package domain.models.repositories.testMemoData;
 
+import db.EntityManagerHelper;
 import domain.controllers.CaracteristicasController;
 import domain.models.entities.Persistente;
 import domain.models.entities.mascotas.CaracteristicaConRta;
@@ -113,8 +114,11 @@ public class DataMascota {
             michi.setFotos(fotos5);
             michi.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
 
-
-            addAll(susana, rafa, agata, toby, michi);
+            EntityManagerHelper.beginTransaction();
+            EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(0));
+            EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(1));
+            EntityManagerHelper.commit();
+            //addAll(susana, rafa, agata, toby, michi);
         }
         return (List<Persistente>)(List<?>) mascotas;
     }

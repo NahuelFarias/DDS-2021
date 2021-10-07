@@ -8,44 +8,43 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.Optional;
 
 public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
-        public List<Usuario> usuarios;
+    //public List<Usuario> usuarios;
 
-        public Optional<Usuario> buscar(String nombreDeUsuario) {
-            return this.usuarios.stream()
-                    .filter(n -> n.getNombreDeUsuario() == nombreDeUsuario)
-                    .findFirst();
-        }
+//        public Optional<Usuario> buscar(String nombreDeUsuario) {
+//
+//            return this.usuarios.stream()
+//                    .filter(n -> n.getNombreDeUsuario() == nombreDeUsuario)
+//                    .findFirst();
+//        }
 
+    public RepositorioDeUsuarios(DAO<Usuario> dao) {
+        super(dao);
+    }
 
-        public RepositorioDeUsuarios(DAO<Usuario> dao) {
-            super(dao);
-        }
+    public Boolean existe(String nombreDeUsuario, String contrasenia) {
+        return buscarUsuario(nombreDeUsuario, contrasenia) != null;
+    }
 
-        public Boolean existe(String nombreDeUsuario, String contrasenia) {
-            return buscarUsuario(nombreDeUsuario, contrasenia) != null;
-        }
+    public Usuario buscarUsuario(String nombreDeUsuario, String contrasenia) {
+        return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario, contrasenia));
+    }
 
-        public Usuario buscarUsuario(String nombreDeUsuario, String contrasenia) {
-            return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario, contrasenia));
-        }
+    private BusquedaCondicional condicionUsuarioYContrasenia(String nombreDeUsuario, String contrasenia) {
+        CriteriaBuilder criteriaBuilder = criteriaBuilder();
+        CriteriaQuery<Usuario> usuarioQuery = criteriaBuilder.createQuery(Usuario.class);
 
-        private BusquedaCondicional condicionUsuarioYContrasenia(String nombreDeUsuario, String contrasenia) {
-            CriteriaBuilder criteriaBuilder = criteriaBuilder();
-            CriteriaQuery<Usuario> usuarioQuery = criteriaBuilder.createQuery(Usuario.class);
+        Root<Usuario> condicionRaiz = usuarioQuery.from(Usuario.class);
 
-            Root<Usuario> condicionRaiz = usuarioQuery.from(Usuario.class);
+        Predicate condicionNombreDeUsuario = criteriaBuilder.equal(condicionRaiz.get("nombreDeUsuario"), nombreDeUsuario);
+        Predicate condicionContrasenia = criteriaBuilder.equal(condicionRaiz.get("contrasenia"), contrasenia);
 
-            Predicate condicionNombreDeUsuario = criteriaBuilder.equal(condicionRaiz.get("nombreDeUsuario"), nombreDeUsuario);
-            Predicate condicionContrasenia = criteriaBuilder.equal(condicionRaiz.get("contrasenia"), contrasenia);
+        Predicate condicionExisteUsuario = criteriaBuilder.and(condicionNombreDeUsuario, condicionContrasenia);
 
-            Predicate condicionExisteUsuario = criteriaBuilder.and(condicionNombreDeUsuario, condicionContrasenia);
+        usuarioQuery.where(condicionExisteUsuario);
 
-            usuarioQuery.where(condicionExisteUsuario);
-
-            return new BusquedaCondicional(null, usuarioQuery);
-        }
+        return new BusquedaCondicional(null, usuarioQuery);
+    }
 
 }

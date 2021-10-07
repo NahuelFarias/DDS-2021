@@ -19,6 +19,10 @@ public class Usuario extends Persistente {
     @Transient
     private Integer fallosAlIniciarSesion = 0;
 
+    public Usuario(){
+
+    }
+
     public Usuario(String user, String contrasenia) {
         setNombreDeUsuario(user);
         if(verificarContrasenia(contrasenia)) {

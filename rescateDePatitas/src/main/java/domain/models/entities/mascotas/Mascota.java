@@ -47,6 +47,10 @@ public class Mascota extends Persistente {
     private Persona persona;
     private String previewImg;
 
+    public Mascota(){
+
+    }
+
     public void setEdad(Integer edad) {
         this.edad = edad;
     }

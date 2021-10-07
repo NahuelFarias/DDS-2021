@@ -16,7 +16,6 @@ public class FactoryRepositorio {
     static {
         repos = new HashMap<>();
     }
-
     public static <T> RepositorioGenerico<T> get(Class<T> type){
         RepositorioGenerico<T> repo;
         if(repos.containsKey(type.getName())){
@@ -34,5 +33,23 @@ public class FactoryRepositorio {
         }
         return repo;
     }
+
+//    public static <T> RepositorioGenerico<T> get(Class<T> type){
+//        RepositorioGenerico<T> repo;
+//        if(repos.containsKey(type.getName())){
+//            repo = repos.get(type.getName());
+//        }
+//        else{
+//            if(Config.useDataBase){
+//                DAO<T> dao = new DAOHibernate<>(type);
+//                repo = new RepositorioGenerico<T>(dao);
+//            }
+//            else{
+//                repo = new RepositorioGenerico<T>(new DAOMemoria<>(Data.getData(type)));
+//            }
+//            repos.put(type.toString(), repo);
+//        }
+//        return repo;
+//    }
 
 }

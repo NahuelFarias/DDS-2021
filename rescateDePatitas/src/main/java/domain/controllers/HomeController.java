@@ -25,4 +25,5 @@ public class HomeController {
         parametros.put("mascotas", mascotas);
         return new ModelAndView(parametros, "index.hbs");
     }
+
 }

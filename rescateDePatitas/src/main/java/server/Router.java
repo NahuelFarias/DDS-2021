@@ -3,6 +3,7 @@ package server;
 import domain.controllers.HomeController;
 import domain.controllers.LoginController;
 import domain.controllers.MascotaController;
+import domain.models.middleware.AuthMiddleware;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -27,12 +28,20 @@ public class Router {
 
     private static void configure(){
         HomeController homeController = new HomeController();
+        LoginController loginController = new LoginController();
+        MascotaController mascotaController = new MascotaController();
+        AuthMiddleware authMiddleware       = new AuthMiddleware();
+
         Spark.get("/", homeController::mostrarHome, Router.engine);
 
-        LoginController loginController = new LoginController();
-        Spark.get("/login",loginController::inicio,Router.engine);
+        Spark.before("/", authMiddleware::verificarSesion);
 
-        MascotaController mascotaController = new MascotaController();
+        Spark.get("/login", loginController::inicio, Router.engine);
+
+        Spark.get("/",loginController::login);
+
+        Spark.get("/logout", loginController::logout);
+
         Spark.get("/perdidas", mascotaController::mostrarPerdidas, Router.engine);
 
         Spark.get("/encontradas", mascotaController::mostrarEncontradas, Router.engine);

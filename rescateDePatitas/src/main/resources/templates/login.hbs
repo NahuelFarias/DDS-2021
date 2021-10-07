@@ -125,15 +125,15 @@
                         <h3 class="login-heading mb-4">¡Bienvenido!</h3>
 
                         <!-- Sign In Form -->
-                        <form>
+                        <form action="/login" method="post" class="form-">
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="nombre@ejemplo.com">
+                                    placeholder="nombre@ejemplo.com" name="nombreDeUsuario">
                                 <label for="floatingInput">Correo electrónico</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Contraseña">
+                                    placeholder="Contraseña" name="contrasenia">
                                 <label for="floatingPassword">Contraseña</label>
                             </div>
 
@@ -145,7 +145,7 @@
                             </div>
 
                             <div class="d-grid signin">
-                                <a class="btn-grande" href="seleccionar_rol_2.html" type="submit">INGRESAR</a>
+                                <a class="btn-grande" href="/" type="submit">INGRESAR</a>
                                 <div class="text-center">
                                     <a class="small pregunta" href="#">¿Olvidaste tu contraseña?</a>
                                     <a class="small pregunta" href="registro_duenio.html">¿No estás registrado?</a>

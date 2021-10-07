@@ -161,12 +161,12 @@ public class CreacionEntidades {
         //Redimensiono las fotos para agregar a la mascota
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
-        foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
+        foto.setURLfoto("img/perro1.jpg");
         fotos.add(foto);
 
         List<Foto> fotos2 = new ArrayList<>();
         Foto foto2 = new Foto();
-        foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
+        foto2.setURLfoto("img/gato2.jpg");
         fotos2.add(foto2);
 
         Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
@@ -297,7 +297,7 @@ public class CreacionEntidades {
         persona2.setRolElegido(rescatista);
         List<Foto> fotos3 = new ArrayList<>();
         Foto foto3 = new Foto();
-        foto3.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
+        foto3.setURLfoto("img/perro3.jpg");
         DatosMascotaEncontrada encontrada = new DatosMascotaEncontrada(fotos3,"En buen estado",new Lugar(12345,12234));
         foto3.setDatosMascotaEncontrada(encontrada);
         fotos3.add(foto3);
