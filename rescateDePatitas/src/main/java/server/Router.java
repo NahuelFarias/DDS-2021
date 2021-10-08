@@ -38,7 +38,7 @@ public class Router {
 
         Spark.get("/login", loginController::inicio, Router.engine);
 
-        Spark.get("/",loginController::login);
+        Spark.post("/login",loginController::login);
 
         Spark.get("/logout", loginController::logout);
 

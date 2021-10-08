@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class LoginController {
 
+    private Usuario usuarioHasheador;
+
     public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         return new ModelAndView(parametros, "login.hbs");
@@ -22,22 +24,27 @@ public class LoginController {
             RepositorioDeUsuarios repoUsuarios = FactoryRepositorioUsuarios.get();
 
             String nombreDeUsuario = request.queryParams("nombreDeUsuario");
-            String contrasenia = request.queryParams("contrasenia");
+            String contraseniaBase = request.queryParams("contrasenia");
+            usuarioHasheador = new Usuario();
+            usuarioHasheador.hashPassword(contraseniaBase);
+            String contrasenia = usuarioHasheador.getContrasenia();
 
-            if (repoUsuarios.existe(nombreDeUsuario, contrasenia)) {
-                Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario, contrasenia);
+            if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase, contrasenia)) {
+
+                Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario);
 
                 request.session(true);
                 request.session().attribute("id", usuario.getId());
 
-                response.redirect("/login");
-            } else {
                 response.redirect("/");
+            } else {
+                response.redirect("/login");
             }
         } catch (Exception e) {
             //Funcionalidad disponible solo con persistencia en Base de Datos
-            response.redirect("/");
-        } finally {
+           response.redirect("/perdidos"); // TODO Cambiar a otra pagina
+        }
+        finally {
             return response;
         }
     }

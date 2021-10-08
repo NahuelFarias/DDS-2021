@@ -23,28 +23,26 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
         super(dao);
     }
 
-    public Boolean existe(String nombreDeUsuario, String contrasenia) {
-        return buscarUsuario(nombreDeUsuario, contrasenia) != null;
+    public Boolean existe(String nombreDeUsuario) {
+        return buscarUsuario(nombreDeUsuario) != null;
     }
 
-    public Usuario buscarUsuario(String nombreDeUsuario, String contrasenia) {
-        return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario, contrasenia));
+    public Usuario buscarUsuario(String nombreDeUsuario) {
+        return this.dao.buscar(condicionUsuario(nombreDeUsuario));
     }
 
-    private BusquedaCondicional condicionUsuarioYContrasenia(String nombreDeUsuario, String contrasenia) {
+    private BusquedaCondicional condicionUsuario(String nombreDeUsuario) {
         CriteriaBuilder criteriaBuilder = criteriaBuilder();
         CriteriaQuery<Usuario> usuarioQuery = criteriaBuilder.createQuery(Usuario.class);
 
         Root<Usuario> condicionRaiz = usuarioQuery.from(Usuario.class);
 
         Predicate condicionNombreDeUsuario = criteriaBuilder.equal(condicionRaiz.get("nombreDeUsuario"), nombreDeUsuario);
-        Predicate condicionContrasenia = criteriaBuilder.equal(condicionRaiz.get("contrasenia"), contrasenia);
 
-        Predicate condicionExisteUsuario = criteriaBuilder.and(condicionNombreDeUsuario, condicionContrasenia);
+        Predicate condicionExisteUsuario = criteriaBuilder.and(condicionNombreDeUsuario);
 
         usuarioQuery.where(condicionExisteUsuario);
 
         return new BusquedaCondicional(null, usuarioQuery);
     }
-
 }

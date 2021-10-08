@@ -121,8 +121,7 @@ public class CreacionEntidades {
         puntoEncuentro = new Lugar(-34.6621347,-58.4803575); //Campus
 
         //Persona 1 tiene usuario y es duenio
-        Usuario usuario = new Usuario("julio_miguel","kjasdA1@hkasdh");
-        persona.setUsuario(usuario);
+        persona.crearUsuario("Victoria09", "MiPerro22!!##");
         Duenio duenio = new Duenio();
         persona.addRol(duenio);
         persona.setRolElegido(duenio);
@@ -251,6 +250,9 @@ public class CreacionEntidades {
         cuestionarioContestadoPyC.setRespuestas(respuestasCuestionarioPyC);
 
     }
+
+    // TODO CORRO UN TEST Y SE GUARDA TODO LO RELACIONADO, EJEMPLO:
+
     @Test
     public void persistirUsuarioTest1(){
 
