@@ -62,7 +62,7 @@
     <!-- Nav Bar Start -->
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="/" class="navbar-brand">
+            <a href="index.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -73,7 +73,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="/perdidas" class="dropdown-item">Ver mascotas perdidas</a>
+                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="/encontradas" class="dropdown-item">Ver encontradas</a>
+                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -102,7 +102,7 @@
                         <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login" class="dropdown-item">Iniciar sesion</a>
+                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -114,32 +114,37 @@
     <div class="blog top">
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                <p>Buscamos a sus dueños</p>
-                <h2>Encontradas</h2>
+                <p>Buscan hogar</p>
+                <h2>En adopción</h2>
             </div>
             <div class="row blog-page">
-                {{#each encontradas}}
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <img src="{{{datosMascotaEncontrada.fotos.[0].uRLfoto}}}" alt="Blog">
-                        </div>
-                        <div class="blog-text">
-                            <div class="blog-meta">
-                                <p><i class="far fa-calendar"></i>{{fecha}}
-                                    <i class="fas fa-venus-mars"></i> {{datosMascotaEncontrada.lugar.latitud}}
-                                    <i class="fas fa-map-marker-alt"></i> {{datosMascotaEncontrada.lugar.latitud}}
-                                </p>
+                {{#each adopciones}}
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{{mascota.fotos.[0].uRLfoto}}}" alt="Blog">
                             </div>
-                            <p>
-                                {{datosMascotaEncontrada.descripcion}}
-                            </p>
-                            <a class="btn-mis" href="adopcion_publicacion.html">Ver perfil <i
-                                    class="fa fa-angle-right"></i></a>
+                            <div class="blog-text">
+                                <h2>{{mascota.nombre}}</h2>
+                                <h6>Publicada el {{fecha}}</h6>
+                                <div class="blog-meta">
+                                    <p><i class="far fa-calendar"></i> {{mascota.edad}} meses
+                                        <i class="fas fa-venus-mars"></i> {{mascota.genero}}
+                                        <i class="fas fa-map-marker-alt"></i> LUGAR
+                                    </p>
+                                </div>
+                                <p>
+                                    {{mascota.descripcion}}
+                                </p>
+                                <a class="btn-mis" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {{/each}}
+            </div>
+
+            <div class=" text-right">
+                <a class="btn-grande" href="adopcion_suscripcion.html">No encontré lo que buscaba <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
     </div>

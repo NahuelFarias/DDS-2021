@@ -10,16 +10,16 @@ import java.util.List;
 public class DAOHibernate<T> implements DAO<T> {
     private Class<T> type;
 
-    public DAOHibernate(Class<T> type){
+    public DAOHibernate(Class<T> type) {
         this.type = type;
     }
 
     @Override
     public List<T> buscarTodos() {
         CriteriaBuilder builder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<T> critera = builder.createQuery(this.type);
-        critera.from(type);
-        List<T> entities = EntityManagerHelper.getEntityManager().createQuery(critera).getResultList();
+        CriteriaQuery<T> criteria = builder.createQuery(this.type);
+        criteria.from(type);
+        List<T> entities = EntityManagerHelper.getEntityManager().createQuery(criteria).getResultList();
         return entities;
     }
 

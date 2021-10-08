@@ -15,6 +15,8 @@ public class DatosMascotaEncontrada extends Persistente {
     @OneToOne(cascade = CascadeType.ALL)
     private Lugar lugar;
 
+    public DatosMascotaEncontrada(){}
+
     public DatosMascotaEncontrada(List<Foto> fotos, String descripcion, Lugar lugar) {
         setFotos(fotos);
         setDescripcion(descripcion);

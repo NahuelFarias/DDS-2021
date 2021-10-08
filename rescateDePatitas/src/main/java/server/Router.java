@@ -1,8 +1,6 @@
 package server;
 
-import domain.controllers.HomeController;
-import domain.controllers.LoginController;
-import domain.controllers.MascotaController;
+import domain.controllers.*;
 import domain.models.middleware.AuthMiddleware;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -30,7 +28,10 @@ public class Router {
         HomeController homeController = new HomeController();
         LoginController loginController = new LoginController();
         MascotaController mascotaController = new MascotaController();
-        AuthMiddleware authMiddleware       = new AuthMiddleware();
+        PublicacionesPerdidasController perdidas = new PublicacionesPerdidasController();
+        PublicacionesEncontradasController encontradas = new PublicacionesEncontradasController();
+        PublicacionesEnAdopcionController enAdopcion = new PublicacionesEnAdopcionController();
+        AuthMiddleware authMiddleware = new AuthMiddleware();
 
         Spark.get("/", homeController::mostrarHome, Router.engine);
 
@@ -42,8 +43,10 @@ public class Router {
 
         Spark.get("/logout", loginController::logout);
 
-        Spark.get("/perdidas", mascotaController::mostrarPerdidas, Router.engine);
+        Spark.get("/perdidas", perdidas::mostrarPerdidas, Router.engine);
 
-        Spark.get("/encontradas", mascotaController::mostrarEncontradas, Router.engine);
+        Spark.get("/encontradas", encontradas::mostrarEncontradas, Router.engine);
+
+        Spark.get("/en_adopcion", enAdopcion::mostrarEnAdopcion, Router.engine);
     }
 }
