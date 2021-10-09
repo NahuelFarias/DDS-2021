@@ -24,7 +24,7 @@ public class Router {
         Router.configure();
     }
 
-    private static void configure(){
+    private static void configure() {
         HomeController homeController = new HomeController();
         LoginController loginController = new LoginController();
         MascotaController mascotaController = new MascotaController();
@@ -39,7 +39,7 @@ public class Router {
 
         Spark.get("/login", loginController::inicio, Router.engine);
 
-        Spark.post("/login",loginController::login);
+        Spark.post("/login", loginController::login);
 
         Spark.get("/logout", loginController::logout);
 
@@ -48,5 +48,15 @@ public class Router {
         Spark.get("/encontradas", encontradas::mostrarEncontradas, Router.engine);
 
         Spark.get("/en_adopcion", enAdopcion::mostrarEnAdopcion, Router.engine);
+
+        Spark.get("/elegir_asociacion", mascotaController::registroMascotaAsoc, Router.engine);
+
+        Spark.get("/nueva_mascota", mascotaController::registroMascota, Router.engine);
+
+        Spark.post("/nueva_mascota", mascotaController::guardarMascota);
+
+        Spark.get("/ok", mascotaController::creada);
+
+
     }
 }
