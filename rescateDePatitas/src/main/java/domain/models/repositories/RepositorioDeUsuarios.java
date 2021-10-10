@@ -27,6 +27,10 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
         return buscarUsuario(nombreDeUsuario) != null;
     }
 
+    public Usuario dameLaContrasenia(String nombreDeUsuario) {
+        return buscarUsuario(nombreDeUsuario);
+    }
+
     public Usuario buscarUsuario(String nombreDeUsuario) {
         return this.dao.buscar(condicionUsuario(nombreDeUsuario));
     }

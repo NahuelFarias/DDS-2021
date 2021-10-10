@@ -7,7 +7,6 @@ import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.personas.Usuario;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;

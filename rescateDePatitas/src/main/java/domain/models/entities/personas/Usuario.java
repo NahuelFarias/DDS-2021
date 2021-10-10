@@ -60,6 +60,22 @@ public class Usuario extends Persistente {
         setContrasenia(hashed_password);
     }
 
+    public Boolean login(String user, String contrasenia) {
+
+        if(getNombreDeUsuario() != user) {
+            System.out.println("El usuario ingresado es incorrecto");
+            this.fallosAlIniciarSesion = fallosAlIniciarSesion + 1;
+        } else if(!checkPassword(contrasenia, this.contrasenia)) {
+            System.out.println("La contraseña ingresada es incorrecta");
+            this.fallosAlIniciarSesion = fallosAlIniciarSesion+ 1;
+        } else {
+            System.out.println("Inicio de sesion exitoso!");
+            this.fallosAlIniciarSesion = 0;
+        }
+
+        return this.getNombreDeUsuario() == user && checkPassword(contrasenia, this.contrasenia);
+    }
+
     public Boolean iniciarSesion(String user, String contrasenia, Persona persona) {
 
         if(getNombreDeUsuario() != user) {
@@ -81,10 +97,11 @@ public class Usuario extends Persistente {
     }
 
     public Boolean checkPassword(String password_plaintext, String stored_hash) {
-        boolean password_verified = false;
+        Boolean password_verified = false;
 
-        if(null == stored_hash || !stored_hash.startsWith("$2a$"))
+        if(null == stored_hash || !stored_hash.startsWith("$2a$")) {
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+        }
 
         password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
 

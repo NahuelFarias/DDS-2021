@@ -27,9 +27,9 @@ public class LoginController {
             String contraseniaBase = request.queryParams("contrasenia");
             usuarioHasheador = new Usuario();
             usuarioHasheador.hashPassword(contraseniaBase);
-            String contrasenia = usuarioHasheador.getContrasenia();
 
-            if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase, contrasenia)) {
+            if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase,
+                    repoUsuarios.dameLaContrasenia(nombreDeUsuario).getContrasenia())) {
 
                 Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario);
 

@@ -114,4 +114,10 @@ public class MascotaController {
 
         return new ModelAndView(parametros, "registro_mascota_asociacion.hbs");
     }
+
+    public ModelAndView darEnAdopcion(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "dar_adopcion.hbs");
+    }
 }
