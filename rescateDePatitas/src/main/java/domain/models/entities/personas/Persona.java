@@ -35,6 +35,8 @@ public class Persona extends Persistente {
     private List<Rol> rolesDisponibles;
     @Transient
     private Rol rolElegido;
+    @Column(name = "usuario_temporal")
+    private String usuarioTemporal;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
@@ -246,7 +248,6 @@ public class Persona extends Persistente {
         }
     }
 
-
     //Duenio//
     public void encontreMiMascotaPerdida(PublicacionMascotaEncontrada publicacion, Contacto contacto) {
         publicacion.getRescatista().notificarContactosRescatista(contacto);
@@ -279,6 +280,13 @@ public class Persona extends Persistente {
         return md5;
     }
 
+    public void setUsuarioTemporal(String usuarioTemporal) {
+        this.usuarioTemporal = usuarioTemporal;
+    }
+
+    public String getUsuarioTemporal() {
+        return usuarioTemporal;
+    }
 
     public void notificarPosibleAdopcion(Mascota mascota, Persona adoptante) {
         contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() + "!\n" +

@@ -46,7 +46,6 @@ public class Mascota extends Persistente {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
     private String tamanio;
-    private String previewImg;
 
     public Mascota(){}
 
@@ -72,10 +71,6 @@ public class Mascota extends Persistente {
 
     public void setEspecie(String especie) {
         this.especie = especie;
-    }
-
-    public void setPreviewImg(String url) {
-        this.previewImg = url;
     }
 
     public void setDuenio(Duenio duenio) {
@@ -142,10 +137,6 @@ public class Mascota extends Persistente {
         return caracteristicas;
     }
 
-    public String getPreviewImg() {
-        return previewImg;
-    }
-
     public void setCaracteristicas(List<CaracteristicaConRta> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
@@ -156,7 +147,6 @@ public class Mascota extends Persistente {
 
     public void setFotos(List<Foto> fotos) {
         this.fotos = fotos;
-        this.setPreviewImg(fotos.get(0).getURLfoto());
     }
 
     public void agregarFoto(Foto foto) {
