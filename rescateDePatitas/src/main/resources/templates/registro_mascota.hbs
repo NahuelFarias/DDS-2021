@@ -118,6 +118,7 @@
             <br> <br>
             <h2 class="wavyy">Registro de mascota</h2>
             <p class="lead">Registrala y recibí tu chapita con código QR</p>
+            {{#unless usuario}}
             <div class="row g-3">
                 <div class="col-sm-6">
                     <h3 class="lead">¿Ya tenés una cuenta?</h3>
@@ -128,11 +129,13 @@
                     <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
                 </div>
             </div>
+        {{/unless}}
         </div>
         <div class="row">
             <div class="col-lg-8">
                 <form class="needs-validation form-" action="/nueva_mascota" method="post" novalidate>
                     <div class="row g-3">
+                        {{#unless usuario}}
                         <h4 class="mb-3 wavyp">Tus datos:</h4>
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Nombre</label>
@@ -302,13 +305,14 @@
                             <div class="col-sm-12 text-right">
                                 <a class="btn-mis" type="submit">+ Agregar</a>
                             </div>
-
                         </div>
                         <hr class="my-4">
+                        {{/unless}}
+
                         <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
                         <div class="col-sm-4">
                             <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
+                            <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value="" name="nombre"
                                    required>
                             <div class="invalid-feedback">
                                 Ingrese un nombre válido.
@@ -317,7 +321,7 @@
 
                         <div class="col-sm-4">
                             <label for="lastName" class="form-label">Apodo</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
+                            <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value="" name="apodo"
                                    required>
                             <div class="invalid-feedback">
                                 Ingrese un apellido válido.
@@ -327,30 +331,30 @@
                         <div class="col-sm-2">
                             <label for="firstName" class="form-label">Edad</label>
                             <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                   autocomplete="off" required>
+                                   autocomplete="off" name="edad" required>
                             <div class="invalid-feedback">
-                                Ingrese un nombre válido.
+                                Ingrese una edad válida.
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="lastName" class="form-label">Especie</label>
-                            <select class="form-select" id="state" required>
+                            <select class="form-select" id="state" name="especie" required>
                                 <option value="">...</option>
-                                <option>Gato</option>
-                                <option>Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="perro">Perro</option>
                             </select>
                             <div class="invalid-feedback">
-                                Ingrese un apellido válido.
+                                Seleccioná una especie.
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="lastName" class="form-label">Sexo</label>
-                            <select class="form-select" id="state" required>
+                            <select class="form-select" id="state" name="sexo" required>
                                 <option value="">...</option>
-                                <option>Hembra</option>
-                                <option>Macho</option>
+                                <option value="hembra">Hembra</option>
+                                <option value="macho">Macho</option>
                             </select>
                             <div class="invalid-feedback">
                                 Por favore, elegí el sexo.
@@ -359,11 +363,11 @@
 
                         <div class="col-sm-3">
                             <label for="lastName" class="form-label">Tamaño</label>
-                            <select class="form-select" id="state" required>
+                            <select class="form-select" id="state" name="tamanio" required>
                                 <option value="">...</option>
-                                <option>Chica</option>
-                                <option>Mediana</option>
-                                <option>Grande</option>
+                                <option value="chica">Chica</option>
+                                <option value="mediana">Mediana</option>
+                                <option value="grande">Grande</option>
                             </select>
                             <div class="invalid-feedback">
                                 Por favor, elegí el tamaño.
@@ -372,7 +376,7 @@
 
                         <div class="col-sm-12">
                             <label for="email" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion"></textarea>
                             <div class="invalid-feedback">
                                 Por favor, ingresá una descripción.
                             </div>
@@ -383,7 +387,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Subí una o varias fotos</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto">
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
@@ -398,20 +402,21 @@
                         <div class="form-group row">
 
                             <div class="col-sm-6">
+                                <!-- Aca cargo las caracteristicas generales de la base-->>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConGatos">
                                     <label class="form-check-label" for="gridCheck1">
                                         Puede convivir con gatos
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConPerros">
                                     <label class="form-check-label" for="gridCheck1">
                                         Puede convivir con perros
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConNinios">
                                     <label class="form-check-label" for="gridCheck1">
                                         Puede convivir con niños
                                     </label>
@@ -449,7 +454,7 @@
                     <div class="text-center">
                         <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">SIGUENTE</button>
                     </div>
-            </div>
+                </div>
             </form>
             <!--------------------------------------------Foto derecha--------------------------------------------->
             <div class="col-lg-3">

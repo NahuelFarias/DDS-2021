@@ -2,6 +2,7 @@ package domain.db;
 
 import db.EntityManagerHelper;
 import domain.controllers.CaracteristicasController;
+import domain.controllers.PreguntasController;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
@@ -22,7 +23,7 @@ public class CreacionEntidades {
     Persona persona,persona2,persona3;
     Contacto contacto, contacto2,contacto3;
     List<Contacto> contactos,contactos2,contactos3;
-    CaracteristicasController controller;
+    PreguntasController controller;
     CaracteristicaConRta caracteristicaConRta1, caracteristicaConRta2, caracteristicaConRta3, caracteristicaConRta4;
     ArrayList<CaracteristicaConRta> caracteristicasConRtas, caracteristicasConRtas2;
     Organizacion org1,org2,org3,org4,org5;
@@ -45,46 +46,11 @@ public class CreacionEntidades {
     RespuestaConcreta rta3, rta4,r3,r4;
     Pregunta preg3,preg4;
     List<RespuestaConcreta> respuestas;
+    DatosMascotaEncontrada encontrada;
 
 
     @Before
     public void setup(){
-        //Persona 1 con contactos
-        persona = new Persona();
-        persona.setNombre("Maria");
-        persona.setApellido("Gonzalez");
-        persona.setFechaDeNacimiento(LocalDate.of(1956, 9, 24));
-        persona.setTipoDoc(TipoDeDocumento.DNI);
-        persona.setNroDoc(9444444);
-        persona.setDireccion("Av Mitre 234");
-        contacto = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
-        contacto.setPersona(persona);
-        contactos = new ArrayList<>();
-        contactos.add(contacto);
-        persona.setContactos(contactos);
-
-        //Persona 2 con contactos
-        persona2 = new Persona();
-        persona2.setNombre("Julio");
-        persona2.setApellido("Miguel");
-        persona2.setFechaDeNacimiento(LocalDate.of(1987, 3, 11));
-        persona2.setTipoDoc(TipoDeDocumento.DNI);
-        persona2.setNroDoc(34444444);
-        persona2.setDireccion("Las heras 2461");
-        contacto2 = new Contacto("Julio", "Miguel", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
-        contactos2 = new ArrayList<>();
-        contactos2.add(contacto);
-        persona2.setContactos(contactos);
-
-        //Persona 3 con contactos
-        persona3 = new Persona();
-        contacto3 = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
-        contacto3.setPersona(persona3);
-        contactos3 = new ArrayList<>();
-        contactos3.add(contacto3);
-        persona3.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
-
-
         //Agrego 5 organizaciones al gestor
         organizaciones = new ArrayList<>();
         org1 = new Organizacion();
@@ -111,10 +77,58 @@ public class CreacionEntidades {
         org5.setNombre("El refugio"); //Lugano
         org5.setUbicacion(new Lugar(-34.6766714,-58.4790033));
         organizaciones.add(org5);
-
-        //Agrego las organizaciones al gestor
         gestor = GestorDePublicaciones.getInstancia();
         gestor.setOrganizaciones(organizaciones);
+
+        //Persona 1 con contactos
+        persona = new Persona();
+        persona.setNombre("Maria");
+        persona.setApellido("Gonzalez");
+        persona.setFechaDeNacimiento(LocalDate.of(1956, 9, 24));
+        persona.setTipoDoc(TipoDeDocumento.DNI);
+        persona.setNroDoc(9444444);
+        persona.setDireccion("Av Mitre 234");
+        contacto = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
+        contacto.setPersona(persona);
+        contactos = new ArrayList<>();
+        contactos.add(contacto);
+        persona.setContactos(contactos);
+
+        //Persona 2 con contactos
+        persona2 = new Persona();
+        persona2.setNombre("Julio");
+        persona2.setApellido("Miguel");
+        persona2.setFechaDeNacimiento(LocalDate.of(1987, 3, 11));
+        persona2.setTipoDoc(TipoDeDocumento.DNI);
+        persona2.setNroDoc(34444444);
+        persona2.setDireccion("Las heras 2461");
+        contacto2 = new Contacto("Julio", "Miguel", "+541198766543", "julioMiguel_24868@gmail.com", Estrategia.EMAIL);
+        contacto2.setPersona(persona2);
+        contactos2 = new ArrayList<>();
+        contactos2.add(contacto2);
+        persona2.setContactos(contactos2);
+        Rescatista rescatista = new Rescatista();
+        persona2.addRol(rescatista);
+        persona2.setRolElegido(rescatista);
+
+        //Datos Mascota encontrada
+        List<Foto> fotos3 = new ArrayList<>();
+        Foto foto3 = new Foto();
+        foto3.setURLfoto("img/perro3.jpg");
+        encontrada = new DatosMascotaEncontrada(fotos3,"En buen estado",new Lugar(12345,12234));
+        foto3.setDatosMascotaEncontrada(encontrada);
+        fotos3.add(foto3);
+        gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionMascotaEncontrada(persona2, encontrada);
+
+        //Persona 3 con contactos
+        persona3 = new Persona();
+        contacto3 = new Contacto("Carlos", "Mendez", "+541157535555", "x0sole0x@gmail.com", Estrategia.EMAIL);
+        contacto3.setPersona(persona3);
+        contactos3 = new ArrayList<>();
+        contactos3.add(contacto3);
+        persona3.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos3);
+
 
         //Donde se encontro una mascota
         puntoEncuentro = new Lugar(-34.6621347,-58.4803575); //Campus
@@ -125,21 +139,23 @@ public class CreacionEntidades {
         persona.addRol(duenio);
         persona.setRolElegido(duenio);
 
-        //Agrego caracteristicas al repo (Preguntas generales?)
-        controller = CaracteristicasController.getInstancia();
+        //Agrego caracteristicas generales
+        controller = PreguntasController.getInstancia();
         ArrayList<String> rtas = new ArrayList<>();
         rtas.add("Si");
         rtas.add("No");
-        controller.crearCaracteristica("Esta castrado", rtas);
+        controller.crearCaracteristica("Esta castrado", rtas,"general");
+
 
         ArrayList<String> rtas2 = new ArrayList<>();
         rtas2.add("Negro");
         rtas2.add("Marron");
         rtas2.add("Rubio");
         rtas2.add("Ninguno de estos");
-        controller.crearCaracteristica("Color principal", rtas2);
+        controller.crearCaracteristica("Color principal", rtas2,"general");
 
-        List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
+
+        List<Pregunta> caracteristicas = controller.getRepositorio().buscarPorTipo("general");
 
         caracteristicaConRta1 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"Si");
         caracteristicaConRta2 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Negro");
@@ -148,7 +164,7 @@ public class CreacionEntidades {
         caracteristicasConRtas.add(caracteristicaConRta1);
         caracteristicasConRtas.add(caracteristicaConRta2);
 
-        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"No");
+        caracteristicaConRta3 = new CaracteristicaConRta(caracteristicas.get(0).getPregunta(),"No");
         caracteristicaConRta4 = new CaracteristicaConRta(caracteristicas.get(1).getPregunta(),"Marron");
 
         //Armo la lista de caracteristicas para agregar a la mascota
@@ -248,6 +264,57 @@ public class CreacionEntidades {
 
         cuestionarioContestadoPyC.setRespuestas(respuestasCuestionarioPyC);
 
+        //Publicacion En Adopcion
+        Cuestionario cuest = new Cuestionario();
+        respuestasGenerales = new ArrayList<>();
+        rt1 = new RespuestaConcreta();
+        rt1.setPregunta(preguntaTieneGatos);
+        rt1.setRespuesta("Si");
+
+        rt2 = new RespuestaConcreta();
+        rt2.setPregunta(preguntaTienePatio);
+        rt2.setRespuesta("No");
+
+        respuestasGenerales.add(rt1);
+        respuestasGenerales.add(rt2);
+
+        respuestasOrganizacion = new ArrayList<>();
+        rt1 = new RespuestaConcreta();
+        preg1= new Pregunta();
+        preg1.setPregunta("Raza");
+        preg1.setTipoDePregunta("Caracteristica");
+        preg1.setVisible(true);
+        preg1.setOrganizacion(org1);
+        preg1.setCuestionario(cuest);
+        rt1.setPregunta(preg1);
+        rt1.setRespuesta("Collie");
+
+        rt2 = new RespuestaConcreta();
+        preg2 = new Pregunta();
+        preg2.setPregunta("Es amigable con niños?");
+        preg2.setTipoDePregunta("Caracteristica");
+        preg2.setVisible(true);
+        preg2.setOrganizacion(organizacion);
+        preg2.setCuestionario(cuest);
+        rt2.setPregunta(preg2);
+        rt2.setRespuesta("Si");
+
+        respuestasOrganizacion.add(rt1);
+        respuestasOrganizacion.add(rt2);
+        preguntasCuestionario.add(preg1);
+        preguntasCuestionario.add(preg2);
+        cuest.setPreguntas(preguntasCuestionario);
+
+        gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionEnAdopcion(persona.getMascotas().get(0),respuestasOrganizacion,respuestasGenerales,organizacion);
+
+        //Publicacion Perdida Registrada
+        persona.getMascotas().get(1).setOrganizacion(organizacion);
+        gestor.generarPublicacionMascotaPerdida(persona.getMascotas().get(1));
+
+        //Publicacion Intencion de Adopcion
+        gestor.generarPublicacionIntencionAdoptar(persona, cuestionarioContestadoPyC);
+
     }
 
     // TODO CORRO UN TEST Y SE GUARDA TODO LO RELACIONADO, EJEMPLO:
@@ -258,6 +325,7 @@ public class CreacionEntidades {
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(persona);
         EntityManagerHelper.getEntityManager().persist(persona2);
+        EntityManagerHelper.getEntityManager().persist(persona3);
         EntityManagerHelper.commit();
     }
 
@@ -279,13 +347,28 @@ public class CreacionEntidades {
     }
 
     @Test
-    public void persistirMascotas(){
+    public void persistirTodo(){
 
         Duenio duenio = (Duenio) persona.getRolElegido();
 
+        gestor = GestorDePublicaciones.getInstancia();
+        gestor.generarPublicacionMascotaEncontrada(persona2, encontrada);
+
         EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(persona);
+        EntityManagerHelper.getEntityManager().persist(persona2);
+        EntityManagerHelper.getEntityManager().persist(persona3);
+        EntityManagerHelper.getEntityManager().persist(org1);
+        EntityManagerHelper.getEntityManager().persist(org2);
+        EntityManagerHelper.getEntityManager().persist(org3);
+        EntityManagerHelper.getEntityManager().persist(org4);
+        EntityManagerHelper.getEntityManager().persist(org5);
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(0));
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(1));
+        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(0));
+        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(1));
+        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(2));
+        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
         EntityManagerHelper.commit();
 
     }

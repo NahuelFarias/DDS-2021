@@ -42,6 +42,11 @@ public class DAOMemoria<T> implements DAO<T> {
     }
 
     @Override
+    public List<T> buscarPorTipo(BusquedaCondicional condicionTipo) {
+        return null;
+    }
+
+    @Override
     public T buscar(BusquedaCondicional condicional) {
         return (T) this.entidades
                 .stream()

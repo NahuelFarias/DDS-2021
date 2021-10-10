@@ -11,7 +11,6 @@ public class RepositorioDePersonas extends RepositorioGenerico<Persona> {
         super(dao);
     }
 
-    //es necesario esto?
     public static RepositorioDePersonas getInstancia(DAO dao) {
         if (instancia == null) {
             instancia=new RepositorioDePersonas(dao);

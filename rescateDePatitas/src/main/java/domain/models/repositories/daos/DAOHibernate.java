@@ -60,4 +60,16 @@ public class DAOHibernate<T> implements DAO<T> {
             return null;
         }
     }
+
+    public List<T> buscarPorTipo(BusquedaCondicional condicional) {
+        try {
+            return (List<T>) EntityManagerHelper.getEntityManager()
+                    .createQuery(condicional.getCondicionCritero())
+                    .getResultList();
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
 }
