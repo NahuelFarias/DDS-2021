@@ -45,6 +45,33 @@ public class Mascota extends Persistente {
     private List<Foto> fotos;
     @ManyToOne(cascade = {CascadeType.ALL})
     private Persona persona;
+    private String tamanio;
+
+    public Mascota(){}
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+
+    public String getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(String tamanio) {
+        this.tamanio = tamanio;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
 
     public void setDuenio(Duenio duenio) {
         this.duenio = duenio;

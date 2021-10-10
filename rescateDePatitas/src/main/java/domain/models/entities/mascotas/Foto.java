@@ -6,7 +6,6 @@ import services.EditorDeFotos;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "foto")
@@ -26,6 +25,12 @@ public class Foto extends Persistente {
     public Foto(){
         this.fecha = LocalDate.now();
     }
+
+    public Foto(String url){
+        this.fecha = LocalDate.now();
+        this.URLfoto = url;
+    }
+
     public Foto editarFoto() {
         EditorDeFotos editor = new EditorDeFotos();
         return editor.ajustarCalidad(this);

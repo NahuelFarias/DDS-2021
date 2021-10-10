@@ -8,36 +8,37 @@ import java.util.List;
 
 public class RepositorioDePublicaciones extends RepositorioGenerico{
 
-    private static RepositorioDePublicaciones instancia;
-    public List<PublicacionGenerica> publicaciones = new ArrayList<PublicacionGenerica>();
+//    private static RepositorioDePublicaciones instancia;
+//    public List<PublicacionGenerica> publicaciones = new ArrayList<PublicacionGenerica>();
 
     protected RepositorioDePublicaciones(DAO dao) {
         super(dao);
     }
 
-    public static RepositorioDePublicaciones getInstancia(DAO dao) {
-        if (instancia == null) {
-            instancia = new RepositorioDePublicaciones(dao);
-        }
-        return instancia;
-    }
+//    public static RepositorioDePublicaciones getInstancia(DAO dao) {
+//        if (instancia == null) {
+//            instancia = new RepositorioDePublicaciones(dao);
+//        }
+//        return instancia;
+//    }
 
-    public void agregar(PublicacionGenerica publicacion){
-        this.publicaciones.add(publicacion);
-    }
+//    public void agregar(PublicacionGenerica publicacion){
+//        this.publicaciones.add(publicacion);
+//    }
 
-    public List<PublicacionGenerica> buscarTodos(){
-        return publicaciones;
+//    public List<PublicacionGenerica> buscarTodos(){
+//        return publicaciones;
+//
+//    }
 
-    }
-
-    public void eliminar(PublicacionGenerica publicacion){
-        //TODO
-    }
+//    public void eliminar(PublicacionGenerica publicacion){
+//
+//    }
 
     /*public PublicacionGenerica buscar(String id){
-        //TODO caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
+        caracteristicas.stream().filter(d -> d.getDescripcion() == descripcion);
         PublicacionGenerica publicacion = new PublicacionGenerica();
         return publicacion;
     }*/
+
 }

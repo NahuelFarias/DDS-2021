@@ -55,7 +55,7 @@ public class crearUsuarioEIniciarSesion {
         System.out.println ("Numero de documento:" + persona.getNroDoc());
         System.out.println ("Fecha de nacimiento:" + persona.getFechaDeNacimiento());
         System.out.println("Usuario en la plataforma: " + persona.getUsuario().getNombreDeUsuario());
-        System.out.println("Contrasenia en la plataforma: " + persona.getUsuario().getHashContrasenia());
+        System.out.println("Contrasenia en la plataforma: " + persona.getUsuario().getContrasenia());
         System.out.println ("-------------");
     }
 

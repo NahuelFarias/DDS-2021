@@ -87,7 +87,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
+                            <a href="#" class="dropdown-item active">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item active">Iniciar sesion</a>
+                            <a href="login" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -111,56 +111,53 @@
     </nav>
     <!--Nav Bar End -->
 
-
-    <!-- Hero Start -->
-    <div class="hero top">
-        <div class="container-fluid">
-            <div class="row align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="img/login.png" class="d-block mx-lg-auto img-fluid" alt="Imagen login" width="700"
-                        height="500" loading="lazy">
-                </div>
-                <div class="col-lg-6">
-                    <div class="col-md-9 col-lg-8 mx-auto">
-                        <h3 class="login-heading mb-4">¡Bienvenido!</h3>
-
-                        <!-- Sign In Form -->
-                        <form action="/login" method="post" class="form-">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="floatingInput"
-                                    placeholder="nombre@ejemplo.com" name="nombreDeUsuario">
-                                <label for="floatingInput">Correo electrónico</label>
+    <div class="blog top">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <p>Las están buscando</p>
+                <h2>Perdidas</h2>
+            </div>
+            <div class="row blog-page">
+                {{#each perdidas}}
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <img src="{{{mascota.fotos.[0].uRLfoto}}}" alt="Blog">
+                        </div>
+                        <div class="blog-text">
+                            <h2>{{mascota.nombre}}</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-calendar"></i> {{mascota.edad}} meses
+                                    <i class="fas fa-venus-mars"></i> {{mascota.genero}}
+                                    <i class="fas fa-map-marker-alt"></i> LUGAR
+                                </p>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Contraseña" name="contrasenia">
-                                <label for="floatingPassword">Contraseña</label>
-                            </div>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                <label class="form-check-label" for="rememberPasswordCheck">
-                                    Recordar contraseña
-                                </label>
-                            </div>
-
-                            <div class="d-grid signin">
-                                <button class="btn-grande" type="submit">INGRESAR</button>
-                                <div class="text-center">
-                                    <a class="small pregunta" href="#">¿Olvidaste tu contraseña?</a>
-                                    <a class="small pregunta" href="registro_duenio.html">¿No estás registrado?</a>
-                                </div>
-                            </div>
-                        </form>
+                            <p>
+                                {{mascota.descripcion}}
+                            </p>
+                            <a class="btn-mis" href="">Ver perfil <i class="fa fa-angle-right"></i></a>
+                        </div>
                     </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero End -->
 
-     <!-- Footer -->
-     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
 
         <!-- Section: Links  -->
         <section class="footer-info">

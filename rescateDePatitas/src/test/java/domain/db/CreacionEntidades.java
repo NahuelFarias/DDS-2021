@@ -121,8 +121,7 @@ public class CreacionEntidades {
         puntoEncuentro = new Lugar(-34.6621347,-58.4803575); //Campus
 
         //Persona 1 tiene usuario y es duenio
-        Usuario usuario = new Usuario("julio_miguel","kjasdA1@hkasdh");
-        persona.setUsuario(usuario);
+        persona.crearUsuario("Victoria09", "MiPerro22!!##");
         Duenio duenio = new Duenio();
         persona.addRol(duenio);
         persona.setRolElegido(duenio);
@@ -161,12 +160,12 @@ public class CreacionEntidades {
         //Redimensiono las fotos para agregar a la mascota
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
-        foto.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
+        foto.setURLfoto("img/perro1.jpg");
         fotos.add(foto);
 
         List<Foto> fotos2 = new ArrayList<>();
         Foto foto2 = new Foto();
-        foto2.setURLfoto("src/main/resources/FotoDePrueba.jpg");
+        foto2.setURLfoto("img/gato2.jpg");
         fotos2.add(foto2);
 
         Mascota.MascotaDTO mascotaDTO = new Mascota.MascotaDTO();
@@ -251,6 +250,9 @@ public class CreacionEntidades {
         cuestionarioContestadoPyC.setRespuestas(respuestasCuestionarioPyC);
 
     }
+
+    // TODO CORRO UN TEST Y SE GUARDA TODO LO RELACIONADO, EJEMPLO:
+
     @Test
     public void persistirUsuarioTest1(){
 
@@ -297,7 +299,7 @@ public class CreacionEntidades {
         persona2.setRolElegido(rescatista);
         List<Foto> fotos3 = new ArrayList<>();
         Foto foto3 = new Foto();
-        foto3.setURLfoto("src/main/resources/FotoDePrueba2.jpg");
+        foto3.setURLfoto("img/perro3.jpg");
         DatosMascotaEncontrada encontrada = new DatosMascotaEncontrada(fotos3,"En buen estado",new Lugar(12345,12234));
         foto3.setDatosMascotaEncontrada(encontrada);
         fotos3.add(foto3);

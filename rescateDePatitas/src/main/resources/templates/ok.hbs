@@ -62,7 +62,7 @@
     <!-- Nav Bar Start -->
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="/" class="navbar-brand">
+            <a href="index.html" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -73,7 +73,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="perdidas" class="dropdown-item">Ver mascotas perdidas</a>
+                            <a href="perdidas.html" class="dropdown-item">Ver mascotas perdidas</a>
                             <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas" class="dropdown-item">Ver encontradas</a>
+                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
+                            <a href="#" class="dropdown-item active">Adoptar</a>
                             <a href="#" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
                             <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item active">Iniciar sesion</a>
+                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -112,55 +112,25 @@
     <!--Nav Bar End -->
 
 
-    <!-- Hero Start -->
-    <div class="hero top">
-        <div class="container-fluid">
-            <div class="row align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img src="img/login.png" class="d-block mx-lg-auto img-fluid" alt="Imagen login" width="700"
-                        height="500" loading="lazy">
-                </div>
-                <div class="col-lg-6">
-                    <div class="col-md-9 col-lg-8 mx-auto">
-                        <h3 class="login-heading mb-4">¡Bienvenido!</h3>
-
-                        <!-- Sign In Form -->
-                        <form action="/login" method="post" class="form-">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="floatingInput"
-                                    placeholder="nombre@ejemplo.com" name="nombreDeUsuario">
-                                <label for="floatingInput">Correo electrónico</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Contraseña" name="contrasenia">
-                                <label for="floatingPassword">Contraseña</label>
-                            </div>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                <label class="form-check-label" for="rememberPasswordCheck">
-                                    Recordar contraseña
-                                </label>
-                            </div>
-
-                            <div class="d-grid signin">
-                                <button class="btn-grande" type="submit">INGRESAR</button>
-                                <div class="text-center">
-                                    <a class="small pregunta" href="#">¿Olvidaste tu contraseña?</a>
-                                    <a class="small pregunta" href="registro_duenio.html">¿No estás registrado?</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <!-- Datos de registro-->
+    <div class="register">
+        <div class="container">
+            <div class="py-5 text-center">
+                <br> <br>
+                <h2>Publicación enviada</h2>
+                <p class="lead">Un voluntario va a evaluar tu publicación</p>
+                <i class="far fa-7x fa-check-circle" style="color: green;"></i>
+                <br>
+                <img class="img-fluid" src="img/ok.png" alt="">
             </div>
         </div>
-    </div>
-    <!-- Hero End -->
 
-     <!-- Footer -->
-     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
+        <br>
+    </div>
+    <!-- Datos de registro-->
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">
 
         <!-- Section: Links  -->
         <section class="footer-info">

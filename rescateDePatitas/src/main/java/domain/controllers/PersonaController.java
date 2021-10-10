@@ -1,14 +1,12 @@
 package domain.controllers;
 
 import domain.models.entities.personas.Persona;
+import domain.models.entities.personas.Usuario;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
-import spark.Response;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class PersonaController {
     private RepositorioDePersonas repositorio;
@@ -17,15 +15,6 @@ public class PersonaController {
         this.repositorio = (RepositorioDePersonas) FactoryRepositorio.get(Persona.class);
     }
 
-    private void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros){
-        /* TODO ver si lo necesitamos
-        if(!request.session().isNew() && request.session().attribute("id") != null){
-            Usuario usuario = repo.buscar(request.session().attribute("id"));
-            parametros.put("usuario", usuario);
-        }
-
-         */
-    }
 
 
     private void asignarAtributosA(Persona persona, Request request){

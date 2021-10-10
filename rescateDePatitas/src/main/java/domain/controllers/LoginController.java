@@ -1,7 +1,6 @@
 package domain.controllers;
 
 import domain.models.entities.personas.Usuario;
-import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioDeUsuarios;
 import domain.models.repositories.factories.FactoryRepositorioUsuarios;
 import spark.ModelAndView;
@@ -12,42 +11,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginController {
-    public ModelAndView inicio(Request request, Response response){
+
+    private Usuario usuarioHasheador;
+
+    public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        return new ModelAndView(parametros,"login.hbs");
+        return new ModelAndView(parametros, "login.hbs");
     }
 
-    public Response login(Request request, Response response){
-        try{
+    public Response login(Request request, Response response) {
+        try {
             RepositorioDeUsuarios repoUsuarios = FactoryRepositorioUsuarios.get();
 
             String nombreDeUsuario = request.queryParams("nombreDeUsuario");
-            String contrasenia     = request.queryParams("contrasenia");
+            String contraseniaBase = request.queryParams("contrasenia");
+            usuarioHasheador = new Usuario();
+            usuarioHasheador.hashPassword(contraseniaBase);
+            String contrasenia = usuarioHasheador.getContrasenia();
 
-            if(repoUsuarios.existe(nombreDeUsuario, contrasenia)){
-                Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario, contrasenia);
+            if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase, contrasenia)) {
+
+                Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario);
 
                 request.session(true);
                 request.session().attribute("id", usuario.getId());
 
-                response.redirect("/usuarios");
-            }
-            else{
                 response.redirect("/");
+            } else {
+                response.redirect("/login");
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             //Funcionalidad disponible solo con persistencia en Base de Datos
-            response.redirect("/usuarios");
+           response.redirect("/404"); // TODO Cambiar a otra pagina
         }
         finally {
             return response;
         }
     }
 
-    public Response logout(Request request, Response response){
+    public Response logout(Request request, Response response) {
         request.session().invalidate();
         response.redirect("/");
         return response;
     }
+
 }

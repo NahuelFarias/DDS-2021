@@ -17,17 +17,15 @@ public class FactoryRepositorio {
         repos = new HashMap<>();
     }
 
-    public static <T> RepositorioGenerico<T> get(Class<T> type){
+    public static <T> RepositorioGenerico<T> get(Class<T> type) {
         RepositorioGenerico<T> repo;
-        if(repos.containsKey(type.getName())){
+        if (repos.containsKey(type.getName())) {
             repo = repos.get(type.getName());
-        }
-        else{
-            if(Config.useDataBase){
+        } else {
+            if (Config.useDataBase) {
                 DAO<T> dao = new DAOHibernate<>(type);
                 repo = new RepositorioGenerico<T>(dao);
-            }
-            else{
+            } else {
                 repo = new RepositorioGenerico<T>(new DAOMemoria<>(Data.getData(type)));
             }
             repos.put(type.toString(), repo);

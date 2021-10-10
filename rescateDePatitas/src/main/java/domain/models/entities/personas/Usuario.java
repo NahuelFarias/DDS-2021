@@ -15,9 +15,13 @@ public class Usuario extends Persistente {
     @Column(name = "nombreDeUsuario")
     private String nombreDeUsuario;
     @Column(name = "contrasenia")
-    private String hashContrasenia;
+    private String contrasenia;
     @Transient
     private Integer fallosAlIniciarSesion = 0;
+
+    public Usuario(){
+
+    }
 
     public Usuario(String user, String contrasenia) {
         setNombreDeUsuario(user);
@@ -30,16 +34,16 @@ public class Usuario extends Persistente {
         return nombreDeUsuario;
     }
 
-    public String getHashContrasenia() {
-        return hashContrasenia;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     public void setNombreDeUsuario(String nombreDeUsuario) {
         this.nombreDeUsuario = nombreDeUsuario;
     }
 
-    public void setHashContrasenia(String hashContrasenia) {
-        this.hashContrasenia = hashContrasenia;
+    public void setContrasenia(String hashContrasenia) {
+        this.contrasenia = hashContrasenia;
     }
 
     public Boolean verificarContrasenia(String contrasenia){
@@ -53,7 +57,7 @@ public class Usuario extends Persistente {
         String salt = BCrypt.gensalt(workload);
         String hashed_password = BCrypt.hashpw(password_plaintext, salt);
 
-        setHashContrasenia(hashed_password);
+        setContrasenia(hashed_password);
     }
 
     public Boolean iniciarSesion(String user, String contrasenia, Persona persona) {
@@ -61,7 +65,7 @@ public class Usuario extends Persistente {
         if(getNombreDeUsuario() != user) {
             System.out.println("El usuario ingresado es incorrecto");
             this.fallosAlIniciarSesion = fallosAlIniciarSesion + 1;
-        } else if(!checkPassword(contrasenia, this.hashContrasenia)) {
+        } else if(!checkPassword(contrasenia, this.contrasenia)) {
             System.out.println("La contraseña ingresada es incorrecta");
             this.fallosAlIniciarSesion = fallosAlIniciarSesion+ 1;
         } else {
@@ -73,10 +77,10 @@ public class Usuario extends Persistente {
             persona.getContactos().forEach(contacto -> contacto.notificarContacto("detectamos una serie de ingresos fallidos en tu cuenta"));
         }
 
-        return this.getNombreDeUsuario() == user && checkPassword(contrasenia, this.hashContrasenia);
+        return this.getNombreDeUsuario() == user && checkPassword(contrasenia, this.contrasenia);
     }
 
-    public static Boolean checkPassword(String password_plaintext, String stored_hash) {
+    public Boolean checkPassword(String password_plaintext, String stored_hash) {
         boolean password_verified = false;
 
         if(null == stored_hash || !stored_hash.startsWith("$2a$"))

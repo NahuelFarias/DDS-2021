@@ -1,6 +1,7 @@
 package server;
 
-import domain.controllers.HomeController;
+import domain.controllers.*;
+import domain.models.middleware.AuthMiddleware;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -23,9 +24,39 @@ public class Router {
         Router.configure();
     }
 
-    private static void configure(){
+    private static void configure() {
         HomeController homeController = new HomeController();
+        LoginController loginController = new LoginController();
+        MascotaController mascotaController = new MascotaController();
+        PublicacionesPerdidasController perdidas = new PublicacionesPerdidasController();
+        PublicacionesEncontradasController encontradas = new PublicacionesEncontradasController();
+        PublicacionesEnAdopcionController enAdopcion = new PublicacionesEnAdopcionController();
+        AuthMiddleware authMiddleware = new AuthMiddleware();
+
         Spark.get("/", homeController::mostrarHome, Router.engine);
-        Spark.get("/login",homeController::login,Router.engine);
+
+        Spark.before("/", authMiddleware::verificarSesion);
+
+        Spark.get("/login", loginController::inicio, Router.engine);
+
+        Spark.post("/login", loginController::login);
+
+        Spark.get("/logout", loginController::logout);
+
+        Spark.get("/perdidas", perdidas::mostrarPerdidas, Router.engine);
+
+        Spark.get("/encontradas", encontradas::mostrarEncontradas, Router.engine);
+
+        Spark.get("/en_adopcion", enAdopcion::mostrarEnAdopcion, Router.engine);
+
+        Spark.get("/elegir_asociacion", mascotaController::registroMascotaAsoc, Router.engine);
+
+        Spark.get("/nueva_mascota", mascotaController::registroMascota, Router.engine);
+
+        Spark.post("/nueva_mascota", mascotaController::guardarMascota);
+
+        Spark.get("/ok", mascotaController::creada, Router.engine);
+
+
     }
 }
