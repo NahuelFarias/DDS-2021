@@ -42,7 +42,7 @@ public class LoginController {
             }
         } catch (Exception e) {
             //Funcionalidad disponible solo con persistencia en Base de Datos
-           response.redirect("/perdidos"); // TODO Cambiar a otra pagina
+           response.redirect("/404"); // TODO Cambiar a otra pagina
         }
         finally {
             return response;

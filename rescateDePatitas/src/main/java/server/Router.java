@@ -55,7 +55,7 @@ public class Router {
 
         Spark.post("/nueva_mascota", mascotaController::guardarMascota);
 
-        Spark.get("/ok", mascotaController::creada);
+        Spark.get("/ok", mascotaController::creada, Router.engine);
 
 
     }
