@@ -22,7 +22,7 @@ public class HomeController {
         this.repoUser = FactoryRepositorio.get(Usuario.class);
     }
 
-    private void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros){
+    public void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros){
         if(request.session().attribute("id") != null){
             Usuario usuario = repoUser.buscar(request.session().attribute("id"));
             parametros.put("usuario", usuario);

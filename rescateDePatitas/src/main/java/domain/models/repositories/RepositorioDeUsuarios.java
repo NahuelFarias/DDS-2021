@@ -7,17 +7,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.List;
 
 public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
-    //public List<Usuario> usuarios;
-
-//        public Optional<Usuario> buscar(String nombreDeUsuario) {
-//
-//            return this.usuarios.stream()
-//                    .filter(n -> n.getNombreDeUsuario() == nombreDeUsuario)
-//                    .findFirst();
-//        }
 
     public RepositorioDeUsuarios(DAO<Usuario> dao) {
         super(dao);
@@ -25,6 +16,10 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
 
     public Boolean existe(String nombreDeUsuario) {
         return buscarUsuario(nombreDeUsuario) != null;
+    }
+
+    public Usuario dameElUsuario(String nombreDeUsuario) {
+        return buscarUsuario(nombreDeUsuario);
     }
 
     public Usuario buscarUsuario(String nombreDeUsuario) {

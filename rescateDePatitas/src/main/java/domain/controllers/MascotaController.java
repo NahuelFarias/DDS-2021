@@ -1,20 +1,15 @@
 package domain.controllers;
 
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.personas.Usuario;
-import domain.models.repositories.RepositorioDeMascotas;
-import domain.models.repositories.RepositorioDeUsuarios;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
-import domain.models.repositories.factories.FactoryRepositorioMascotas;
-import domain.models.repositories.factories.FactoryRepositorioUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,8 +73,8 @@ public class MascotaController {
             mascota.setNombre(request.queryParams("apodo"));
         }
 
-        if(request.queryParams("especia") != null){
-            mascota.setEspecie(request.queryParams("especia"));
+        if(request.queryParams("especie") != null){
+            mascota.setEspecie(request.queryParams("especie"));
         }
 
         if(request.queryParams("sexo") != null){
@@ -98,6 +93,18 @@ public class MascotaController {
             int edad = Integer.valueOf(request.queryParams("edad"));
             mascota.setEdad(edad);
         }
+        if(request.queryParams("foto") != null){
+            //TODO hacerlo para muchas fotos
+            List<Foto> fotos = new ArrayList<>();
+            Foto foto = new Foto();
+            foto.setURLfoto(request.queryParams("foto"));
+            fotos.add(foto);
+            mascota.setFotos(fotos);
+        }
+
+        if(request.queryParams("conviveConGatos") != null){
+            request.queryParams("conviveConGatos");
+        }
     }
 
     private void asignarAtributosA(Persona persona, Request request) {
@@ -113,5 +120,11 @@ public class MascotaController {
         Map<String, Object> parametros = new HashMap<>();
 
         return new ModelAndView(parametros, "registro_mascota_asociacion.hbs");
+    }
+
+    public ModelAndView darEnAdopcion(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
 }

@@ -6,6 +6,7 @@ import com.github.jknack.handlebars.HumanizeHelper;
 import com.github.jknack.handlebars.helper.I18nHelper;
 import com.github.jknack.handlebars.helper.NumberHelper;
 import com.github.jknack.handlebars.helper.StringHelpers;
+import com.github.jknack.handlebars.helper.ConditionalHelpers;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class HandlebarsTemplateEngineBuilder {
@@ -39,6 +40,7 @@ public class HandlebarsTemplateEngineBuilder {
         StringHelpers.register(getHandlerbars());
         NumberHelper.register(getHandlerbars());
         HumanizeHelper.register(getHandlerbars());
+        withHelper("eq",ConditionalHelpers.eq);
         withHelper("i18n", I18nHelper.i18n);
         return this;
     }

@@ -16,4 +16,6 @@ public interface DAO<T> {
     void modificar(Object unObjeto);
 
     void eliminar(Object unObjeto);
+
+    List<T> buscarPorTipo(BusquedaCondicional condicionTipo);
 }
