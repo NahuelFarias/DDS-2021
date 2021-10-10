@@ -109,6 +109,7 @@ public class CreacionEntidades {
         contactos2.add(contacto2);
         persona2.setContactos(contactos2);
         Rescatista rescatista = new Rescatista();
+        rescatista.setPersona(persona2);
         persona2.addRol(rescatista);
         persona2.setRolElegido(rescatista);
 
@@ -137,8 +138,11 @@ public class CreacionEntidades {
         //Persona 1 tiene usuario y es duenio
         persona.crearUsuario("Victoria09", "MiPerro22!!##");
         Duenio duenio = new Duenio();
+        duenio.setPersona(persona);
         Voluntario voluntario = new Voluntario();
-        Rescatista rescatista = new Rescatista();
+        voluntario.setPersona(persona);
+        rescatista = new Rescatista();
+        rescatista.setPersona(persona);
         persona.addRol(duenio);
         persona.addRol(voluntario);
         persona.addRol(rescatista);

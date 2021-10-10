@@ -37,6 +37,14 @@ public abstract class Rol extends Persistente {
         }
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
     public String getClassImage() {
         return classImage;
     }

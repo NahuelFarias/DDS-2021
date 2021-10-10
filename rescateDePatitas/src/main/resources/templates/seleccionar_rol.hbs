@@ -11,18 +11,74 @@
                     </div>
                     <div class="row">
                         {{#each roles}}
+                            {{#eq tipo "Voluntario"}}
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="rol-item">
+                                        <a href="index_log_voluntario.html">
+                                            <div class="service-icon">
+                                                <i class="fas fa-paw"></i>
+                                            </div>
+
+                                            <h3>Voluntario</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/eq}}
+
+                            {{#eq "Dueño" tipo}}
+                                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+                                    <div class="rol-item">
+                                        <a href="index_log.html">
+                                            <div class="service-icon">
+                                                <i class="fas fa-dog"></i>
+                                            </div>
+
+                                            <h3>Dueño</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/eq}}
+
+                            {{#eq tipo "Rescatista"}}
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="rol-item">
+                                        <a href="#">
+                                        <div class="service-icon">
+                                            <i class="fab fa-gratipay"></i>
+                                        </div>
+                                        <h3>Rescatista</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/eq}}
+
+                            {{#eq nombre "Administrador"}}
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                                    <div class="rol-item">
+                                        <a href="#">
+                                            <div class="service-icon">
+                                                <i class="fas fa-user-cog"></i>
+                                            </div>
+                                            <h3>Administrador</h3>
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/eq}}
+
+                        {{/each}}
+                            <!-- Por ahora lo comento
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                             <div class="rol-item">
                                 <a href="/">
                                     <div class="service-icon">
-                                        <i class="{{classImage}}"></i> <!--Necesito persistirno-->
+                                        <i class="{{classImage}}"></i>
                                     </div>
                                     <h3>{{tipo}}</h3>
                                 </a>
                             </div>
                         </div>
-                        {{/each}}
-                        <!-- Por ahora lo comento
+
+
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="rol-item">
                                 <a href="index_log_voluntario.html">
@@ -35,8 +91,8 @@
                             </div>
                         </div>
                         -->
+                    </div>
                 </div>
-            </div>
             <!-- Service End -->
             </div>
         </div>
