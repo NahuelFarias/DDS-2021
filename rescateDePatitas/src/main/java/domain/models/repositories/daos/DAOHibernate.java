@@ -14,6 +14,10 @@ public class DAOHibernate<T> implements DAO<T> {
         this.type = type;
     }
 
+    public DAOHibernate() {
+
+    }
+
     @Override
     public List<T> buscarTodos() {
         CriteriaBuilder builder = EntityManagerHelper.getEntityManager().getCriteriaBuilder();

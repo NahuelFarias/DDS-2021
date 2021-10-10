@@ -15,7 +15,7 @@ public class Voluntario extends Rol {
     private Organizacion organizacion;
 
     public Voluntario(){
-        super("VOLUNTARIO");
+        super("Voluntario");
     }
 
     public void setOrganizacion(Organizacion organizacion){ this.organizacion = organizacion; }

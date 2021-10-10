@@ -1,18 +1,27 @@
 package domain.controllers;
 
+import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
+import domain.models.entities.rol.Rol;
+import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioDeUsuarios;
+import domain.models.repositories.RepositorioGenerico;
+import domain.models.repositories.daos.DAOHibernate;
+import domain.models.repositories.factories.FactoryRepositorio;
 import domain.models.repositories.factories.FactoryRepositorioUsuarios;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginController {
+    private DAOHibernate daoHibernate = new DAOHibernate();
 
     private Usuario usuarioHasheador;
+    private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
+    private RepositorioGenerico<Usuario> repoUser = FactoryRepositorio.get(Usuario.class);
 
     public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
@@ -29,14 +38,14 @@ public class LoginController {
             usuarioHasheador.hashPassword(contraseniaBase);
 
             if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase,
-                    repoUsuarios.dameLaContrasenia(nombreDeUsuario).getContrasenia())) {
+                    repoUsuarios.dameElUsuario(nombreDeUsuario).getContrasenia())) {
 
                 Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario);
 
                 request.session(true);
                 request.session().attribute("id", usuario.getId());
 
-                response.redirect("/");
+                response.redirect("/cambiar_rol");
             } else {
                 response.redirect("/login");
             }
@@ -55,4 +64,11 @@ public class LoginController {
         return response;
     }
 
+    public ModelAndView mostrarRoles(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        Map<String, Object> parametros = new HashMap<>();
+        List<Rol> roles = persona.getRolesDisponibles();
+        parametros.put("roles", roles);
+        return new ModelAndView(parametros, "seleccionar_rol.hbs");
+    }
 }

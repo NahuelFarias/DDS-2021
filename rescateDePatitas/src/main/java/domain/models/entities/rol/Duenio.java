@@ -16,7 +16,7 @@ public class Duenio extends Rol{
     private List<Mascota> mascotas = new ArrayList<>();
 
     public Duenio(){
-        super("DUENIO");
+        super("Dueño");
     }
 
     public void perdiUnaMascota(Mascota mascota) {

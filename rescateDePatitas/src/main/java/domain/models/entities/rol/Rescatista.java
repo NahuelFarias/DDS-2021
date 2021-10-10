@@ -15,7 +15,7 @@ public class Rescatista extends Rol {
     private List<Mascota> mascotasRescatadas = new ArrayList<>();
 
     public Rescatista(){
-        super("RESCATISTA");
+        super("Rescatista");
     }
 
     public void registrarMascota(Mascota.MascotaDTO mascota, Persona persona) {
