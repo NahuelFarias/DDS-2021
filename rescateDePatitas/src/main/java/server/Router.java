@@ -57,6 +57,8 @@ public class Router {
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
+        Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion,Router.engine);
+
 
     }
 }

@@ -104,6 +104,8 @@
             <version> 1.0-alpha-1 </version>
         </dependency>
         <dependency>
+            <!--Version 8.0.19
+             Version 5.1.26-->
             <groupId> mysql </groupId>
             <artifactId> mysql-connector-java </artifactId>
             <version> 5.1.26 </version>
