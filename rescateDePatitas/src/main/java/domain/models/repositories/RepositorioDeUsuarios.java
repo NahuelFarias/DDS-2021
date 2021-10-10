@@ -27,7 +27,7 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
         return buscarUsuario(nombreDeUsuario) != null;
     }
 
-    public Usuario dameLaContrasenia(String nombreDeUsuario) {
+    public Usuario dameElUsuario(String nombreDeUsuario) {
         return buscarUsuario(nombreDeUsuario);
     }
 

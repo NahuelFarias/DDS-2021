@@ -10,6 +10,7 @@ import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.*;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
+import domain.models.entities.rol.Voluntario;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -122,7 +123,11 @@ public class CreacionEntidades {
         //Persona 1 tiene usuario y es duenio
         persona.crearUsuario("Victoria09", "MiPerro22!!##");
         Duenio duenio = new Duenio();
+        Voluntario voluntario = new Voluntario();
+        Rescatista rescatista = new Rescatista();
         persona.addRol(duenio);
+        persona.addRol(voluntario);
+        persona.addRol(rescatista);
         persona.setRolElegido(duenio);
 
         //Agrego caracteristicas al repo (Preguntas generales?)

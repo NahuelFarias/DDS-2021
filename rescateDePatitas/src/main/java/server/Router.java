@@ -1,5 +1,6 @@
 package server;
 
+import com.github.jknack.handlebars.Handlebars;
 import domain.controllers.*;
 import domain.models.middleware.AuthMiddleware;
 import spark.Spark;
@@ -58,6 +59,8 @@ public class Router {
         Spark.get("/dar_adopcion", mascotaController::darEnAdopcion, Router.engine);
 
         Spark.post("/dar_adopcion", mascotaController::guardarMascota);
+
+        Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
