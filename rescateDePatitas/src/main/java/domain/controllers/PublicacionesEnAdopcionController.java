@@ -36,6 +36,5 @@ public class PublicacionesEnAdopcionController {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("publicacion", publicacion);
         return new ModelAndView(parametros, "adopcion_publicacion.hbs");
-        //TODO: Traer el .hbs y vincularlo
     }
 }

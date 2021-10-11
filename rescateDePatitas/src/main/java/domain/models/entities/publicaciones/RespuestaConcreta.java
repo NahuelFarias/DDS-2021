@@ -29,4 +29,8 @@ public class RespuestaConcreta extends Persistente {
     public String getRespuesta() {
         return respuesta;
     }
+
+    public void setCuestionarioContestado(CuestionarioContestado cuestionarioContestado) {this.cuestionarioContestado = cuestionarioContestado;}
+
+    public CuestionarioContestado getCuestionarioContestado() {return cuestionarioContestado;}
 }
