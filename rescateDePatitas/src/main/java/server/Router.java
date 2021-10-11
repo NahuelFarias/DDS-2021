@@ -70,7 +70,12 @@ public class Router {
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
+        Spark.get("/en_adopcion/ok", enAdopcion::mostrarOk, Router.engine);
+
         Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion, Router.engine);
+
+        Spark.post("/en_adopcion/:id", enAdopcion::quieroAdoptarlo);
+
 
 
     }
