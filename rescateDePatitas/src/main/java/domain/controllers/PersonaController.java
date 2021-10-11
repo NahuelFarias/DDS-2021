@@ -2,7 +2,12 @@ package domain.controllers;
 
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
+import domain.models.entities.publicaciones.Pregunta;
 import domain.models.repositories.RepositorioDePersonas;
+import domain.models.repositories.RepositorioDePreguntas;
+import domain.models.repositories.RepositorioGenerico;
+import domain.models.repositories.daos.DAO;
+import domain.models.repositories.daos.DAOHibernate;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -10,11 +15,26 @@ import spark.Request;
 
 public class PersonaController {
     private RepositorioDePersonas repositorio;
+    private static PersonaController instancia;
+
+//    public PersonaController(){
+//        this.repositorio = (RepositorioDePersonas) FactoryRepositorio.get(Persona.class);
+//    }
 
     public PersonaController(){
-        this.repositorio = (RepositorioDePersonas) FactoryRepositorio.get(Persona.class);
+        DAO<Persona> dao = new DAOHibernate<>(Persona.class);
+        this.repositorio = new RepositorioDePersonas(dao);
     }
 
+    public static PersonaController getInstancia() {
+        if (instancia == null) {
+            instancia = new PersonaController();
+        }
+        return instancia;
+    }
+    public RepositorioDePersonas getRepositorio() {
+        return repositorio;
+    }
 
 
     private void asignarAtributosA(Persona persona, Request request){

@@ -119,200 +119,185 @@
             <h2 class="wavyy">Registro de mascota</h2>
             <p class="lead">Registrala y recibí tu chapita con código QR</p>
             {{#unless usuario}}
-            <div class="row g-3">
-                <div class="col-sm-6">
-                    <h3 class="lead">¿Ya tenés una cuenta?</h3>
-                    <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <h3 class="lead">¿Ya tenés una cuenta?</h3>
+                        <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3 class="lead">¿Querés crearla?</h3>
+                        <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <h3 class="lead">¿Querés crearla?</h3>
-                    <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
-                </div>
-            </div>
-        {{/unless}}
+            {{/unless}}
         </div>
         <div class="row">
             <div class="col-lg-8">
                 <form class="needs-validation form-" action="/nueva_mascota" method="post" novalidate>
                     <div class="row g-3">
                         {{#unless usuario}}
-                        <h4 class="mb-3 wavyp">Tus datos:</h4>
-                        <div class="col-sm-6">
-                            <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
-                                   name="nombrePersona"
-                                   required>
-                            <div class="invalid-feedback">
-                                Ingresá un nombre válido.
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label for="lastName" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
-                                   name="apellido"
-                                   required>
-                            <div class="invalid-feedback">
-                                Ingresá un apellido válido.
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <label for="firstName" class="form-label">Fecha de nacimiento</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
-                                   name="fnacPersona"
-                                   required>
-                            <div class="invalid-feedback">
-                                Ingresá tu fecha de nacimiento.
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 ">
-                            <label for="lastName" class="form-label">Tipo</label>
-                            <select class="form-select" id="state" required>
-                                <option value="">...</option>
-                                {{#each tipos}}
-                                    <option>{{.}}</option>
-                                {{/each}}
-                            </select>
-                            <div class="invalid-feedback">
-                                Seleccioná el tipo de documento.
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="lastName" class="form-label">Nro documento</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Ingresá un número de documento válido.
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="hola@ejemplo.com">
-                            <div class="invalid-feedback">
-                                Por favor, ingresá un correo electrónico válido.
-                            </div>
-                        </div>
-
-                        <div class="row py-3">
-                            <div class="col-md-4">
-                                <label for="country" class="form-label">País</label>
-                                <select class="form-select" id="country" required>
-                                    <option value="">Elegí...</option>
-                                    <option>Argentina</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un país válido.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="state" class="form-label">Provincia/Estado</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">Elegí...</option>
-                                    <option>Buenos Aires</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá una provincia.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="state" class="form-label">Localidad</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">Elegí...</option>
-                                    <option>Olivos</option>
-                                    <option>Vicente López</option>
-                                    <option>Florida</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá una localidad.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <label for="address" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
-                                   required>
-                            <div class="invalid-feedback">
-                                Por favor, ingresá la dirección.
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="zip" class="form-label">Código Postal</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
-                            <div class="invalid-feedback">
-                                El código postal es obligatorio.
-                            </div>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <h4 class="mb-3 wavyp">Tus contactos:</h4>
-
-                        <div class="row g-3">
-
+                            <h4 class="mb-3 wavyp">Tus datos:</h4>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
+                                       name="nombrePersona"
                                        required>
                                 <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
+                                    Ingresá un nombre válido.
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
+                                       name="apellido"
                                        required>
                                 <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
+                                    Ingresá un apellido válido.
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Número celular</label>
-                                <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                       value="" required>
+                            <div class="col-sm-4">
+                                <label for="firstName" class="form-label">Fecha de nacimiento</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
+                                       name="fnacPersona"
+                                       required>
                                 <div class="invalid-feedback">
-                                    Ingrese un número de celular válido.
+                                    Ingresá tu fecha de nacimiento.
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Correo Electrónico</label>
-                                <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                       value="" required>
+                            <div class="col-sm-3 ">
+                                <label for="lastName" class="form-label">Tipo</label>
+                                <select class="form-select" id="state" name="tipoDoc" required>
+                                    <option>...</option>
+                                    {{#each tipos}}
+                                        <option value="{{.}}">{{.}}</option>
+                                    {{/each}}
+                                </select>
                                 <div class="invalid-feedback">
-                                    Ingrese un correo electrónico válido.
+                                    Seleccioná el tipo de documento.
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Medio preferido</label>
-                                <div class="form-check">
-                                    <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                           checked required>
-                                    <label class="form-check-label" for="email">Email</label>
+                                <label for="lastName" class="form-label">Nro documento</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="" value="" name="nroDoc"required>
+                                <div class="invalid-feedback">
+                                    Ingresá un número de documento válido.
                                 </div>
-                                <div class="form-check">
-                                    <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
-                                           required>
-                                    <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                            </div>
+
+                            <div class="row py-3">
+                                <div class="col-md-4">
+                                    <label for="country" class="form-label">País</label>
+                                    <select class="form-select" id="country" name="pais" required>
+                                        <option>Elegí...</option>
+                                        <option value="argentina">Argentina</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá un país válido.
+                                    </div>
                                 </div>
 
+                                <div class="col-md-4">
+                                    <label for="state" class="form-label">Provincia/Estado</label>
+                                    <select class="form-select" id="state" required>
+                                        <option value="">Elegí...</option>
+                                        {{#each provincias}}
+                                        <option name="provincia" value="{{.}}">{{.}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá una provincia.
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 text-right">
-                                <a class="btn-mis" type="submit">+ Agregar</a>
+                            <div class="col-7">
+                                <label for="address" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
+                                       name="direccion" required>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresá la dirección.
+                                </div>
                             </div>
-                        </div>
-                        <hr class="my-4">
+
+                            <div class="col-md-3">
+                                <label for="zip" class="form-label">Código Postal</label>
+                                <input type="text" class="form-control" id="zip" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    El código postal es obligatorio.
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h4 class="mb-3 wavyp">Tus contactos:</h4>
+
+                            <div class="row g-3">
+
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                           name="cNombre" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                           name="cApellido" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Número celular</label>
+                                    <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                           value="" name="cNumero"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un número de celular válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Correo Electrónico</label>
+                                    <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                           value="" name="cCorreo"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un correo electrónico válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="lastName" class="form-label">Medio preferido</label>
+                                    <div class="form-check">
+                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input" value="EMAIL"
+                                                required>
+                                        <label class="form-check-label" for="email">Email</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
+                                               value="WHATSAPP" required>
+                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-12 text-right">
+                                    <a class="btn-mis" type="submit">+ Agregar</a>
+                                </div>
+                            </div>
+                            <hr class="my-4">
                         {{/unless}}
 
                         <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
                         <div class="col-sm-4">
                             <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value="" name="nombre"
+                            <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
+                                   name="nombre"
                                    required>
                             <div class="invalid-feedback">
                                 Ingrese un nombre válido.
@@ -321,7 +306,8 @@
 
                         <div class="col-sm-4">
                             <label for="lastName" class="form-label">Apodo</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value="" name="apodo"
+                            <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
+                                   name="apodo"
                                    required>
                             <div class="invalid-feedback">
                                 Ingrese un apellido válido.
@@ -376,7 +362,8 @@
 
                         <div class="col-sm-12">
                             <label for="email" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                      name="descripcion"></textarea>
                             <div class="invalid-feedback">
                                 Por favor, ingresá una descripción.
                             </div>
@@ -387,7 +374,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Subí una o varias fotos</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                                           name="foto">
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
@@ -402,59 +390,25 @@
                         <div class="form-group row">
 
                             <div class="col-sm-6">
-                                <!-- Aca cargo las caracteristicas generales de la base-->>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConGatos">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Puede convivir con gatos
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConPerros">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Puede convivir con perros
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1" name="conviveConNinios">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Puede convivir con niños
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Está castrada
-                                    </label>
-                                </div>
+                                <!-- Aca cargo las caracteristicas generales de la base-->
+                                {{#each generales}}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1"
+                                               name="{{pregunta}}" value="{{id}}">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            {{pregunta}}
+                                        </label>
+                                    </div>
+                                {{/each}}
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Necesita medicación/cuidado especial
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Es muy activa
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                    <label class="form-check-label" for="gridCheck1">
-                                        Puede estar sola sin problemas
-                                    </label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <hr class="my-4">
                     <div class="text-center">
                         <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">SIGUENTE</button>
                     </div>
-                </div>
+            </div>
             </form>
             <!--------------------------------------------Foto derecha--------------------------------------------->
             <div class="col-lg-3">

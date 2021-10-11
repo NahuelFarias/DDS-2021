@@ -57,6 +57,7 @@ public class Persona extends Persistente {
         setContactos(contactos);
     }
 
+
     public Rol getRolElegido() {
         return rolElegido;
     }
