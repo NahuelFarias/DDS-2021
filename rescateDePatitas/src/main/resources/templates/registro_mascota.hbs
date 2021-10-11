@@ -203,9 +203,9 @@
                                 <div class="col-md-4">
                                     <label for="state" class="form-label">Provincia/Estado</label>
                                     <select class="form-select" id="state" required>
-                                        <option value="">Elegí...</option>
+                                        <option value="" name="provincia">Elegí...</option>
                                         {{#each provincias}}
-                                        <option name="provincia" value="{{.}}">{{.}}</option>
+                                        <option value="{{.}}">{{.}}</option>
                                         {{/each}}
                                     </select>
                                     <div class="invalid-feedback">
