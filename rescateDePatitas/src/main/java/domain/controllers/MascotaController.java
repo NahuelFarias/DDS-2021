@@ -9,6 +9,7 @@ import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.personas.Usuario;
 import domain.models.entities.publicaciones.Pregunta;
+import domain.models.entities.publicaciones.RespuestaConcreta;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioDePreguntas;
 import domain.models.repositories.RepositorioGenerico;
@@ -82,7 +83,7 @@ public class MascotaController {
         String hashPersona = org.apache.commons.codec.digest.DigestUtils.md5Hex(cadena);
         Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
 
-        if(personaEncontrada != null){
+        if (personaEncontrada != null) {
             mascota.setPersona(personaEncontrada);
         } else {
             Persona persona = new Persona();
@@ -144,12 +145,15 @@ public class MascotaController {
         List<CaracteristicaConRta> elegidas = new ArrayList<>();
         for (Pregunta pregunta : generales) {
             if (request.queryParams(pregunta.getPregunta()) != null) {
-                String descripcion = request.queryParams(pregunta.getPregunta());
-                CaracteristicaConRta caracteristica = new CaracteristicaConRta(descripcion, "no se");
-                elegidas.add(caracteristica);
+                String pregunta_elegida = pregunta.getPregunta();
+                String respuesta_elegida = request.queryParams(pregunta.getPregunta());
+
+                CaracteristicaConRta caracteristicaConRta = new CaracteristicaConRta(pregunta_elegida,respuesta_elegida);
+                caracteristicaConRta.setMascota(mascota);
+                elegidas.add(caracteristicaConRta);
             }
         }
-
+        mascota.setCaracteristicas(elegidas);
 
     }
 
@@ -212,10 +216,13 @@ public class MascotaController {
         }
 
         if (request.queryParams("medioPreferido") != null) {
-            if(request.queryParams("medioPreferido").equals("EMAIL")){
+            if (request.queryParams("medioPreferido").equals("Email")) {
                 medioPreferido = Estrategia.valueOf("EMAIL");
+            } else {
+                if (request.queryParams("medioPreferido").equals("WhatsApp")) {
+                    medioPreferido = Estrategia.valueOf("WHATSAPP");
+                } else medioPreferido = Estrategia.valueOf("SMS");
             }
-            else medioPreferido = Estrategia.valueOf("WHATSAPP");
         }
 
         Contacto contacto = new Contacto(cNombre, cApellido, cNumero, cCorreo, medioPreferido);
