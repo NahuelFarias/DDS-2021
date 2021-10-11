@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import domain.models.entities.personas.Usuario;
 import domain.models.entities.publicaciones.*;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
@@ -15,10 +16,12 @@ import java.util.Map;
 
 public class PublicacionesPerdidasController {
     private RepositorioGenerico<PublicacionPerdidaRegistrada> repo;
+    private RepositorioGenerico<Usuario> repoUser;
 
 
     public PublicacionesPerdidasController(){
         this.repo = FactoryRepositorio.get(PublicacionPerdidaRegistrada.class);
+        this.repoUser = FactoryRepositorio.get(Usuario.class);
 //        this.repoEnAdopcion = FactoryRepositorio.get(PublicacionEnAdopcion.class);
 //        this.repoEncontradas = FactoryRepositorio.get(PublicacionMascotaEncontrada.class);
 //        this.repoIntencion = FactoryRepositorio.get(PublicacionIntencionAdopcion.class);
@@ -40,8 +43,14 @@ public class PublicacionesPerdidasController {
 
     public ModelAndView mostrarPerdidas(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        List<PublicacionPerdidaRegistrada> perdidas = new ArrayList<>();
 
+        UsuarioController usuarioController = new UsuarioController();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        RolController rolController = new RolController();
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        List<PublicacionPerdidaRegistrada> perdidas = new ArrayList<>();
         List<PublicacionPerdidaRegistrada> publicaciones = this.repo.buscarTodos();
         for (PublicacionGenerica publi:publicaciones) {
             if(publi.getTipoPublicacion().equals("Mascota perdida registrada")){

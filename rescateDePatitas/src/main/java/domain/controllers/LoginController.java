@@ -73,34 +73,29 @@ public class LoginController {
     }
 
     public Response rol_elegido_duenio(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Duenio());
         response.redirect("/");
-
-        if(request.session().attribute("id") != null){
-            Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
-            persona.setRol(new Duenio());
-        }
-
+        //if(request.session().attribute("id") != null){
+        //}
         return response;
     }
 
     public Response rol_elegido_voluntario(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Voluntario());
         response.redirect("/");
-
-        if(request.session().attribute("id") != null){
-            Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
-            persona.setRol(new Voluntario());
-        }
-
+        //if(request.session().attribute("id") != null){
+        //}
         return response;
     }
 
     public Response rol_elegido_rescatista(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Rescatista());
         response.redirect("/");
-
-        if(request.session().attribute("id") != null){
-            Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
-            persona.setRol(new Rescatista());
-        }
+        //if(request.session().attribute("id") != null){
+        //}
 
         return response;
     }

@@ -80,7 +80,7 @@ public class Organizacion extends Persistente {
     public void generarVoluntario(Persona persona) {
         Voluntario voluntario = new Voluntario();
         voluntario.setOrganizacion(this);
-        persona.setRol(voluntario);
+        persona.setRolElegido(voluntario);
         voluntarios.add(persona);
     }
 

@@ -38,7 +38,7 @@ public class VerPublicacionesTest {
         mascotaDTO = new Mascota.MascotaDTO();
         caracteristicasconRtas = new ArrayList<>();
         fotos = new ArrayList<>();
-        persona.setRol(duenio);
+        persona.setRolElegido(duenio);
         contacto = new Contacto("Soledad", "Grilleta", "+541157530658", "sole.012@gmail.com", Estrategia.EMAIL);
         contactos = new ArrayList<>();
         contactos.add(contacto);

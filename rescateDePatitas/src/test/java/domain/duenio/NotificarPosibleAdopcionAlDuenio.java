@@ -37,7 +37,7 @@ public class NotificarPosibleAdopcionAlDuenio {
         contactos.add(contacto1);
         personaDuenio.inicializar("Sole", "Grilletta", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
         duenio = new Duenio();
-        personaDuenio.setRol(duenio);
+        personaDuenio.setRolElegido(duenio);
 
         caracteristicasConRtas = new ArrayList<>();
         fotos = new ArrayList<>();

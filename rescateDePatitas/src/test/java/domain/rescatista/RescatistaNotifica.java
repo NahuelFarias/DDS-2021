@@ -52,7 +52,7 @@ public class RescatistaNotifica {
 
         duenio = new Duenio();
 
-        personaDuenio.setRol(duenio);
+        personaDuenio.setRolElegido(duenio);
 
         //Empiezo a cargar caracteristicas al repositorio
 
@@ -105,7 +105,7 @@ public class RescatistaNotifica {
 
         rescatista = new Rescatista();
 
-        personaRescatista.setRol(rescatista);
+        personaRescatista.setRolElegido(rescatista);
 
         rescatista.agregarMascota(mascotaDTO);
     }
