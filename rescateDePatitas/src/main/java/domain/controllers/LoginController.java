@@ -21,7 +21,7 @@ public class LoginController {
 
     private Usuario usuarioHasheador;
     private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
-    private RepositorioGenerico<Usuario> repoUser = FactoryRepositorio.get(Usuario.class);
+    private UsuarioController usuarioController = new UsuarioController();
 
     public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
@@ -98,5 +98,15 @@ public class LoginController {
         //}
 
         return response;
+    }
+
+    public ModelAndView admin(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        parametros.put("persona", persona);
+
+        return new ModelAndView(parametros, "index_admin.hbs");
     }
 }

@@ -9,6 +9,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.*;
+import domain.models.entities.rol.Administrador;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import domain.models.entities.rol.Voluntario;
@@ -143,9 +144,12 @@ public class CreacionEntidades {
         voluntario.setPersona(persona);
         rescatista = new Rescatista();
         rescatista.setPersona(persona);
+        Administrador administrador = new Administrador();
+        administrador.setPersona(persona);
         persona.addRol(duenio);
         persona.addRol(voluntario);
         persona.addRol(rescatista);
+        persona.addRol(administrador);
         persona.setRolElegido(duenio);
 
         //Agrego caracteristicas generales
