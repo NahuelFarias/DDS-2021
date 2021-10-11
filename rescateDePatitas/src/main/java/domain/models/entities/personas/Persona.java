@@ -57,17 +57,12 @@ public class Persona extends Persistente {
         setContactos(contactos);
     }
 
-
     public Rol getRolElegido() {
         return rolElegido;
     }
 
     public Rol getRol(int i) {
         return rolesDisponibles.get(i);
-    }
-
-    public void setRolElegido(Rol rolElegido) {
-        this.rolElegido = rolElegido;
     }
 
     //getters & setters
@@ -120,11 +115,11 @@ public class Persona extends Persistente {
         this.direccion = direccion;
     }
 
-    public Rol getRol() {
-        return rolElegido;
-    }
+//    public Rol getRolElegido() {
+//        return rolElegido;
+//    }
 
-    public void setRol(Rol rol) {
+    public void setRolElegido(Rol rol) {
         this.rolElegido = rol;
     }
 

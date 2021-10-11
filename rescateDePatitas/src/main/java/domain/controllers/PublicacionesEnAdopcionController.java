@@ -30,4 +30,11 @@ public class PublicacionesEnAdopcionController {
         parametros.put("adopciones", adopciones);
         return new ModelAndView(parametros, "adopcion.hbs");
     }
+
+    public ModelAndView mostrarPublicacionEnAdopcion(Request request, Response response) {
+        PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("publicacion", publicacion);
+        return new ModelAndView(parametros, "adopcion_publicacion.hbs");
+    }
 }

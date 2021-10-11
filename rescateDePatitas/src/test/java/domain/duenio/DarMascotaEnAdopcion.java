@@ -76,7 +76,7 @@ public class DarMascotaEnAdopcion {
 
         persona.inicializar("Maria Victoria","Sanchez","Peru 1212,CABA", TipoDeDocumento.DNI,3333333, LocalDate.of(1987, 9, 24),contactos);
 
-        persona.setRol(duenio);
+        persona.setRolElegido(duenio);
 
         List<Pregunta> caracteristicas = controller.getRepositorio().caracteristicas;
 

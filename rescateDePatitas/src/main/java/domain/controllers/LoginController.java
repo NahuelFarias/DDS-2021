@@ -2,7 +2,7 @@ package domain.controllers;
 
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
-import domain.models.entities.rol.Rol;
+import domain.models.entities.rol.*;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioDeUsuarios;
 import domain.models.repositories.RepositorioGenerico;
@@ -70,5 +70,33 @@ public class LoginController {
         List<Rol> roles = persona.getRolesDisponibles();
         parametros.put("roles", roles);
         return new ModelAndView(parametros, "seleccionar_rol.hbs");
+    }
+
+    public Response rol_elegido_duenio(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Duenio());
+        response.redirect("/");
+        //if(request.session().attribute("id") != null){
+        //}
+        return response;
+    }
+
+    public Response rol_elegido_voluntario(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Voluntario());
+        response.redirect("/");
+        //if(request.session().attribute("id") != null){
+        //}
+        return response;
+    }
+
+    public Response rol_elegido_rescatista(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Rescatista());
+        response.redirect("/");
+        //if(request.session().attribute("id") != null){
+        //}
+
+        return response;
     }
 }

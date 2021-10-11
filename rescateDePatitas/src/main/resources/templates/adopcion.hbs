@@ -38,4 +38,23 @@
     </div>
 {{/partial}}
 
-{{> layout.hbs}}
+{{#eq rol.tipo null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Dueño"}}
+
+    {{> layout_duenio.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Voluntario"}}
+
+    {{> layout_voluntario.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Rescatista"}}
+
+    {{> layout_rescatista.hbs}}
+
+{{/eq}}

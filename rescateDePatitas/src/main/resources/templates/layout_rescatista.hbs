@@ -8,7 +8,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
         <!-- Favicon -->
-        <link href="../img/favicon2.png" rel="icon" />
+        <link href="img/favicon2.png" rel="icon" />
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
@@ -25,12 +25,12 @@
                 crossorigin="anonymous"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-        <link href="../lib/animate/animate.min.css" rel="stylesheet" />
-        <link href="../lib/flaticon/font/flaticon.css" rel="stylesheet" />
-        <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+        <link href="lib/animate/animate.min.css" rel="stylesheet" />
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
         <!-- Template Stylesheet -->
-        <link href="../css/style.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
     </head>
     <body>
     <!-- Top Bar Start -->
@@ -62,7 +62,7 @@
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand">
-                <img src="../img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
+                <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -71,22 +71,21 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="perdidas" class="dropdown-item">Ver mascotas perdidas</a>
-                            <a href="#" class="dropdown-item">Perdi mi mascota 🙁</a>
+                            <a href="../perdidas" class="dropdown-item">Ver mascotas perdidas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="registro_encontrada.html" class="dropdown-item">Encontré una mascota</a>
-                            <a href="encontradas" class="dropdown-item">Ver encontradas</a>
+                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota sin QR</a>
+                            <a href="registro_encontrada_log.html" class="dropdown-item">Encontré una mascota con QR</a>
+                            <a href="encontradas_log.html" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="en_adopcion" class="dropdown-item">Adoptar</a>
-                            <a href="dar_adopcion" class="dropdown-item">Dar en adopcion </a>
+                            <a href="adopcion_log.html" class="dropdown-item">Ver en adopcion</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -97,22 +96,22 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                    {{#if usuario}}
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">{{usuario.nombreDeUsuario}} <i
+                        {{#if usuario}}
+                            <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">{{usuario.nombreDeUsuario}} <i
                                     class="fas fa-user-alt"></i> </a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Mi cuenta</a>
-                            <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
-                            <a href="cambiar_rol" class="dropdown-item">Cambiar rol</a>
-                            <a href="/logout" method="post" class="dropdown-item">Cerrar sesion</a>
-                        </div>
-                    {{else}}
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <div class="dropdown-menu dropdown-menu-right text-right">
+                                <a href="#" class="dropdown-item">Mi cuenta</a>
+                                <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
+                                <a href="cambiar_rol" class="dropdown-item">Cambiar rol</a>
+                                <a href="/logout" method="post" class="dropdown-item">Cerrar sesion</a>
+                            </div>
+                        {{else}}
+                            <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                            <div class="dropdown-menu dropdown-menu-right text-right">
                                 <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
                                 <a href="login" class="dropdown-item">Iniciar sesion</a>
-                        </div>
-                    {{/if}}
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -142,7 +141,7 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <img src="../img/logo2.svg" alt="logo" width="50" height="50">Rescate de patitas
+                            <img src="img/logo2.svg" alt="logo" width="50" height="50">Rescate de patitas
                         </h6>
                         <p>
                             Somos el nexo entre quienes aman a los animales.
@@ -235,14 +234,14 @@
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/wow/wow.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="../lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+    <script src="js/main.js"></script>
     </body>
 
     </html>

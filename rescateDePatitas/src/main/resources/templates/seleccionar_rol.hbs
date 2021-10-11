@@ -14,7 +14,7 @@
                             {{#eq tipo "Voluntario"}}
                                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                                     <div class="rol-item">
-                                        <a href="index_log_voluntario.html">
+                                        <a href="/rol_elegido_voluntario" method="post">
                                             <div class="service-icon">
                                                 <i class="fas fa-paw"></i>
                                             </div>
@@ -28,7 +28,7 @@
                             {{#eq "Dueño" tipo}}
                                  <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                                     <div class="rol-item">
-                                        <a href="index_log.html">
+                                        <a href="/rol_elegido_duenio" method="post">
                                             <div class="service-icon">
                                                 <i class="fas fa-dog"></i>
                                             </div>
@@ -42,7 +42,7 @@
                             {{#eq tipo "Rescatista"}}
                                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
                                     <div class="rol-item">
-                                        <a href="#">
+                                        <a href="/rol_elegido_rescatista" method="post">
                                         <div class="service-icon">
                                             <i class="fab fa-gratipay"></i>
                                         </div>
@@ -64,7 +64,6 @@
                                     </div>
                                 </div>
                             {{/eq}}
-
                         {{/each}}
                             <!-- Por ahora lo comento
                         <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">

@@ -45,6 +45,13 @@ public class GestorDePublicaciones {
         cuestionarioContestado.agregarRespuestas(respuestasDeLaOrg);
         cuestionarioContestado.agregarRespuestas(respuestasGenerales);
 
+        for(RespuestaConcreta respuestaConcreta : respuestasDeLaOrg){
+            respuestaConcreta.setCuestionarioContestado(cuestionarioContestado);
+        }
+        for(RespuestaConcreta respuestaConcreta : respuestasGenerales){
+            respuestaConcreta.setCuestionarioContestado(cuestionarioContestado);
+        }
+
         publicacion.setFecha(LocalDate.now());
         publicacion.setCuestionario(cuestionarioContestado);
 //        publicacion.setRespuestasGenerales(respuestasGenerales);
