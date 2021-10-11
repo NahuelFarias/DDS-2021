@@ -1383,17 +1383,30 @@ a.btn-mis{
   background: #c9240e;
 }
 
-.btn-grande {
+button.btn-grande {
   padding: 12px 20px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
   color: #eff9ff;
   background: #ff3e7e;
-  border-radius: 0;
   transition: 0.3s;
   border-radius: 25px;
   text-align: center;
+  border: none;
+}
+
+a.btn-grande {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #eff9ff;
+  background: #ff3e7e;
+  transition: 0.3s;
+  border-radius: 25px;
+  text-align: center;
+  border: none;
 }
 
 .btn-grande:hover {

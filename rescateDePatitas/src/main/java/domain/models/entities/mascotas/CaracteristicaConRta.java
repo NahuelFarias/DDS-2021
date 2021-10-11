@@ -43,4 +43,7 @@ public class CaracteristicaConRta extends Persistente {
         return this.respuestaElegida;
     }
 
+    public Mascota getMascota() {
+        return mascota;
+    }
 }
