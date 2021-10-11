@@ -15,15 +15,42 @@
                 Registrala y recibí su collar con código QR. <br />
                 <br />
               </p>
-              <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <div class="hero-btn">
-                  <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="nueva_mascota">Quiero
-                    registrarla</a>
-                </div>
-                <div class="hero-btn">
-                  <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="registro_encontrada.html">Encontré una mascota</a>
-                </div>
-              </div>
+                {{#eq rol.tipo null}}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="nueva_mascota">Quiero
+                                registrarla</a>
+                        </div>
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="registro_encontrada.html">Encontré una mascota</a>
+                        </div>
+                    </div>
+                {{/eq}}
+                {{#eq rol.tipo "Dueño"}}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="nueva_mascota">Quiero
+                                registrarla</a>
+                        </div>
+                    </div>
+                {{/eq}}
+                {{#eq rol.tipo "Voluntario"}}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="revisar_publicaciones.html">Revisar publicaciones</a>
+                        </div>
+                    </div>
+                {{/eq}}
+                {{#eq rol.tipo "Rescatista"}}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="registro_encontrada_qr_log.html">Encontré con QR</a>
+                        </div>
+                        <div class="hero-btn">
+                            <a class="btn btn-lg btn-login text-uppercase fw-bold mb-2" href="registro_encontrada_log.html">Encontré sin QR</a>
+                        </div>
+                    </div>
+                {{/eq}}
             </div>
           </div>
         </div>
@@ -139,11 +166,6 @@
                     <p><i class="far fa-calendar"></i>{{edad}} años</p>
                     <p><i class="fas fa-map-marker-alt"></i>{{especie}}</p>
                 </div>
-                {{#each fotos}}
-                    <p>
-                    {{uRLfoto}}
-                    </p>
-                {{/each}}
                 <p>
                     {{descripcion}}
                 </p>
@@ -259,4 +281,23 @@
   <!-- About End -->
 {{/partial}}
 
-{{> layout.hbs}}
+{{#eq rol.tipo null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Dueño"}}
+
+    {{> layout_duenio.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Voluntario"}}
+
+    {{> layout_voluntario.hbs}}
+
+{{/eq}}
+{{#eq rol.tipo "Rescatista"}}
+
+    {{> layout_rescatista.hbs}}
+
+{{/eq}}

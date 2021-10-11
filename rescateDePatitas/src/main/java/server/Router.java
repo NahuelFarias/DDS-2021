@@ -62,6 +62,12 @@ public class Router {
 
         Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
 
+        Spark.get("/rol_elegido_duenio", loginController::rol_elegido_duenio);
+
+        Spark.get("/rol_elegido_voluntario", loginController::rol_elegido_voluntario);
+
+        Spark.get("/rol_elegido_rescatista", loginController::rol_elegido_rescatista);
+
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
         Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion, Router.engine);
