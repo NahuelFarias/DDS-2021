@@ -330,8 +330,6 @@ public class CreacionEntidades {
 
     }
 
-    // TODO CORRO UN TEST Y SE GUARDA TODO LO RELACIONADO, EJEMPLO:
-
     @Test
     public void persistirUsuarioTest1(){
 

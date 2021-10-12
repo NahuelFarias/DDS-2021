@@ -85,6 +85,10 @@ public class Router {
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
+        Spark.get("/registro_encontrada", encontradas::encontrada, Router.engine);
+
+        Spark.post("/registro_encontrada", encontradas::guardarEncontrada);
+
 
     }
 }

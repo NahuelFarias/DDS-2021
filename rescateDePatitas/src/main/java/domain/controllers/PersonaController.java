@@ -29,6 +29,7 @@ public class PersonaController {
         }
         return instancia;
     }
+
     public RepositorioDePersonas getRepositorio() {
         return repositorio;
     }

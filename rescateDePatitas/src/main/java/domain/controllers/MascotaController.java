@@ -1,13 +1,10 @@
 package domain.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.personas.Usuario;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.repositories.*;
@@ -29,22 +26,6 @@ public class MascotaController {
         this.repo = FactoryRepositorio.get(Mascota.class);
     }
 
-
-//    //TODO  Es seguro borrar?
-//    public ModelAndView mostrarPerdidas(Request request, Response response) {
-//        Map<String, Object> parametros = new HashMap<>();
-//        List<Mascota> mascotas = this.repo.buscarTodos();
-//        parametros.put("mascotas", mascotas);
-//        return new ModelAndView(parametros, "perdidas.hbs");
-//    }
-//
-//    public ModelAndView mostrarEncontradas(Request request, Response response) {
-//        Map<String, Object> parametros = new HashMap<>();
-//        List<Mascota> mascotas = this.repo.buscarTodos();
-//        parametros.put("mascotas", mascotas);
-//        return new ModelAndView(parametros, "encontradas.hbs");
-//    }
-
     public ModelAndView registroMascota(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<TipoDeDocumento> tipo = new ArrayList<>();
@@ -60,7 +41,7 @@ public class MascotaController {
         provincias.add("Córdoba");
         provincias.add("Santa Fe");
 
-        List<Organizacion> organizaciones = new ArrayList<>();
+        List<Organizacion> organizaciones;
 
         OrganizacionController cOrg = OrganizacionController.getInstancia();
         RepositorioGenerico<Organizacion> repoOrg = cOrg.getRepositorio();
@@ -313,4 +294,6 @@ public class MascotaController {
 
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
+
+
 }

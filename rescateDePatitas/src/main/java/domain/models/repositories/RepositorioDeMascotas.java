@@ -12,9 +12,4 @@ public class RepositorioDeMascotas extends RepositorioGenerico<Mascota>{
         super(dao);
     }
 
-//    public Optional<Mascota> buscar(Integer idMascota) {
-//        return this.mascotas.stream()
-//                .filter(n -> n.getId() == idMascota)
-//                .findFirst();
-//    }
 }
