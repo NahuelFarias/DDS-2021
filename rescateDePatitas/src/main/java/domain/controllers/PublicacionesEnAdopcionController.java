@@ -15,6 +15,8 @@ import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.Duenio;
 import domain.models.repositories.*;
 import domain.models.repositories.daos.DAOHibernate;
+import domain.models.entities.publicaciones.*;
+import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -28,6 +30,8 @@ import java.util.Map;
 
 public class PublicacionesEnAdopcionController {
     private RepositorioGenerico<PublicacionEnAdopcion> repo;
+    private UsuarioController usuarioController = new UsuarioController();
+    private RolController rolController = new RolController();
 
 
     public PublicacionesEnAdopcionController(){
@@ -350,5 +354,50 @@ public class PublicacionesEnAdopcionController {
 
     private void asignarAtributosA(PublicacionEnAdopcion publicacion, Request request){
 
+    }
+
+    public ModelAndView revisar_adopcion(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        List<PublicacionEnAdopcion> encontradas = this.repo.buscarTodos();
+        parametros.put("adopciones", encontradas);
+        return new ModelAndView(parametros, "revisar_adopcion.hbs");
+    }
+
+    public ModelAndView revisar_publi(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
+        parametros.put("publicacion", publicacion);
+        return new ModelAndView(parametros, "revisar_adopcion_publi.hbs");
+
+    }
+
+    public Response aprobar(Request request, Response response) {
+        PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_adopcion");
+
+        return response;
+    }
+
+    public Response rechazar(Request request, Response response) {
+        PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_adopcion");
+
+        return response;
     }
 }
