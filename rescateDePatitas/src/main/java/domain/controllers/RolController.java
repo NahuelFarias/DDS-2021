@@ -17,6 +17,7 @@ public class RolController {
     public void asignarRolSiEstaLogueado(Request request, Map<String, Object> parametros){
         if(request.session().attribute("id") != null){
             String rol = request.session().attribute("rol");
+
             parametros.put("rol", rol);
         }
     }

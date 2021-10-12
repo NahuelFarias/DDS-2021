@@ -10,31 +10,29 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation form-" action="/elegir_asociacion" method="post" novalidate>
                         <div class="row g-3">
                             <h4 class="mb-3 wavyp">Asociaciones:</h4>
 
-                            <p>Seleccioná la asociación en el mapa:</p>
-                            <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                    placeholder="Datos de la asociación elegida"></textarea>
+                            <p>Seleccioná una asociación:</p>
+                            <div class="col-sm-6">
+                                    <label for="general" class="form-label">Asociación</label>
+                                    <select class="form-select" id="state" name="asociacion" required>
+                                        <option value="" selected="selected">...</option>
+                                        {{#each organizaciones}}
+                                            <option value="{{nombre}}">{{nombre}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, elegí una respuesta.
+                                    </div>
                             </div>
 
                         </div>
                     
                         <hr class="my-4">
                         <div class="text-center">
-                            <a class="btn-grande text-uppercase fw-bold mb-2" href="registro_mascota_ok.html"
-                                type="submit">Registrar mascota</a>
+                            <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Registrar mascota</button>
                         </div>
                 </div>
                 </form>
