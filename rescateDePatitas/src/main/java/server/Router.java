@@ -83,6 +83,30 @@ public class Router {
 
         Spark.post("/nueva_pregunta", adminController::nueva_pregunta);
 
+        Spark.get("/revisar_encontrada", encontradas::revisar_encontrada, Router.engine);
+
+        Spark.get("/revisar_encontrada/:id", encontradas::revisar_publi, Router.engine);
+
+        Spark.get("/aprobar_encontrada/:id", encontradas::aprobar);
+
+        Spark.get("/rechazar_encontrada/:id", encontradas::rechazar);
+
+        Spark.get("/revisar_perdida", perdidas::revisar_perdida, Router.engine);
+
+        Spark.get("/revisar_perdida/:id", perdidas::revisar_publi, Router.engine);
+
+        Spark.get("/aprobar_perdida/:id", perdidas::aprobar);
+
+        Spark.get("/rechazar_perdida/:id", perdidas::rechazar);
+
+        Spark.get("/revisar_adopcion", enAdopcion::revisar_adopcion, Router.engine);
+
+        Spark.get("/revisar_adopcion/:id", enAdopcion::revisar_publi, Router.engine);
+
+        Spark.get("/aprobar_adopcion/:id", enAdopcion::aprobar);
+
+        Spark.get("/rechazar_adopcion/:id", enAdopcion::rechazar);
+
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
         Spark.get("/registro_encontrada", encontradas::encontrada, Router.engine);

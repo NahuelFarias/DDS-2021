@@ -28,6 +28,9 @@
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
+    <!-- MAP -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="./index.js"></script>
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
 </head>
@@ -126,6 +129,8 @@
                         <div class="row g-3">
                             <h4 class="mb-3 wavyp">Asociaciones:</h4>
 
+                            <div id="map"></div>
+                            <!--
                             <p>Seleccioná la asociación en el mapa:</p>
                             <div class="row g-3">
                                 <div class="map">
@@ -135,6 +140,7 @@
                                         loading="lazy"></iframe>
                                 </div>
                             </div>
+                        -->
 
                             <div class="col-sm-12">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
@@ -320,6 +326,10 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly"
+      async
+    ></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

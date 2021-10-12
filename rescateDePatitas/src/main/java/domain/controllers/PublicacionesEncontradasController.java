@@ -7,16 +7,15 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
-import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import domain.models.repositories.RepositorioDePersonas;
+import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.awt.geom.RectangularShape;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +24,8 @@ import java.util.Map;
 
 public class PublicacionesEncontradasController {
     private RepositorioGenerico<PublicacionMascotaEncontrada> repo;
+    private UsuarioController usuarioController = new UsuarioController();
+    private RolController rolController = new RolController();
 
     public PublicacionesEncontradasController() {
         this.repo = FactoryRepositorio.get(PublicacionMascotaEncontrada.class);
@@ -207,5 +208,49 @@ public class PublicacionesEncontradasController {
 
     }
 
+
+    public ModelAndView revisar_encontrada(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
+        parametros.put("encontradas", encontradas);
+        return new ModelAndView(parametros, "revisar_encontrada.hbs");
+    }
+
+    public ModelAndView revisar_publi(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        parametros.put("publicacion", publicacion);
+        return new ModelAndView(parametros, "revisar_encontrada_publi.hbs");
+    }
+
+    public Response aprobar(Request request, Response response) {
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_encontrada");
+
+        return response;
+    }
+
+    public Response rechazar(Request request, Response response) {
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_encontrada");
+
+        return response;
+    }
 
 }
