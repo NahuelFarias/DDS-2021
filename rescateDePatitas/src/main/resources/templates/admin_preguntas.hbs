@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <br/>
           <div class="row">
                 <div class="col-lg-8">
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" novalidate action="/nueva_pregunta" method="post">
                         <div class="row">
                             <h4 class="mb-3 wavyp">Datos requeridos:</h4>
                             <div class="col-sm-6">
@@ -333,7 +333,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <label for="lastName" class="form-label">Respuestas</label>
                                 <input type="text" class="form-control" id="lastName"
                                        placeholder="Agrege las respuestas separadas por coma" value=""
-                                       required name="respuestas">
+                                       required name="respuestasPosibles">
                                 <div class="invalid-feedback">
                                     Ingresá almenos una respuesta valido.
                                 </div>
@@ -342,8 +342,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div>
                         <hr class="my-4">
                         <div class="text-center">
-                            <a class="btn-grande text-uppercase fw-bold mb-2" href="registro_mascota_asociacion.html"
-                                type="submit">SUBIR</a>
+                            <button class="btn-grande text-uppercase fw-bold mb-2"
+                                type="submit">SUBIR</button>
                         </div>
                         </div>
                     </form>

@@ -73,6 +73,8 @@ public class Router {
 
         Spark.get("/agregar_pregunta", adminController::admin_preguntas, Router.engine);
 
+        Spark.post("/nueva_pregunta", adminController::nueva_pregunta);
+
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
         Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion, Router.engine);
