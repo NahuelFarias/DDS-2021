@@ -44,23 +44,23 @@
     </div>
 {{/partial}}
 
-{{#eq rol.tipo "Dueño"}}
+{{#eq rol null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+{{#eq rol "Duenio"}}
 
     {{> layout_duenio.hbs}}
 
 {{/eq}}
-{{#eq rol.tipo "Voluntario"}}
+{{#eq rol "Voluntario"}}
 
     {{> layout_voluntario.hbs}}
 
 {{/eq}}
-{{#eq rol.tipo "Rescatista"}}
+{{#eq rol "Rescatista"}}
 
     {{> layout_rescatista.hbs}}
-
-{{/eq}}
-{{#eq rol.tipo null}}
-
-    {{> layout.hbs}}
 
 {{/eq}}

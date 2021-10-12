@@ -21,7 +21,7 @@ public class LoginController {
 
     private Usuario usuarioHasheador;
     private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
-    private RepositorioGenerico<Usuario> repoUser = FactoryRepositorio.get(Usuario.class);
+    private UsuarioController usuarioController = new UsuarioController();
 
     public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
@@ -74,29 +74,35 @@ public class LoginController {
 
     public Response rol_elegido_duenio(Request request, Response response) {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        request.session().attribute("rol", "Duenio");
         persona.setRolElegido(new Duenio());
         response.redirect("/");
-        //if(request.session().attribute("id") != null){
-        //}
         return response;
     }
 
     public Response rol_elegido_voluntario(Request request, Response response) {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        request.session().attribute("rol", "Voluntario");
         persona.setRolElegido(new Voluntario());
         response.redirect("/");
-        //if(request.session().attribute("id") != null){
-        //}
         return response;
     }
 
     public Response rol_elegido_rescatista(Request request, Response response) {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        request.session().attribute("rol", "Rescatista");
         persona.setRolElegido(new Rescatista());
         response.redirect("/");
-        //if(request.session().attribute("id") != null){
-        //}
-
         return response;
+    }
+
+    public ModelAndView admin(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        parametros.put("persona", persona);
+
+        return new ModelAndView(parametros, "index_admin.hbs");
     }
 }

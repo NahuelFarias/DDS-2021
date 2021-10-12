@@ -33,6 +33,7 @@ public class Router {
         PublicacionesEncontradasController encontradas = new PublicacionesEncontradasController();
         PublicacionesEnAdopcionController enAdopcion = new PublicacionesEnAdopcionController();
         AuthMiddleware authMiddleware = new AuthMiddleware();
+        AdminController adminController = new AdminController();
 
         Spark.get("/", homeController::mostrarHome, Router.engine);
 
@@ -73,6 +74,12 @@ public class Router {
         Spark.get("/rol_elegido_voluntario", loginController::rol_elegido_voluntario);
 
         Spark.get("/rol_elegido_rescatista", loginController::rol_elegido_rescatista);
+
+        Spark.get("/admin", loginController::admin, Router.engine);
+
+        Spark.get("/agregar_pregunta", adminController::admin_preguntas, Router.engine);
+
+        Spark.post("/nueva_pregunta", adminController::nueva_pregunta);
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
