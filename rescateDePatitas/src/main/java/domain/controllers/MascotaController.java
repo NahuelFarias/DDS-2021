@@ -295,5 +295,4 @@ public class MascotaController {
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
 
-
 }

@@ -65,9 +65,13 @@ public class Router {
 
         Spark.post("/nueva_mascota", mascotaController::guardarMascota);
 
-        Spark.get("/dar_adopcion", mascotaController::darEnAdopcion, Router.engine);
+        Spark.get("/dar_adopcion", enAdopcion::mostrarCuestionarioAdopcion, Router.engine);
 
-        Spark.post("/dar_adopcion", mascotaController::guardarMascota);
+        Spark.post("/dar_adopcion", enAdopcion::recibirDatosCuestionarioDarEnAdopcion);
+
+        Spark.get("/dar_adopcion_asociacion", enAdopcion::mostrarCuestionarioAsociacionAdopcion, Router.engine);
+
+        Spark.post("/dar_adopcion_asociacion", enAdopcion::guardarPublicacion);
 
         Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
 
@@ -113,6 +117,7 @@ public class Router {
 
         Spark.post("/registro_encontrada", encontradas::guardarEncontrada);
 
+        Spark.get("/publicacion_enviada", encontradas::publicacionEnviada, Router.engine);
 
     }
 }

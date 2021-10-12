@@ -2,34 +2,36 @@
     <!-- Datos de registro-->
     <div class="register">
         <div class="container">
-            {{#unless usuario}}
-            <div class="py-5 text-center">
-                <br> <br>
-                <h2>¿Encontraste una mascota?</h2>
-                <p class="lead">Llená este formulario para que la ayudemos a encontrar a su dueño</p>
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn-grande" type="submit"
-                            href="login.html">Ingresá</a>
+                <div class="py-5 text-center">
+                    <br> <br>
+                    <h2>¿Encontraste una mascota?</h2>
+                    <p class="lead">Llená este formulario para que la ayudemos a encontrar a su dueño</p>
+                    {{#unless usuario}}
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn-grande" type="submit"
+                                                                          href="login.html">Ingresá</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3 class="lead">¿Querés crearla?</h3><a class="btn-grande" type="submit"
+                                                                     href="registro_duenio.html">Registrate</a>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Querés crearla?</h3><a class="btn-grande" type="submit"
-                            href="registro_duenio.html">Registrate</a>
-                    </div>
+                    {{/unless}}
                 </div>
-            </div>
-            {{/unless}}
+
 
             <div class="row">
                 <div class="col-lg-8">
 
-                    <form class="needs-validation" action="/registro_encontrada" method="post"novalidate>
+                    <form class="needs-validation" action="/registro_encontrada" method="post" novalidate>
                         <div class="row g-3">
                             {{#unless usuario}}
                                 <h4 class="mb-3 wavyp">Tus datos:</h4>
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
+                                    <input type="text" class="form-control" id="firstName" placeholder="Tu nombre"
+                                           value=""
                                            name="nombrePersona"
                                            required>
                                     <div class="invalid-feedback">
@@ -39,7 +41,8 @@
 
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
+                                    <input type="text" class="form-control" id="lastName" placeholder="Tu apellido"
+                                           value=""
                                            name="apellido"
                                            required>
                                     <div class="invalid-feedback">
@@ -49,7 +52,8 @@
 
                                 <div class="col-sm-4">
                                     <label for="firstName" class="form-label">Fecha de nacimiento</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
+                                    <input type="text" class="form-control" id="firstName" placeholder="aaaa-dd-mm"
+                                           value=""
                                            name="fnacPersona"
                                            required>
                                     <div class="invalid-feedback">
@@ -72,7 +76,8 @@
 
                                 <div class="col-sm-3">
                                     <label for="lastName" class="form-label">Nro documento</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" name="nroDoc"required>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                           name="nroDoc" required>
                                     <div class="invalid-feedback">
                                         Ingresá un número de documento válido.
                                     </div>
@@ -105,7 +110,8 @@
                                 </div>
                                 <div class="col-7">
                                     <label for="address" class="form-label">Dirección</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
+                                    <input type="text" class="form-control" id="address"
+                                           placeholder="Av. Siempreviva 742"
                                            name="direccion" required>
                                     <div class="invalid-feedback">
                                         Por favor, ingresá la dirección.
@@ -147,7 +153,7 @@
                                     <div class="col-sm-6">
                                         <label for="firstName" class="form-label">Número celular</label>
                                         <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                               value="" name="cNumero"required>
+                                               value="" name="cNumero" required>
                                         <div class="invalid-feedback">
                                             Ingrese un número de celular válido.
                                         </div>
@@ -155,8 +161,9 @@
 
                                     <div class="col-sm-6">
                                         <label for="lastName" class="form-label">Correo Electrónico</label>
-                                        <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                               value="" name="cCorreo"required>
+                                        <input type="text" class="form-control" id="email"
+                                               placeholder="nombre@correo.com"
+                                               value="" name="cCorreo" required>
                                         <div class="invalid-feedback">
                                             Ingrese un correo electrónico válido.
                                         </div>
@@ -209,9 +216,10 @@
                             </div>
 
                             <div class="col-sm-12">
-                                <label for="email" class="form-label">Descripción</label>
-                                <input type="text" class="form-control" id="descripcion"
-                                    placeholder="Describí en qué estado la encontraste">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea type="text" class="form-control" id="descripcion"
+                                       placeholder="Describí en qué estado la encontraste" name="descripcion" required>
+                                    </textarea>
                                 <div class="invalid-feedback">
                                     Ingresá una descripción.
                                 </div>
@@ -223,7 +231,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Subí una o varias fotos</label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto">
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                                               name="foto">
                                     </div>
                                 </div>
 
@@ -239,16 +248,24 @@
                             <div class="row g-3">
                                 <div class="map">
                                     <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
+                                            width="600" height="450" style="border:0;" allowfullscreen=""
+                                            loading="lazy"></iframe>
                                 </div>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                                          placeholder="Latitud"
-                                          readonly></textarea>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                                          placeholder="Longitud"
-                                          readonly></textarea>
+                                <div class="row g-3">
+                                    <div class="col-sm-3">
+                                <textarea class="form-control" for="latitud" rows="1"
+                                          placeholder="Latitud" name="latitud">
+                                </textarea>
+                                    </div>
+                                    <div class="col-sm-3">
+                                <textarea class="form-control" for="longitud" rows="1"
+                                          placeholder="Longitud" name="longitud">
+                                </textarea>
+                                    </div>
+                                </div>
+
+
 
                             </div>
 
@@ -256,7 +273,7 @@
                             <h4 class="mb-3 wavyp">Hogar de tránsito</h4>
                             <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
                                 tránsito.</p>
-                                <p>Seleccioná un radio de cercanía</p>
+                            <p>Seleccioná un radio de cercanía</p>
                             <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
                             <div class="col-sm-3">
                                 <select class="form-select" id="state" name="km" required>
@@ -271,15 +288,16 @@
                             <div class="col-sm-12">
                                 <label for="email" class="form-label">Info de hogares:</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                    placeholder="Nombre     hogar       Direccion       Telefono"
-                                    readonly></textarea>
+                                          placeholder="Nombre     hogar       Direccion       Telefono"
+                                          readonly></textarea>
                             </div>
-                    
+
                             <hr class="my-4">
                             <div class="container">
                                 <div class=" text-center form-check">
-                                    <input type="checkbox" class="form-check-input" id="save-info">
-                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al dueño.</label>
+                                    <input type="checkbox" class="form-check-input" id="save-info" required>
+                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de
+                                        contacto al dueño.</label>
                                 </div>
                             </div>
                             <div class="text-center">

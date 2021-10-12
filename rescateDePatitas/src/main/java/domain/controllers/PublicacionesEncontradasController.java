@@ -121,9 +121,12 @@ public class PublicacionesEncontradasController {
 
         Lugar lugar = new Lugar();
         lugar.setLatitud(latitud);
-        lugar.setLatitud(longitud);
+        lugar.setLongitud(longitud);
+
+        publi.setTipoPublicacion("Mascota encontrada");
 
         datosMascota.setLugar(lugar);
+        publi.setDatosMascotaEncontrada(datosMascota);
 
     }
 
@@ -253,4 +256,13 @@ public class PublicacionesEncontradasController {
         return response;
     }
 
+    public ModelAndView publicacionEnviada(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        return new ModelAndView(parametros, "publicacion_enviada.hbs");
+    }
 }
