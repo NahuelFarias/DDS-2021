@@ -1,5 +1,6 @@
 package domain.controllers;
 
+import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.PublicacionEnAdopcion;
@@ -41,7 +42,15 @@ public class PublicacionesEnAdopcionController {
     }
 
     public Response quieroAdoptarlo(Request request, Response response){
+        Persona persona = new Persona();
 
+        if(request.queryParams("nombre") != null){
+            crearContacto(persona, request);
+        }
+        if(request.queryParams("") != null){
+
+        }
+        
         response.redirect("/en_adopcion/ok");
         return response;
     }
@@ -55,5 +64,10 @@ public class PublicacionesEnAdopcionController {
         if(request.queryParams("nombre") != null){
             persona.setNombre(request.queryParams("nombre"));
         }
+        Contacto contacto = new Contacto("","",
+                request.queryParams("telefono"),
+                request.queryParams("email"),
+                Estrategia.EMAIL);
+        persona.getContactos().add(contacto);
     }
 }
