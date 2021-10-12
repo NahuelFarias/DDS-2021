@@ -90,6 +90,7 @@ public class MascotaController {
             RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
             mascota.setPersona(duenio);
+            mascota.setDuenio((Duenio)duenio.getRolElegido());
         } else {
             PersonaController cPersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cPersona.getRepositorio();
@@ -108,7 +109,6 @@ public class MascotaController {
                 repoPersona.agregar(persona);
             }
         }
-
 
         this.repo.agregar(mascota);
 
@@ -258,6 +258,10 @@ public class MascotaController {
         contactos.add(contacto);
 
         persona.setContactos(contactos);
+
+        Duenio rolDuenio = new Duenio();
+        persona.addRol(rolDuenio);
+        persona.setRolElegido(rolDuenio);
     }
 
     public ModelAndView creada(Request request, Response response) {
@@ -268,7 +272,7 @@ public class MascotaController {
 
     public ModelAndView registroMascotaAsoc(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        List<Organizacion> organizaciones = new ArrayList<>();
+        List<Organizacion> organizaciones;
 
         OrganizacionController cOrg = OrganizacionController.getInstancia();
         RepositorioGenerico<Organizacion> repoOrg = cOrg.getRepositorio();
@@ -278,6 +282,7 @@ public class MascotaController {
         return new ModelAndView(parametros, "registro_mascota_asociacion.hbs");
     }
 
+    // Lo hice en la misma pagina del registro de mascota pero podríamos separarlo también
     public Response guardarAsociacion(Request request, Response response) {
         Organizacion organizacion;
         String nombre;
@@ -301,7 +306,6 @@ public class MascotaController {
 
         response.redirect("/ok");
         return response;
-
     }
 
     public ModelAndView darEnAdopcion(Request request, Response response) {

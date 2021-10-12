@@ -16,7 +16,7 @@
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="floatingInput"
                                     placeholder="nombre@ejemplo.com" name="nombreDeUsuario">
-                                <label for="floatingInput">Nombre De Usuario</label>
+                                <label for="floatingInput">Nombre de usuario</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword"
@@ -47,22 +47,22 @@
     <!-- Hero End -->
 {{/partial}}
 
-{{#eq rol.tipo null}}
+{{#eq rol null}}
 
     {{> layout.hbs}}
 
 {{/eq}}
-{{#eq rol.tipo "Dueño"}}
+{{#eq rol "Duenio"}}
 
     {{> layout_duenio.hbs}}
 
 {{/eq}}
-{{#eq rol.tipo "Voluntario"}}
+{{#eq rol "Voluntario"}}
 
     {{> layout_voluntario.hbs}}
 
 {{/eq}}
-{{#eq rol.tipo "Rescatista"}}
+{{#eq rol "Rescatista"}}
 
     {{> layout_rescatista.hbs}}
 
