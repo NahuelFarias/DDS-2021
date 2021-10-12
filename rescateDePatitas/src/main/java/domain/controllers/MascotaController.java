@@ -1,13 +1,10 @@
 package domain.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
-import domain.models.entities.personas.Usuario;
-import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.repositories.*;

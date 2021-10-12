@@ -17,6 +17,8 @@ import java.util.Map;
 public class PublicacionesPerdidasController {
     private RepositorioGenerico<PublicacionPerdidaRegistrada> repo;
     private RepositorioGenerico<Usuario> repoUser;
+    private UsuarioController usuarioController = new UsuarioController();
+    private RolController rolController = new RolController();
 
 
     public PublicacionesPerdidasController(){
@@ -44,10 +46,8 @@ public class PublicacionesPerdidasController {
     public ModelAndView mostrarPerdidas(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
-        UsuarioController usuarioController = new UsuarioController();
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
 
-        RolController rolController = new RolController();
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionPerdidaRegistrada> perdidas = new ArrayList<>();
@@ -61,4 +61,48 @@ public class PublicacionesPerdidasController {
         return new ModelAndView(parametros, "perdidas.hbs");
     }
 
+    public ModelAndView revisar_perdida(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        List<PublicacionPerdidaRegistrada> encontradas = this.repo.buscarTodos();
+        parametros.put("perdidas", encontradas);
+        return new ModelAndView(parametros, "revisar_perdida.hbs");
+    }
+
+    public ModelAndView revisar_publi(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        PublicacionPerdidaRegistrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        parametros.put("publicacion", publicacion);
+        return new ModelAndView(parametros, "revisar_perdida_publi.hbs");
+
+    }
+
+    public Response aprobar(Request request, Response response) {
+        PublicacionPerdidaRegistrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.ACEPTADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_perdida");
+
+        return response;
+    }
+
+    public Response rechazar(Request request, Response response) {
+        PublicacionPerdidaRegistrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        publicacion.setEstadoDePublicacion(EstadoDePublicacion.RECHAZADO);
+        this.repo.modificar(publicacion);
+
+        response.redirect("/revisar_perdida");
+
+        return response;
+    }
 }
