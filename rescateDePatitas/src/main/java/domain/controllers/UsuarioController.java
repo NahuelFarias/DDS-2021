@@ -10,9 +10,17 @@ import java.util.Map;
 
 public class UsuarioController {
     private RepositorioGenerico<Usuario> repo;
+    private static UsuarioController instancia;
 
     public UsuarioController(){
         this.repo = FactoryRepositorio.get(Usuario.class);
+    }
+
+    public static UsuarioController getInstancia() {
+        if (instancia == null) {
+            instancia = new UsuarioController();
+        }
+        return instancia;
     }
 
     public void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros){

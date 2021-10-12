@@ -2,6 +2,7 @@ package domain.models.repositories;
 
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.repositories.daos.DAO;
+import domain.models.repositories.daos.DAOHibernate;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -10,11 +11,11 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class RepositorioDePreguntas extends RepositorioGenerico<Pregunta> {
-    private static RepositorioDePersonas instancia;
+    private static RepositorioDePreguntas instancia;
 
-    public static RepositorioDePersonas getInstancia(DAO dao) {
+    public static RepositorioDePreguntas getInstancia() {
         if (instancia == null) {
-            instancia=new RepositorioDePersonas(dao);
+            instancia=new RepositorioDePreguntas(new DAOHibernate<>());
         }
         return instancia;
     }

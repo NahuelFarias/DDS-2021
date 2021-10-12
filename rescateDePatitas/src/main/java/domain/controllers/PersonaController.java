@@ -17,9 +17,6 @@ public class PersonaController {
     private RepositorioDePersonas repositorio;
     private static PersonaController instancia;
 
-//    public PersonaController(){
-//        this.repositorio = (RepositorioDePersonas) FactoryRepositorio.get(Persona.class);
-//    }
 
     public PersonaController(){
         DAO<Persona> dao = new DAOHibernate<>(Persona.class);

@@ -362,7 +362,6 @@ public class CreacionEntidades {
     @Test
     public void persistirTodo(){
 
-        persona.setRolElegido(new Duenio());
         Duenio duenio = (Duenio) persona.getRolElegido();
 
         gestor = GestorDePublicaciones.getInstancia();

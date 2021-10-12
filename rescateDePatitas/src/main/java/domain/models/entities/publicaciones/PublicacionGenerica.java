@@ -56,4 +56,6 @@ public abstract class PublicacionGenerica {
     public Persona getAdoptante() {
         return null;
     }
+
+    public int getId(){return id;}
 }
