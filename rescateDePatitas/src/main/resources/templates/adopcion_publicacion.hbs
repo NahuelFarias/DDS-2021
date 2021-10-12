@@ -88,7 +88,9 @@
     <div class="container">
         <div class=" text-center form-check">
             <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al responsable</label>
+            <label class="form-check-label" for="save-info">
+                Acepto que se envíen mis datos de contacto al responsable
+            </label>
         </div>
     </div>
     <!--TODO: Hacer que solo se pueda seleccionar el boton de QUIERO ADOPTARLO si aceptaste que se envie tu contacto -->
@@ -109,38 +111,61 @@
                 </p>
             </div>
 
-            <<!--Hacer que redireccione a la pagina, borrar recordatorio maniana-->
-            <form class="text-center text-md-left" action="/en_adopcion/{{publicacion.id}}" method="post">
+            <!--Hacer que redireccione a la pagina, borrar recordatorio maniana-->
+            <form class="text-center text-md-left" action="/en_adopcion/2" method="post" novalidate>
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label fw-bold">Tu nombre : </label>
                     <div class="col-sm-2">
-                        <input type="email" class="form-control" name="nombre" placeholder="Nombre">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" id="nombre" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tel" class="col-sm-2 col-form-label fw-bold">Teléfono : </label>
                     <div class="col-sm-2">
-                        <input type="telefono" class="form-control" id="telefono" placeholder="+541123456789">
+                        <input type="telefono" class="form-control" id="telefono" placeholder="+541123456789" required>
                     </div>
                 <label for="email" class="col-sm-2 col-form-label fw-bold">Correo electrónico : </label>
                 <div class="col-sm-4">
-                    <input type="email" class="form-control" name="email" placeholder="Correo electrónico">
+                    <input type="email" class="form-control" name="email" placeholder="Correo electrónico" id="email" required>
                 </div>
                 </div>
 
                <hr class="my-4">
+                <div class="col-sm-12 text-center py-5">
+                <!--<p>-->
+                <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Quiero adoptarlo</button>
+                <!--</p>-->
+            </div>
             </form>
         </div>
 
-        <div class="col-sm-12 text-center py-5">
-            <p>
-                <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Quiero adoptarlo</button>
-            </p>
-        </div>
+
     {{/if}}
 
     <!-- Single Post End-->
 
 {{/partial}}
 
-{{> layout.hbs}}
+{{#eq rol.tipo null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+
+{{#eq rol.tipo "Dueñio"}}
+
+    {{> layout_duenio.hbs}}
+
+{{/eq}}
+
+{{#eq rol.tipo "Voluntario"}}
+
+    {{> layout_voluntario.hbs}}
+
+{{/eq}}
+
+{{#eq rol.tipo "Rescatista"}}
+
+    {{> layout_rescatista.hbs}}
+
+{{/eq}}

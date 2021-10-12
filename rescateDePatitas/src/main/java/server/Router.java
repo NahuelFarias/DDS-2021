@@ -50,6 +50,12 @@ public class Router {
 
         Spark.get("/en_adopcion", enAdopcion::mostrarEnAdopcion, Router.engine);
 
+        Spark.get("/en_adopcion/ok", enAdopcion::mostrarOk, Router.engine);
+
+        Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion, Router.engine);
+
+        Spark.post("/en_adopcion/:id", enAdopcion::quieroAdoptarlo);
+
         Spark.get("/elegir_asociacion", mascotaController::registroMascotaAsoc, Router.engine);
 
         Spark.get("/nueva_mascota", mascotaController::registroMascota, Router.engine);
@@ -69,13 +75,6 @@ public class Router {
         Spark.get("/rol_elegido_rescatista", loginController::rol_elegido_rescatista);
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
-
-        Spark.get("/en_adopcion/ok", enAdopcion::mostrarOk, Router.engine);
-
-        Spark.get("/en_adopcion/:id", enAdopcion::mostrarPublicacionEnAdopcion, Router.engine);
-
-        Spark.post("/en_adopcion/:id", enAdopcion::quieroAdoptarlo);
-
 
 
     }

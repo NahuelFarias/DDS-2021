@@ -38,4 +38,5 @@ public class PublicacionEnAdopcion extends PublicacionGenerica{
     public void setMascota(Mascota mascota) {
         this.mascota = mascota;
     }
+
 }

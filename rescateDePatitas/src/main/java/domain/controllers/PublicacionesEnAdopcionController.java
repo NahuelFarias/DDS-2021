@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.models.entities.personas.Contacto;
+import domain.models.entities.personas.Persona;
 import domain.models.entities.publicaciones.PublicacionEnAdopcion;
 import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
@@ -41,7 +42,7 @@ public class PublicacionesEnAdopcionController {
 
     public Response quieroAdoptarlo(Request request, Response response){
 
-        response.redirect("/");
+        response.redirect("/en_adopcion/ok");
         return response;
     }
 
@@ -50,7 +51,9 @@ public class PublicacionesEnAdopcionController {
         return new ModelAndView(parametros, "adopcion_publicacion_ok.hbs");
     }
 
-    public void crearContacto(Contacto contacto, Request request){
-
+    public void crearContacto(Persona persona, Request request){
+        if(request.queryParams("nombre") != null){
+            persona.setNombre(request.queryParams("nombre"));
+        }
     }
 }
