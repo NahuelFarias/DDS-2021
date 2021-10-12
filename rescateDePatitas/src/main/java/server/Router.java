@@ -52,6 +52,8 @@ public class Router {
 
         Spark.get("/elegir_asociacion", mascotaController::registroMascotaAsoc, Router.engine);
 
+        Spark.post("/elegir_asociacion", mascotaController::guardarAsociacion);
+
         Spark.get("/nueva_mascota", mascotaController::registroMascota, Router.engine);
 
         Spark.post("/nueva_mascota", mascotaController::guardarMascota);

@@ -23,12 +23,12 @@ public class RolController {
     public void asignarRolSiEstaLogueado(Request request, Map<String, Object> parametros){
         if(request.session().attribute("id") != null){
             Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
-            try {
-                for (int i = 0; i < 10; i++) {
-                    TimeUnit.SECONDS.sleep(2);
-                }
-            }catch(Exception e) {
-            }
+//            try {
+//                for (int i = 0; i < 10; i++) {
+//                    TimeUnit.SECONDS.sleep(2);
+//                }
+//            }catch(Exception e) {
+//            }
             Rol rol = persona.getRolElegido();
             parametros.put("rol", rol);
         }

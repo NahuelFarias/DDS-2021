@@ -1,18 +1,16 @@
 package domain.controllers;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
+import com.sun.org.apache.xpath.internal.operations.Or;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.personas.Usuario;
+import domain.models.entities.publicaciones.GestorDePublicaciones;
 import domain.models.entities.publicaciones.Pregunta;
-import domain.models.entities.publicaciones.RespuestaConcreta;
-import domain.models.repositories.RepositorioDePersonas;
-import domain.models.repositories.RepositorioDePreguntas;
-import domain.models.repositories.RepositorioGenerico;
+import domain.models.entities.rol.Duenio;
+import domain.models.repositories.*;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -31,21 +29,21 @@ public class MascotaController {
         this.repo = FactoryRepositorio.get(Mascota.class);
     }
 
-    //TODO con publicaciones
-    public ModelAndView mostrarPerdidas(Request request, Response response) {
-        Map<String, Object> parametros = new HashMap<>();
-        List<Mascota> mascotas = this.repo.buscarTodos();
-        parametros.put("mascotas", mascotas);
-        return new ModelAndView(parametros, "perdidas.hbs");
-    }
 
-    //TODO con publicaciones
-    public ModelAndView mostrarEncontradas(Request request, Response response) {
-        Map<String, Object> parametros = new HashMap<>();
-        List<Mascota> mascotas = this.repo.buscarTodos();
-        parametros.put("mascotas", mascotas);
-        return new ModelAndView(parametros, "encontradas.hbs");
-    }
+//    //TODO  Es seguro borrar?
+//    public ModelAndView mostrarPerdidas(Request request, Response response) {
+//        Map<String, Object> parametros = new HashMap<>();
+//        List<Mascota> mascotas = this.repo.buscarTodos();
+//        parametros.put("mascotas", mascotas);
+//        return new ModelAndView(parametros, "perdidas.hbs");
+//    }
+//
+//    public ModelAndView mostrarEncontradas(Request request, Response response) {
+//        Map<String, Object> parametros = new HashMap<>();
+//        List<Mascota> mascotas = this.repo.buscarTodos();
+//        parametros.put("mascotas", mascotas);
+//        return new ModelAndView(parametros, "encontradas.hbs");
+//    }
 
     public ModelAndView registroMascota(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
@@ -62,6 +60,17 @@ public class MascotaController {
         provincias.add("Córdoba");
         provincias.add("Santa Fe");
 
+        List<Organizacion> organizaciones = new ArrayList<>();
+
+        OrganizacionController cOrg = OrganizacionController.getInstancia();
+        RepositorioGenerico<Organizacion> repoOrg = cOrg.getRepositorio();
+        organizaciones = repoOrg.buscarTodos();
+
+        parametros.put("organizaciones", organizaciones);
+
+        UsuarioController usuarioController = UsuarioController.getInstancia();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
         List<Pregunta> generales = repoPreguntas.buscarPorTipo("general");
@@ -77,23 +86,31 @@ public class MascotaController {
         Mascota mascota = new Mascota();
         asignarAtributosA(mascota, request);
 
-        PersonaController cPersona = PersonaController.getInstancia();
-        RepositorioDePersonas repoPersona = cPersona.getRepositorio();
-        String cadena = request.queryParams("fnacPersona") + request.queryParams("nroDoc");
-        String hashPersona = org.apache.commons.codec.digest.DigestUtils.md5Hex(cadena);
-        Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
-
-        if (personaEncontrada != null) {
-            mascota.setPersona(personaEncontrada);
+        if (request.session().attribute("id") != null) {
+            RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+            Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
+            mascota.setPersona(duenio);
         } else {
-            Persona persona = new Persona();
-            asignarAtributosA(persona, request);
-            persona.setUsuarioTemporal(hashPersona);
-            mascota.setPersona(persona);
-            repoPersona.agregar(persona);
-        }
-        this.repo.agregar(mascota);
+            PersonaController cPersona = PersonaController.getInstancia();
+            RepositorioDePersonas repoPersona = cPersona.getRepositorio();
+            String cadena = request.queryParams("fnacPersona") + request.queryParams("nroDoc");
+            String hashPersona = org.apache.commons.codec.digest.DigestUtils.md5Hex(cadena);
+            Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
 
+            if (personaEncontrada != null) {
+                mascota.setPersona(personaEncontrada);
+            } else {
+                Persona persona = new Persona();
+                asignarAtributosA(persona, request);
+                persona.setUsuarioTemporal(hashPersona);
+                mascota.setPersona(persona);
+                mascota.setDuenio((Duenio)persona.getRolElegido());
+                repoPersona.agregar(persona);
+            }
+        }
+
+
+        this.repo.agregar(mascota);
 
         response.redirect("/ok");
 
@@ -139,6 +156,15 @@ public class MascotaController {
             mascota.setFotos(fotos);
         }
 
+        if (request.queryParams("asociacion") != null) {
+            String nombreAsociacion = request.queryParams("asociacion");
+            OrganizacionController cOrg = OrganizacionController.getInstancia();
+            RepositorioDeOrganizaciones repoOrg = cOrg.getRepositorio();
+            Organizacion organizacion = repoOrg.buscarPorNombre(nombreAsociacion);
+            mascota.setOrganizacion(organizacion);
+
+        }
+
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
         List<Pregunta> generales = repoPreguntas.buscarPorTipo("general");
@@ -148,7 +174,7 @@ public class MascotaController {
                 String pregunta_elegida = pregunta.getPregunta();
                 String respuesta_elegida = request.queryParams(pregunta.getPregunta());
 
-                CaracteristicaConRta caracteristicaConRta = new CaracteristicaConRta(pregunta_elegida,respuesta_elegida);
+                CaracteristicaConRta caracteristicaConRta = new CaracteristicaConRta(pregunta_elegida, respuesta_elegida);
                 caracteristicaConRta.setMascota(mascota);
                 elegidas.add(caracteristicaConRta);
             }
@@ -242,8 +268,40 @@ public class MascotaController {
 
     public ModelAndView registroMascotaAsoc(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        List<Organizacion> organizaciones = new ArrayList<>();
 
+        OrganizacionController cOrg = OrganizacionController.getInstancia();
+        RepositorioGenerico<Organizacion> repoOrg = cOrg.getRepositorio();
+        organizaciones = repoOrg.buscarTodos();
+
+        parametros.put("organizaciones", organizaciones);
         return new ModelAndView(parametros, "registro_mascota_asociacion.hbs");
+    }
+
+    public Response guardarAsociacion(Request request, Response response) {
+        Organizacion organizacion;
+        String nombre;
+
+        if (request.queryParams("asociacion") != null) {
+            nombre = request.queryParams("asociacion");
+            OrganizacionController cOrg = OrganizacionController.getInstancia();
+            RepositorioDeOrganizaciones repoOrg = cOrg.getRepositorio();
+            organizacion = repoOrg.buscarPorNombre(nombre);
+
+            if (request.session().attribute("id") != null) {
+                RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+                Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
+                List<Mascota> mascotas = duenio.getMascotas();
+                Mascota mascota = mascotas.get(mascotas.size() - 1);
+                mascota.setOrganizacion(organizacion);
+                this.repo.modificar(mascota);
+            }
+
+        }
+
+        response.redirect("/ok");
+        return response;
+
     }
 
     public ModelAndView darEnAdopcion(Request request, Response response) {

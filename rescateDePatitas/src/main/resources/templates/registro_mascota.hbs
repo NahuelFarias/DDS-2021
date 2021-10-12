@@ -247,7 +247,7 @@
                         </div>
 
                         <div class="col-sm-12">
-                            <label for="email" class="form-label">Descripción</label>
+                            <label for="text" class="form-label">Descripción</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                       name="descripcion"></textarea>
                             <div class="invalid-feedback">
@@ -294,6 +294,25 @@
                             </div>
 
                         </div>
+                        <hr class="my-4">
+                        <div class="row g-3">
+                            <h4 class="mb-3 wavyp">Asociaciones:</h4>
+
+                            <p>Seleccioná una asociación:</p>
+                            <div class="col-sm-6">
+                                <label for="general" class="form-label">Asociación</label>
+                                <select class="form-select" id="state" name="asociacion" required>
+                                    <option value="" selected="selected">...</option>
+                                    {{#each organizaciones}}
+                                        <option value="{{nombre}}">{{nombre}}</option>
+                                    {{/each}}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, elegí una respuesta.
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <hr class="my-4">
                     <div class="text-center">
@@ -302,11 +321,19 @@
             </div>
             </form>
             <!--------------------------------------------Foto derecha--------------------------------------------->
+            {{#if usuario}}
+            <div class="col-lg-3">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <img class="register-img d-none d-lg-block" src="img/long.jpg" alt="">
+                </div>
+            </div>
+            {{else}}
             <div class="col-lg-3">
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
 </div>
