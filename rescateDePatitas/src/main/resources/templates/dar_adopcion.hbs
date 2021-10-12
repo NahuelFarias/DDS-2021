@@ -6,195 +6,185 @@
                 <br> <br>
                 <h2 class="wavyy">Dar en adopción</h2>
                 <p class="lead">Ingresá tus datos y los de la mascota.</p>
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Ya tenés una cuenta?</h3>
-                        <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                {{#unless usuario}}
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <h3 class="lead">¿Ya tenés una cuenta?</h3>
+                            <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3 class="lead">¿Querés crearla?</h3>
+                            <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Querés crearla?</h3>
-                        <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
-                    </div>
-                </div>
+                {{/unless}}
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation form-" action="/dar_adopcion" method="post" novalidate>
                         <div class="row g-3">
-                            <h4 class="mb-3 wavyp">Tus datos:</h4>
-                            <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Ingresá un nombre válido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Ingresá un apellido válido.
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="firstName" class="form-label">Fecha de nacimiento</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Ingresá tu fecha de nacimiento.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3 ">
-                                <label for="lastName" class="form-label">Tipo</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">...</option>
-                                    <option>DNI</option>
-                                    <option>LC</option>
-                                    <option>Pasaporte</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Seleccioná el tipo de documento.
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Nro documento</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Ingresá un número de documento válido.
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="hola@ejemplo.com">
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá un correo electrónico válido.
-                                </div>
-                            </div>
-
-                            <div class="row py-3">
-                                <div class="col-md-4">
-                                    <label for="country" class="form-label">País</label>
-                                    <select class="form-select" id="country" required>
-                                        <option value="">Elegí...</option>
-                                        <option>Argentina</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor, ingresá un país válido.
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="state" class="form-label">Provincia/Estado</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">Elegí...</option>
-                                        <option>Buenos Aires</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor, ingresá una provincia.
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="state" class="form-label">Localidad</label>
-                                    <select class="form-select" id="state" required>
-                                        <option value="">Elegí...</option>
-                                        <option>Olivos</option>
-                                        <option>Vicente López</option>
-                                        <option>Florida</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Por favor, ingresá una localidad.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <label for="address" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá la dirección.
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="zip" class="form-label">Código Postal</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    El código postal es obligatorio.
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 wavyp">Tus contactos:</h4>
-
-                            <div class="row g-3">
-
+                            {{#unless usuario}}
+                                <h4 class="mb-3 wavyp">Tus datos:</h4>
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                        required>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
+                                           name="nombrePersona"
+                                           required>
                                     <div class="invalid-feedback">
-                                        Ingrese un nombre válido.
+                                        Ingresá un nombre válido.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Tu apellido" value=""
+                                           name="apellido"
+                                           required>
                                     <div class="invalid-feedback">
-                                        Ingrese un apellido válido.
+                                        Ingresá un apellido válido.
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">Número celular</label>
-                                    <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                        value="" required>
+                                <div class="col-sm-4">
+                                    <label for="firstName" class="form-label">Fecha de nacimiento</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="dd/mm/aaaa" value=""
+                                           name="fnacPersona"
+                                           required>
                                     <div class="invalid-feedback">
-                                        Ingrese un número de celular válido.
+                                        Ingresá tu fecha de nacimiento.
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Correo Electrónico</label>
-                                    <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                        value="" required>
+                                <div class="col-sm-3 ">
+                                    <label for="lastName" class="form-label">Tipo</label>
+                                    <select class="form-select" id="state" name="tipoDoc" required>
+                                        <option value="">...</option>
+                                        {{#each tipos}}
+                                            <option value="{{.}}">{{.}}</option>
+                                        {{/each}}
+                                    </select>
                                     <div class="invalid-feedback">
-                                        Ingrese un correo electrónico válido.
+                                        Seleccioná el tipo de documento.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">Medio preferido</label>
-                                    <div class="form-check">
-                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                            checked required>
-                                        <label class="form-check-label" for="email">Email</label>
+                                    <label for="lastName" class="form-label">Nro documento</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" name="nroDoc"required>
+                                    <div class="invalid-feedback">
+                                        Ingresá un número de documento válido.
                                     </div>
-                                    <div class="form-check">
-                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
-                                    </div>
-
-                                </div>
-                                <div class="col-sm-12 text-right">
-                                    <a class="btn-mis" type="submit">+ Agregar</a>
                                 </div>
 
-                            </div>
-                            <hr class="my-4">
+                                <div class="row py-3">
+                                    <div class="col-md-4">
+                                        <label for="country" class="form-label">País</label>
+                                        <select class="form-select" id="country" name="pais" required>
+                                            <option value="">Elegí...</option>
+                                            <option value="argentina">Argentina</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor, ingresá un país válido.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="state" class="form-label">Provincia/Estado</label>
+                                        <select class="form-select" id="state" name="provincia" required>
+                                            <option value="">Elegí...</option>
+                                            {{#each provincias}}
+                                                <option value="{{.}}">{{.}}</option>
+                                            {{/each}}
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor, ingresá una provincia.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <label for="address" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Av. Siempreviva 742"
+                                           name="direccion" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresá la dirección.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="zip" class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" id="zip" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        El código postal es obligatorio.
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <h4 class="mb-3 wavyp">Tus contactos:</h4>
+
+                                <div class="row g-3">
+
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                               name="cNombre" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un nombre válido.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                               name="cApellido" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un apellido válido.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Número celular</label>
+                                        <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                               value="" name="cNumero"required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un número de celular válido.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Correo Electrónico</label>
+                                        <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                               value="" name="cCorreo"required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un correo electrónico válido.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="medio" class="form-label">Medio preferido</label>
+                                        <select class="form-select" id="state" name="medioPreferido" required>
+                                            <option value="">Elegí...</option>
+                                            <option value="EMAIL">Email</option>
+                                            <option value="WHATSAPP">WhatsApp</option>
+                                            <option value="SMS">SMS</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Elegí un medio de comunicación.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-right">
+                                        <a class="btn-mis" type="submit">+ Agregar</a>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                            {{/unless}}
+
                             <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
                             <div class="col-sm-4">
                                 <label for="firstName" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
-                                    required>
+                                       name="nombre"
+                                       required>
                                 <div class="invalid-feedback">
                                     Ingrese un nombre válido.
                                 </div>
@@ -203,7 +193,8 @@
                             <div class="col-sm-4">
                                 <label for="lastName" class="form-label">Apodo</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
-                                    required>
+                                       name="apodo"
+                                       required>
                                 <div class="invalid-feedback">
                                     Ingrese un apellido válido.
                                 </div>
@@ -212,30 +203,30 @@
                             <div class="col-sm-2">
                                 <label for="firstName" class="form-label">Edad</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                    autocomplete="off" required>
+                                       autocomplete="off" name="edad" required>
                                 <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
+                                    Ingrese una edad válida.
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="lastName" class="form-label">Especie</label>
-                                <select class="form-select" id="state" required>
+                                <select class="form-select" id="state" name="especie" required>
                                     <option value="">...</option>
-                                    <option>Gato</option>
-                                    <option>Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="perro">Perro</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
+                                    Seleccioná una especie.
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="lastName" class="form-label">Sexo</label>
-                                <select class="form-select" id="state" required>
+                                <select class="form-select" id="state" name="sexo" required>
                                     <option value="">...</option>
-                                    <option>Hembra</option>
-                                    <option>Macho</option>
+                                    <option value="hembra">Hembra</option>
+                                    <option value="macho">Macho</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Por favore, elegí el sexo.
@@ -244,11 +235,11 @@
 
                             <div class="col-sm-3">
                                 <label for="lastName" class="form-label">Tamaño</label>
-                                <select class="form-select" id="state" required>
+                                <select class="form-select" id="state" name="tamanio" required>
                                     <option value="">...</option>
-                                    <option>Chica</option>
-                                    <option>Mediana</option>
-                                    <option>Grande</option>
+                                    <option value="chica">Chica</option>
+                                    <option value="mediana">Mediana</option>
+                                    <option value="grande">Grande</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Por favor, elegí el tamaño.
@@ -256,8 +247,9 @@
                             </div>
 
                             <div class="col-sm-12">
-                                <label for="email" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="text" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                          name="descripcion"></textarea>
                                 <div class="invalid-feedback">
                                     Por favor, ingresá una descripción.
                                 </div>
@@ -268,7 +260,11 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Subí una o varias fotos</label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                                               name="foto">
+                                        <div class="invalid-feedback">
+                                            Subí al menos una foto.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 text-right">
@@ -283,60 +279,47 @@
                             <div class="form-group row">
 
                                 <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con gatos
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con perros
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con niños
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Está castrada
-                                        </label>
-                                    </div>
+                                    {{#each generales}}
+                                        <label for="general" class="form-label">{{pregunta}}</label>
+                                        <select class="form-select" id="state" name="{{pregunta}}" required>
+                                            <option value="" selected="selected">...</option>
+                                            {{#each respuestas}}
+                                                <option value="{{.}}">{{.}}</option>
+                                            {{/each}}
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor, elegí una respuesta.
+                                        </div>
+                                    {{/each}}
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Necesita medicación/cuidado especial
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Es muy activa
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede estar sola sin problemas
-                                        </label>
-                                    </div>
-                                </div>
+
                             </div>
-                        </div> 
+                            <hr class="my-4">
+                            <div class="row g-3">
+                                <h4 class="mb-3 wavyp">Asociaciones:</h4>
+
+                                <p>Seleccioná una asociación:</p>
+                                <div class="col-sm-6">
+                                    <label for="general" class="form-label">Asociación</label>
+                                    <select class="form-select" id="state" name="asociacion" required>
+                                        <option value="" selected="selected">...</option>
+                                        {{#each organizaciones}}
+                                            <option value="{{nombre}}">{{nombre}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, elegí una respuesta.
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <hr class="my-4">
                         <div class="text-center">
-                            <a class="btn-grande text-uppercase fw-bold mb-2" href="dar_adopcion_asociacion.html"
-                                type="submit">Publicar mascota</a>
+                            <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">SIGUENTE</button>
                         </div>
-                    </form>
                 </div>
+                </form>
                 <!--------------------------------------------Foto derecha--------------------------------------------->
                 <div class="col-lg-3">
                     <div class="col-md-5 col-lg-4 order-md-last">

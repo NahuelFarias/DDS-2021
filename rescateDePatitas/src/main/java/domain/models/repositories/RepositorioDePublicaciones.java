@@ -11,7 +11,7 @@ public class RepositorioDePublicaciones extends RepositorioGenerico{
 //    private static RepositorioDePublicaciones instancia;
 //    public List<PublicacionGenerica> publicaciones = new ArrayList<PublicacionGenerica>();
 
-    protected RepositorioDePublicaciones(DAO dao) {
+    public RepositorioDePublicaciones(DAO dao) {
         super(dao);
     }
 

@@ -1,6 +1,6 @@
 package domain.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+
 import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
@@ -29,8 +29,7 @@ public class MascotaController {
         this.repo = FactoryRepositorio.get(Mascota.class);
     }
 
-
-//    //TODO  Es seguro borrar?
+    //    //TODO  Es seguro borrar?
 //    public ModelAndView mostrarPerdidas(Request request, Response response) {
 //        Map<String, Object> parametros = new HashMap<>();
 //        List<Mascota> mascotas = this.repo.buscarTodos();
@@ -308,9 +307,4 @@ public class MascotaController {
         return response;
     }
 
-    public ModelAndView darEnAdopcion(Request request, Response response) {
-        Map<String, Object> parametros = new HashMap<>();
-
-        return new ModelAndView(parametros, "dar_adopcion.hbs");
-    }
 }
