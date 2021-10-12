@@ -34,4 +34,17 @@ public class PublicacionesEncontradasController {
         parametros.put("encontradas", encontradas);
         return new ModelAndView(parametros, "encontradas.hbs");
     }
+
+    public ModelAndView revisar_encontrada(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
+        parametros.put("encontradas", encontradas);
+        return new ModelAndView(parametros, "revisar_encontrada.hbs");
+    }
+
+    public ModelAndView revisar_publi(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "revisar_encontrada_publi.hbs");
+    }
 }
