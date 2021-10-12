@@ -16,18 +16,12 @@ import java.util.Map;
 
 public class PublicacionesPerdidasController {
     private RepositorioGenerico<PublicacionPerdidaRegistrada> repo;
-    private RepositorioGenerico<Usuario> repoUser;
     private UsuarioController usuarioController = new UsuarioController();
     private RolController rolController = new RolController();
 
 
     public PublicacionesPerdidasController(){
         this.repo = FactoryRepositorio.get(PublicacionPerdidaRegistrada.class);
-        this.repoUser = FactoryRepositorio.get(Usuario.class);
-//        this.repoEnAdopcion = FactoryRepositorio.get(PublicacionEnAdopcion.class);
-//        this.repoEncontradas = FactoryRepositorio.get(PublicacionMascotaEncontrada.class);
-//        this.repoIntencion = FactoryRepositorio.get(PublicacionIntencionAdopcion.class);
-//
     }
 
 //    public void crearPublicacion(PublicacionGenerica publicacion) {

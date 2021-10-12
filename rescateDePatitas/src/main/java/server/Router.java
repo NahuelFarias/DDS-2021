@@ -99,6 +99,14 @@ public class Router {
 
         Spark.get("/rechazar_perdida/:id", perdidas::rechazar);
 
+        Spark.get("/revisar_adopcion", enAdopcion::revisar_adopcion, Router.engine);
+
+        Spark.get("/revisar_adopcion/:id", enAdopcion::revisar_publi, Router.engine);
+
+        Spark.get("/aprobar_adopcion/:id", enAdopcion::aprobar);
+
+        Spark.get("/rechazar_adopcion/:id", enAdopcion::rechazar);
+
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
 
