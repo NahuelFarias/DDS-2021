@@ -45,7 +45,20 @@
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
     });
+    //Ingreso de multiples contactos
+    $('#mostrarContacto2').click(function() {
+        $('#contacto2').toggle('slow', function() {
+          // Animation complete.
+        });
+        return false;
+      });
 
+      $('#mostrarContacto3').click(function() {
+        $('#contacto3').toggle('slow', function() {
+          // Animation complete.
+        });
+        return false;
+      });
 
     // Asociaciones carousel
     $(".asoc-carousel").owlCarousel({

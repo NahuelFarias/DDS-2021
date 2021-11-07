@@ -10,8 +10,6 @@ import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.publicaciones.PublicacionEnAdopcion;
-import domain.models.entities.publicaciones.PublicacionGenerica;
-import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.Duenio;
 import domain.models.repositories.*;
 import domain.models.repositories.daos.DAOHibernate;
@@ -231,7 +229,7 @@ public class PublicacionesEnAdopcionController {
         }
 
         if (request.queryParams("edad") != null) {
-            int edad = Integer.valueOf(request.queryParams("edad"));
+            int edad = Integer.parseInt(request.queryParams("edad"));
             mascota.setEdad(edad);
         }
 

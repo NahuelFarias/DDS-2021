@@ -62,7 +62,7 @@
     <!-- Nav Bar Start -->
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="index" class="navbar-brand">
                 <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -80,29 +80,29 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="registro_encontrada.html" class="dropdown-item active">Encontré una mascota</a>
-                            <a href="encontradas.html" class="dropdown-item">Ver encontradas</a>
+                            <a href="registro_encontrada" class="dropdown-item">Encontré una mascota</a>
+                            <a href="encontradas" class="dropdown-item">Ver encontradas</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Adoptar</a>
-                            <a href="#" class="dropdown-item">Dar en adopcion </a>
+                            <a href="en_adopcion" class="dropdown-item">Adoptar</a>
+                            <a href="dar_adopcion" class="dropdown-item">Dar en adopcion </a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="index.html#nosotros" class="dropdown-item">Conocenos</a>
+                            <a href="index#nosotros" class="dropdown-item">Conocenos</a>
                             <a href="#contacto" class="dropdown-item">Contacto</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="register.html" class="dropdown-item">Crear cuenta</a>
-                            <a href="login.html" class="dropdown-item">Iniciar sesion</a>
+                            <a href="#" class="dropdown-item active">Crear cuenta</a>
+                            <a href="login" class="dropdown-item">Iniciar sesion</a>
                         </div>
                     </div>
                 </div>
@@ -113,27 +113,18 @@
 
     <!-- Datos de registro-->
     <div class="register">
-        <div class="container">
+        <div class="container top">
             <div class="py-5 text-center">
-                <br> <br>
-                <h2 class="wavyy">Registro de mascota</h2>
-                <p class="lead">Registrala y recibí tu chapita con código QR</p>
-                <div class="row g-3">
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Ya tenés una cuenta?</h3>
-                        <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
-                    </div>
-                    <div class="col-sm-6">
-                        <h3 class="lead">¿Querés crearla?</h3>
-                        <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
-                    </div>
+                <div class=" text-center wow zoomIn" data-wow-delay="0.1s">
+                    <h2 class="wavyy">Crea tu cuenta</h2>
                 </div>
+                <p class="lead">Ingresá tus datos solo una vez y registrá a tus mascotas y sua perfiles.</p>
             </div>
             <div class="row">
                 <div class="col-lg-8">
+                    <h4 class="mb-3 wavyp">Tus datos:</h4>
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <h4 class="mb-3 wavyp">Tus datos:</h4>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="Tu nombre" value=""
@@ -242,13 +233,28 @@
 
                             <hr class="my-4">
 
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="same-address">
+                                <label class="form-check-label" for="same-address">Enviar el collar a esta
+                                    dirección</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="save-info">
+                                <label class="form-check-label" for="save-info">Deseo recibir novedades en mi correo
+                                    electrónico.</label>
+                            </div>
+
+                            <hr class="my-4">
+
                             <h4 class="mb-3 wavyp">Tus contactos:</h4>
 
                             <div class="row g-3">
+
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                        required>
+                                           name="cNombre" required>
                                     <div class="invalid-feedback">
                                         Ingrese un nombre válido.
                                     </div>
@@ -257,7 +263,7 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Apellido</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
+                                           name="cApellido" required>
                                     <div class="invalid-feedback">
                                         Ingrese un apellido válido.
                                     </div>
@@ -266,7 +272,7 @@
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Número celular</label>
                                     <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                        value="" required>
+                                           value="" name="cNumero"required>
                                     <div class="invalid-feedback">
                                         Ingrese un número de celular válido.
                                     </div>
@@ -275,38 +281,36 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Correo Electrónico</label>
                                     <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                        value="" required>
+                                           value="" name="cCorreo"required>
                                     <div class="invalid-feedback">
                                         Ingrese un correo electrónico válido.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">Medio preferido</label>
-                                    <div class="form-check">
-                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                            checked required>
-                                        <label class="form-check-label" for="email">Email</label>
+                                    <label for="medio" class="form-label">Medio preferido</label>
+                                    <select class="form-select" id="state" name="medioPreferido" required>
+                                        <option value="">Elegí...</option>
+                                        <option value="EMAIL">Email</option>
+                                        <option value="WHATSAPP">WhatsApp</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Elegí un medio de comunicación.
                                     </div>
-                                    <div class="form-check">
-                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
-                                    </div>
-
                                 </div>
+
                                 <div class="col-sm-12 text-right">
                                     <button id="mostrarContacto2" class="btn-mis" name="answer" onclick="ShowDiv()">+ Otro contacto</button>
-                                
                                 </div>
                             </div>
 
+                            <!-- Contacto 2 -->
                             <div class="row g-3" style="display:none;" id="contacto2">
-
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                        required>
+                                           name="cNombre" required>
                                     <div class="invalid-feedback">
                                         Ingrese un nombre válido.
                                     </div>
@@ -315,7 +319,7 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Apellido</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
+                                           name="cApellido" required>
                                     <div class="invalid-feedback">
                                         Ingrese un apellido válido.
                                     </div>
@@ -324,7 +328,7 @@
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Número celular</label>
                                     <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                        value="" required>
+                                           value="" name="cNumero"required>
                                     <div class="invalid-feedback">
                                         Ingrese un número de celular válido.
                                     </div>
@@ -333,37 +337,36 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Correo Electrónico</label>
                                     <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                        value="" required>
+                                           value="" name="cCorreo"required>
                                     <div class="invalid-feedback">
                                         Ingrese un correo electrónico válido.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">Medio preferido</label>
-                                    <div class="form-check">
-                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                            checked required>
-                                        <label class="form-check-label" for="email">Email</label>
+                                    <label for="medio" class="form-label">Medio preferido</label>
+                                    <select class="form-select" id="state" name="medioPreferido" required>
+                                        <option value="">Elegí...</option>
+                                        <option value="EMAIL">Email</option>
+                                        <option value="WHATSAPP">WhatsApp</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Elegí un medio de comunicación.
                                     </div>
-                                    <div class="form-check">
-                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
-                                    </div>
-
                                 </div>
+
                                 <div class="col-sm-12 text-right">
-                                    <button id="mostrarContacto3" class="btn-mis">+ Otro contacto</button>
+                                    <button id="mostrarContacto3" class="btn-mis" name="answer" onclick="ShowDiv()">+ Otro contacto</button>
                                 </div>
                             </div>
 
+                            <!--Contacto 3-->
                             <div class="row g-3" style="display:none;" id="contacto3">
-
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                        required>
+                                           name="cNombre" required>
                                     <div class="invalid-feedback">
                                         Ingrese un nombre válido.
                                     </div>
@@ -372,7 +375,7 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Apellido</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
+                                           name="cApellido" required>
                                     <div class="invalid-feedback">
                                         Ingrese un apellido válido.
                                     </div>
@@ -381,7 +384,7 @@
                                 <div class="col-sm-6">
                                     <label for="firstName" class="form-label">Número celular</label>
                                     <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                        value="" required>
+                                           value="" name="cNumero"required>
                                     <div class="invalid-feedback">
                                         Ingrese un número de celular válido.
                                     </div>
@@ -390,185 +393,47 @@
                                 <div class="col-sm-6">
                                     <label for="lastName" class="form-label">Correo Electrónico</label>
                                     <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                        value="" required>
+                                           value="" name="cCorreo"required>
                                     <div class="invalid-feedback">
                                         Ingrese un correo electrónico válido.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">Medio preferido</label>
-                                    <div class="form-check">
-                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="email">Email</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
-                                            required>
-                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <hr class="my-4">
-                            <h4 class="mb-3 wavyp">Datos de tu mascota:</h4>
-                            <div class="col-sm-4">
-                                <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Su nombre" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <label for="lastName" class="form-label">Apodo</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Su apodo" value=""
-                                    required>
-                                <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-2">
-                                <label for="firstName" class="form-label">Edad</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                    autocomplete="off" required>
-                                <div class="invalid-feedback">
-                                    Ingrese un nombre válido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Especie</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">...</option>
-                                    <option>Gato</option>
-                                    <option>Perro</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Ingrese un apellido válido.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Sexo</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">...</option>
-                                    <option>Hembra</option>
-                                    <option>Macho</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favore, elegí el sexo.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Tamaño</label>
-                                <select class="form-select" id="state" required>
-                                    <option value="">...</option>
-                                    <option>Chica</option>
-                                    <option>Mediana</option>
-                                    <option>Grande</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Por favor, elegí el tamaño.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <label for="email" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                <div class="invalid-feedback">
-                                    Por favor, ingresá una descripción.
-                                </div>
-                            </div>
-                            <hr class="my-4">
-                            <h4 class="mb-3 wavyp">Fotos de tu mascota:</h4>
-                            <div class="row g-3">
-                                <div class="col-sm-12">
-                                    <div class="input-group">                             
-                                        <input type="file" class="form-control" id="inputGroupFile04"
-                                            aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*" multiple>
-                                    </div>
-                                </div>
-                                <p>* Podés seleccionar varias imágenes</p>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 wavyp">Más info:</h4>
-
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con gatos
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con perros
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede convivir con niños
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Está castrada
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Necesita medicación/cuidado especial
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Es muy activa
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede estar sola sin problemas
-                                        </label>
+                                    <label for="medio" class="form-label">Medio preferido</label>
+                                    <select class="form-select" id="state" name="medioPreferido" required>
+                                        <option value="">Elegí...</option>
+                                        <option value="EMAIL">Email</option>
+                                        <option value="WHATSAPP">WhatsApp</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Elegí un medio de comunicación.
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <hr class="my-4">
-                        <div class="text-center">
-                            <a class="btn-grande text-uppercase fw-bold mb-2" href="registro_mascota_asociacion.html"
-                                type="submit">SIGUENTE</a>
-                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a class="btn-grande text-uppercase fw-bold mb-2" href="registro_duenio_ok.html"
+                            type="submit">Registrarme</a>
+                    </div>
                 </div>
-                </form>
-                <!--------------------------------------------Foto derecha--------------------------------------------->
+
                 <div class="col-lg-3">
                     <div class="col-md-5 col-lg-4 order-md-last">
-                        <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
+                        <img class="register-img d-none d-lg-block" src="img/long.jpg" alt="">
                     </div>
+
                 </div>
             </div>
         </div>
+        <br>
     </div>
     <!-- Datos de registro-->
+
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-muted" style="background-color: #eff9ff;" id="contacto">

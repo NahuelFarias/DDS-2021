@@ -3,8 +3,11 @@ package domain.controllers;
 import domain.models.entities.personas.Usuario;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
+import spark.ModelAndView;
 import spark.Request;
+import spark.Response;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,4 +36,16 @@ public class UsuarioController {
         }
     }
 
+
+    public ModelAndView crearUsuario(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "registro_usuario.hbs");
+    }
+
+    public Response cargarUsuario(Request request, Response response) {
+        //TODO
+        response.redirect("/ok");
+        return response;
+    }
 }

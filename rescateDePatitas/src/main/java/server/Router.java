@@ -32,6 +32,7 @@ public class Router {
         PublicacionesPerdidasController perdidas = new PublicacionesPerdidasController();
         PublicacionesEncontradasController encontradas = new PublicacionesEncontradasController();
         PublicacionesEnAdopcionController enAdopcion = new PublicacionesEnAdopcionController();
+        UsuarioController usuarios = UsuarioController.getInstancia();
         AuthMiddleware authMiddleware = new AuthMiddleware();
         AdminController adminController = new AdminController();
 
@@ -118,6 +119,10 @@ public class Router {
         Spark.post("/registro_encontrada", encontradas::guardarEncontrada);
 
         Spark.get("/publicacion_enviada", encontradas::publicacionEnviada, Router.engine);
+
+        Spark.get("/registro_usuario", usuarios::crearUsuario, Router.engine);
+
+        Spark.post("/registro_usuario", usuarios::cargarUsuario);
 
     }
 }

@@ -10,11 +10,11 @@
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <h3 class="lead">¿Ya tenés una cuenta?</h3>
-                        <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                        <a class="btn-grande" type="submit" href="login">Ingresá</a>
                     </div>
                     <div class="col-sm-6">
                         <h3 class="lead">¿Querés crearla?</h3>
-                        <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
+                        <a class="btn-grande" type="submit" href="registro_usuario">Registrate</a>
                     </div>
                 </div>
             {{/unless}}
@@ -172,8 +172,117 @@
                                         Elegí un medio de comunicación.
                                     </div>
                                 </div>
+
                                 <div class="col-sm-12 text-right">
-                                    <a class="btn-mis" type="submit">+ Agregar</a>
+                                    <button id="mostrarContacto2" class="btn-mis" name="answer" onclick="ShowDiv()">+ Otro contacto</button>
+                                </div>
+                            </div>
+
+                            <!-- Contacto 2 -->
+                            <div class="row g-3" style="display:none;" id="contacto2">
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                           name="cNombre" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                           name="cApellido" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Número celular</label>
+                                    <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                           value="" name="cNumero"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un número de celular válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Correo Electrónico</label>
+                                    <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                           value="" name="cCorreo"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un correo electrónico válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="medio" class="form-label">Medio preferido</label>
+                                    <select class="form-select" id="state" name="medioPreferido" required>
+                                        <option value="">Elegí...</option>
+                                        <option value="EMAIL">Email</option>
+                                        <option value="WHATSAPP">WhatsApp</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Elegí un medio de comunicación.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 text-right">
+                                    <button id="mostrarContacto3" class="btn-mis" name="answer" onclick="ShowDiv()">+ Otro contacto</button>
+                                </div>
+                            </div>
+
+                            <!--Contacto 3-->
+                            <div class="row g-3" style="display:none;" id="contacto3">
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                           name="cNombre" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                           name="cApellido" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="firstName" class="form-label">Número celular</label>
+                                    <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                           value="" name="cNumero"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un número de celular válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="lastName" class="form-label">Correo Electrónico</label>
+                                    <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                           value="" name="cCorreo"required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un correo electrónico válido.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="medio" class="form-label">Medio preferido</label>
+                                    <select class="form-select" id="state" name="medioPreferido" required>
+                                        <option value="">Elegí...</option>
+                                        <option value="EMAIL">Email</option>
+                                        <option value="WHATSAPP">WhatsApp</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Elegí un medio de comunicación.
+                                    </div>
                                 </div>
                             </div>
                             <hr class="my-4">
@@ -265,6 +374,13 @@
                                     <div class="invalid-feedback">
                                         Subí al menos una foto.
                                     </div>
+                                    <div class="col-sm-12">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" id="inputGroupFile04"
+                                                   aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*" multiple>
+                                        </div>
+                                    </div>
+                                    <p>* Podés seleccionar varias imágenes</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
@@ -318,8 +434,9 @@
                     <div class="text-center">
                         <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">SIGUENTE</button>
                     </div>
+                </form>
             </div>
-            </form>
+
             <!--------------------------------------------Foto derecha--------------------------------------------->
             {{#if usuario}}
             <div class="col-lg-3">

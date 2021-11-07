@@ -220,8 +220,10 @@ public class CreacionEntidades {
         //Seteo las preguntas
         preguntaTieneGatos= new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
+        preguntaTieneGatos.setTipoDePregunta("pyc");
         preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
+        preguntaTienePatio.setTipoDePregunta("pyc");
 
         //Seteo las respuestas
         respuestas = new ArrayList<>();
@@ -261,7 +263,9 @@ public class CreacionEntidades {
         preg3 = new Pregunta();
         preg4 = new Pregunta();
         preg3.setPregunta("¿Tiene Patio?");
+        preg3.setTipoDePregunta("pyc");
         preg4.setPregunta("¿Tiene un canil cerca?");
+        preg4.setTipoDePregunta("pyc");
 
         r3 = new RespuestaConcreta();
         r4 = new RespuestaConcreta();
@@ -295,7 +299,7 @@ public class CreacionEntidades {
         rt1 = new RespuestaConcreta();
         preg1= new Pregunta();
         preg1.setPregunta("Raza");
-        preg1.setTipoDePregunta("Caracteristica");
+        preg1.setTipoDePregunta("asociacion");
         preg1.setVisible(true);
         preg1.setOrganizacion(org1);
         preg1.setCuestionario(cuest);
@@ -305,7 +309,7 @@ public class CreacionEntidades {
         rt2 = new RespuestaConcreta();
         preg2 = new Pregunta();
         preg2.setPregunta("Es amigable con niños?");
-        preg2.setTipoDePregunta("Caracteristica");
+        preg2.setTipoDePregunta("asociacion");
         preg2.setVisible(true);
         preg2.setOrganizacion(organizacion);
         preg2.setCuestionario(cuest);

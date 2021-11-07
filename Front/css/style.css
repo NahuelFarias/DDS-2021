@@ -787,6 +787,20 @@ a.btn-mis{
   transition: 0.3s;
   border-radius: 30px;
   text-align: center;
+  border: none;
+}
+
+button.btn-mis{
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-background2);
+  background: var(--color-accent);
+  transition: 0.3s;
+  border-radius: 30px;
+  text-align: center;
+  border: none;  
 }
 
 .adopcion .adopcion-item a.btn i {
