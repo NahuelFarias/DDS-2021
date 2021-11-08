@@ -169,8 +169,9 @@ public class PublicacionesEnAdopcionController {
 
     public ModelAndView mostrarCuestionarioAsociacionAdopcion(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        Organizacion organizacion = request.session().attribute("organizacionformulario");
 
-        //parametros.put("organizacion", request.session().attribute("organizacion"));
+        parametros.put("organizacion",organizacion);
 
         return new ModelAndView(parametros, "dar_adopcion_asociacion.hbs");
     }

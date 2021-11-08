@@ -124,7 +124,7 @@ public class MascotaController {
         }
 
         if (request.queryParams("edad") != null) {
-            int edad = Integer.valueOf(request.queryParams("edad"));
+            int edad = Integer.parseInt(request.queryParams("edad"));
             mascota.setEdad(edad);
         }
 
