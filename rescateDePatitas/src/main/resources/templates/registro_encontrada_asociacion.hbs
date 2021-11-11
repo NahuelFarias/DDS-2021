@@ -5,8 +5,8 @@
         <div class="container">
             <div class="py-5 text-center">
                 <br> <br>
-                <h2 class="wavyy">Mascota encontrada</h2>
-                <p class="lead">Último paso: comunicate con un hogar de tránsito</p>
+                <h2 class="wavyy">Publicación realizada <i class="far fa-check-circle" style="color: green;"></i></h2>
+                <p class="lead">Podés comunicarte con algún un hogar de tránsito</p>
 
             </div>
             <div class="row">
@@ -14,63 +14,31 @@
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
                             <h4 class="mb-3 wavyp">Hogares de tránsito</h4>
-                            <p>Estos son los hogares que admiten a la mascota que ingresaste:</p>
+                            <p>Estos son los que admiten a la mascota que ingresaste:</p>
 
                             <div class="col-sm-12">
                                 {{#each hogares}}
-                                    <p>{{nombre}}</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p style="font-weight:bold; font-size:20px;text-align: center;">{{nombre}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12"><p>Teléfono: {{telefono}}</p></div>
+                                        <div class="col-md-12"><p>Dirección: {{direccion.direccion}}</p></div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        {{#if caracteristicas}}
+                                        <p>*El hogar necesita que cumpla con estas características:*</p>
+                                        {{/if}}
+                                        {{#each caracteristicas}}
+                                            <p>{{.}}</p>
+                                        {{/each}}
+                                    </div>
+                                    <hr class="my-4">
                                 {{/each}}
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                    placeholder="Datos de la asociación elegida"></textarea>
                             </div>
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 wavyp">Preguntas de la asociación:</h4>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Está castrada
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Es muy activa
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Necesita medicación/cuidado especial
-                                        </label>
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            Puede estar sola sin problemas
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="col-sm-12">
-                            <label for="">Pregunta con respuesta texto:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                placeholder="Respuesta"></textarea>
-                        </div>
-                        <hr class="my-4">
-                        <div class="text-center">
-                            <a class="btn-grande text-uppercase fw-bold mb-2" href="publicacion_enviada.html"
-                                type="submit">Dar en adopción</a>
                         </div>
                     </form>
                 </div>

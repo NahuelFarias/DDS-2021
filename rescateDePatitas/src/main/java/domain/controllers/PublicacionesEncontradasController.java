@@ -49,8 +49,8 @@ public class PublicacionesEncontradasController {
 
     public ModelAndView mostrarHogares(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-
-        //parametros.put("hogares",)
+        List<Hogar> hogares = request.session().attribute("hogares");
+        parametros.put("hogares", hogares);
 
         return new ModelAndView(parametros, "registro_encontrada_asociacion.hbs");
     }
@@ -79,7 +79,7 @@ public class PublicacionesEncontradasController {
         return new ModelAndView(parametros, "registro_encontrada.hbs");
     }
 
-    public Response guardarEncontrada(Request request, Response response) {
+    public Response guardarEncontrada(Request request, Response response) throws Exception {
         PublicacionMascotaEncontrada publi = new PublicacionMascotaEncontrada();
 
         asignarAtributosA(publi, request);
@@ -110,16 +110,21 @@ public class PublicacionesEncontradasController {
             }
         }
 
+        this.repo.agregar(publi);
+
         String especie = "";
         if (request.queryParams("especie") != null) {
             especie = request.queryParams("especie");
-            //request.session().attribute("especie", especie);
         }
 
         String tamanio = "";
         if (request.queryParams("tamanio") != null) {
             tamanio = request.queryParams("tamanio");
-            //request.session().attribute("tamanio", tamanio);
+        }
+
+        String radio = "";
+        if (request.queryParams("radio") != null) {
+            radio = request.queryParams("radio");
         }
 
         BuscadorDeHogaresDeTransito buscadorDeHogaresDeTransito = BuscadorDeHogaresDeTransito.getInstancia();
@@ -134,21 +139,48 @@ public class PublicacionesEncontradasController {
         List<Hogar> hogares = listadoDeHogares.hogares;
 
         FiltradorDeHogaresDeTransito filtrador = new FiltradorDeHogaresDeTransito();
-        //TODO considerar null de hogares
-        //hogares = filtrador.filtrarPorCapacidad(hogares);
-        //hogares = filtrador.filtrarPorAnimalAceptado(hogares, especie.toLowerCase());
-        //hogares = filtrador.filtrarPorTamanio(hogares, tamanio);
-        //hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(request.queryParams("radio")),
-        //        Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
 
-        //TODO falta considerar caracteristicas
-        //hogares = filtrador.filtrarPorCaracteristica(hogares, String caracteristicas)
+        try {
+            hogares = filtrador.filtrarPorCapacidad(hogares);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+        try {
+            hogares = filtrador.filtrarPorAnimalAceptado(hogares, especie);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+        try {
+            hogares = filtrador.filtrarPorTamanio(hogares, tamanio);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+            if (request.queryParams("radio").equals("")) {
+                //No elige radio, no le muestro hogares
+                response.redirect("/publicacion_enviada");
+            } else if (request.queryParams("radio").equals("todos"))
+                //elije cualquier radio, no filtro por cercania y muestro hogares
+                response.redirect("/encontrada_hogares");
+            else {
+                //eligio un radio, filtro por radio
+                hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(request.queryParams("radio")),
+                        Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
+
+                response.redirect("/encontrada_hogares");
+            }
+
+
+
 
         request.session().attribute("hogares", hogares);
-
-        this.repo.agregar(publi);
-
         response.redirect("/encontrada_hogares");
+
         return response;
     }
 
@@ -316,5 +348,11 @@ public class PublicacionesEncontradasController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         return new ModelAndView(parametros, "publicacion_enviada.hbs");
+    }
+
+    public ModelAndView sinHogares(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "sin_hogares.hbs");
     }
 }

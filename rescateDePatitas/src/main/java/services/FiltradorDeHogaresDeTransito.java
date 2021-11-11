@@ -28,6 +28,8 @@ public class FiltradorDeHogaresDeTransito {
         List<Hogar> listadoFiltrado = new ArrayList<>();
         Map<String, Boolean> mapa = new HashMap<>();
         mapa.put("pequenio", true);
+        mapa.put("mediano", true);
+        mapa.put("grande", true);
         for (Hogar hogar:listadoDeHogares) {
             mapa.replace("mediano", hogar.patio);
             mapa.replace("grande", hogar.patio);
@@ -47,15 +49,15 @@ public class FiltradorDeHogaresDeTransito {
 
     public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, Double latitud, Double longitud){
         List<Hogar> listadoFiltrado = new ArrayList<>();
-        float restaLatitud;
-        float restaLongitud;
+        ComparadorDistancias comparador = new ComparadorDistancias();
+
         for (Hogar hogar:listadoDeHogares) {
-            restaLatitud = (float) Math.abs(latitud - hogar.direccion.latitud);
-            restaLongitud = (float) Math.abs(longitud - hogar.direccion.longitud);
-            if (Math.hypot(restaLatitud, restaLongitud) <= radio) {listadoFiltrado.add(hogar);}
+            double distancia = comparador.distancia(latitud,longitud,hogar.ubicacion.latitud,hogar.ubicacion.longitud);
+            if (distancia*10 <= radio) {listadoFiltrado.add(hogar);}
         }
         return listadoFiltrado;
     }
+
 
     //Recibe una lista de hogares, un radio, una latitud y una longitud y devuelve una lista de hogares que entran en radio de las coordenadas
 //    public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, int latitud, int longitud){

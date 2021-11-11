@@ -14,8 +14,7 @@ import java.util.List;
 
 public class BuscadorDeHogaresDeTransito {
     private static BuscadorDeHogaresDeTransito instancia = null;
-    private final String urlAPIHogares = Configuracion.leerPropiedad("URL_API_HOGARES");
-    ;
+    private final String urlAPIHogares = "https://api.refugiosdds.com.ar/api/";
     private Retrofit retrofit;
 
     private BuscadorDeHogaresDeTransito() {

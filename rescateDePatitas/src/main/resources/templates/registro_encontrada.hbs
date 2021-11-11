@@ -195,8 +195,8 @@
                                 <label for="especie" class="form-label">Especie</label>
                                 <select class="form-select" id="especie" name="especie" required>
                                     <option value="">...</option>
-                                    <option value="Gato">Gato</option>
-                                    <option value="Perro">Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="perro">Perro</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Seleccioná una especie.
@@ -207,8 +207,8 @@
                                 <label for="sexo" class="form-label">Sexo</label>
                                 <select class="form-select" id="sexo" name="sexo" required>
                                     <option value="">...</option>
-                                    <option value="gato">Hembra</option>
-                                    <option value="perro">Macho</option>
+                                    <option value="hembra">Hembra</option>
+                                    <option value="macho">Macho</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Sexo.
@@ -219,8 +219,8 @@
                                 <label for="tamanio" class="form-label">Tamaño</label>
                                 <select class="form-select" id="tamanio" name="tamanio" required>
                                     <option value="">...</option>
-                                    <option value="pequenia">Chica</option>
-                                    <option value="mediana">Mediana</option>
+                                    <option value="pequenio">Chica</option>
+                                    <option value="mediano">Mediana</option>
                                     <option value="grande">Grande</option>
                                 </select>
                                 <div class="invalid-feedback">
@@ -245,7 +245,7 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Subí una o varias fotos</label>
                                         <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                                               name="foto">
+                                               name="foto" accept="image/*" >
                                     </div>
                                 </div>
 
@@ -269,13 +269,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="latitud">Latitud</label>
-                                        <input type="text" id="latitud" class="form-control">
+                                        <input type="text" id="latitud" class="form-control" name="latitud">
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="longitud">Longitud</label>
-                                        <input type="text" id="longitud" class="form-control">
+                                        <input type="text" id="longitud" class="form-control" name="longitud">
                                     </div>
                                 </div>
                             </div>
@@ -285,22 +286,15 @@
                             <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
                                 tránsito.</p>
                             <p>Seleccioná un radio de cercanía</p>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
+                            <label for="radio" class="col-sm-2 col-form-label fw-bold">Distancia </label>
                             <div class="col-sm-3">
-                                <select class="form-select" id="state" name="km" required>
+                                <select class="form-select" id="radio" name="radio">
                                     <option value="">...</option>
-                                    <option value="5">Hasta 5km</option>
-                                    <option value="10">Hasta 10km</option>
-                                    <option value="15">Hasta 15km</option>
-                                    <option value="16">Todos</option>
+                                    <option value="71678">Hasta 5km</option>
+                                    <option value="71679">Hasta 10km</option>
+                                    <option value="71680">Hasta 15km</option>
+                                    <option value="todos">Todos</option>
                                 </select>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <label for="email" class="form-label">Info de hogares:</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                          placeholder="Nombre     hogar       Direccion       Telefono"
-                                          readonly></textarea>
                             </div>
 
                             <hr class="my-4">
@@ -312,7 +306,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="btn-grande" type="submit">PUBLICAR MASCOTA ENCONTRADA</button>
+                                <button class="btn-grande" type="submit">Publicar mascota</button>
                             </div>
                         </div>
                     </form>
