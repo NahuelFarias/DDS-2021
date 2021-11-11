@@ -1,5 +1,7 @@
 package domain.controllers;
 
+import domain.models.entities.hogares.Hogar;
+import domain.models.entities.hogares.ListadoDeHogares;
 import domain.models.entities.mascotas.DatosMascotaEncontrada;
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
@@ -12,15 +14,15 @@ import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
+import org.junit.Assert;
+import services.BuscadorDeHogaresDeTransito;
+import services.FiltradorDeHogaresDeTransito;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PublicacionesEncontradasController {
     private RepositorioGenerico<PublicacionMascotaEncontrada> repo;
@@ -43,6 +45,14 @@ public class PublicacionesEncontradasController {
 //        }
         parametros.put("encontradas", encontradas);
         return new ModelAndView(parametros, "encontradas.hbs");
+    }
+
+    public ModelAndView mostrarHogares(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        //parametros.put("hogares",)
+
+        return new ModelAndView(parametros, "registro_encontrada_asociacion.hbs");
     }
 
     public ModelAndView encontrada(Request request, Response response) {
@@ -75,10 +85,12 @@ public class PublicacionesEncontradasController {
         asignarAtributosA(publi, request);
 
         if (request.session().attribute("id") != null) {
+            //Si esta logueado lo busco en el repo y lo agrego como rescatista
             RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona rescatista = repoPersonas.dameLaPersona(request.session().attribute("id"));
             publi.setRescatista(rescatista);
         } else {
+            // Si NO esta logueado lo busco por HASH
             PersonaController cPersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cPersona.getRepositorio();
             String cadena = request.queryParams("fnacPersona") + request.queryParams("nroDoc");
@@ -86,8 +98,10 @@ public class PublicacionesEncontradasController {
             Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
 
             if (personaEncontrada != null) {
+                //Si encontré a la persona la seteo como rescatista
                 publi.setRescatista(personaEncontrada);
             } else {
+                // Si no la encontré la agrego y la seteo como rescatista
                 Persona persona = new Persona();
                 asignarAtributosA(persona, request);
                 persona.setUsuarioTemporal(hashPersona);
@@ -96,16 +110,52 @@ public class PublicacionesEncontradasController {
             }
         }
 
+        String especie = "";
+        if (request.queryParams("especie") != null) {
+            especie = request.queryParams("especie");
+            //request.session().attribute("especie", especie);
+        }
+
+        String tamanio = "";
+        if (request.queryParams("tamanio") != null) {
+            tamanio = request.queryParams("tamanio");
+            //request.session().attribute("tamanio", tamanio);
+        }
+
+        BuscadorDeHogaresDeTransito buscadorDeHogaresDeTransito = BuscadorDeHogaresDeTransito.getInstancia();
+        ListadoDeHogares listadoDeHogares = null;
+        try {
+            listadoDeHogares = new ListadoDeHogares();
+            listadoDeHogares = buscadorDeHogaresDeTransito.listadoDeHogares(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Hogar> hogares = listadoDeHogares.hogares;
+
+        FiltradorDeHogaresDeTransito filtrador = new FiltradorDeHogaresDeTransito();
+        //TODO considerar null de hogares
+        //hogares = filtrador.filtrarPorCapacidad(hogares);
+        //hogares = filtrador.filtrarPorAnimalAceptado(hogares, especie.toLowerCase());
+        //hogares = filtrador.filtrarPorTamanio(hogares, tamanio);
+        //hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(request.queryParams("radio")),
+        //        Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
+
+        //TODO falta considerar caracteristicas
+        //hogares = filtrador.filtrarPorCaracteristica(hogares, String caracteristicas)
+
+        request.session().attribute("hogares", hogares);
+
         this.repo.agregar(publi);
 
-        response.redirect("/publicacion_enviada");
+        response.redirect("/encontrada_hogares");
         return response;
     }
 
     private void asignarAtributosA(PublicacionMascotaEncontrada publi, Request request) {
         DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada();
-        Double latitud = null;
-        Double longitud = null;
+        double latitud = 0;
+        double longitud = 0;
 
         if (request.queryParams("descripcion") != null) {
             datosMascota.setDescripcion(request.queryParams("descripcion"));
@@ -113,10 +163,12 @@ public class PublicacionesEncontradasController {
 
         if (request.queryParams("latitud") != null) {
             latitud = Double.parseDouble(request.queryParams("latitud"));
+            request.session().attribute("latitud", latitud);
         }
 
         if (request.queryParams("longitud") != null) {
             longitud = Double.parseDouble(request.queryParams("longitud"));
+            request.session().attribute("longitud", longitud);
         }
 
         Lugar lugar = new Lugar();

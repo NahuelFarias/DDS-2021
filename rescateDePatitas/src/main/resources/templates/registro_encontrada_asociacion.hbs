@@ -1,0 +1,111 @@
+{{#partial "content"}}
+
+    <!-- Datos de registro-->
+    <div class="register">
+        <div class="container">
+            <div class="py-5 text-center">
+                <br> <br>
+                <h2 class="wavyy">Mascota encontrada</h2>
+                <p class="lead">Último paso: comunicate con un hogar de tránsito</p>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <h4 class="mb-3 wavyp">Hogares de tránsito</h4>
+                            <p>Estos son los hogares que admiten a la mascota que ingresaste:</p>
+
+                            <div class="col-sm-12">
+                                {{#each hogares}}
+                                    <p>{{nombre}}</p>
+                                {{/each}}
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Datos de la asociación elegida"></textarea>
+                            </div>
+                            <hr class="my-4">
+
+                            <h4 class="mb-3 wavyp">Preguntas de la asociación:</h4>
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Está castrada
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Es muy activa
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Necesita medicación/cuidado especial
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                        <label class="form-check-label" for="gridCheck1">
+                                            Puede estar sola sin problemas
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="">Pregunta con respuesta texto:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Respuesta"></textarea>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <a class="btn-grande text-uppercase fw-bold mb-2" href="publicacion_enviada.html"
+                                type="submit">Dar en adopción</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!--------------------------------------------Foto derecha--------------------------------------------->
+                <div class="col-lg-3">
+                    <div class="col-md-5 col-lg-4 order-md-last">
+                        <img class="register-img d-none d-lg-block" src="img/pet-register.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Datos de registro-->
+
+
+{{/partial}}
+
+{{#eq rol null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+{{#eq rol "Duenio"}}
+
+    {{> layout_duenio.hbs}}
+
+{{/eq}}
+{{#eq rol "Voluntario"}}
+
+    {{> layout_voluntario.hbs}}
+
+{{/eq}}
+{{#eq rol "Rescatista"}}
+
+    {{> layout_rescatista.hbs}}
+
+{{/eq}}

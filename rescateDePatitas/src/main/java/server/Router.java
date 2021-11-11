@@ -118,6 +118,8 @@ public class Router {
 
         Spark.post("/registro_encontrada", encontradas::guardarEncontrada);
 
+        Spark.post("/encontrada_hogares", encontradas::mostrarHogares, Router.engine);
+
         Spark.get("/publicacion_enviada", encontradas::publicacionEnviada, Router.engine);
 
         Spark.get("/registro_usuario", usuarios::crearUsuario, Router.engine);

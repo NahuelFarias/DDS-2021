@@ -192,8 +192,8 @@
                             <h4 class="mb-3 wavyp">Sobre la mascota</h4>
 
                             <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Especie</label>
-                                <select class="form-select" id="state" name="especie" required>
+                                <label for="especie" class="form-label">Especie</label>
+                                <select class="form-select" id="especie" name="especie" required>
                                     <option value="">...</option>
                                     <option value="Gato">Gato</option>
                                     <option value="Perro">Perro</option>
@@ -204,14 +204,27 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Sexo</label>
-                                <select class="form-select" id="state" name="sexo" required>
+                                <label for="sexo" class="form-label">Sexo</label>
+                                <select class="form-select" id="sexo" name="sexo" required>
                                     <option value="">...</option>
                                     <option value="gato">Hembra</option>
                                     <option value="perro">Macho</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Sexo.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="tamanio" class="form-label">Tamaño</label>
+                                <select class="form-select" id="tamanio" name="tamanio" required>
+                                    <option value="">...</option>
+                                    <option value="pequenia">Chica</option>
+                                    <option value="mediana">Mediana</option>
+                                    <option value="grande">Grande</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, elija el tamaño de la mascota.
                                 </div>
                             </div>
 
@@ -246,27 +259,25 @@
                             <h4 class="mb-3">¿Dónde la encontraste?</h4>
                             <p>Seleccioná la ubicación en el mapa:</p>
                             <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                            width="600" height="450" style="border:0;" allowfullscreen=""
-                                            loading="lazy"></iframe>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-sm-3">
-                                <textarea class="form-control" for="latitud" rows="1"
-                                          placeholder="Latitud" name="latitud">
-                                </textarea>
-                                    </div>
-                                    <div class="col-sm-3">
-                                <textarea class="form-control" for="longitud" rows="1"
-                                          placeholder="Longitud" name="longitud">
-                                </textarea>
+                                <div class="col-md-12">
+                                    <div id="mapa" style="width: 100%; height: 450px">
                                     </div>
                                 </div>
+                            </div>
 
-
-
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="latitud">Latitud</label>
+                                        <input type="text" id="latitud" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="longitud">Longitud</label>
+                                        <input type="text" id="longitud" class="form-control">
+                                    </div>
+                                </div>
                             </div>
 
                             <hr class="my-4">

@@ -45,18 +45,30 @@ public class FiltradorDeHogaresDeTransito {
         return listadoFiltrado;
     }
 
-    //Recibe una lista de hogares, un radio, una latitud y una longitud y devuelve una lista de hogares que entran en radio de las coordenadas
-    public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, int latitud, int longitud){
+    public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, Double latitud, Double longitud){
         List<Hogar> listadoFiltrado = new ArrayList<>();
         float restaLatitud;
         float restaLongitud;
         for (Hogar hogar:listadoDeHogares) {
-            restaLatitud = Math.abs(latitud - hogar.direccion.latitud);
-            restaLongitud = Math.abs(longitud - hogar.direccion.longitud);
+            restaLatitud = (float) Math.abs(latitud - hogar.direccion.latitud);
+            restaLongitud = (float) Math.abs(longitud - hogar.direccion.longitud);
             if (Math.hypot(restaLatitud, restaLongitud) <= radio) {listadoFiltrado.add(hogar);}
         }
         return listadoFiltrado;
     }
+
+    //Recibe una lista de hogares, un radio, una latitud y una longitud y devuelve una lista de hogares que entran en radio de las coordenadas
+//    public List<Hogar> filtrarPorCercania(List<Hogar> listadoDeHogares, int radio, int latitud, int longitud){
+//        List<Hogar> listadoFiltrado = new ArrayList<>();
+//        float restaLatitud;
+//        float restaLongitud;
+//        for (Hogar hogar:listadoDeHogares) {
+//            restaLatitud = Math.abs(latitud - hogar.direccion.latitud);
+//            restaLongitud = Math.abs(longitud - hogar.direccion.longitud);
+//            if (Math.hypot(restaLatitud, restaLongitud) <= radio) {listadoFiltrado.add(hogar);}
+//        }
+//        return listadoFiltrado;
+//    }
 
     //Recibe una lista de hogares y una caracteristica y devuelve una lista de hogares que piden esa caracteristica
     //Se interpreta que los que no piden caracteristicas aceptan sin importar la caracteristica
