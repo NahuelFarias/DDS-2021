@@ -14,7 +14,6 @@ import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
-import org.junit.Assert;
 import services.BuscadorDeHogaresDeTransito;
 import services.FiltradorDeHogaresDeTransito;
 import spark.ModelAndView;
@@ -36,14 +35,15 @@ public class PublicacionesEncontradasController {
     public ModelAndView mostrarEncontradas(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
+        List<PublicacionMascotaEncontrada> aprobadas = new ArrayList<>();
 
-        //filtrar por si esta aprobada
-//        for (PublicacionGenerica publi:publicaciones) {
-//            if(publi.getTipoPublicacion().equals("Mascota perdida no registrada")){
-//                encontradas.add((PublicacionMascotaEncontrada) publi);
-//            }
-//        }
-        parametros.put("encontradas", encontradas);
+        for (PublicacionMascotaEncontrada publicacion:encontradas) {
+            if(publicacion.estaAprobada()){
+                aprobadas.add(publicacion);
+            }
+        }
+
+        parametros.put("encontradas", aprobadas);
         return new ModelAndView(parametros, "encontradas.hbs");
     }
 
