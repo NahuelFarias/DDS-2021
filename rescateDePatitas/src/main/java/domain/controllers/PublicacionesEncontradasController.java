@@ -4,12 +4,14 @@ import domain.models.entities.hogares.Hogar;
 import domain.models.entities.hogares.ListadoDeHogares;
 import domain.models.entities.mascotas.DatosMascotaEncontrada;
 import domain.models.entities.mascotas.Lugar;
+import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.publicaciones.PublicacionPerdidaRegistrada;
+import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
@@ -444,6 +446,93 @@ public class PublicacionesEncontradasController {
         duenio.encontreMiMascotaPerdida(publicacion);
 
         response.redirect("/datos_enviados");
+        return response;
+    }
+
+    public ModelAndView mascotaEncontradaQR(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
+        List<TipoDeDocumento> tipo = new ArrayList<>();
+
+        tipo.add(TipoDeDocumento.valueOf("DNI"));
+        tipo.add(TipoDeDocumento.valueOf("LIBRETA_CIVICA"));
+        tipo.add(TipoDeDocumento.valueOf("PASAPORTE"));
+        tipo.add(TipoDeDocumento.valueOf("CEDULA"));
+        tipo.add(TipoDeDocumento.valueOf("LIBRETA_ENROLAMIENTO"));
+
+        List<String> provincias = new ArrayList<>();
+        provincias.add("Buenos Aires");
+        provincias.add("CABA");
+        provincias.add("Córdoba");
+        provincias.add("Santa Fe");
+
+        parametros.put("tipos", tipo);
+        parametros.put("provincias", provincias);
+
+
+        request.session().attribute("idMascota",request.params("id"));
+        return new ModelAndView(parametros, "registro_encontrada_qr.hbs");
+    }
+
+    public Response enviarMensajeEncontradaQR(Request request, Response response){
+        int id = Integer.parseInt(request.session().attribute("idMascota"));
+        Mascota mascota = MascotaController.getInstancia().getRepositorio().buscar(id);
+
+        DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada();
+        double latitud = 0;
+        double longitud = 0;
+
+        if (request.queryParams("descripcion") != null) {
+            datosMascota.setDescripcion(request.queryParams("descripcion"));
+        }
+
+        if (request.queryParams("latitud") != null) {
+            latitud = Double.parseDouble(request.queryParams("latitud"));
+            request.session().attribute("latitud", latitud);
+        }
+
+        if (request.queryParams("longitud") != null) {
+            longitud = Double.parseDouble(request.queryParams("longitud"));
+            request.session().attribute("longitud", longitud);
+        }
+
+        Lugar lugar = new Lugar();
+        lugar.setLatitud(latitud);
+        lugar.setLongitud(longitud);
+
+        datosMascota.setLugar(lugar);
+
+        if (request.session().attribute("id") != null) {
+            Persona rescatista = RepositorioDePersonas.getInstancia().dameLaPersona(request.session().attribute("id"));
+            mascota.getPersona().notificarContactos(mascota,rescatista.getContactos(),datosMascota);
+
+        } else {
+            // Si NO esta logueado lo busco por HASH
+            PersonaController cPersona = PersonaController.getInstancia();
+            RepositorioDePersonas repoPersona = cPersona.getRepositorio();
+            String cadena = request.queryParams("fnacPersona") + request.queryParams("nroDoc");
+            String hashPersona = org.apache.commons.codec.digest.DigestUtils.md5Hex(cadena);
+            Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
+
+            if (personaEncontrada != null) {
+                //Si encontré a la persona la seteo como rescatista
+                Rescatista rescatista = new Rescatista();
+                personaEncontrada.addRol(rescatista);
+                mascota.setRescatista(rescatista);
+            } else {
+                // Si no la encontré la agrego y la seteo como rescatista
+                Persona persona = new Persona();
+                asignarAtributosA(persona, request);
+                persona.setUsuarioTemporal(hashPersona);
+                repoPersona.agregar(persona);
+                mascota.getPersona().notificarContactos(mascota,persona.getContactos(),datosMascota);
+            }
+
+        }
+
+        response.redirect("/ok");
         return response;
     }
 }

@@ -1,7 +1,6 @@
 package domain.models.repositories;
 
 import domain.models.entities.personas.Persona;
-import domain.models.entities.personas.Usuario;
 import domain.models.repositories.daos.DAO;
 import domain.models.repositories.daos.DAOHibernate;
 

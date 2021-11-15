@@ -120,7 +120,7 @@ public class Persona extends Persistente {
         if (rolesDisponibles.contains(rol)) {
             for (Rol rolDisp : rolesDisponibles) {
                 if (rolDisp.equals(rol))
-                     rolElegido = rolDisp;
+                    rolElegido = rolDisp;
             }
         }
 
@@ -176,13 +176,20 @@ public class Persona extends Persistente {
     }
 
     public void notificarContactos(Mascota mascotaEncontrada, Contacto contactoRescatista, DatosMascotaEncontrada datos) {
-        if (rolElegido.getTipo().equals("Dueño")) {
-            contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() + " fue encontrada!\n" +
-                    "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
-                    "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
-        }
+
+        contactos.forEach(contacto -> contacto.notificarContacto("tu mascota " + mascotaEncontrada.getNombre() + " fue encontrada!\n" +
+                "Fue encontrada por " + contactoRescatista.getNombre() + ", sus medios de contacto son:\n" +
+                "Telefono: " + contactoRescatista.getNumeroCompleto() + "\n" + "Email: " + contactoRescatista.getEmail()));
+
 
     }
+
+    public void notificarContactos(Mascota mascotaEncontrada, List<Contacto> contactoRescatista, DatosMascotaEncontrada datos) {
+        for (Contacto contacto : contactoRescatista) {
+            this.notificarContactos(mascotaEncontrada, contacto, datos);
+        }
+    }
+
 
     public void crearUsuario(String user, String contrasenia) {
         Usuario usuario = new Usuario(user, contrasenia);
@@ -197,9 +204,7 @@ public class Persona extends Persistente {
     }
 
     public void notificarContactosRescatista(Contacto contactoDuenio) {
-        System.out.println(contactoDuenio.getEmail());
-        System.out.println(contactoDuenio.getNombre());
-        System.out.println(contactoDuenio.getNumeroCompleto());
+
         contactos.forEach(c -> c.notificarContacto(contactoDuenio.getNombre() + " encontro su mascota en tu publicacion!\n" +
                 "Sus medios de contacto son:\n" + "Telefono: " +
                 contactoDuenio.getNumeroCompleto() + "\n" +
@@ -238,8 +243,9 @@ public class Persona extends Persistente {
     }
 
     //Rescatista//
-    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto contactoRescatista, DatosMascotaEncontrada
-            datosMascota) {
+    public void encontreUnaMascotaPerdida(Mascota mascotaPerdida, Contacto
+            contactoRescatista, DatosMascotaEncontrada
+                                                  datosMascota) {
         //Con chapita
         if (this.comprobarRol("RESCATISTA")) {
             Rescatista rolActual = (Rescatista) rolElegido;
@@ -274,7 +280,8 @@ public class Persona extends Persistente {
         }
     }
 
-    public void darEnAdopcion(Mascota mascota, Organizacion organizacion, List<RespuestaConcreta> respuestasOrganizacion, List<RespuestaConcreta> respuestasGenerales1) {
+    public void darEnAdopcion(Mascota mascota, Organizacion
+            organizacion, List<RespuestaConcreta> respuestasOrganizacion, List<RespuestaConcreta> respuestasGenerales1) {
         if (this.comprobarRol("Dueño")) {
             Duenio rolActual = (Duenio) rolElegido;
             rolActual.darEnAdopcion(mascota, organizacion, respuestasOrganizacion, respuestasGenerales1);

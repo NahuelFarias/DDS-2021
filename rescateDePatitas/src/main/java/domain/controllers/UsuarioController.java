@@ -30,6 +30,7 @@ import java.util.Map;
 public class UsuarioController {
     private RepositorioDeUsuarios repositorio;
     private static UsuarioController instancia;
+    private RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
 
     public UsuarioController() {
         DAO<Usuario> dao = new DAOHibernate<>(Usuario.class);
@@ -46,10 +47,6 @@ public class UsuarioController {
     public RepositorioDeUsuarios getRepositorio() {
         return repositorio;
     }
-
-    //public UsuarioController(){
-    // this.repositorio = FactoryRepositorio.get(Usuario.class);
-    //}
 
     public void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros) {
         List<Usuario> usuarios = this.repositorio.buscarTodos();
@@ -266,13 +263,13 @@ public class UsuarioController {
     public ModelAndView mostrasMisMascotas(Request request, Response response) throws Exception {
         Map<String, Object> parametros = new HashMap<>();
         //int id = Integer.parseInt(request.session().attribute("id"));
-        Persona persona = PersonaController.getInstancia().getRepositorio().dameLaPersona(request.session().attribute("id"));
+        Persona persona = repoPersonas.dameLaPersona(request.session().attribute("id"));
         List<Mascota> mascotas = null;
 
         try {
             mascotas = persona.getMascotas();
         } catch (Exception e) {
-            throw new Exception("No se pudo");
+            System.out.println("No tiene mascotas");
         }
         parametros.put("mascotas", mascotas);
         return new ModelAndView(parametros, "mis_mascotas.hbs");

@@ -25,6 +25,7 @@ public class MascotaController {
     private RepositorioGenerico<Mascota> repositorio;
     private final RolController rolController = RolController.getInstancia();
     private final UsuarioController usuarioController = UsuarioController.getInstancia();
+    private RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
 
 
     public MascotaController(){
@@ -37,6 +38,10 @@ public class MascotaController {
             instancia = new MascotaController();
         }
         return instancia;
+    }
+
+    public RepositorioGenerico<Mascota> getRepositorio(){
+        return this.repositorio;
     }
 
     public ModelAndView registroMascota(Request request, Response response) {
@@ -89,7 +94,6 @@ public class MascotaController {
         asignarAtributosA(mascota, request);
 
         if (request.session().attribute("id") != null) {
-            RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
             mascota.setPersona(duenio);
             //TODO ver: No se está guardando el rol duenio en mascota?
@@ -324,5 +328,6 @@ public class MascotaController {
 
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
+
 
 }

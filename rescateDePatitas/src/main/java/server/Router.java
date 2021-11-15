@@ -157,6 +157,10 @@ public class Router {
         //Mis mascotas
         Spark.get("/mis_mascotas", usuarios::mostrasMisMascotas, Router.engine);
 
+        //Encontre una mascota con QR
+        Spark.get("/mascota_encontrada/:id", encontradas::mascotaEncontradaQR, Router.engine);
+
+        Spark.post("/mascota_encontrada", encontradas::enviarMensajeEncontradaQR);
 
     }
 }
