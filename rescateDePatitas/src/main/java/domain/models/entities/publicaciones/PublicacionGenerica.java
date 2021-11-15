@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class PublicacionGenerica {
     @Id
-    // TODO Preguntar porque si sacamos esta strategy rompe todo
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     @Column(name = "fecha", columnDefinition = "DATE")
@@ -58,4 +57,8 @@ public abstract class PublicacionGenerica {
     }
 
     public int getId(){return id;}
+
+    public boolean estaAprobada(){
+        return this.estadoDePublicacion.equals(EstadoDePublicacion.ACEPTADO);
+    }
 }

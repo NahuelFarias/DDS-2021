@@ -24,7 +24,20 @@ public class BuscadorYFiltradorDeHogaresTest {
         for(Hogar hogar: listaHogares){
             System.out.println(i + ") " + hogar.nombre);
             System.out.println(hogar.telefono);
+            System.out.println(hogar.capacidad);
+            System.out.println(hogar.lugares_disponibles);
+            if(hogar.ubicacion!=null)
+                System.out.println(hogar.ubicacion.direccion);
             i++;
+            if(hogar.admisiones!=null){
+                if(hogar.admisiones.gatos){
+                    System.out.println("Acepta gatos");
+                    System.out.println(hogar.ubicacion.direccion);
+                }
+                System.out.println("1");
+            }
+            System.out.println(hogar.lugares_disponibles);
+
         }
 
 

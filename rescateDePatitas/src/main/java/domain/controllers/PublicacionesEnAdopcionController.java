@@ -43,10 +43,16 @@ public class PublicacionesEnAdopcionController {
 
     public ModelAndView mostrarEnAdopcion(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        List<PublicacionEnAdopcion> enAdopcion = this.repo.buscarTodos();
+        List<PublicacionEnAdopcion> aprobadas = new ArrayList<>();
 
-        List<PublicacionEnAdopcion> adopciones = this.repo.buscarTodos();
+        for (PublicacionEnAdopcion publicacion:enAdopcion) {
+            if(publicacion.estaAprobada()){
+                aprobadas.add(publicacion);
+            }
+        }
 
-        parametros.put("adopciones", adopciones);
+        parametros.put("adopciones", aprobadas);
         return new ModelAndView(parametros, "adopcion.hbs");
     }
 

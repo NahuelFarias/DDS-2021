@@ -1,6 +1,5 @@
 package domain.controllers;
 
-import domain.models.entities.personas.Usuario;
 import domain.models.entities.publicaciones.*;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
@@ -41,17 +40,16 @@ public class PublicacionesPerdidasController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionPerdidaRegistrada> perdidas = new ArrayList<>();
         List<PublicacionPerdidaRegistrada> publicaciones = this.repo.buscarTodos();
-        for (PublicacionGenerica publi:publicaciones) {
-            if(publi.getTipoPublicacion().equals("Mascota perdida registrada")){
-                perdidas.add((PublicacionPerdidaRegistrada) publi);
+        for (PublicacionPerdidaRegistrada publi:publicaciones) {
+            if(publi.estaAprobada()){
+                perdidas.add(publi);
             }
         }
-        parametros.put("perdidas", publicaciones);
+        parametros.put("perdidas", perdidas);
         return new ModelAndView(parametros, "perdidas.hbs");
     }
 

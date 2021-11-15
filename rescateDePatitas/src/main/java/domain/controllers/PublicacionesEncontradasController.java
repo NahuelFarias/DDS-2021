@@ -1,5 +1,7 @@
 package domain.controllers;
 
+import domain.models.entities.hogares.Hogar;
+import domain.models.entities.hogares.ListadoDeHogares;
 import domain.models.entities.mascotas.DatosMascotaEncontrada;
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
@@ -12,15 +14,14 @@ import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.factories.FactoryRepositorio;
+import services.BuscadorDeHogaresDeTransito;
+import services.FiltradorDeHogaresDeTransito;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PublicacionesEncontradasController {
     private RepositorioGenerico<PublicacionMascotaEncontrada> repo;
@@ -34,15 +35,24 @@ public class PublicacionesEncontradasController {
     public ModelAndView mostrarEncontradas(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
+        List<PublicacionMascotaEncontrada> aprobadas = new ArrayList<>();
 
-        //filtrar por si esta aprobada
-//        for (PublicacionGenerica publi:publicaciones) {
-//            if(publi.getTipoPublicacion().equals("Mascota perdida no registrada")){
-//                encontradas.add((PublicacionMascotaEncontrada) publi);
-//            }
-//        }
-        parametros.put("encontradas", encontradas);
+        for (PublicacionMascotaEncontrada publicacion:encontradas) {
+            if(publicacion.estaAprobada()){
+                aprobadas.add(publicacion);
+            }
+        }
+
+        parametros.put("encontradas", aprobadas);
         return new ModelAndView(parametros, "encontradas.hbs");
+    }
+
+    public ModelAndView mostrarHogares(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        List<Hogar> hogares = request.session().attribute("hogares");
+        parametros.put("hogares", hogares);
+
+        return new ModelAndView(parametros, "registro_encontrada_asociacion.hbs");
     }
 
     public ModelAndView encontrada(Request request, Response response) {
@@ -69,16 +79,18 @@ public class PublicacionesEncontradasController {
         return new ModelAndView(parametros, "registro_encontrada.hbs");
     }
 
-    public Response guardarEncontrada(Request request, Response response) {
+    public Response guardarEncontrada(Request request, Response response) throws Exception {
         PublicacionMascotaEncontrada publi = new PublicacionMascotaEncontrada();
 
         asignarAtributosA(publi, request);
 
         if (request.session().attribute("id") != null) {
+            //Si esta logueado lo busco en el repo y lo agrego como rescatista
             RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona rescatista = repoPersonas.dameLaPersona(request.session().attribute("id"));
             publi.setRescatista(rescatista);
         } else {
+            // Si NO esta logueado lo busco por HASH
             PersonaController cPersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cPersona.getRepositorio();
             String cadena = request.queryParams("fnacPersona") + request.queryParams("nroDoc");
@@ -86,8 +98,10 @@ public class PublicacionesEncontradasController {
             Persona personaEncontrada = repoPersona.buscarPersona(hashPersona);
 
             if (personaEncontrada != null) {
+                //Si encontré a la persona la seteo como rescatista
                 publi.setRescatista(personaEncontrada);
             } else {
+                // Si no la encontré la agrego y la seteo como rescatista
                 Persona persona = new Persona();
                 asignarAtributosA(persona, request);
                 persona.setUsuarioTemporal(hashPersona);
@@ -98,14 +112,82 @@ public class PublicacionesEncontradasController {
 
         this.repo.agregar(publi);
 
-        response.redirect("/publicacion_enviada");
+        String especie = "";
+        if (request.queryParams("especie") != null) {
+            especie = request.queryParams("especie");
+        }
+
+        String tamanio = "";
+        if (request.queryParams("tamanio") != null) {
+            tamanio = request.queryParams("tamanio");
+        }
+
+        String radio = "";
+        if (request.queryParams("radio") != null) {
+            radio = request.queryParams("radio");
+        }
+
+        BuscadorDeHogaresDeTransito buscadorDeHogaresDeTransito = BuscadorDeHogaresDeTransito.getInstancia();
+        ListadoDeHogares listadoDeHogares = null;
+        try {
+            listadoDeHogares = new ListadoDeHogares();
+            listadoDeHogares = buscadorDeHogaresDeTransito.listadoDeHogares(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Hogar> hogares = listadoDeHogares.hogares;
+
+        FiltradorDeHogaresDeTransito filtrador = new FiltradorDeHogaresDeTransito();
+
+        try {
+            hogares = filtrador.filtrarPorCapacidad(hogares);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+        try {
+            hogares = filtrador.filtrarPorAnimalAceptado(hogares, especie);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+        try {
+            hogares = filtrador.filtrarPorTamanio(hogares, tamanio);
+        } catch (Exception e) {
+            response.redirect("/sin_hogares");
+        }
+
+
+            if (request.queryParams("radio").equals("")) {
+                //No elige radio, no le muestro hogares
+                response.redirect("/publicacion_enviada");
+            } else if (request.queryParams("radio").equals("todos"))
+                //elije cualquier radio, no filtro por cercania y muestro hogares
+                response.redirect("/encontrada_hogares");
+            else {
+                //eligio un radio, filtro por radio
+                hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(request.queryParams("radio")),
+                        Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
+
+                response.redirect("/encontrada_hogares");
+            }
+
+
+
+
+        request.session().attribute("hogares", hogares);
+        response.redirect("/encontrada_hogares");
+
         return response;
     }
 
     private void asignarAtributosA(PublicacionMascotaEncontrada publi, Request request) {
         DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada();
-        Double latitud = null;
-        Double longitud = null;
+        double latitud = 0;
+        double longitud = 0;
 
         if (request.queryParams("descripcion") != null) {
             datosMascota.setDescripcion(request.queryParams("descripcion"));
@@ -113,10 +195,12 @@ public class PublicacionesEncontradasController {
 
         if (request.queryParams("latitud") != null) {
             latitud = Double.parseDouble(request.queryParams("latitud"));
+            request.session().attribute("latitud", latitud);
         }
 
         if (request.queryParams("longitud") != null) {
             longitud = Double.parseDouble(request.queryParams("longitud"));
+            request.session().attribute("longitud", longitud);
         }
 
         Lugar lugar = new Lugar();
@@ -264,5 +348,11 @@ public class PublicacionesEncontradasController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         return new ModelAndView(parametros, "publicacion_enviada.hbs");
+    }
+
+    public ModelAndView sinHogares(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "sin_hogares.hbs");
     }
 }
