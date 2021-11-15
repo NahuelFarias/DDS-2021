@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "respuestaConcreta")
 public class RespuestaConcreta extends Persistente {
     // TODO hacemos la prueba sin el atributo de cuestionario constestado -> No funciono
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private CuestionarioContestado cuestionarioContestado;
     //Atributos
     @ManyToOne(cascade = {CascadeType.PERSIST})

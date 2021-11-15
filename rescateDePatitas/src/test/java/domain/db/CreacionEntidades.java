@@ -167,6 +167,19 @@ public class CreacionEntidades {
         rtas2.add("Ninguno de estos");
         controller.crearCaracteristica("Color principal", rtas2,"general");
 
+        //Agrego preguntas para una organizacion
+        ArrayList<Pregunta> preguntasOrganizacion = new ArrayList<>();
+        Pregunta preguntaOrg1 = new Pregunta();
+        preguntaOrg1.setPregunta("Es malcriado?");
+        ArrayList<String> respuestasPreguntasOrg = new ArrayList<>();
+        respuestasPreguntasOrg.add("Sí");
+        respuestasPreguntasOrg.add("No");
+        preguntaOrg1.setRespuestas(respuestasPreguntasOrg);
+        preguntaOrg1.setOrganizacion(org1);
+        preguntasOrganizacion.add(preguntaOrg1);
+        org1.setPreguntasAdopcion(preguntasOrganizacion);
+
+
 
         List<Pregunta> caracteristicas = controller.getRepositorio().buscarPorTipo("general");
 
@@ -296,11 +309,18 @@ public class CreacionEntidades {
         respuestasGenerales.add(rt2);
 
         respuestasOrganizacion = new ArrayList<>();
+        ArrayList<String> opcionesRespuesta = new ArrayList<>();
         rt1 = new RespuestaConcreta();
         preg1= new Pregunta();
         preg1.setPregunta("Raza");
         preg1.setTipoDePregunta("asociacion");
         preg1.setVisible(true);
+        opcionesRespuesta.add("Collie");
+        opcionesRespuesta.add("Chihuahua");
+        opcionesRespuesta.add("Beagle");
+        opcionesRespuesta.add("Pug");
+        opcionesRespuesta.add("Beagle");
+        preg1.setRespuestas(opcionesRespuesta);
         preg1.setOrganizacion(org1);
         preg1.setCuestionario(cuest);
         rt1.setPregunta(preg1);

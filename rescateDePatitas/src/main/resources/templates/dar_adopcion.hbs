@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <form class="needs-validation form-" action="/dar_adopcion" method="post" novalidate>
+                    <form class="needs-validation form-" action="/dar_adopcion" method="post" enctype="multipart/form-data" novalidate>
                         <div class="row g-3">
                             {{#unless usuario}}
                                 <h4 class="mb-3 wavyp">Tus datos:</h4>
@@ -398,7 +398,7 @@
                                 <div class="col-sm-6">
                                     {{#each generales}}
                                         <label for="general" class="form-label">{{pregunta}}</label>
-                                        <select class="form-select" id="state" name="{{pregunta}}" required>
+                                        <select class="form-select" id="state" name="respuestaGeneral{{@index}}" required>
                                             <option value="" selected="selected">...</option>
                                             {{#each respuestas}}
                                                 <option value="{{.}}">{{.}}</option>

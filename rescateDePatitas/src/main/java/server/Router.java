@@ -8,6 +8,13 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 
+import javax.servlet.MultipartConfigElement;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 public class Router {
     private static HandlebarsTemplateEngine engine;
 
@@ -35,6 +42,9 @@ public class Router {
         UsuarioController usuarios = UsuarioController.getInstancia();
         AuthMiddleware authMiddleware = new AuthMiddleware();
         AdminController adminController = new AdminController();
+
+        //File uploadDir = new File("/resources/fotosMascotas");
+        //uploadDir.mkdir(); //Crea el directorio si no existe
 
         Spark.get("/", homeController::mostrarHome, Router.engine);
 
@@ -73,6 +83,21 @@ public class Router {
         Spark.get("/dar_adopcion", enAdopcion::mostrarCuestionarioAdopcion, Router.engine);
 
         Spark.post("/dar_adopcion", enAdopcion::recibirDatosCuestionarioDarEnAdopcion);
+
+
+        /*        (req, res) -> {
+            Path tempFile = Files.createTempFile(uploadDir.toPath(), req.queryParams("nombre"), "img");
+
+            req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+            try (InputStream input = req.raw().getPart("foto").getInputStream()) {
+                Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            }
+            enAdopcion.recibirDatosCuestionarioDarEnAdopcion(req, res);
+            return "File uploaded";
+        });*/
+
+
+
 
         Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
 

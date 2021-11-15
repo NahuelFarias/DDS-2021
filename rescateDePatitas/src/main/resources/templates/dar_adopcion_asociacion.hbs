@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="form-group row">
-                        <form class="needs-validation form-" action="/nueva_mascota_asociacion" method="post" novalidate>
+                        <form class="needs-validation form-" action="/dar_adopcion_asociacion" method="post" novalidate>
                             <div class="col-sm-6">
-                                {{#each organizacion.preguntas}}
+                                {{#each preguntas}}
                                     <label for="general" class="form-label">{{pregunta}}</label>
-                                    <select class="form-select" id="state" name="{{pregunta}}" required>
+                                    <select class="form-select" id="state" name="respuestaOrg{{@index}}" required>
                                         <option value="" selected="selected">...</option>
                                         {{#each respuestas}}
                                             <option value="{{.}}">{{.}}</option>

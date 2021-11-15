@@ -20,11 +20,16 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PublicacionesEnAdopcionController {
     private RepositorioGenerico<PublicacionEnAdopcion> repo;
@@ -117,13 +122,34 @@ public class PublicacionesEnAdopcionController {
         parametros.put("generales", generales);
         parametros.put("provincias", provincias);
 
+        //Guardo la lista de preguntas en la sesion
+        request.session().attribute("preguntasgenerales", generales);
 
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
 
-    public Response recibirDatosCuestionarioDarEnAdopcion(Request request, Response response) {
+    public Response recibirDatosCuestionarioDarEnAdopcion(Request request, Response response) throws IOException {
+
+        File uploadDir = new File("src/main/resources/public/img/fotosmascotas");
+        //uploadDir.mkdir();
+        Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
+
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try (InputStream input = request.raw().getPart("foto").getInputStream()) {
+            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
         Mascota mascota = new Mascota();
         asignarAtributosA(mascota, request);
+
+        List<Foto> fotos = new ArrayList<>();
+        Foto foto = new Foto();
+        foto.setURLfoto(tempFile.toString().replace("src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setMascota(mascota);
+        fotos.add(foto);
+        mascota.setFotos(fotos);
 
         if (request.session().attribute("id") != null) {
             RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
@@ -139,19 +165,24 @@ public class PublicacionesEnAdopcionController {
 
             if (personaEncontrada != null) {
                 mascota.setPersona(personaEncontrada);
-                request.session().attribute("personaformulario", personaEncontrada);
-                request.session().attribute("persistirpersonaformulario", false);
+                //request.session().attribute("personaformulario", personaEncontrada);
+                //request.session().attribute("persistirpersonaformulario", false);
             } else {
                 Persona persona = new Persona();
                 asignarAtributosA(persona, request);
                 persona.setUsuarioTemporal(hashPersona);
                 mascota.setPersona(persona);
                 mascota.setDuenio((Duenio) persona.getRolElegido());
-                //repoPersona.agregar(persona);
-                request.session().attribute("personaformulario", persona);
-                request.session().attribute("persistirpersonaformulario", true);
+                repoPersona.agregar(persona);
+                //request.session().attribute("personaformulario", persona);
+                //request.session().attribute("persistirpersonaformulario", true);
             }
         }
+
+        //Guardo a la mascota en la base de datos
+        RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
+        repoMascotas.agregar(mascota);
+        request.session().attribute("idmascotaenadopcion", mascota.getId());
 
         //Guardo en la sesion a la organizacion
         String nombreAsociacion = request.queryParams("asociacion");
@@ -159,6 +190,26 @@ public class PublicacionesEnAdopcionController {
         RepositorioDeOrganizaciones repoOrg = cOrg.getRepositorio();
         Organizacion organizacion = repoOrg.buscarPorNombre(nombreAsociacion);
         request.session().attribute("organizacionformulario", organizacion);
+
+        //Creo un cuestionarioContestado con las respuestas de la mascota y lo guardo en la sesion
+        CuestionarioContestado cuestionario = new CuestionarioContestado();
+        ArrayList<RespuestaConcreta> respuestas = new ArrayList<>();
+        List<Pregunta> generales = request.session().attribute("preguntasgenerales");
+        int cantidad = generales.size();
+        for(int i = 0; i < cantidad; i++){
+            RespuestaConcreta respuesta = new RespuestaConcreta();
+
+            respuesta.setRespuesta(request.queryParams("respuestaGeneral" + i));
+            respuesta.setPregunta(generales.get(i));
+
+            respuestas.add(respuesta);
+        }
+        cuestionario.setRespuestas(respuestas);
+
+        request.session().removeAttribute("preguntasgenerales");
+        request.session().attribute("cuestionarioContestado", cuestionario);
+
+
 
         request.session().attribute("mascotaformulario", mascota);
 
@@ -172,30 +223,72 @@ public class PublicacionesEnAdopcionController {
         Organizacion organizacion = request.session().attribute("organizacionformulario");
 
         parametros.put("organizacion",organizacion);
+        parametros.put("preguntas", organizacion.getPreguntasAdopcion());
 
         return new ModelAndView(parametros, "dar_adopcion_asociacion.hbs");
     }
 
     public Response guardarPublicacion(Request request, Response response){
         //Recupero a la persona y a la mascota de la sesion
-        Persona persona = request.session().attribute("personaformulario");
-        Mascota mascota = request.session().attribute("mascotaformulario");
+        //Persona persona = request.session().attribute("personaformulario");
+        //Mascota mascota = request.session().attribute("mascotaformulario");
 
         //Guardo a la persona en la base de datos de ser necesario
-        Boolean persistirpersonaformulario = request.session().attribute("persistirpersonaformulario");
-        if(persistirpersonaformulario){
+        //Boolean persistirpersonaformulario = request.session().attribute("persistirpersonaformulario");
+        /*if(persistirpersonaformulario){
             PersonaController cpersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cpersona.getRepositorio();
             repoPersona.agregar(persona);
-        }
+        }*/
+
+
 
         //Guardo a la mascota en la base de datos
         RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
-        repoMascotas.agregar(mascota);
+        //repoMascotas.agregar(mascota);
+        Mascota mascota = repoMascotas.buscar(request.session().attribute("idmascotaenadopcion"));
 
         //Crear publicacion y guardarla
         PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
-        asignarAtributosA(publicacion, request);
+
+        Organizacion organizacion = request.session().attribute("organizacionformulario");
+        int numero = organizacion.getPreguntasAdopcion().size();
+        CuestionarioContestado cuestionario = request.session().attribute("cuestionarioContestado");
+
+        ArrayList<RespuestaConcreta> respuestasOrg = new ArrayList<>();
+        for(int i = 0; i < numero; i++){
+            RespuestaConcreta respuesta = new RespuestaConcreta();
+
+            respuesta.setRespuesta(request.queryParams("respuestaOrg" + i));
+            respuesta.setPregunta(organizacion.getPreguntasAdopcion().get(i));
+
+            respuestasOrg.add(respuesta);
+        }
+
+
+
+        cuestionario.agregarRespuestas(respuestasOrg);
+        for(RespuestaConcreta respuestaConcreta: cuestionario.getRespuestas()) {
+            respuestaConcreta.setCuestionarioContestado(cuestionario);
+            if(respuestaConcreta.getPregunta().getRespuestasConcretas() != null)
+                respuestaConcreta.getPregunta().getRespuestasConcretas().add(respuestaConcreta);
+            else{
+                List<RespuestaConcreta> lista = new ArrayList<>();
+                lista.add(respuestaConcreta);
+                respuestaConcreta.getPregunta().setRespuestasConcretas(lista);
+            }
+        }
+
+        publicacion.setMascota(mascota);
+        publicacion.setTipoPublicacion("Mascota dada en adopcion");
+        //publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
+        //publicacion.setOrganizacion(organizacion);
+        publicacion.setCuestionario(cuestionario);
+        publicacion.setFecha(java.time.LocalDate.now());
+
+        publicacion.getMascota();
+
+        //organizacion.getPublicaciones().add(publicacion);
         RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(new DAOHibernate<>(PublicacionEnAdopcion.class));
         repoPublicaciones.agregar(publicacion);
 
@@ -226,7 +319,7 @@ public class PublicacionesEnAdopcionController {
         }
 
         if (request.queryParams("descripcion") != null) {
-            mascota.setDescripcion("descripcion");
+            mascota.setDescripcion(request.queryParams("descripcion"));
         }
 
         if (request.queryParams("edad") != null) {
@@ -234,14 +327,15 @@ public class PublicacionesEnAdopcionController {
             mascota.setEdad(edad);
         }
 
-        if (request.queryParams("foto") != null) {
+       /* if (request.queryParams("foto") != null) {
             //TODO hacerlo para muchas fotos
             List<Foto> fotos = new ArrayList<>();
             Foto foto = new Foto();
             foto.setURLfoto(request.queryParams("foto"));
+            foto.setMascota(mascota);
             fotos.add(foto);
             mascota.setFotos(fotos);
-        }
+        }*/
 
         if (request.queryParams("asociacion") != null) {
             String nombreAsociacion = request.queryParams("asociacion");
@@ -251,6 +345,7 @@ public class PublicacionesEnAdopcionController {
             mascota.setOrganizacion(organizacion);
 
         }
+        mascota.getOrganizacion();
 
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
@@ -351,9 +446,6 @@ public class PublicacionesEnAdopcionController {
         persona.setRolElegido(rolDuenio);
     }
 
-    private void asignarAtributosA(PublicacionEnAdopcion publicacion, Request request){
-
-    }
 
     public ModelAndView revisar_adopcion(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
