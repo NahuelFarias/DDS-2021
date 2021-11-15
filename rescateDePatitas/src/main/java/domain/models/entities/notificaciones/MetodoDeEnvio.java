@@ -17,4 +17,8 @@ public class MetodoDeEnvio {
     public void enviarNotificacion(Contacto contacto) {
         this.estrategia.enviarNotificacion(contacto);
     }
+
+    public EstrategiaDeNotificacion getEstrategia() {
+        return estrategia;
+    }
 }

@@ -42,7 +42,7 @@ public class Usuario extends Persistente {
         this.nombreDeUsuario = nombreDeUsuario;
     }
 
-    public void setContrasenia(String hashContrasenia) {
+    private void setContrasenia(String hashContrasenia) {
         this.contrasenia = hashContrasenia;
     }
 
@@ -54,9 +54,7 @@ public class Usuario extends Persistente {
     }
 
     public void hashPassword(String password_plaintext) {
-        String salt = BCrypt.gensalt(workload);
-        String hashed_password = BCrypt.hashpw(password_plaintext, salt);
-
+        String hashed_password = org.apache.commons.codec.digest.DigestUtils.md5Hex(password_plaintext);
         setContrasenia(hashed_password);
     }
 
@@ -93,19 +91,20 @@ public class Usuario extends Persistente {
             persona.getContactos().forEach(contacto -> contacto.notificarContacto("detectamos una serie de ingresos fallidos en tu cuenta"));
         }
 
-        return this.getNombreDeUsuario() == user && checkPassword(contrasenia, this.contrasenia);
+        return this.getNombreDeUsuario().equals(user) && checkPassword(contrasenia, this.contrasenia);
     }
 
     public Boolean checkPassword(String password_plaintext, String stored_hash) {
-        Boolean password_verified = false;
+        //Boolean password_verified = false;
 
-        if(null == stored_hash || !stored_hash.startsWith("$2a$")) {
-            throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
-        }
+//        if(null == stored_hash || !stored_hash.startsWith("$2a$")) {
+//            throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+//        }
+        String hashed_password = org.apache.commons.codec.digest.DigestUtils.md5Hex(password_plaintext);
 
-        password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+        //password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
 
-        return(password_verified);
+        return stored_hash.equals(hashed_password);
     }
 
 }

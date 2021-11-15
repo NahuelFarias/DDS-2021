@@ -145,6 +145,7 @@
                 <p class="lead">Generá tu usuario y contraseña</p>
             </div>
             <div class="container row">
+                <h3>El usuario ya existe.</h3>
                 <h4 class="mb-3 wavyp">Registrate:</h4>
                 <div class="col-lg-8">
                     <form action="/registro_usuario" method="post">
@@ -154,23 +155,21 @@
                         </div>
                         <div class="col-md-12">
                             <label for="psw">Contraseña</label>
-                            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*
-                                   [a-z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}"
+                            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                    title="Debe contener por lo menos un número, una mayúscula, una minúscula, un caracter especial y 8 o más caracteres."
                                    required>
                         </div>
                         <div class="col-md-12 center">
-                            <input  class="btn-grande" type="submit" value="Crear">
+                            <input type="submit" value="Crear">
                         </div>
                     </form>
-
+                    <div id="respuestaError">{{errorRegistro}}</div>
                     <div class="container" id="message">
                         <h3>La contraseña debe contener al menos:</h3>
                         <p id="letter" class="invalid">Una letra <b>minúscula</b></p>
                         <p id="capital" class="invalid">Una letra <b>mayúscula</b></p>
                         <p id="number" class="invalid">Un <b>número</b></p>
                         <p id="length" class="invalid">Mínimo <b>8 caracteres</b></p>
-                        <p id="special" class="invalid">Mínimo un <b>caracter especial</b></p>
                     </div>
                 </div>
 

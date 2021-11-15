@@ -3,34 +3,36 @@
     <html lang="en">
 
     <head>
-        <meta charset="utf-8" />
+        <meta charset="utf-8"/>
         <title>RESCATE DE PATITAS</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
         <!-- Favicon -->
-        <link href="../img/favicon2.png" rel="icon" />
+        <link href="../img/favicon2.png" rel="icon"/>
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
-              rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat&display=swap" rel="stylesheet" />
+              rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat&display=swap"
+              rel="stylesheet"/>
 
         <!-- CSS Libraries -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+              integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+              crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
                 crossorigin="anonymous"></script>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-        <link href="../lib/animate/animate.min.css" rel="stylesheet" />
-        <link href="../lib/flaticon/font/flaticon.css" rel="stylesheet" />
-        <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+        <link href="../lib/animate/animate.min.css" rel="stylesheet"/>
+        <link href="../lib/flaticon/font/flaticon.css" rel="stylesheet"/>
+        <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
 
         <!-- Template Stylesheet -->
-        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/style.css" rel="stylesheet"/>
         <link href="css/form-validation.css" rel="stylesheet"/>
     </head>
     <body>
@@ -63,7 +65,7 @@
     <nav class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
             <a href="/" class="navbar-brand">
-                <img src="../img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
+                <img src="../img/logo2.svg" alt="logo"/> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -98,21 +100,22 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                    {{#if usuario}}
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">{{usuario.nombreDeUsuario}} <i
+                        {{#if usuario}}
+                            <a href="#" class="nav-link dropdown-toggle fw-bold"
+                               data-toggle="dropdown">{{usuario.nombreDeUsuario}} <i
                                     class="fas fa-user-alt"></i> </a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="#" class="dropdown-item">Mi cuenta</a>
-                            <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
-                            <a href="/logout" method="post" class="dropdown-item">Cerrar sesion</a>
-                        </div>
-                    {{else}}
-                        <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
-                                <a href="registro_duenio.html" class="dropdown-item">Crear cuenta</a>
+                            <div class="dropdown-menu dropdown-menu-right text-right">
+                                <a href="#" class="dropdown-item">Mi cuenta</a>
+                                <a href="mis_mascotas" class="dropdown-item">Mis mascotas</a>
+                                <a href="/logout" method="post" class="dropdown-item">Cerrar sesion</a>
+                            </div>
+                        {{else}}
+                            <a href="#" class="nav-link dropdown-toggle fw-bold" data-toggle="dropdown">Ingresá</a>
+                            <div class="dropdown-menu dropdown-menu-right text-right">
+                                <a href="registro_usuario" class="dropdown-item">Crear cuenta</a>
                                 <a href="login" class="dropdown-item">Iniciar sesion</a>
-                        </div>
-                    {{/if}}
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
@@ -242,15 +245,35 @@
     <script src="../lib/lightbox/js/lightbox.min.js"></script>
     <script>
         function iniciarMapa() {
-            var latitud = -34.5988219;
-            var longitud = -58.4204663;
 
-            coordenadas = {
-                lng: longitud,
-                lat: latitud
+            var element =  document.getElementById('mapa');
+            if (element != null){
+                var latitud = -34.5988219;
+                var longitud = -58.4204663;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapa(coordenadas);
             }
 
-            generarMapa(coordenadas);
+            var element =  document.getElementById('mapaEncontrada');
+            if (element != null){
+                var nodo1 = document.getElementById('latEncontrada');
+                var nodo2 = document.getElementById('longEncontrada');
+
+                latitud = nodo1.textContent;
+                longitud = nodo2.textContent;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapaEncontrada(coordenadas);
+            }
 
             function generarMapa(coordenadas) {
                 let marker;
@@ -282,6 +305,35 @@
                     document.getElementById("latitud").value = this.getPosition().lat();
                     document.getElementById("longitud").value = this.getPosition().lng();
                 });
+
+            }
+
+            function generarMapaEncontrada(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapaEncontrada"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+
             }
 
             function toggleBounce() {
@@ -292,10 +344,11 @@
                 }
             }
 
-
         };
+
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi7Zada9BftSlrcUvO-8WhuC3EIQyYC9o&callback=iniciarMapa"></script>
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>

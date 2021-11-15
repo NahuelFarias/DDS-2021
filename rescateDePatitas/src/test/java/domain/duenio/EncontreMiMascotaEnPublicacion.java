@@ -28,7 +28,7 @@ public class EncontreMiMascotaEnPublicacion {
     Duenio duenio;
 
     Contacto contactoR1,contactoR2,contactoD1;
-    List<Contacto> contactos, contactosRescatista;
+    List<Contacto> contactosRescatista;
     Foto foto;
     List<Foto> fotos;
     EditorDeFotos editor;
@@ -49,7 +49,7 @@ public class EncontreMiMascotaEnPublicacion {
         contactoD1 = new Contacto("Aracely", "Amaro", "+541168648864", "ara6amaro@gmail.com", Estrategia.EMAIL);
         List<Contacto> contactosDuenio = new ArrayList<>();
         contactosDuenio.add(contactoD1);
-        personaDuenio.setContactos(contactos);
+        personaDuenio.setContactos(contactosDuenio);
 
 
         //rescatista
@@ -108,7 +108,8 @@ public class EncontreMiMascotaEnPublicacion {
     public void duenioEncuentraASuMascotaPerdida(){
         personaRescatista.encontreUnaMascotaPerdidaSinChapita(personaRescatista,datosMascota); //genera Publicacion
         publicacion = gestor.getPublicaciones().get(0);
-        personaDuenio.encontreMiMascotaPerdida((PublicacionMascotaEncontrada) publicacion,contactoD1);
+
+        personaDuenio.encontreMiMascotaPerdida((PublicacionMascotaEncontrada) publicacion);
     }
 
 }

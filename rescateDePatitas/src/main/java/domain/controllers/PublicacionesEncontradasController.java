@@ -9,6 +9,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
+import domain.models.entities.publicaciones.PublicacionPerdidaRegistrada;
 import domain.models.entities.rol.Rescatista;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
@@ -24,9 +25,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class PublicacionesEncontradasController {
-    private RepositorioGenerico<PublicacionMascotaEncontrada> repo;
-    private UsuarioController usuarioController = new UsuarioController();
-    private RolController rolController = new RolController();
+    private final RepositorioGenerico<PublicacionMascotaEncontrada> repo;
+    private final UsuarioController usuarioController = UsuarioController.getInstancia();
+    private final RolController rolController = RolController.getInstancia();
 
     public PublicacionesEncontradasController() {
         this.repo = FactoryRepositorio.get(PublicacionMascotaEncontrada.class);
@@ -34,11 +35,14 @@ public class PublicacionesEncontradasController {
 
     public ModelAndView mostrarEncontradas(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
         List<PublicacionMascotaEncontrada> aprobadas = new ArrayList<>();
 
-        for (PublicacionMascotaEncontrada publicacion:encontradas) {
-            if(publicacion.estaAprobada()){
+        for (PublicacionMascotaEncontrada publicacion : encontradas) {
+            if (publicacion.estaAprobada()) {
                 aprobadas.add(publicacion);
             }
         }
@@ -49,6 +53,9 @@ public class PublicacionesEncontradasController {
 
     public ModelAndView mostrarHogares(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
         List<Hogar> hogares = request.session().attribute("hogares");
         parametros.put("hogares", hogares);
 
@@ -58,6 +65,10 @@ public class PublicacionesEncontradasController {
     public ModelAndView encontrada(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<TipoDeDocumento> tipo = new ArrayList<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
         tipo.add(TipoDeDocumento.valueOf("DNI"));
         tipo.add(TipoDeDocumento.valueOf("LIBRETA_CIVICA"));
         tipo.add(TipoDeDocumento.valueOf("PASAPORTE"));
@@ -136,6 +147,7 @@ public class PublicacionesEncontradasController {
             e.printStackTrace();
         }
 
+        assert listadoDeHogares != null;
         List<Hogar> hogares = listadoDeHogares.hogares;
 
         FiltradorDeHogaresDeTransito filtrador = new FiltradorDeHogaresDeTransito();
@@ -161,22 +173,19 @@ public class PublicacionesEncontradasController {
         }
 
 
-            if (request.queryParams("radio").equals("")) {
-                //No elige radio, no le muestro hogares
-                response.redirect("/publicacion_enviada");
-            } else if (request.queryParams("radio").equals("todos"))
-                //elije cualquier radio, no filtro por cercania y muestro hogares
-                response.redirect("/encontrada_hogares");
-            else {
-                //eligio un radio, filtro por radio
-                hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(request.queryParams("radio")),
-                        Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
+        if (radio.equals("")) {
+            //No elige radio, no le muestro hogares
+            response.redirect("/publicacion_enviada");
+        } else if (radio.equals("todos"))
+            //elije cualquier radio, no filtro por cercania y muestro hogares
+            response.redirect("/encontrada_hogares");
+        else {
+            //eligio un radio, filtro por radio
+            hogares = filtrador.filtrarPorCercania(hogares, Integer.parseInt(radio),
+                    Double.parseDouble(request.queryParams("latitud")), Double.parseDouble(request.queryParams("longitud")));
 
-                response.redirect("/encontrada_hogares");
-            }
-
-
-
+            response.redirect("/encontrada_hogares");
+        }
 
         request.session().attribute("hogares", hogares);
         response.redirect("/encontrada_hogares");
@@ -215,7 +224,7 @@ public class PublicacionesEncontradasController {
     }
 
     private void asignarAtributosA(Persona persona, Request request) {
-        if (request.queryParams("nombre") != null) {
+        if (request.queryParams("nombrePersona") != null) {
             persona.setNombre(request.queryParams("nombrePersona"));
         }
 
@@ -300,7 +309,6 @@ public class PublicacionesEncontradasController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
@@ -312,7 +320,6 @@ public class PublicacionesEncontradasController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
@@ -344,7 +351,6 @@ public class PublicacionesEncontradasController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         return new ModelAndView(parametros, "publicacion_enviada.hbs");
@@ -352,7 +358,92 @@ public class PublicacionesEncontradasController {
 
     public ModelAndView sinHogares(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
 
         return new ModelAndView(parametros, "sin_hogares.hbs");
+    }
+
+    public ModelAndView mostrarPublicacionEncontrada(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
+
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+        parametros.put("publicacion", publicacion);
+        return new ModelAndView(parametros, "encontrada_publicacion.hbs");
+    }
+
+    public ModelAndView datosEnviados(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        return new ModelAndView(parametros, "datos_enviados.hbs");
+    }
+
+    public Response enviarDatos(Request request, Response response) {
+        int publicacionId = Integer.parseInt(request.params("id"));
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(publicacionId);
+
+        if (request.session().attribute("id") != null) {
+            RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+            Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
+
+            duenio.encontreMiMascotaPerdida(publicacion);
+
+        } else {
+            String nombre = "";
+            if (request.queryParams("nombre") != null) {
+                nombre = request.queryParams("nombre");
+            }
+
+            String email = "";
+            if (request.queryParams("email") != null) {
+                email = request.queryParams("email");
+            }
+
+            String numero = "";
+            if (request.queryParams("numero") != null) {
+                numero = request.queryParams("numero");
+            }
+
+            Estrategia medioPreferido = Estrategia.valueOf("EMAIL");
+            if (request.queryParams("medioPreferido") != null) {
+                if (request.queryParams("medioPreferido").equals("Email")) {
+                    medioPreferido = Estrategia.valueOf("EMAIL");
+                } else {
+                    if (request.queryParams("medioPreferido").equals("WhatsApp")) {
+                        medioPreferido = Estrategia.valueOf("WHATSAPP");
+                    } else medioPreferido = Estrategia.valueOf("SMS");
+                }
+            }
+
+            Contacto contacto = new Contacto(nombre, "", numero, email, medioPreferido);
+            Persona persona = new Persona();
+            persona.setNombre(nombre);
+            contacto.setPersona(persona);
+            Persona rescatista = publicacion.getRescatista();
+            System.out.println(rescatista.getNombre());
+            System.out.println(rescatista.getContactos().get(0).getEmail());
+            rescatista.notificarContactosRescatista(contacto);
+
+        }
+
+        response.redirect("/datos_enviados");
+        return response;
+    }
+
+    public Response enviarDatosLog(Request request, Response response) {
+        PublicacionMascotaEncontrada publicacion = this.repo.buscar(new Integer(request.params("id")));
+
+        RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+        Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
+
+        duenio.encontreMiMascotaPerdida(publicacion);
+
+        response.redirect("/datos_enviados");
+        return response;
     }
 }

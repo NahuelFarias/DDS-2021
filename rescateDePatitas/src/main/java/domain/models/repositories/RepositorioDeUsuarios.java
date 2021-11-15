@@ -14,7 +14,7 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
 
     public static RepositorioDeUsuarios getInstancia() {
         if (instancia == null) {
-            instancia=new RepositorioDeUsuarios(new DAOHibernate<>());
+            instancia = new RepositorioDeUsuarios(new DAOHibernate<>());
         }
         return instancia;
     }

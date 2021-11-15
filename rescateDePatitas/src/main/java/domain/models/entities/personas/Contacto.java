@@ -39,7 +39,11 @@ public class Contacto extends Persistente {
         setApellido(apellido);
         setNumeroCompleto(numeroCompleto);
         setEmail(email);
+        this.estrategiaDeEnvio = estrategiaDeEnvio;
         setEstrategiaDeEnvio(estrategiaDeEnvio);
+    }
+
+    public Contacto(){
     }
 
     public void setPersona(Persona persona) {
@@ -52,6 +56,7 @@ public class Contacto extends Persistente {
     }
 
     public void enviarNotificacion() {
+        setEstrategiaDeEnvio(this.estrategiaDeEnvio);
         metodoDeEnvio.enviarNotificacion(this);
     }
 
@@ -79,11 +84,10 @@ public class Contacto extends Persistente {
             case WHATSAPP:
                 AdapterTwilioWhatsapp adapterTwilioWhatsapp = new AdapterTwilioWhatsapp();
                 NotificadorWhatsapp notificadorWhatsapp = new NotificadorWhatsapp(adapterTwilioWhatsapp);
-                MetodoDeEnvio metodoDeEnvioWhatsapp = new MetodoDeEnvio(notificadorWhatsapp);
-                this.metodoDeEnvio = metodoDeEnvioWhatsapp;
+                this.metodoDeEnvio = new MetodoDeEnvio(notificadorWhatsapp);
                 break;
             case EMAIL:
-                AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("src/main/resources/configuration.prop",
+                AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("rescateDePatitas/src/main/resources/public/config/configuration.prop",
                         "Notificación de Patitas ✨");
                 NotificadorEmail notificadorEmail = new NotificadorEmail(adapterJavaMailEmail);
                 MetodoDeEnvio metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);
@@ -128,5 +132,9 @@ public class Contacto extends Persistente {
 
     public String getMensaje() {
         return mensaje;
+    }
+
+    public Estrategia getEstrategiaDeEnvio() {
+        return estrategiaDeEnvio;
     }
 }

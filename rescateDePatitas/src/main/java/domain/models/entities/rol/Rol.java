@@ -14,8 +14,8 @@ public abstract class Rol extends Persistente {
     @ManyToOne
     private Persona persona;
 
-    public Rol(String rescatista) {
-        this.tipo = rescatista;
+    public Rol(String rol) {
+        this.tipo = rol;
     }
 
     public String getTipo() {
@@ -28,5 +28,14 @@ public abstract class Rol extends Persistente {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public boolean equals(Rol rol) {
+        return this.tipo.equals(rol.tipo);
+    }
+
+    @Override
+    public int hashCode() {
+        return tipo != null ? tipo.hashCode() : 0;
     }
 }
