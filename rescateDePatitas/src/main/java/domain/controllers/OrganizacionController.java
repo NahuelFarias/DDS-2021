@@ -13,6 +13,10 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class OrganizacionController {
     private static OrganizacionController instancia;
     private RepositorioDeOrganizaciones repositorio;
@@ -41,7 +45,7 @@ public class OrganizacionController {
         ubicacion.setLongitud(Double.parseDouble(request.queryParams("longitud")));
 
         organizacion.setUbicacion(ubicacion);
-        organizacion.setNombre(request.queryParams(""));
+        organizacion.setNombre(request.queryParams("nombreOrg"));
 
         repositorio.agregar(organizacion);
 
@@ -49,5 +53,21 @@ public class OrganizacionController {
         return response;
     }
 
-    //public ModelAndView llenarOrganizacion
+    public ModelAndView cuestionarioAgregarPregunta(Request request, Response response){
+        Map<String, Object> parametros = new HashMap<>();
+
+        List<Organizacion> organizaciones = repositorio.buscarTodos();
+        parametros.put("organizaciones", organizaciones);
+
+
+        return new ModelAndView(parametros, "");
+    }
+
+    public Response agregarPregunta(Request request, Response response){
+
+
+
+        response.redirect("/admin");
+        return response;
+    }
 }

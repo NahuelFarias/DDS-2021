@@ -1,8 +1,12 @@
 package domain.controllers;
 
+import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
+import domain.models.entities.publicaciones.PublicacionEnAdopcion;
 import domain.models.entities.publicaciones.PublicacionGenerica;
+import domain.models.entities.publicaciones.PublicacionIntencionAdopcion;
+import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
 import domain.models.entities.rol.*;
 import domain.models.repositories.*;
 import domain.models.repositories.daos.DAOHibernate;
@@ -103,36 +107,32 @@ public class LoginController {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         parametros.put("persona", persona);
 
-        RepositorioDeMascotas repoMacotas = new RepositorioDeMascotas(daoHibernate);
+        RepositorioGenerico<Mascota> repoMacotas = new RepositorioGenerico<>(new DAOHibernate<>(Mascota.class));
         int cantMascotas = repoMacotas.buscarTodos().size();
         parametros.put("cantMascotas", cantMascotas);
 
-        RepositorioDePublicaciones repoPubli = new RepositorioDePublicaciones(daoHibernate);
-        List<PublicacionGenerica> publicaciones= repoPubli.buscarTodos();
-        int cantPubliEnAdopcion = 0;
-        int cantMascotasEncontradas = 0;
-        for(PublicacionGenerica publicacion: publicaciones){
-            switch (publicacion.getTipoPublicacion()){
-                case "Mascota dada en adopcion":
-                    cantPubliEnAdopcion++;
-                    break;
-                case "Mascota encontrada":
-                    cantMascotasEncontradas++;
-                    break;
-                default:
-                    break;
-            }
-        }
+        RepositorioGenerico<PublicacionEnAdopcion> repoAdopcion = FactoryRepositorio.get(PublicacionEnAdopcion.class);
+        RepositorioGenerico<PublicacionMascotaEncontrada> repoEncontrada = FactoryRepositorio.get(PublicacionMascotaEncontrada.class);
+        RepositorioGenerico<PublicacionIntencionAdopcion> repoIntencion = FactoryRepositorio.get(PublicacionIntencionAdopcion.class);
+
+        int cantPubliEnAdopcion = repoAdopcion.buscarTodos().size();
+        int cantMascotasEncontradas = repoEncontrada.buscarTodos().size();
+        int cantIntencionAdopcion = repoIntencion.buscarTodos().size();
+
 
         parametros.put("cantPubliEnAdopcion", cantPubliEnAdopcion);
         parametros.put("cantMascotasEncontradas", cantMascotasEncontradas);
-
+        parametros.put("cantIntencionAdopcion", cantIntencionAdopcion);
 
         return new ModelAndView(parametros, "index_admin.hbs");
     }
 
     public ModelAndView cuestionarioNuevaOrg(Request request, Response response){
         Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        parametros.put("persona", persona);
 
         return new ModelAndView(parametros, "admin_nuevaOrg.hbs");
     }

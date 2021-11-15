@@ -193,19 +193,18 @@ public class Router {
         Spark.get("/admin_nueva_asociacion", loginController::cuestionarioNuevaOrg,Router.engine);
 
         Spark.post("/admin_nueva_asociacion", organizacionController::crearOrganizacion);
-/*
 
         //Para agregar preguntas a una Asociacion
-        Spark.get("/admin_preguntas_asociacion", ,Router.engine);
+        Spark.get("/admin_preguntas_asociacion", organizacionController::cuestionarioAgregarPregunta,Router.engine);
 
-        Spark.post("/admin_preguntas_asociacion", );
+        Spark.post("/admin_preguntas_asociacion", organizacionController::agregarPregunta);
 
         //Para agregar una Caracteristica General
-        Spark.get("/admin_caracteristica", ,Router.engine);
+        //Spark.get("/admin_caracteristica", ,Router.engine);
 
-        Spark.post("/admin_caracteristica", );
+        //Spark.post("/admin_caracteristica", );
 
-*/
+
         //Dimensiones fotos
 
 
