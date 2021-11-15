@@ -49,7 +49,9 @@ public class PublicacionesEnAdopcionController {
         for (PublicacionEnAdopcion publicacion:enAdopcion) {
             if(publicacion.estaAprobada()){
                 aprobadas.add(publicacion);
+                System.out.println("Dentro del if");
             }
+            System.out.println("Dentro del for");
         }
 
         parametros.put("adopciones", aprobadas);
@@ -288,7 +290,7 @@ public class PublicacionesEnAdopcionController {
         publicacion.setMascota(mascota);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
         //publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-        //publicacion.setOrganizacion(organizacion);
+        publicacion.setOrganizacion(organizacion);
         publicacion.setCuestionario(cuestionario);
         publicacion.setFecha(java.time.LocalDate.now());
 

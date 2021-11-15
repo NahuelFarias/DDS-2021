@@ -42,6 +42,7 @@ public class Router {
         UsuarioController usuarios = UsuarioController.getInstancia();
         AuthMiddleware authMiddleware = new AuthMiddleware();
         AdminController adminController = new AdminController();
+        OrganizacionController organizacionController = new OrganizacionController();
 
         //File uploadDir = new File("/resources/fotosMascotas");
         //uploadDir.mkdir(); //Crea el directorio si no existe
@@ -152,6 +153,27 @@ public class Router {
         Spark.post("/registro_usuario", usuarios::cargarUsuario);
 
         Spark.get("/sin_hogares", encontradas::sinHogares, Router.engine);
+
+
+        //Para crear una Asociacion
+        Spark.get("/admin_nueva_asociacion", loginController::cuestionarioNuevaOrg,Router.engine);
+
+        Spark.post("/admin_nueva_asociacion", organizacionController::crearOrganizacion);
+/*
+
+        //Para agregar preguntas a una Asociacion
+        Spark.get("/admin_preguntas_asociacion", ,Router.engine);
+
+        Spark.post("/admin_preguntas_asociacion", );
+
+        //Para agregar una Caracteristica General
+        Spark.get("/admin_caracteristica", ,Router.engine);
+
+        Spark.post("/admin_caracteristica", );
+
+*/
+        //Dimensiones fotos
+
 
     }
 }

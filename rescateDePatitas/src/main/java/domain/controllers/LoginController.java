@@ -2,10 +2,9 @@ package domain.controllers;
 
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.Usuario;
+import domain.models.entities.publicaciones.PublicacionGenerica;
 import domain.models.entities.rol.*;
-import domain.models.repositories.RepositorioDePersonas;
-import domain.models.repositories.RepositorioDeUsuarios;
-import domain.models.repositories.RepositorioGenerico;
+import domain.models.repositories.*;
 import domain.models.repositories.daos.DAOHibernate;
 import domain.models.repositories.factories.FactoryRepositorio;
 import domain.models.repositories.factories.FactoryRepositorioUsuarios;
@@ -103,6 +102,38 @@ public class LoginController {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         parametros.put("persona", persona);
 
+        RepositorioDeMascotas repoMacotas = new RepositorioDeMascotas(daoHibernate);
+        int cantMascotas = repoMacotas.buscarTodos().size();
+        parametros.put("cantMascotas", cantMascotas);
+
+        RepositorioDePublicaciones repoPubli = new RepositorioDePublicaciones(daoHibernate);
+        List<PublicacionGenerica> publicaciones= repoPubli.buscarTodos();
+        int cantPubliEnAdopcion = 0;
+        int cantMascotasEncontradas = 0;
+        for(PublicacionGenerica publicacion: publicaciones){
+            switch (publicacion.getTipoPublicacion()){
+                case "Mascota dada en adopcion":
+                    cantPubliEnAdopcion++;
+                    break;
+                case "Mascota encontrada":
+                    cantMascotasEncontradas++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        parametros.put("cantPubliEnAdopcion", cantPubliEnAdopcion);
+        parametros.put("cantMascotasEncontradas", cantMascotasEncontradas);
+
+
         return new ModelAndView(parametros, "index_admin.hbs");
     }
+
+    public ModelAndView cuestionarioNuevaOrg(Request request, Response response){
+        Map<String, Object> parametros = new HashMap<>();
+
+        return new ModelAndView(parametros, "admin_nuevaOrg.hbs");
+    }
+
 }
