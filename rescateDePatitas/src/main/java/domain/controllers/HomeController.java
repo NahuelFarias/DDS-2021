@@ -15,8 +15,8 @@ import java.util.Map;
 public class HomeController {
 
     private RepositorioGenerico<Mascota> repo;
-    private RolController rolController = new RolController();
-    private UsuarioController usuarioController = new UsuarioController();
+    private final RolController rolController = RolController.getInstancia();
+    private final UsuarioController usuarioController = UsuarioController.getInstancia();
 
     public HomeController(){
         this.repo = FactoryRepositorio.get(Mascota.class);
@@ -26,7 +26,6 @@ public class HomeController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<Mascota> mascotas = this.repo.buscarTodos();

@@ -15,7 +15,7 @@ public class AdminController {
     private DAOHibernate daoHibernate = new DAOHibernate();
 
     private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
-    private UsuarioController usuarioController = new UsuarioController();
+    private UsuarioController usuarioController = UsuarioController.getInstancia();
     private PreguntasController preguntasController = new PreguntasController();
 
     public ModelAndView admin_preguntas(Request request, Response response) {

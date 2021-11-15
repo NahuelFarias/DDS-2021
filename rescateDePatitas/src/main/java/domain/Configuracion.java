@@ -13,7 +13,7 @@ public final class Configuracion {
 
         try {
             Properties propiedades = new Properties();
-            propiedades.load(new FileInputStream("src/main/resources/config.properties"));
+            propiedades.load(new FileInputStream("rescateDePatitas/src/main/resources/config.properties"));
              valor = propiedades.getProperty(propiedad);
         } catch (FileNotFoundException e) {
             System.out.println("Error: El archivo no existe.");
@@ -34,9 +34,9 @@ public final class Configuracion {
                 System.out.println(clave.toString() + " = " + propiedades.get(clave).toString());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error: El archivo no existe.");
+            System.out.println("Error: El archivo no existe 2.");
         } catch (IOException e) {
-            System.out.println("Error: No se puede leer el archivo.");
+            System.out.println("Error: No se puede leer el archivo 2.");
         }
     }
 

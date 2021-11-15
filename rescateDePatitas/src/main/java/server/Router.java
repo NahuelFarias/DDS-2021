@@ -1,6 +1,5 @@
 package server;
 
-import com.github.jknack.handlebars.Handlebars;
 import domain.controllers.*;
 import domain.models.middleware.AuthMiddleware;
 import spark.Spark;
@@ -140,6 +139,7 @@ public class Router {
 
         Spark.get("/ok", mascotaController::creada, Router.engine);
 
+        //Registro mascota encontrada
         Spark.get("/registro_encontrada", encontradas::encontrada, Router.engine);
 
         Spark.post("/registro_encontrada", encontradas::guardarEncontrada);
@@ -148,11 +148,45 @@ public class Router {
 
         Spark.get("/publicacion_enviada", encontradas::publicacionEnviada, Router.engine);
 
+        Spark.get("/sin_hogares", encontradas::sinHogares, Router.engine);
+
+        //Registro usuario
         Spark.get("/registro_usuario", usuarios::crearUsuario, Router.engine);
 
-        Spark.post("/registro_usuario", usuarios::cargarUsuario);
+        Spark.post("/registro_usuario", usuarios::validarUsuario);
 
-        Spark.get("/sin_hogares", encontradas::sinHogares, Router.engine);
+        Spark.get("/registro_usuario/error_usr", usuarios::crearUsuarioError, Router.engine);
+
+        Spark.get("/registro_usuario_datos", usuarios::ingresarDatosUsuario, Router.engine);
+
+        Spark.post("/registro_usuario_datos", usuarios::cargarDatosUsuario);
+
+        Spark.get("/usuario_creado", usuarios::usuarioCreado, Router.engine);
+
+
+        //Registrar mascota perdida
+        Spark.get("/registro_perdida", perdidas::registrarPerdida, Router.engine);
+
+        Spark.post("/registrar_perdida", perdidas::guardarPerdida);
+
+        //Encontré a mi mascota en una publicacion
+        Spark.get("/encontradas/:id", encontradas::mostrarPublicacionEncontrada, Router.engine);
+
+        //si el usuario no esta log
+        Spark.post("/enviar_datos/:id", encontradas::enviarDatos);
+
+        //Si el usuario esta log
+        Spark.get("/enviar_datos/:id", encontradas::enviarDatosLog);
+
+        Spark.get("/datos_enviados", encontradas::datosEnviados, Router.engine);
+
+        //Mis mascotas
+        Spark.get("/mis_mascotas", usuarios::mostrasMisMascotas, Router.engine);
+
+        //Encontre una mascota con QR
+        Spark.get("/mascota_encontrada/:id", encontradas::mascotaEncontradaQR, Router.engine);
+
+        Spark.post("/mascota_encontrada", encontradas::enviarMensajeEncontradaQR);
 
 
         //Para crear una Asociacion

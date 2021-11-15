@@ -6,8 +6,8 @@ import domain.models.entities.personas.Contacto;
 import services.Configuracion;
 
 public class AdapterTwilioWhatsapp implements AdapterNotificadorWhatsapp {
-    public static final String ACCOUNT_SID = Configuracion.leerPropiedad("TWILIO_ACCOUNT_SID");
-    public static final String AUTH_TOKEN =  Configuracion.leerPropiedad("TWILIO_AUTH_TOKEN");
+    public static final String ACCOUNT_SID = "ACf9a15ce926e3f281df16a70f1f7624ea";
+    public static final String AUTH_TOKEN =  "2fbf0173773dddeb20c92eabf81114f2";
 
     public void enviarWhatsapp(Contacto contacto) {
         System.out.println("Enviando WhatsApp a "+ contacto.getNumeroCompleto()+" por Twilio: '"+ contacto.getMensaje()+"'");

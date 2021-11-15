@@ -8,7 +8,8 @@ import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.Pregunta;
 import domain.models.entities.rol.Duenio;
 import domain.models.repositories.*;
-import domain.models.repositories.factories.FactoryRepositorio;
+import domain.models.repositories.daos.DAO;
+import domain.models.repositories.daos.DAOHibernate;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -20,15 +21,38 @@ import java.util.List;
 import java.util.Map;
 
 public class MascotaController {
-    private RepositorioGenerico<Mascota> repo;
+    private  static MascotaController instancia;
+    private RepositorioGenerico<Mascota> repositorio;
+    private final RolController rolController = RolController.getInstancia();
+    private final UsuarioController usuarioController = UsuarioController.getInstancia();
+    private RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
 
-    public MascotaController() {
-        this.repo = FactoryRepositorio.get(Mascota.class);
+
+    public MascotaController(){
+        DAO<Mascota> dao = new DAOHibernate<>(Mascota.class);
+        this.repositorio = new RepositorioGenerico<>(dao);
+    }
+
+    public static MascotaController getInstancia() {
+        if (instancia == null) {
+            instancia = new MascotaController();
+        }
+        return instancia;
+    }
+
+    public RepositorioGenerico<Mascota> getRepositorio(){
+        return this.repositorio;
     }
 
     public ModelAndView registroMascota(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<TipoDeDocumento> tipo = new ArrayList<>();
+
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
+        //usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        //rolController.asignarRolSiEstaLogueado(request, parametros);
+
         tipo.add(TipoDeDocumento.valueOf("DNI"));
         tipo.add(TipoDeDocumento.valueOf("LIBRETA_CIVICA"));
         tipo.add(TipoDeDocumento.valueOf("PASAPORTE"));
@@ -49,8 +73,10 @@ public class MascotaController {
 
         parametros.put("organizaciones", organizaciones);
 
-        UsuarioController usuarioController = UsuarioController.getInstancia();
-        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        //usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        //rolController.asignarRolSiEstaLogueado(request, parametros);
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
 
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
@@ -68,9 +94,9 @@ public class MascotaController {
         asignarAtributosA(mascota, request);
 
         if (request.session().attribute("id") != null) {
-            RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
             mascota.setPersona(duenio);
+            //TODO ver: No se está guardando el rol duenio en mascota?
             mascota.setDuenio((Duenio)duenio.getRolElegido());
         } else {
             PersonaController cPersona = PersonaController.getInstancia();
@@ -91,7 +117,7 @@ public class MascotaController {
             }
         }
 
-        this.repo.agregar(mascota);
+        this.repositorio.agregar(mascota);
 
         response.redirect("/ok");
 
@@ -165,7 +191,7 @@ public class MascotaController {
     }
 
     private void asignarAtributosA(Persona persona, Request request) {
-        if (request.queryParams("nombre") != null) {
+        if (request.queryParams("nombrePersona") != null) {
             persona.setNombre(request.queryParams("nombrePersona"));
         }
 
@@ -248,12 +274,18 @@ public class MascotaController {
     public ModelAndView creada(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
+
         return new ModelAndView(parametros, "ok.hbs");
     }
 
     public ModelAndView registroMascotaAsoc(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<Organizacion> organizaciones;
+
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
 
         OrganizacionController cOrg = OrganizacionController.getInstancia();
         RepositorioGenerico<Organizacion> repoOrg = cOrg.getRepositorio();
@@ -263,7 +295,6 @@ public class MascotaController {
         return new ModelAndView(parametros, "registro_mascota_asociacion.hbs");
     }
 
-    // Lo hice en la misma pagina del registro de mascota pero podríamos separarlo también
     public Response guardarAsociacion(Request request, Response response) {
         Organizacion organizacion;
         String nombre;
@@ -280,7 +311,7 @@ public class MascotaController {
                 List<Mascota> mascotas = duenio.getMascotas();
                 Mascota mascota = mascotas.get(mascotas.size() - 1);
                 mascota.setOrganizacion(organizacion);
-                this.repo.modificar(mascota);
+                this.repositorio.modificar(mascota);
             }
 
         }
@@ -292,7 +323,11 @@ public class MascotaController {
     public ModelAndView darEnAdopcion(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
+        UsuarioController.getInstancia().asignarUsuarioSiEstaLogueado(request, parametros);
+        RolController.getInstancia().asignarRolSiEstaLogueado(request, parametros);
+
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
+
 
 }

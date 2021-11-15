@@ -33,8 +33,8 @@ import java.util.*;
 
 public class PublicacionesEnAdopcionController {
     private RepositorioGenerico<PublicacionEnAdopcion> repo;
-    private UsuarioController usuarioController = new UsuarioController();
-    private RolController rolController = new RolController();
+    private UsuarioController usuarioController = UsuarioController.getInstancia();
+    private RolController rolController = RolController.getInstancia();
 
 
     public PublicacionesEnAdopcionController(){

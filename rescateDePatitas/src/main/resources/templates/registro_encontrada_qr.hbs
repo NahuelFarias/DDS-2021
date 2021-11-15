@@ -2,29 +2,29 @@
     <!-- Datos de registro-->
     <div class="register">
         <div class="container">
-                <div class="py-5 text-center">
-                    <br> <br>
-                    <h2>¿Encontraste una mascota?</h2>
-                    <p class="lead">Llená este formulario para que la ayudemos a encontrar a su dueño</p>
-                    {{#unless usuario}}
+            <div class="py-5 text-center">
+                <br> <br>
+                <h2>¡Encontraste una mascota y conocemos a su dueño!</h2>
+                <p class="lead">Llená este formulario para que pueda contactarse con vos</p>
+                {{#unless usuario}}
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <h3 class="lead">¿Ya tenés una cuenta?</h3><a class="btn-grande" type="submit"
-                                                                          href="login.html">Ingresá</a>
+                                                                          href="../login">Ingresá</a>
                         </div>
                         <div class="col-sm-6">
                             <h3 class="lead">¿Querés crearla?</h3><a class="btn-grande" type="submit"
-                                                                     href="registro_duenio.html">Registrate</a>
+                                                                     href="../registro_usuario">Registrate</a>
                         </div>
                     </div>
-                    {{/unless}}
-                </div>
+                {{/unless}}
+            </div>
 
 
             <div class="row">
                 <div class="col-lg-8">
 
-                    <form class="needs-validation" action="/registro_encontrada" method="post" novalidate>
+                    <form class="needs-validation" action="/mascota_encontrada" method="post" novalidate>
                         <div class="row g-3">
                             {{#unless usuario}}
                                 <h4 class="mb-3 wavyp">Tus datos:</h4>
@@ -231,7 +231,7 @@
                             <div class="col-sm-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
                                 <textarea type="text" class="form-control" id="descripcion"
-                                       placeholder="Describí en qué estado la encontraste" name="descripcion" required>
+                                          placeholder="Describí en qué estado la encontraste" name="descripcion" required>
                                     </textarea>
                                 <div class="invalid-feedback">
                                     Ingresá una descripción.
@@ -322,7 +322,6 @@
         <br>
     </div>
     <!-- Datos de registro-->
-
 
 {{/partial}}
 

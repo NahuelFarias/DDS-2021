@@ -1,22 +1,30 @@
 package domain.controllers;
 
+import domain.models.entities.notificaciones.estrategias.Estrategia;
+import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
-import domain.models.entities.personas.Usuario;
-import domain.models.entities.publicaciones.Pregunta;
+import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.rol.Duenio;
+import domain.models.entities.rol.Rol;
 import domain.models.repositories.RepositorioDePersonas;
-import domain.models.repositories.RepositorioDePreguntas;
 import domain.models.repositories.RepositorioGenerico;
 import domain.models.repositories.daos.DAO;
 import domain.models.repositories.daos.DAOHibernate;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
+import spark.Response;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class PersonaController {
-    private RepositorioDePersonas repositorio;
+    private final RepositorioDePersonas repositorio;
     private static PersonaController instancia;
-
 
     public PersonaController(){
         DAO<Persona> dao = new DAOHibernate<>(Persona.class);
@@ -34,57 +42,98 @@ public class PersonaController {
         return repositorio;
     }
 
-
     private void asignarAtributosA(Persona persona, Request request){
-        //TODO Setear atributos a la persona
-        /*
-        String nombre,apellido,email;
-
-        if(request.queryParams("nombre") != null){
-            persona.setNombre(request.queryParams("nombre"));
+        if (request.queryParams("nombre") != null) {
+            persona.setNombre(request.queryParams("nombrePersona"));
         }
 
-        if(request.queryParams("apellido") != null){
+        if (request.queryParams("apellido") != null) {
             persona.setApellido(request.queryParams("apellido"));
         }
-//fnac, tipo y nro doc, email
 
-        if(request.queryParams("nombreDeUsuario") != null){
-            persona.setNombreDeUsuario(request.queryParams("nombreDeUsuario"));
+        if (request.queryParams("fnacPersona") != null) {
+            persona.setFechaDeNacimiento(LocalDate.parse(request.queryParams("fnacPersona")));
         }
 
-        if(request.queryParams("apellido") != null){
-            usuario.setApellido(request.queryParams("apellido"));
+        if (request.queryParams("tipoDoc") != null) {
+            persona.setTipoDoc(TipoDeDocumento.valueOf(request.queryParams("tipoDoc")));
         }
 
-        if(request.queryParams("legajo") != null){
-            int legajo = new Integer(request.queryParams("legajo"));
-            usuario.setLegajo(legajo);
+        if (request.queryParams("nroDoc") != null) {
+            persona.setNroDoc(Integer.valueOf(request.queryParams("nroDoc")));
+        }
+        String pais = "";
+        String provincia = "";
+        String direccion = "";
+        if (request.queryParams("provincia") != null) {
+            provincia = request.queryParams("provincia");
         }
 
-        if(request.queryParams("fechaDeNacimiento") != null && !request.queryParams("fechaDeNacimiento").isEmpty()){
-            LocalDate fechaDeNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
-            usuario.setFechaDeNacimiento(fechaDeNacimiento);
+        if (request.queryParams("pais") != null) {
+            pais = request.queryParams("pais");
         }
 
-        if(request.queryParams("rol") != null){
-            Repositorio<Rol> repoRol = FactoryRepositorio.get(Rol.class);
-            Rol unRol = repoRol.buscar(new Integer(request.queryParams("rol")));
-            usuario.setRol(unRol);
+        if (request.queryParams("direccion") != null) {
+            direccion = request.queryParams("direccion");
+        }
+        persona.setDireccion(direccion + "," + provincia + "," + pais);
+
+        String cNombre = "";
+        String cApellido = "";
+        String cCorreo = "";
+        String cNumero = "";
+        Estrategia medioPreferido = Estrategia.valueOf("WHATSAPP");
+
+        if (request.queryParams("cNombre") != null) {
+            cNombre = request.queryParams("cNombre");
         }
 
-         */
+        if (request.queryParams("cApellido") != null) {
+            cApellido = request.queryParams("cApellido");
+        }
+
+        if (request.queryParams("cNumero") != null) {
+            cNumero = request.queryParams("cNumero");
+        }
+
+        if (request.queryParams("cCorreo") != null) {
+            cCorreo = request.queryParams("cCorreo");
+        }
+
+        if (request.queryParams("medioPreferido") != null) {
+            if (request.queryParams("medioPreferido").equals("Email")) {
+                medioPreferido = Estrategia.valueOf("EMAIL");
+            } else {
+                if (request.queryParams("medioPreferido").equals("WhatsApp")) {
+                    medioPreferido = Estrategia.valueOf("WHATSAPP");
+                } else medioPreferido = Estrategia.valueOf("SMS");
+            }
+        }
+
+        Contacto contacto = new Contacto(cNombre, cApellido, cNumero, cCorreo, medioPreferido);
+        contacto.setPersona(persona);
+
+        List<Contacto> contactos = new ArrayList<>();
+        contactos.add(contacto);
+
+        persona.setContactos(contactos);
+
+        Duenio rolDuenio = new Duenio();
+        persona.addRol(rolDuenio);
+        persona.setRolElegido(rolDuenio);
     }
-/*
+
     public ModelAndView crear(Request request, Response response){
+        //TODO ver
         Map<String, Object> parametros = new HashMap<>();
-        Repositorio<Rol> repoRol = FactoryRepositorio.get(Rol.class);
+        RepositorioGenerico<Rol> repoRol = FactoryRepositorio.get(Rol.class);
 
         parametros.put("roles", repoRol.buscarTodos());
         return new ModelAndView(parametros, "usuario.hbs");
     }
 
     public Response guardar(Request request, Response response){
+        //TODO ver
         Persona persona = new Persona();
         asignarAtributosA(persona, request);
         this.repositorio.agregar(persona);
@@ -93,9 +142,10 @@ public class PersonaController {
     }
 
     public Response eliminar(Request request, Response response){
-        Usuario usuario = this.repo.buscar(new Integer(request.params("id")));
-        this.repo.eliminar(usuario);
+        //Buscar el usuario, podriamos tener un campo boolean que se llame "activo"
+        //Usuario usuario = this.repositorio.buscar(Integer.parseInt(request.params("id")));
+        //this.repositorio.eliminar(usuario);
         return response;
     }
- */
+
 }

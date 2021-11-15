@@ -14,13 +14,14 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class LoginController {
     private DAOHibernate daoHibernate = new DAOHibernate();
 
     private Usuario usuarioHasheador;
     private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
-    private UsuarioController usuarioController = new UsuarioController();
+    private UsuarioController usuarioController = UsuarioController.getInstancia();
 
     public ModelAndView inicio(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
@@ -33,10 +34,9 @@ public class LoginController {
 
             String nombreDeUsuario = request.queryParams("nombreDeUsuario");
             String contraseniaBase = request.queryParams("contrasenia");
-            usuarioHasheador = new Usuario();
-            usuarioHasheador.hashPassword(contraseniaBase);
+            String hashed_password = org.apache.commons.codec.digest.DigestUtils.md5Hex(contraseniaBase);
 
-            if (repoUsuarios.existe(nombreDeUsuario) && usuarioHasheador.checkPassword(contraseniaBase,
+            if (repoUsuarios.existe(nombreDeUsuario) && hashed_password.equals(
                     repoUsuarios.dameElUsuario(nombreDeUsuario).getContrasenia())) {
 
                 Usuario usuario = repoUsuarios.buscarUsuario(nombreDeUsuario);
@@ -66,7 +66,7 @@ public class LoginController {
     public ModelAndView mostrarRoles(Request request, Response response) {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         Map<String, Object> parametros = new HashMap<>();
-        List<Rol> roles = persona.getRolesDisponibles();
+        Set<Rol> roles = persona.getRolesDisponibles();
         parametros.put("roles", roles);
         return new ModelAndView(parametros, "seleccionar_rol.hbs");
     }
@@ -75,6 +75,7 @@ public class LoginController {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         request.session().attribute("rol", "Duenio");
         persona.setRolElegido(new Duenio());
+
         response.redirect("/");
         return response;
     }
