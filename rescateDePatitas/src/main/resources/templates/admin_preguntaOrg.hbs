@@ -324,316 +324,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <h3>{{cantMascotas}}</h3>
+                <div class="col-lg-8">
+                    <div class="form-group container">
+                        <form class="needs-validation form-" action="/admin_nueva_asociacion" method="post" novalidate>
+                            <div class="col-sm-6">
+                                <label for="general" class="form-label">Selecciona la asociacion:</label>
+                                <select class="form-select" id="asociacion" name="asociacion" required>
+                                    <option value="" selected="selected">...</option>
+                                    {{#each organizaciones}}
+                                        <option value="{{nombre}}">{{nombre}}</option>
+                                    {{/each}}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, seleccione una asociacion.
+                                </div>
+                            </div>
+                            <input type="text" id="member" name="member" value="">Numero de respuestas:<br />
+                            <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
+                            <div id="container"/>
 
-                    <p>Mascotas Registradas</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag">🐱‍💻</i>
-                  </div>
+
+                            <hr class="my-4">
+                            <div class="text-center">
+                                <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Agregar Pregunta</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-success">
-                  <div class="inner">
-                    <h3>{{cantMascotasEncontradas}}</h3>
+                </form>
 
-                    <p>Mascotas Encontradas</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-stats-bars">🎉</i>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-gradient-primary">
-                  <div class="inner">
-                    <h3>{{cantPubliEnAdopcion}}</h3>
-
-                    <p>Mascotas en Adopción</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person-add">🐶</i>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-
-                <div class="small-box bg-danger">
-                  <div class="inner">
-                    <h3>{{cantIntencionAdopcion}}</h3>
-
-                    <p>Mascotas Perdidas</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-pie-graph">😿</i>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <section class="col-lg-5 connectedSortable">
-                <!-- Map card -->
-                <div class="card bg-gradient-primary">
-                  <div class="card-header border-0">
-                    <h3 class="card-title">
-                      <i class="fas fa-map-marker-alt mr-1"></i>
-                      Visitors
-                    </h3>
-                    <!-- card tools -->
-                    <div class="card-tools">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm daterange"
-                        title="Date range"
-                      >
-                        <i class="far fa-calendar-alt"></i>
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        data-card-widget="collapse"
-                        title="Collapse"
-                      >
-                        <i class="fas fa-minus"></i>
-                      </button>
-                    </div>
-                    <!-- /.card-tools -->
-                  </div>
-                  <div class="card-body">
-                    <div
-                      id="world-map"
-                      style="height: auto; width: 100%; padding-left: 20%"
-                    >
-                      <img
-                        src="dist/img/Mapa_de_Argentina.svg.png"
-                        alt="argentina"
-                        style="width: 70%; height: auto"
-                      />
-                    </div>
-                    <!-- <div
-                      id="world-map"
-                      style="height: 250px; width: 100%"
-                    ></div> -->
-                  </div>
-                  <!-- /.card-body-->
-                  <div class="card-footer bg-transparent">
-                    <div class="row">
-                      <div class="col-4 text-center">
-                        <div id="sparkline-1"></div>
-                        <div class="text-white">Visitas</div>
-                      </div>
-                      <!-- ./col -->
-                      <div class="col-4 text-center">
-                        <div id="sparkline-2"></div>
-                        <div class="text-white">Usuarios Resgistrados</div>
-                      </div>
-                      <!-- ./col -->
-                      <div class="col-4 text-center">
-                        <div id="sparkline-3"></div>
-                        <div class="text-white">Chapitas entregadas</div>
-                      </div>
-                      <!-- ./col -->
-                    </div>
-                    <!-- /.row -->
-                  </div>
-                </div>
-                <!-- /.card -->
-              </section>
-              <section class="col-lg-7 connectedSortable">
-                <div class="col-lg-15">
-                  <div class="card card-primary card-outline">
-                    <div class="card-header">
-                      <h5 class="m-0">Crear Asociacion</h5>
-                    </div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        Llene este formulario para crear una Asociacion.
-                      </p>
-
-                      <a href="../admin_nueva_asociacion" class="btn btn-primary"
-                        >Comenzar 🐱‍🏍</a
-                      >
-                    </div>
-                  </div>
-                  <!-- /.col-md-6 -->
-                  <div class="col-lg-15">
-                    <div class="card card-primary card-outline">
-                      <div class="card-header">
-                        <h5 class="m-0">Agregar Caracteristicas Generales</h5>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                            Agregue una pregunta con sus respuestas posibles para la mascota.
-                        </p>
-                        <a href="#" class="btn btn-primary">
-                            Comenzar 🐶🐱
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="card card-primary card-outline">
-                      <div class="card-header">
-                        <h5 class="m-0">Agregar preguntas a Asociacion</h5>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                          Seleccione una asociacion en especifico y agregue una pregunta con sus respuestas
-                            para esta.
-                        </p>
-                        <a href="../admin_preguntas_asociacion" class="btn btn-primary"
-                        >Comenzar 🏡</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.col-md-6 -->
-                </div>
-                </section>
-                <!-- /.row -->
-                <section class="col-lg-15" style="width: 100%;">
-                  <!-- BAR CHART -->
-                  <div class="card card-success">
-                    <div class="card-header">
-                      <h3 class="card-title">Estadisticas Publicaciones</h3>
-                      <div class="card-tools">
-                            <button
-                            type="button"
-                              class="btn btn-tool"
-                              data-card-widget="collapse"
-                              >
-                              <i class="fas fa-minus"></i>
-                            </button>
-                            <button
-                            type="button"
-                            class="btn btn-tool"
-                              data-card-widget="remove"
-                              >
-                              <i class="fas fa-times"></i>
-                            </button>
-                            </div>
-                          </div>
-                          <div class="card-body">
-                          <div class="chart"><div class="container vertical rounded">
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>60%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>75%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>60%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>20%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                            <div class="progress-bar">
-                              <div class="progress-track">
-                                <div class="progress-fill">
-                                  <span>34%</span>
-                                </div>
-                              </div>
-                              <p>🐶</p>
-                            </div>
-                          </div>
-                          <!-- <canvas
-                        id="barChart"
-                        style="
-                        min-height: 250px;
-                        height: 250px;
-                        max-height: 250px;
-                        max-width: 100%;
-                        "
-                        ></canvas> -->
-                    </div>
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-              </div>
             </div>
           </div>
         </div>
@@ -653,7 +372,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-
+    <script type='text/javascript'>
+        function addFields(){
+            var number = document.getElementById("member").value;
+            var container = document.getElementById("container");
+            while(container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for(i=0;i<number;i++){
+                container.appendChild(document.createTextNode("Member" + (i)));
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "member" + i;
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
