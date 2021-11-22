@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "publicacion_en_adopcion")
 public class PublicacionEnAdopcion extends PublicacionGenerica{
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Organizacion organizacion;
     @OneToOne(cascade = {CascadeType.PERSIST})
     private Mascota mascota;

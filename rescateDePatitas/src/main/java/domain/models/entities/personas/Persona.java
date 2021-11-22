@@ -60,9 +60,22 @@ public class Persona extends Persistente {
         return rolElegido;
     }
 
-    //public Rol getRol(int i) {
-    //return rolesDisponibles.get(i);
-    //}
+    public Rol getRol(String rol) {
+        if (rol.equals("Duenio")) {
+            return this.getDuenio();
+        } else if (rol.equals("Rescatista")) {
+            return this.getRescatista();
+        }
+        /*
+        for(Rol unRol:rolesDisponibles){
+           if(unRol.getTipo().equals(rol)){
+               return unRol;
+           }
+        }
+        return null;
+         */
+        return null;
+    }
 
     //getters & setters
 
@@ -157,7 +170,9 @@ public class Persona extends Persistente {
     }
 
     public List<Mascota> getMascotas() {
-        if (comprobarRol("Dueño")) {
+        return this.getDuenio().getMascotas();
+        /*
+        if (comprobarRol("Duenio")) {
             Duenio duenio = (Duenio) rolElegido;
             return duenio.getMascotas();
         } else if (comprobarRol("Rescatista")) {
@@ -165,7 +180,31 @@ public class Persona extends Persistente {
             return duenio.getMascotas();
         }
         return null;
+         */
     }
+
+    public Duenio getDuenio() {
+        Rol rolElegido = null;
+
+        for (Rol rolDisp : rolesDisponibles) {
+            if (rolDisp.getTipo().equals("Duenio"))
+                rolElegido = rolDisp;
+        }
+
+        return (Duenio) rolElegido;
+    }
+
+    public Rescatista getRescatista() {
+        Rol rolElegido = null;
+
+        for (Rol rolDisp : rolesDisponibles) {
+            if (rolDisp.getTipo().equals("Rescatista"))
+                rolElegido = rolDisp;
+        }
+
+        return (Rescatista) rolElegido;
+    }
+
 
     // methods
 
@@ -197,7 +236,7 @@ public class Persona extends Persistente {
     }
 
     public void registrarMascota(Mascota.MascotaDTO mascota) {
-        if (rolElegido.getTipo().equals("Dueño")) {
+        if (rolElegido.getTipo().equals("Duenio")) {
             Duenio duenio = (Duenio) rolElegido;
             duenio.registrarMascota(mascota, this);
         }
@@ -209,7 +248,7 @@ public class Persona extends Persistente {
                 "Sus medios de contacto son:\n" + "Telefono: " +
                 contactoDuenio.getNumeroCompleto() + "\n" +
                 "Email: " + contactoDuenio.getEmail()));
-        System.out.println("salio");
+
     }
 
     public Boolean iniciarSesion(String user, String contrasenia) {
@@ -222,21 +261,21 @@ public class Persona extends Persistente {
 
     //Voluntario//
     public void aprobarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
-        if (this.comprobarRol("VOLUNTARIO")) {
+        if (this.comprobarRol("Voluntario")) {
             Voluntario rolActual = (Voluntario) rolElegido;
             rolActual.aprobarPublicacion(unaPublicacion, organizacion);
         }
     }
 
     public void rechazarPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
-        if (this.comprobarRol("VOLUNTARIO")) {
+        if (this.comprobarRol("Voluntario")) {
             Voluntario rolActual = (Voluntario) rolElegido;
             rolActual.rechazarPublicacion(unaPublicacion, organizacion);
         }
     }
 
     public void enRevisionPublicacion(PublicacionGenerica unaPublicacion, Organizacion organizacion) {
-        if (this.comprobarRol("VOLUNTARIO")) {
+        if (this.comprobarRol("Voluntario")) {
             Voluntario rolActual = (Voluntario) rolElegido;
             rolActual.enRevisionPublicacion(unaPublicacion, organizacion);
         }
@@ -247,14 +286,14 @@ public class Persona extends Persistente {
             contactoRescatista, DatosMascotaEncontrada
                                                   datosMascota) {
         //Con chapita
-        if (this.comprobarRol("RESCATISTA")) {
+        if (this.comprobarRol("Rescatista")) {
             Rescatista rolActual = (Rescatista) rolElegido;
             rolActual.encontreUnaMascotaPerdida(mascotaPerdida, contactoRescatista, datosMascota);
         }
     }
 
     public void encontreUnaMascotaPerdidaSinChapita(Persona rescatista, DatosMascotaEncontrada datos) {
-        if (this.comprobarRol("RESCATISTA")) {
+        if (this.comprobarRol("Rescatista")) {
             Rescatista rolActual = (Rescatista) rolElegido;
             rolActual.encontreUnaMascotaPerdidaSinChapita(this, datos);
         }
@@ -274,7 +313,7 @@ public class Persona extends Persistente {
     }
 
     public void perdiUnaMascota(Mascota mascota) {
-        if (this.comprobarRol("Dueño")) {
+        if (this.comprobarRol("Duenio")) {
             Duenio rolActual = (Duenio) rolElegido;
             rolActual.perdiUnaMascota(mascota);
         }
@@ -282,7 +321,7 @@ public class Persona extends Persistente {
 
     public void darEnAdopcion(Mascota mascota, Organizacion
             organizacion, List<RespuestaConcreta> respuestasOrganizacion, List<RespuestaConcreta> respuestasGenerales1) {
-        if (this.comprobarRol("Dueño")) {
+        if (this.comprobarRol("Duenio")) {
             Duenio rolActual = (Duenio) rolElegido;
             rolActual.darEnAdopcion(mascota, organizacion, respuestasOrganizacion, respuestasGenerales1);
         }
@@ -308,6 +347,7 @@ public class Persona extends Persistente {
         contactos.forEach(contacto -> contacto.notificarContacto("alguien quiere adoptar a " + mascota.getNombre() + "!\n" +
                 "Su nombre es " + adoptante.getNombre() + ", sus medios de contacto son:\n" +
                 "Telefono: " + adoptante.contactos.get(0).getNumeroCompleto() + "\n" + "Email: " + adoptante.contactos.get(0).getEmail()));
+
     }
 
     public void intencionDeAdoptar(CuestionarioContestado cuestionarioContestadoPreferenciasYComodidades) {
@@ -347,6 +387,12 @@ public class Persona extends Persistente {
         this.contactos = persona.getContactos();
         this.rolElegido = persona.getRoElegido();
         this.usuario = persona.getUsuario();
+    }
+
+    public void notificarSuscripcion(int publicacion_id) {
+        contactos.forEach(contacto -> contacto.notificarContacto("¡Hola! Generamos una publicación para vos como posible adoptante."+"\n"+ "Podés darle de baja ingresando en: " + "localhost:9000/adoptantes/" + publicacion_id + "!\n"
+        ));
+
     }
 
     public static class PersonaDTO {

@@ -400,10 +400,10 @@ public class CreacionEntidades {
         EntityManagerHelper.getEntityManager().persist(org5);
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(0));
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(1));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(0));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(1));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(2));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(0));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(1));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(2));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
         EntityManagerHelper.commit();
 
     }

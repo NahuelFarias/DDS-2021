@@ -66,7 +66,22 @@ public class LoginController {
     public ModelAndView mostrarRoles(Request request, Response response) {
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         Map<String, Object> parametros = new HashMap<>();
-        Set<Rol> roles = persona.getRolesDisponibles();
+
+        Set<Rol> roles = null;
+        System.out.println(1);
+        try {
+            roles = persona.getRolesDisponibles();
+            System.out.println(2);
+        } catch (Exception e) {
+            System.out.println(3);
+            persona.addRol(new Duenio());
+            persona.addRol(new Rescatista());
+            System.out.println(4);
+            roles = persona.getRolesDisponibles();
+            System.out.println(5);
+        }
+        System.out.println(6);
+
         parametros.put("roles", roles);
         return new ModelAndView(parametros, "seleccionar_rol.hbs");
     }

@@ -10,11 +10,11 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <h3 class="lead">¿Ya tenés una cuenta?</h3>
-                            <a class="btn-grande" type="submit" href="login.html">Ingresá</a>
+                            <a class="btn-grande" type="submit" href="login">Ingresá</a>
                         </div>
                         <div class="col-sm-6">
                             <h3 class="lead">¿Querés crearla?</h3>
-                            <a class="btn-grande" type="submit" href="registro_duenio.html">Registrate</a>
+                            <a class="btn-grande" type="submit" href="registro_usuario">Registrate</a>
                         </div>
                     </div>
                 {{/unless}}
@@ -32,7 +32,7 @@
                                            name="nombrePersona"
                                            required>
                                     <div class="invalid-feedback">
-                                        Ingresá un nombre válido.
+                                        Ingresá un nombre.
                                     </div>
                                 </div>
 
@@ -43,13 +43,13 @@
                                            name="apellido"
                                            required>
                                     <div class="invalid-feedback">
-                                        Ingresá un apellido válido.
+                                        Ingresá un apellido.
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
                                     <label for="firstName" class="form-label">Fecha de nacimiento</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="aaaa-mm-dd"
+                                    <input type="date" class="form-control" id="firstName" placeholder="aaaa-mm-dd"
                                            value=""
                                            name="fnacPersona"
                                            required>
@@ -324,7 +324,7 @@
 
                             <div class="col-sm-2">
                                 <label for="firstName" class="form-label">Edad</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="number" class="form-control" id="firstName" placeholder="" value=""
                                        autocomplete="off" name="edad" required>
                                 <div class="invalid-feedback">
                                     Ingrese una edad válida.

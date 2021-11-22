@@ -163,14 +163,11 @@ public class Mascota extends Persistente {
 
     public void generarQR() throws IOException, WriterException {
 
-        Configuracion configuracion = new Configuracion();
+        String url = Configuracion.leerPropiedad("url") + "/" + codigo.toString();
 
-        String url = configuracion.leerPropiedad("url") + "/" + codigo.toString();
+        String pathGuardar = Configuracion.leerPropiedad("pathQR") + codigo.toString() + ".jpg";
 
-        String pathGuardar = configuracion.leerPropiedad("pathQR") + codigo.toString() + ".jpg";
-
-        GeneradorQR generador = new GeneradorQR();
-        generador.generarQR(url, pathGuardar, "jpg", 500, 500);
+        GeneradorQR.generarQR(url, pathGuardar, "jpg", 500, 500);
     }
 
     public void avisarQueMePerdi() {
@@ -195,7 +192,7 @@ public class Mascota extends Persistente {
     }
 
     public List<Foto> redimensionarFotos(List<Foto> fotosOriginales) {
-        fotosOriginales.forEach(foto -> foto.editarFoto());
+        fotosOriginales.forEach(Foto::editarFoto);
         return fotosOriginales;
     }
 

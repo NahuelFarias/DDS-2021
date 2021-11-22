@@ -12,9 +12,9 @@ import spark.Response;
 import java.util.*;
 
 public class AdminController {
-    private DAOHibernate daoHibernate = new DAOHibernate();
+    //private DAOHibernate daoHibernate = new DAOHibernate();
 
-    private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
+    private RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
     private UsuarioController usuarioController = UsuarioController.getInstancia();
     private PreguntasController preguntasController = new PreguntasController();
 

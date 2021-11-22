@@ -379,6 +379,7 @@ public class PublicacionesEncontradasController {
 
     public ModelAndView datosEnviados(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
@@ -427,10 +428,7 @@ public class PublicacionesEncontradasController {
             persona.setNombre(nombre);
             contacto.setPersona(persona);
             Persona rescatista = publicacion.getRescatista();
-            System.out.println(rescatista.getNombre());
-            System.out.println(rescatista.getContactos().get(0).getEmail());
             rescatista.notificarContactosRescatista(contacto);
-
         }
 
         response.redirect("/datos_enviados");
