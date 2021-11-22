@@ -16,7 +16,7 @@ public class Duenio extends Rol{
     private List<Mascota> mascotas = new ArrayList<>();
 
     public Duenio(){
-        super("Dueño");
+        super("Duenio");
     }
 
     public void perdiUnaMascota(Mascota mascota) {
@@ -41,6 +41,10 @@ public class Duenio extends Rol{
 
         mascota.inicializar(mascotaDTO);
 
+        mascotas.add(mascota);
+    }
+
+    public void registrarMascota(Mascota mascota){
         mascotas.add(mascota);
     }
 

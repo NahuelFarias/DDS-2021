@@ -96,8 +96,8 @@ public class MascotaController {
         if (request.session().attribute("id") != null) {
             Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
             mascota.setPersona(duenio);
-            //TODO ver: No se está guardando el rol duenio en mascota?
-            mascota.setDuenio((Duenio)duenio.getRolElegido());
+            mascota.setDuenio(duenio.getDuenio());
+            duenio.getDuenio().registrarMascota(mascota);
         } else {
             PersonaController cPersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cPersona.getRepositorio();
@@ -107,12 +107,15 @@ public class MascotaController {
 
             if (personaEncontrada != null) {
                 mascota.setPersona(personaEncontrada);
+                mascota.setDuenio(personaEncontrada.getDuenio());
+                personaEncontrada.getDuenio().registrarMascota(mascota);
             } else {
                 Persona persona = new Persona();
                 asignarAtributosA(persona, request);
                 persona.setUsuarioTemporal(hashPersona);
                 mascota.setPersona(persona);
-                mascota.setDuenio((Duenio)persona.getRolElegido());
+                mascota.setDuenio(persona.getDuenio());
+                persona.getDuenio().registrarMascota(mascota);
                 repoPersona.agregar(persona);
             }
         }

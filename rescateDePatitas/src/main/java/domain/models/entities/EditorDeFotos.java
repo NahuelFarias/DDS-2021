@@ -25,7 +25,7 @@ public class EditorDeFotos {
 
         BufferedImage imgOriginal = null;
         try {
-            imgOriginal = ImageIO.read(new File("src/main/resources/FotoDePrueba.jpg"));
+            imgOriginal = ImageIO.read(new File("rescateDePatitas/src/main/resources/FotoDePrueba.jpg"));
         } catch (IOException e) {System.out.println(e.toString());}
         BufferedImage imgRedimensionada = new BufferedImage(anchoImagen, altoImagen, imgOriginal.getType());
         Graphics2D g2d = imgRedimensionada.createGraphics();

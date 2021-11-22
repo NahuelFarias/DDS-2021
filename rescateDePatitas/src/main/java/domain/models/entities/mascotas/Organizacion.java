@@ -31,7 +31,7 @@ public class Organizacion extends Persistente {
     @OneToOne(cascade = CascadeType.ALL)
     private Lugar ubicacion;
 
-//  getters & setters
+    //  getters & setters
 
     public String getNombre() {
         return nombre;

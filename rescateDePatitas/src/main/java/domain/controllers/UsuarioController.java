@@ -30,7 +30,6 @@ import java.util.Map;
 public class UsuarioController {
     private RepositorioDeUsuarios repositorio;
     private static UsuarioController instancia;
-    private RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
 
     public UsuarioController() {
         DAO<Usuario> dao = new DAOHibernate<>(Usuario.class);
@@ -67,7 +66,7 @@ public class UsuarioController {
     public ModelAndView crearUsuarioError(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("error", "El usuario ya existe.");
-        return new ModelAndView(parametros, "registro_usuario.hbs");
+        return new ModelAndView(parametros, "registro_usuario_error.hbs");
     }
 
     public Response validarUsuario(Request request, Response response) {
@@ -257,20 +256,23 @@ public class UsuarioController {
 
         Duenio rolDuenio = new Duenio();
         persona.addRol(rolDuenio);
-        //persona.setRolElegido(rolDuenio);
     }
 
-    public ModelAndView mostrasMisMascotas(Request request, Response response) throws Exception {
+    public ModelAndView mostrarMisMascotas(Request request, Response response) throws Exception {
         Map<String, Object> parametros = new HashMap<>();
-        //int id = Integer.parseInt(request.session().attribute("id"));
-        Persona persona = repoPersonas.dameLaPersona(request.session().attribute("id"));
-        List<Mascota> mascotas = null;
+
+        PersonaController cPersona = PersonaController.getInstancia();
+        RepositorioDePersonas repoPersona = cPersona.getRepositorio();
+        Persona persona = repoPersona.dameLaPersona(request.session().attribute("id"));
+        persona.setRolElegido(new Duenio());
+        List<Mascota> mascotas = new ArrayList<>();
 
         try {
             mascotas = persona.getMascotas();
         } catch (Exception e) {
             System.out.println("No tiene mascotas");
         }
+
         parametros.put("mascotas", mascotas);
         return new ModelAndView(parametros, "mis_mascotas.hbs");
     }

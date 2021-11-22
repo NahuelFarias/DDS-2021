@@ -46,12 +46,13 @@ public class PublicacionesEnAdopcionController {
         List<PublicacionEnAdopcion> enAdopcion = this.repo.buscarTodos();
         List<PublicacionEnAdopcion> aprobadas = new ArrayList<>();
 
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
         for (PublicacionEnAdopcion publicacion:enAdopcion) {
             if(publicacion.estaAprobada()){
                 aprobadas.add(publicacion);
-                System.out.println("Dentro del if");
             }
-            System.out.println("Dentro del for");
         }
 
         parametros.put("adopciones", aprobadas);
@@ -61,21 +62,64 @@ public class PublicacionesEnAdopcionController {
     public ModelAndView mostrarPublicacionEnAdopcion(Request request, Response response) {
         PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
         Map<String, Object> parametros = new HashMap<>();
+
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
         parametros.put("publicacion", publicacion);
         return new ModelAndView(parametros, "adopcion_publicacion.hbs");
     }
 
     public Response quieroAdoptarlo(Request request, Response response){
-        Persona persona = new Persona();
+        int publicacionId = Integer.parseInt(request.params("id"));
+        PublicacionEnAdopcion publicacion = this.repo.buscar(publicacionId);
 
-        if(request.queryParams("nombre") != null) {
-            crearContacto(persona, request);
-            PublicacionEnAdopcion publicacion = request.session().attribute("publicacion");
-            publicacion.getMascota().getPersona().notificarPosibleAdopcion(publicacion.getMascota(), persona);
-        //TODO: Probar que esto funcione
+        if (request.session().attribute("id") != null) {
+            RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+            Persona persona = repoPersonas.dameLaPersona(request.session().attribute("id"));
+
+            persona.quieroAdoptar(publicacion.getMascota());
+
+        } else {
+            String nombre = "";
+            if (request.queryParams("nombre") != null) {
+                nombre = request.queryParams("nombre");
+            }
+
+            String email = "";
+            if (request.queryParams("email") != null) {
+                email = request.queryParams("email");
+            }
+
+            String numero = "";
+            if (request.queryParams("numero") != null) {
+                numero = request.queryParams("numero");
+            }
+
+            Estrategia medioPreferido = Estrategia.valueOf("EMAIL");
+            if (request.queryParams("medioPreferido") != null) {
+                if (request.queryParams("medioPreferido").equals("Email")) {
+                    medioPreferido = Estrategia.valueOf("EMAIL");
+                } else {
+                    if (request.queryParams("medioPreferido").equals("WhatsApp")) {
+                        medioPreferido = Estrategia.valueOf("WHATSAPP");
+                    } else medioPreferido = Estrategia.valueOf("SMS");
+                }
+            }
+
+            Contacto contacto = new Contacto(nombre, "", numero, email, medioPreferido);
+            List<Contacto> contactos = new ArrayList<>();
+            contactos.add(contacto);
+            Persona persona = new Persona();
+            persona.setNombre(nombre);
+            contacto.setPersona(persona);
+            persona.setContactos(contactos);
+            Mascota mascota = publicacion.getMascota();
+
+            mascota.meQuiereAdoptar(persona);
         }
 
-        response.redirect("/en_adopcion/ok");
+        response.redirect("/ok");
         return response;
     }
 
@@ -141,7 +185,7 @@ public class PublicacionesEnAdopcionController {
 
     public Response recibirDatosCuestionarioDarEnAdopcion(Request request, Response response) throws IOException {
 
-        File uploadDir = new File("src/main/resources/public/img/fotosmascotas");
+        File uploadDir = new File("rescateDePatitas/src/main/resources/public/img/fotosmascotas");
         //uploadDir.mkdir();
         Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
 
@@ -157,7 +201,7 @@ public class PublicacionesEnAdopcionController {
 
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
-        foto.setURLfoto(tempFile.toString().replace("src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setURLfoto(tempFile.toString().replace("rescateDePatitas\\src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
         foto.setMascota(mascota);
         fotos.add(foto);
         mascota.setFotos(fotos);
@@ -288,8 +332,6 @@ public class PublicacionesEnAdopcionController {
             respuestasOrg.add(respuesta);
         }
 
-
-
         cuestionario.agregarRespuestas(respuestasOrg);
         for(RespuestaConcreta respuestaConcreta: cuestionario.getRespuestas()) {
             respuestaConcreta.setCuestionarioContestado(cuestionario);
@@ -304,12 +346,9 @@ public class PublicacionesEnAdopcionController {
 
         publicacion.setMascota(mascota);
         publicacion.setTipoPublicacion("Mascota dada en adopcion");
-        //publicacion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
         publicacion.setOrganizacion(organizacion);
         publicacion.setCuestionario(cuestionario);
         publicacion.setFecha(java.time.LocalDate.now());
-
-        publicacion.getMascota();
 
         //organizacion.getPublicaciones().add(publicacion);
         RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(new DAOHibernate<>(PublicacionEnAdopcion.class));
@@ -368,7 +407,6 @@ public class PublicacionesEnAdopcionController {
             mascota.setOrganizacion(organizacion);
 
         }
-        mascota.getOrganizacion();
 
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
@@ -486,7 +524,6 @@ public class PublicacionesEnAdopcionController {
         Map<String, Object> parametros = new HashMap<>();
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
-
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
@@ -512,6 +549,17 @@ public class PublicacionesEnAdopcionController {
 
         response.redirect("/revisar_adopcion");
 
+        return response;
+    }
+
+    public Object enviarDatosLog(Request request, Response response) {
+        PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
+
+        RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
+        Persona adoptante = repoPersonas.dameLaPersona(request.session().attribute("id"));
+
+        adoptante.quieroAdoptar(publicacion.getMascota());
+        response.redirect("/datos_enviados");
         return response;
     }
 }

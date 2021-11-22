@@ -49,4 +49,9 @@ public class RepositorioDeUsuarios extends RepositorioGenerico<Usuario> {
 
         return new BusquedaCondicional(null, usuarioQuery);
     }
+
+    public Usuario buscarUsuario(int usuario_id){
+
+        return new Usuario();
+    }
 }

@@ -13,7 +13,7 @@ public final class Configuracion {
 
         try {
             Properties propiedades = new Properties();
-            propiedades.load(new FileInputStream("src/main/resources/config.properties"));
+            propiedades.load(new FileInputStream("rescateDePatitas/src/main/resources/config.properties"));
              valor = propiedades.getProperty(propiedad);
         } catch (FileNotFoundException e) {
             System.out.println("Error: El archivo no existe.");
@@ -27,7 +27,7 @@ public final class Configuracion {
 
         try {
             Properties propiedades = new Properties();
-            propiedades.load(new FileInputStream("src/main/resources/config.properties"));
+            propiedades.load(new FileInputStream("rescateDePatitas/src/main/resources/config.properties"));
             Enumeration<Object> claves = propiedades.keys();
             while (claves.hasMoreElements()) {
                 Object clave = claves.nextElement();

@@ -7,13 +7,6 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
 
-import javax.servlet.MultipartConfigElement;
-import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-
 public class Router {
     private static HandlebarsTemplateEngine engine;
 
@@ -38,6 +31,7 @@ public class Router {
         PublicacionesPerdidasController perdidas = new PublicacionesPerdidasController();
         PublicacionesEncontradasController encontradas = new PublicacionesEncontradasController();
         PublicacionesEnAdopcionController enAdopcion = new PublicacionesEnAdopcionController();
+        PublicacionIntencionController adoptantesController = new PublicacionIntencionController();
         UsuarioController usuarios = UsuarioController.getInstancia();
         AuthMiddleware authMiddleware = new AuthMiddleware();
         AdminController adminController = new AdminController();
@@ -69,6 +63,10 @@ public class Router {
 
         Spark.post("/en_adopcion/:id", enAdopcion::quieroAdoptarlo);
 
+        Spark.get("/enviar_datos_adopcion/:id", enAdopcion::enviarDatosLog);
+
+        Spark.get("/datos_enviados", encontradas::datosEnviados, Router.engine);
+
         Spark.get("/elegir_asociacion", mascotaController::registroMascotaAsoc, Router.engine);
 
         Spark.post("/elegir_asociacion", mascotaController::guardarAsociacion);
@@ -96,8 +94,6 @@ public class Router {
             enAdopcion.recibirDatosCuestionarioDarEnAdopcion(req, res);
             return "File uploaded";
         });*/
-
-
 
 
         Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
@@ -166,7 +162,6 @@ public class Router {
 
         Spark.get("/usuario_creado", usuarios::usuarioCreado, Router.engine);
 
-
         //Registrar mascota perdida
         Spark.get("/registro_perdida", perdidas::registrarPerdida, Router.engine);
 
@@ -184,7 +179,7 @@ public class Router {
         Spark.get("/datos_enviados", encontradas::datosEnviados, Router.engine);
 
         //Mis mascotas
-        Spark.get("/mis_mascotas", usuarios::mostrasMisMascotas, Router.engine);
+        Spark.get("/mis_mascotas", usuarios::mostrarMisMascotas, Router.engine);
 
         //Encontre una mascota con QR
         Spark.get("/mascota_encontrada/:id", encontradas::mascotaEncontradaQR, Router.engine);
@@ -193,7 +188,7 @@ public class Router {
 
 
         //Para crear una Asociacion
-        Spark.get("/admin_nueva_asociacion", loginController::cuestionarioNuevaOrg,Router.engine);
+        Spark.get("/admin_nueva_asociacion", loginController::cuestionarioNuevaOrg, Router.engine);
 
         Spark.post("/admin_nueva_asociacion", organizacionController::crearOrganizacion);
 
@@ -219,6 +214,17 @@ public class Router {
         Spark.post("/admin_voluntarios", rolController::dar_rol_voluntario);
 
         Spark.get("/admin_voluntarios_error", rolController::dar_rol_voluntario_error,Router.engine);
+        //Ver Publicaciones intencion de adopcion
+        Spark.get("/adoptantes", adoptantesController::mostrarAdoptantes, Router.engine);
+
+        Spark.get("/adoptantes/:id", adoptantesController::mostrarPublicacionAdoptante, Router.engine);
+
+        //Generar Publicaciones intencion de adopcion
+        Spark.get("/posible_adoptante", adoptantesController::nuevoAdoptante, Router.engine);
+
+        Spark.post("/posible_adoptante", adoptantesController::cargarAdoptante);
+
+        Spark.get("/suscripcion_ok", adoptantesController::suscriptoOK, Router.engine);
 
     }
 }
