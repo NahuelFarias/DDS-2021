@@ -25,10 +25,10 @@
                                         <h6>Edad:</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        <h6>{{publicacion.mascota.edad}} meses</h6>
+                                        <h6>{{publicacion.adoptante.edad}}</h6>
                                     </div>
                                 </div>
-                                {{#each publicacion.cuestionario.respuestas}}
+                                {{#each publicacion.cuestionarioPreferenciasYComodidades.respuestas}}
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h6>{{pregunta.pregunta}}</h6>
@@ -38,8 +38,8 @@
                                         </div>
                                     </div>
                                 {{/each}}
-                                <p>
                                 <h6>Más info:</h6>
+                                <p>
                                 {{publicacion.mascota.descripcion}}
                                 </p>
                             </div>

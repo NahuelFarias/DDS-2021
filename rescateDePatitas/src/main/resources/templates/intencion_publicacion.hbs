@@ -4,7 +4,6 @@
         <div class="container top">
             <div class="row">
                 <h3>Publicacion Nro <span>{{publicacion.id}}</span></h3>
-                <h3> {{publicacion.adoptante.nombre}}</h3>
                 <p>Fecha: {{publicacion.fecha}}</p>
                 <div class="col-lg-6">
                     <div class="single-content wow fadeInUp">
@@ -15,7 +14,9 @@
                 <div class="col-lg-6">
                     <div class="sidebar">
                         <div class="sidebar-widget wow fadeInUp">
-                            <h2 class="wavyy">Adoptante</h2>
+                            <h2 class="wavyy">Nombre: {{publicacion.adoptante.nombre}}</h2>
+                            <br>
+                            <h6>Estas son sus preferencias y comodidades:</h6>
                             <div class="text-widget">
                                 {{#each publicacion.cuestionarioPreferenciasYComodidades.respuestas}}
                                     <div class="row">

@@ -39,15 +39,15 @@ public class PublicacionIntencionController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionIntencionAdopcion> adoptantes = this.repo.buscarTodos();
-        List<PublicacionIntencionAdopcion> aprobadas = new ArrayList<>();
+        List<PublicacionIntencionAdopcion> publicaciones = new ArrayList<>();
 
         for (PublicacionIntencionAdopcion publicacion : adoptantes) {
             if (publicacion.estaAprobada()) {
-                aprobadas.add(publicacion);
+                publicaciones.add(publicacion);
             }
         }
 
-        parametros.put("adoptantes", aprobadas);
+        parametros.put("publicaciones", publicaciones);
         return new ModelAndView(parametros, "adoptantes.hbs");
     }
 
@@ -150,7 +150,7 @@ public class PublicacionIntencionController {
 
     private void asignarAtributosA(Persona persona, Request request) {
         String nombre = "";
-        if (request.queryParams("nombre") != null) {
+        if (request.queryParams("nombrePersona") != null) {
             nombre = request.queryParams("nombrePersona");
             persona.setNombre(nombre);
         }
