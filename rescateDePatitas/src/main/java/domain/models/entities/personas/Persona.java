@@ -66,14 +66,7 @@ public class Persona extends Persistente {
         } else if (rol.equals("Rescatista")) {
             return this.getRescatista();
         }
-        /*
-        for(Rol unRol:rolesDisponibles){
-           if(unRol.getTipo().equals(rol)){
-               return unRol;
-           }
-        }
-        return null;
-         */
+
         return null;
     }
 
@@ -171,16 +164,7 @@ public class Persona extends Persistente {
 
     public List<Mascota> getMascotas() {
         return this.getDuenio().getMascotas();
-        /*
-        if (comprobarRol("Duenio")) {
-            Duenio duenio = (Duenio) rolElegido;
-            return duenio.getMascotas();
-        } else if (comprobarRol("Rescatista")) {
-            Rescatista duenio = (Rescatista) rolElegido;
-            return duenio.getMascotas();
-        }
-        return null;
-         */
+
     }
 
     public Duenio getDuenio() {
@@ -390,7 +374,7 @@ public class Persona extends Persistente {
     }
 
     public void notificarSuscripcion(int publicacion_id) {
-        contactos.forEach(contacto -> contacto.notificarContacto("¡Hola! Generamos una publicación para vos como posible adoptante."+"\n"+ "Podés darle de baja ingresando en: " + "localhost:9000/adoptantes/" + publicacion_id + "!\n"
+        contactos.forEach(contacto -> contacto.notificarContacto("generamos una publicación para vos como posible adoptante."+"\n"+ "Podés darle de baja ingresando en: " + "localhost:9000/adoptantes/" + publicacion_id + "!\n"
         ));
 
     }
