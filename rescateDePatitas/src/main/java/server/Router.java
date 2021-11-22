@@ -42,7 +42,8 @@ public class Router {
         AuthMiddleware authMiddleware = new AuthMiddleware();
         AdminController adminController = new AdminController();
         OrganizacionController organizacionController = new OrganizacionController();
-
+        PreguntasController preguntasController = new PreguntasController();
+        RolController rolController = RolController.getInstancia();
         //File uploadDir = new File("/resources/fotosMascotas");
         //uploadDir.mkdir(); //Crea el directorio si no existe
 
@@ -106,6 +107,8 @@ public class Router {
         Spark.get("/rol_elegido_voluntario", loginController::rol_elegido_voluntario);
 
         Spark.get("/rol_elegido_rescatista", loginController::rol_elegido_rescatista);
+
+        Spark.get("/rol_elegido_admin", loginController::rol_elegido_admin);
 
         Spark.get("/admin", loginController::admin, Router.engine);
 
@@ -200,13 +203,22 @@ public class Router {
         Spark.post("/admin_preguntas_asociacion", organizacionController::agregarPregunta);
 
         //Para agregar una Caracteristica General
-        //Spark.get("/admin_caracteristica", ,Router.engine);
+        Spark.get("/admin_caracteristica", preguntasController::cuestionarioAgregarPregunta,Router.engine);
 
-        //Spark.post("/admin_caracteristica", );
+        Spark.post("/admin_caracteristica", preguntasController::agregarPregunta);
 
 
         //Dimensiones fotos
+        Spark.get("/admin_fotos", adminController::dimensiones_fotos,Router.engine);
 
+        Spark.post("/admin_fotos", adminController::nuevas_dimensiones);
+
+        //Agregar Voluntarios
+        Spark.get("/admin_voluntarios", rolController::cuestionario_rol_voluntario,Router.engine);
+
+        Spark.post("/admin_voluntarios", rolController::dar_rol_voluntario);
+
+        Spark.get("/admin_voluntarios_error", rolController::dar_rol_voluntario_error,Router.engine);
 
     }
 }

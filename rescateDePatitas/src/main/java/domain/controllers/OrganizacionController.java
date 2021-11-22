@@ -13,9 +13,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OrganizacionController {
     private static OrganizacionController instancia;
@@ -59,13 +57,32 @@ public class OrganizacionController {
         List<Organizacion> organizaciones = repositorio.buscarTodos();
         parametros.put("organizaciones", organizaciones);
 
+        UsuarioController usuarioController = UsuarioController.getInstancia();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
 
-        return new ModelAndView(parametros, "");
+        RolController rolController = RolController.getInstancia();
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        return new ModelAndView(parametros, "admin_preguntaOrg.hbs");
     }
 
     public Response agregarPregunta(Request request, Response response){
+        Pregunta pregunta = new Pregunta();
+        pregunta.setPregunta(request.queryParams("pregunta"));
+        int cantidad = Integer.parseInt(request.queryParams("member"));
+        pregunta.setRespuestas(new ArrayList<>());
+        for(int i=0; i<cantidad; i++){
+            pregunta.getRespuestas().add(request.queryParams("Respuesta" + i));
+        }
+        pregunta.setTipoDePregunta("asociacion");
 
-
+        Organizacion organizacion = repositorio.buscarPorNombre(request.queryParams("asociacion"));
+        if(organizacion.getPreguntasAdopcion() == null){
+            organizacion.setPreguntasAdopcion(new ArrayList<>());
+        }
+        organizacion.getPreguntasAdopcion().add(pregunta);
+        pregunta.setOrganizacion(organizacion);
+        repositorio.agregar(organizacion);
 
         response.redirect("/admin");
         return response;

@@ -125,13 +125,16 @@ public class PublicacionesEnAdopcionController {
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
         List<Pregunta> generales = repoPreguntas.buscarPorTipo("general");
+        List<Pregunta> pyc = repoPreguntas.buscarPorTipo("pyc");
 
         parametros.put("tipos", tipo);
         parametros.put("generales", generales);
         parametros.put("provincias", provincias);
+        parametros.put("pyc", pyc);
 
         //Guardo la lista de preguntas en la sesion
         request.session().attribute("preguntasgenerales", generales);
+        request.session().attribute("preguntaspyc", pyc);
 
         return new ModelAndView(parametros, "dar_adopcion.hbs");
     }
@@ -213,6 +216,18 @@ public class PublicacionesEnAdopcionController {
             respuestas.add(respuesta);
         }
         cuestionario.setRespuestas(respuestas);
+
+        List<Pregunta> pyc = request.session().attribute("preguntaspyc");
+        ArrayList<RespuestaConcreta> respuestaspyc = new ArrayList<>();
+        cantidad = pyc.size();
+        for(int i=0; i < cantidad;i++){
+            RespuestaConcreta respuesta = new RespuestaConcreta();
+            respuesta.setRespuesta(request.queryParams("respuestapyc" + i));
+            respuesta.setPregunta(pyc.get(i));
+
+            respuestaspyc.add(respuesta);
+        }
+        cuestionario.getRespuestas().addAll(respuestaspyc);
 
         request.session().removeAttribute("preguntasgenerales");
         request.session().attribute("cuestionarioContestado", cuestionario);

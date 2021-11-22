@@ -54,9 +54,8 @@ public class LoginController {
             }
         } catch (Exception e) {
             //Funcionalidad disponible solo con persistencia en Base de Datos
-           response.redirect("/404"); // TODO Cambiar a otra pagina
-        }
-        finally {
+            response.redirect("/404"); // TODO Cambiar a otra pagina
+        } finally {
             return response;
         }
     }
@@ -100,8 +99,19 @@ public class LoginController {
         return response;
     }
 
+    public Response rol_elegido_admin(Request request, Response response) {
+        Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
+        request.session().attribute("rol", "Administrador");
+        persona.setRolElegido(new Administrador());
+        response.redirect("/admin");
+        return response;
+    }
+
     public ModelAndView admin(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
+
+        RolController rolController = RolController.getInstancia();
+        rolController.asignarRolSiEstaLogueado(request, parametros);
 
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
@@ -133,6 +143,9 @@ public class LoginController {
         usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
         Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
         parametros.put("persona", persona);
+
+        RolController rolController = RolController.getInstancia();
+        rolController.asignarRolSiEstaLogueado(request, parametros);
 
         return new ModelAndView(parametros, "admin_nuevaOrg.hbs");
     }

@@ -9,17 +9,17 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="form-group container">
-                        <form class="needs-validation form-" action="/admin_preguntas_asociacion" method="post" novalidate>
+                        <form class="needs-validation form-" action="/admin_caracteristica" method="post" novalidate>
                             <div class="col-sm-6">
-                                <label for="general" class="form-label">Selecciona la asociacion:</label>
-                                <select class="form-select" id="asociacion" name="asociacion" required>
+                                <label for="general" class="form-label">Selecciona el tipo de pregunta:</label>
+                                <select class="form-select" id="asociacion" name="tipo" required>
                                     <option value="" selected="selected">...</option>
-                                    {{#each organizaciones}}
-                                        <option value="{{nombre}}">{{nombre}}</option>
+                                    {{#each tipo}}
+                                        <option value="{{this}}">{{this}}</option>
                                     {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
-                                    Por favor, seleccione una asociacion.
+                                    Por favor, seleccione un tipo de pregunta.
                                 </div>
                             </div>
                             <div class="col-sm-6">

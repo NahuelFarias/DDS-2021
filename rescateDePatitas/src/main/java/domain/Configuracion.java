@@ -2,6 +2,7 @@ package domain;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -37,6 +38,21 @@ public final class Configuracion {
             System.out.println("Error: El archivo no existe 2.");
         } catch (IOException e) {
             System.out.println("Error: No se puede leer el archivo 2.");
+        }
+    }
+
+    public static void modificarPropiedad(String key, String value){
+        try{
+            Properties propiedades = new Properties();
+            propiedades.load(new FileInputStream("src/main/resources/config.properties"));
+            propiedades.setProperty(key, value);
+            propiedades.store(new FileOutputStream("src/main/resources/config.properties"), null);
+        }catch (FileNotFoundException e){
+            System.out.println("Error: El archivo no existe 3.");
+        }catch (SecurityException e) {
+            System.out.println("Error: Security Exception.");
+        }catch (IOException e){
+            System.out.println("Error: No se puede leer el archivo 3.");
         }
     }
 
