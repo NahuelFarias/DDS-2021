@@ -85,7 +85,7 @@ public class RolController {
 
         repoPersonas.agregar(persona);
 
-        response.redirect("/admin");
+        response.redirect("/admin_ok");
         return response;
     }
 

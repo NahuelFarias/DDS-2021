@@ -61,7 +61,19 @@ public class AdminController {
         Configuracion configuracion = new Configuracion();
         configuracion.modificarPropiedad("heightPhoto", nueva_altura);
         configuracion.modificarPropiedad("widthPhoto", nuevo_ancho);
-        response.redirect("/admin");
+        response.redirect("/admin_ok");
         return response;
+    }
+
+    public ModelAndView mensajeOk(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+
+        UsuarioController usuarioController = UsuarioController.getInstancia();
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+
+        RolController rolController = RolController.getInstancia();
+        rolController.asignarRolSiEstaLogueado(request, parametros);
+
+        return new ModelAndView(parametros, "admin_ok.hbs");
     }
 }

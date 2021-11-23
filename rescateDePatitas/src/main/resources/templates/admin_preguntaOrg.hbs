@@ -11,7 +11,7 @@
                     <div class="form-group container">
                         <form class="needs-validation form-" action="/admin_preguntas_asociacion" method="post" novalidate>
                             <div class="col-sm-6">
-                                <label for="general" class="form-label">Selecciona la asociacion:</label>
+                                <label for="general" class="form-label">Selecciona la asociación:</label>
                                 <select class="form-select" id="asociacion" name="asociacion" required>
                                     <option value="" selected="selected">...</option>
                                     {{#each organizaciones}}
@@ -19,7 +19,7 @@
                                     {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
-                                    Por favor, seleccione una asociacion.
+                                    Por favor, seleccione una asociación.
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -32,11 +32,11 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                            <label for="general" class="form-label">Numero de respuestas:</label>
+                            <label for="general" class="form-label">Número de respuestas:</label>
                             <input type="number" id="member" name="member" value="">
                             <a href="#" id="filldetails" onclick="addFields()">Generar respuestas</a>
                                 <br> <br>
-                            <div id="container"/>
+                            <div id="container">
                             </div>
 
 

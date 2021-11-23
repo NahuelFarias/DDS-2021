@@ -47,7 +47,7 @@ public class OrganizacionController {
 
         repositorio.agregar(organizacion);
 
-        response.redirect("/admin");
+        response.redirect("/admin_ok");
         return response;
     }
 
@@ -84,7 +84,7 @@ public class OrganizacionController {
         pregunta.setOrganizacion(organizacion);
         repositorio.agregar(organizacion);
 
-        response.redirect("/admin");
+        response.redirect("/admin_ok");
         return response;
     }
 }

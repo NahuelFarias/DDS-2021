@@ -3,25 +3,21 @@
         <div class="container">
             <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
                 <p>Buscamos a sus dueños</p>
-                <h2>Encontradas</h2>
+                <h2>Mascotas perdidas</h2>
             </div>
             <div class="row blog-page">
                 {{#each encontradas}}
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                     <div class="blog-item">
                         <div class="blog-img">
-                            <img src="{{{datosMascotaEncontrada.fotos.[0].uRLfoto}}}" alt="Foto mascota">
+                            <img src="{{datosMascotaEncontrada.fotos.[0].uRLfoto}}" alt="Foto mascota">
                         </div>
                         <div class="blog-text">
+                            <h6>Publicacion nro.: {{id}}</h6>
                             <div class="blog-meta">
                                 <p><i class="far fa-calendar"></i>{{fecha}}
-                                    <i class="fas fa-venus-mars"></i> {{datosMascotaEncontrada.lugar.latitud}}
-                                    <i class="fas fa-map-marker-alt"></i> {{datosMascotaEncontrada.lugar.latitud}}
                                 </p>
                             </div>
-                            <p>
-                                {{datosMascotaEncontrada.descripcion}}
-                            </p>
                             <a class="btn-mis" href="/encontradas/{{id}}">Ver perfil <i
                                     class="fa fa-angle-right"></i></a>
                         </div>

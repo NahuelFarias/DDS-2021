@@ -39,10 +39,17 @@
                         <div class="sidebar-widget wow fadeInUp">
                             <h2 class="widget-title wavyp">Mascota encontrada</h2>
                             <div class="text-widget">
-                                <p>
-                                <h6>Dónde fue encontrada:</h6>
-                                {{publicacion.datosMascotaEncontrada.lugar.latitud}}
-                                </p>
+                                <h6 class="wavyp">Lugar de encuentro:</h6>
+                                <div id="latEncontrada"
+                                     style="display:none;">{{publicacion.datosMascotaEncontrada.lugar.latitud}}</div>
+                                <div id="longEncontrada"
+                                     style="display:none;">{{publicacion.datosMascotaEncontrada.lugar.longitud}}</div>
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <div id="mapaEncontrada" style="width: 80%; height: 300px">
+                                        </div>
+                                    </div>
+                                </div>
                                 <p>
                                 <h6>En qué estado fue encontrada:</h6>
                                 {{publicacion.datosMascotaEncontrada.descripcion}}

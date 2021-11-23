@@ -14,6 +14,14 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,7 +97,7 @@ public class MascotaController {
         return new ModelAndView(parametros, "registro_mascota.hbs");
     }
 
-    public Response guardarMascota(Request request, Response response) {
+    public Response guardarMascota(Request request, Response response) throws IOException {
         Mascota mascota = new Mascota();
         asignarAtributosA(mascota, request);
 
@@ -127,7 +135,25 @@ public class MascotaController {
         return response;
     }
 
-    private void asignarAtributosA(Mascota mascota, Request request) {
+    private void asignarAtributosA(Mascota mascota, Request request) throws IOException {
+
+        File uploadDir = new File("rescateDePatitas/src/main/resources/public/img/fotosmascotas");
+        //uploadDir.mkdir();
+        Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try (InputStream input = request.raw().getPart("foto").getInputStream()) {
+            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
+        List<Foto> fotos = new ArrayList<>();
+        Foto foto = new Foto();
+        foto.setURLfoto(tempFile.toString().replace("rescateDePatitas\\src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setMascota(mascota);
+        fotos.add(foto);
+        mascota.setFotos(fotos);
+
         if (request.queryParams("nombre") != null) {
             mascota.setNombre(request.queryParams("nombre"));
         }
@@ -155,15 +181,6 @@ public class MascotaController {
         if (request.queryParams("edad") != null) {
             int edad = Integer.parseInt(request.queryParams("edad"));
             mascota.setEdad(edad);
-        }
-
-        if (request.queryParams("foto") != null) {
-            //TODO hacerlo para muchas fotos
-            List<Foto> fotos = new ArrayList<>();
-            Foto foto = new Foto();
-            foto.setURLfoto(request.queryParams("foto"));
-            fotos.add(foto);
-            mascota.setFotos(fotos);
         }
 
         if (request.queryParams("asociacion") != null) {

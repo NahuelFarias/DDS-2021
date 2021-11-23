@@ -214,6 +214,9 @@ public class Router {
         Spark.post("/admin_voluntarios", rolController::dar_rol_voluntario);
 
         Spark.get("/admin_voluntarios_error", rolController::dar_rol_voluntario_error,Router.engine);
+
+        Spark.get("/admin_ok",adminController::mensajeOk,Router.engine);
+
         //Ver Publicaciones intencion de adopcion
         Spark.get("/adoptantes", adoptantesController::mostrarAdoptantes, Router.engine);
 

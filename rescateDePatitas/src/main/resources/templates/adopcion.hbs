@@ -10,20 +10,17 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <img src="{{{mascota.fotos.[0].uRLfoto}}}" alt="Blog">
+                                <img src="../{{{mascota.fotos.[0].uRLfoto}}}" alt="Foto mascota">
                             </div>
                             <div class="blog-text">
                                 <h2>{{mascota.nombre}}</h2>
-                                <h6>Publicada el {{fecha}}</h6>
+                                <h6>Publicacion nro.: {{id}}</h6>
+                                <p>Publicada el {{fecha}}</p>
                                 <div class="blog-meta">
                                     <p><i class="far fa-calendar"></i> {{mascota.edad}} años
                                         <i class="fas fa-venus-mars"></i> {{mascota.genero}}
                                     </p>
                                 </div>
-                                <p>
-                                    {{mascota.descripcion}}
-                                </p>
-
                                 <a class="btn-mis" href="en_adopcion/{{id}}">Ver perfil <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>

@@ -85,7 +85,7 @@ public class PreguntasController {
 
         repositorio.agregar(pregunta);
 
-        response.redirect("/admin");
+        response.redirect("/admin_ok");
         return response;
     }
 }

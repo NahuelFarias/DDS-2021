@@ -119,7 +119,7 @@ public class PublicacionesEnAdopcionController {
             mascota.meQuiereAdoptar(persona);
         }
 
-        response.redirect("/ok");
+        response.redirect("/en_adopcion/ok");
         return response;
     }
 
@@ -210,7 +210,8 @@ public class PublicacionesEnAdopcionController {
             RepositorioDePersonas repoPersonas = RepositorioDePersonas.getInstancia();
             Persona duenio = repoPersonas.dameLaPersona(request.session().attribute("id"));
             mascota.setPersona(duenio);
-            mascota.setDuenio((Duenio) duenio.getRolElegido());
+            mascota.setDuenio(duenio.getDuenio());
+            duenio.getDuenio().registrarMascota(mascota);
         } else {
             PersonaController cPersona = PersonaController.getInstancia();
             RepositorioDePersonas repoPersona = cPersona.getRepositorio();
@@ -220,6 +221,8 @@ public class PublicacionesEnAdopcionController {
 
             if (personaEncontrada != null) {
                 mascota.setPersona(personaEncontrada);
+                mascota.setDuenio(personaEncontrada.getDuenio());
+                personaEncontrada.getDuenio().registrarMascota(mascota);
                 //request.session().attribute("personaformulario", personaEncontrada);
                 //request.session().attribute("persistirpersonaformulario", false);
             } else {
@@ -227,7 +230,8 @@ public class PublicacionesEnAdopcionController {
                 asignarAtributosA(persona, request);
                 persona.setUsuarioTemporal(hashPersona);
                 mascota.setPersona(persona);
-                mascota.setDuenio((Duenio) persona.getRolElegido());
+                mascota.setDuenio(persona.getDuenio());
+                persona.getDuenio().registrarMascota(mascota);
                 repoPersona.agregar(persona);
                 //request.session().attribute("personaformulario", persona);
                 //request.session().attribute("persistirpersonaformulario", true);
@@ -235,7 +239,9 @@ public class PublicacionesEnAdopcionController {
         }
 
         //Guardo a la mascota en la base de datos
-        RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
+        MascotaController mascotaController = MascotaController.getInstancia();
+        RepositorioGenerico<Mascota> repoMascotas = mascotaController.getRepositorio();
+        //RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
         repoMascotas.agregar(mascota);
         request.session().attribute("idmascotaenadopcion", mascota.getId());
 
@@ -273,13 +279,19 @@ public class PublicacionesEnAdopcionController {
         }
         cuestionario.getRespuestas().addAll(respuestaspyc);
 
+        PublicacionEnAdopcion publicacionEnAdopcion = new PublicacionEnAdopcion();
+        publicacionEnAdopcion.setTipoPublicacion("Mascota dada en adopcion");
+        publicacionEnAdopcion.setCuestionario(cuestionario);
+        publicacionEnAdopcion.setMascota(mascota);
+        publicacionEnAdopcion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
+        //repo.agregar(publicacionEnAdopcion);
+        request.session().attribute("publiEnAdopcion", publicacionEnAdopcion);
+
+        /*
         request.session().removeAttribute("preguntasgenerales");
         request.session().attribute("cuestionarioContestado", cuestionario);
-
-
-
         request.session().attribute("mascotaformulario", mascota);
-
+        */
         response.redirect("/dar_adopcion_asociacion");
 
         return response;
@@ -308,19 +320,19 @@ public class PublicacionesEnAdopcionController {
             repoPersona.agregar(persona);
         }*/
 
-
-
         //Guardo a la mascota en la base de datos
-        RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
+        //MascotaController mascotaController = MascotaController.getInstancia();
+        //RepositorioGenerico<Mascota> repoMascotas = mascotaController.getRepositorio();
+        //RepositorioDeMascotas repoMascotas = new RepositorioDeMascotas(new DAOHibernate<>(Mascota.class));
         //repoMascotas.agregar(mascota);
-        Mascota mascota = repoMascotas.buscar(request.session().attribute("idmascotaenadopcion"));
+        //Mascota mascota = repoMascotas.buscar(request.session().attribute("idmascotaenadopcion"));
 
         //Crear publicacion y guardarla
-        PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
-
+        //PublicacionEnAdopcion publicacion = new PublicacionEnAdopcion();
+        PublicacionEnAdopcion publicacion = request.session().attribute("publiEnAdopcion");
         Organizacion organizacion = request.session().attribute("organizacionformulario");
         int numero = organizacion.getPreguntasAdopcion().size();
-        CuestionarioContestado cuestionario = request.session().attribute("cuestionarioContestado");
+        //CuestionarioContestado cuestionario = request.session().attribute("cuestionarioContestado");
 
         ArrayList<RespuestaConcreta> respuestasOrg = new ArrayList<>();
         for(int i = 0; i < numero; i++){
@@ -331,7 +343,7 @@ public class PublicacionesEnAdopcionController {
 
             respuestasOrg.add(respuesta);
         }
-
+        CuestionarioContestado cuestionario = publicacion.getCuestionario();
         cuestionario.agregarRespuestas(respuestasOrg);
         for(RespuestaConcreta respuestaConcreta: cuestionario.getRespuestas()) {
             respuestaConcreta.setCuestionarioContestado(cuestionario);
@@ -344,17 +356,17 @@ public class PublicacionesEnAdopcionController {
             }
         }
 
-        publicacion.setMascota(mascota);
-        publicacion.setTipoPublicacion("Mascota dada en adopcion");
+        //publicacion.setMascota(mascota);
+        //publicacion.setTipoPublicacion("Mascota dada en adopcion");
         publicacion.setOrganizacion(organizacion);
         publicacion.setCuestionario(cuestionario);
         publicacion.setFecha(java.time.LocalDate.now());
 
         //organizacion.getPublicaciones().add(publicacion);
-        RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(new DAOHibernate<>(PublicacionEnAdopcion.class));
-        repoPublicaciones.agregar(publicacion);
+        //RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(new DAOHibernate<>(PublicacionEnAdopcion.class));
+        repo.agregar(publicacion);
 
-        response.redirect("/");
+        response.redirect("/ok");
 
         return response;
     }

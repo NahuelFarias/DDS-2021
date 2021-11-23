@@ -60,38 +60,35 @@
                                         <div class="col-md-4">
                                             <p>Edad: {{publicacion.mascota.edad}} años</p>
                                         </div>
-                                        <div class="col-md-4">
-                                            <p>Castrada: Sí</p>
+                                        <div>
+                                            {{#each publicacion.cuestionario.respuestas}}
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>{{pregunta.pregunta}}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p>{{respuesta}}</p>
+                                                    </div>
+                                                </div>
+                                            {{/each}}
                                         </div>
+                                        <h6>Más info:</h6>
+                                        <p>
+                                            {{publicacion.mascota.descripcion}}
+                                        </p>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <p>Sociable con gatos: No</p>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <p>Sociable con perros: Sí</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <p>Sociable con niños: Sí</p>
-                                        </div>
-                                    </div>
-                                    <p>
-                                    <h6>Más info:</h6>
-                                    {{publicacion.mascota.descripcion}}
-                                    </p>
-
-                                    <div class="container">
-                                        <div class="row  justify-content-center">
-                                            <div class="py-2 col-4">
-                                                <a class="btn-grande" href="/aprobar_adopcion/{{publicacion.id}}" method="post"
-                                                   style="background-color: green;">APROBAR</a>
-                                            </div>
-                                            <div class=" py-2 col-4">
-                                                <a class="btn-grande" href="/rechazar_adopcion/{{publicacion.id}}" method="post"
-                                                   style="background-color: red;">RECHAZAR</a>
+                                        <div class="container">
+                                            <div class="row  justify-content-center">
+                                                <div class="py-2 col-4">
+                                                    <a class="btn-grande"
+                                                       href="/aprobar_adopcion/{{publicacion.id}}" method="post"
+                                                       style="background-color: green;">APROBAR</a>
+                                                </div>
+                                                <div class=" py-2 col-4">
+                                                    <a class="btn-grande"
+                                                       href="/rechazar_adopcion/{{publicacion.id}}" method="post"
+                                                       style="background-color: red;">RECHAZAR</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -102,9 +99,8 @@
                 </div>
             </div>
         </div>
-
-    </div>
-    <!-- Single Post End-->
+        </div>
+        <!-- Single Post End-->
 {{/partial}}
 
 {{#eq rol null}}

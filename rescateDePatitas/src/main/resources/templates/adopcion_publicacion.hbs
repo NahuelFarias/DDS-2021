@@ -3,7 +3,7 @@
     <div class="single">
         <div class="container top">
             <div class="row">
-                <h3>Publicacion Nro <span>{{publicacion.id}}</span></h3>
+                <h3>Publicación Nro <span>{{publicacion.id}}</span></h3>
                 <h3> {{publicacion.mascota.nombre}}</h3>
                 <p>Fecha: {{publicacion.fecha}}</p>
                 <div class="col-lg-6">
@@ -18,11 +18,11 @@
                                 {{#each publicacion.mascota.fotos}}
                                     {{#if @index}}
                                         <div class="carousel-item">
-                                            <img src="../{{uRLfoto}}" alt="Slide Number {{@index}}">
+                                            <img src="../{{{uRLfoto}}}" alt="Slide Number {{@index}}">
                                         </div>
                                     {{else}}
                                         <div class="carousel-item active">
-                                            <img src="../{{uRLfoto}}" alt="Slide Number {{@index}}">
+                                            <img src="../{{{uRLfoto}}}" alt="Slide Number {{@index}}">
                                         </div>
                                     {{/if}}
 
@@ -61,7 +61,7 @@
                                         <h6>Edad:</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        <h6>{{publicacion.mascota.edad}} meses</h6>
+                                        <h6>{{publicacion.mascota.edad}} años</h6>
                                     </div>
                                 </div>
                                 {{#each publicacion.cuestionario.respuestas}}

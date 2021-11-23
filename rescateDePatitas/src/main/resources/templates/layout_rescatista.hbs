@@ -30,8 +30,8 @@
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
         <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet" />
-        <link href="css/form-validation.css" rel="stylesheet"/>
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/form-validation.css" rel="stylesheet"/>
     </head>
     <body>
     <!-- Top Bar Start -->
@@ -235,6 +235,113 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script>
+        function iniciarMapa() {
+
+            var element =  document.getElementById('mapa');
+            if (element != null){
+                var latitud = -34.5988219;
+                var longitud = -58.4204663;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapa(coordenadas);
+            }
+
+            var element =  document.getElementById('mapaEncontrada');
+            if (element != null){
+                var nodo1 = document.getElementById('latEncontrada');
+                var nodo2 = document.getElementById('longEncontrada');
+
+                latitud = nodo1.textContent;
+                longitud = nodo2.textContent;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapaEncontrada(coordenadas);
+            }
+
+            function generarMapa(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapa"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+                marker.addListener('dragend',function(event){
+                    document.getElementById("latitud").value = this.getPosition().lat();
+                    document.getElementById("longitud").value = this.getPosition().lng();
+                });
+
+            }
+
+            function generarMapaEncontrada(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapaEncontrada"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+
+            }
+
+            function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            }
+
+        };
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi7Zada9BftSlrcUvO-8WhuC3EIQyYC9o&callback=iniciarMapa"></script>
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

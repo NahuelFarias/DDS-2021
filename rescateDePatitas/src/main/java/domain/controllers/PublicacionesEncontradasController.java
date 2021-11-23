@@ -3,15 +3,15 @@ package domain.controllers;
 import domain.models.entities.hogares.Hogar;
 import domain.models.entities.hogares.ListadoDeHogares;
 import domain.models.entities.mascotas.DatosMascotaEncontrada;
+import domain.models.entities.mascotas.Foto;
 import domain.models.entities.mascotas.Lugar;
 import domain.models.entities.mascotas.Mascota;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
+import domain.models.entities.publicaciones.PublicacionIntencionAdopcion;
 import domain.models.entities.publicaciones.PublicacionMascotaEncontrada;
-import domain.models.entities.publicaciones.PublicacionPerdidaRegistrada;
-import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import domain.models.repositories.RepositorioDePersonas;
 import domain.models.entities.publicaciones.EstadoDePublicacion;
@@ -23,6 +23,14 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -195,8 +203,26 @@ public class PublicacionesEncontradasController {
         return response;
     }
 
-    private void asignarAtributosA(PublicacionMascotaEncontrada publi, Request request) {
+    private void asignarAtributosA(PublicacionMascotaEncontrada publi, Request request) throws IOException {
+        //Fotos
+        File uploadDir = new File("rescateDePatitas/src/main/resources/public/img/fotosmascotas");
+        //uploadDir.mkdir();
+        Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
+
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try (InputStream input = request.raw().getPart("foto").getInputStream()) {
+            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
         DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada();
+        List<Foto> fotos = new ArrayList<>();
+        Foto foto = new Foto();
+        foto.setURLfoto(tempFile.toString().replace("rescateDePatitas\\src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setDatosMascotaEncontrada(datosMascota);
+        fotos.add(foto);
+        datosMascota.setFotos(fotos);
         double latitud = 0;
         double longitud = 0;
 
@@ -217,6 +243,7 @@ public class PublicacionesEncontradasController {
         Lugar lugar = new Lugar();
         lugar.setLatitud(latitud);
         lugar.setLongitud(longitud);
+
 
         publi.setTipoPublicacion("Mascota encontrada");
 
@@ -314,7 +341,14 @@ public class PublicacionesEncontradasController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
-        parametros.put("encontradas", encontradas);
+        List<PublicacionMascotaEncontrada> noAprobadas = new ArrayList<>();
+
+        for (PublicacionMascotaEncontrada publicacion : encontradas) {
+            if (!publicacion.estaAprobada()) {
+                noAprobadas.add(publicacion);
+            }
+        }
+        parametros.put("encontradas", noAprobadas);
         return new ModelAndView(parametros, "revisar_encontrada.hbs");
     }
 
