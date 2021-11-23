@@ -145,22 +145,26 @@
                 <p class="lead">Generá tu usuario y contraseña</p>
             </div>
             <div class="container row">
-                <h3>El usuario ya existe.</h3>
+
                 <h4 class="mb-3 wavyp">Registrate:</h4>
+
                 <div class="col-lg-8">
+
                     <form action="/registro_usuario" method="post">
-                        <div class="col-md-12">
-                            <label for="usrname">Usuario</label>
-                            <input type="text" id="usrname" name="usrname" required>
+
+                        <div class="row justify-content-md-center mt-2">
+                            <h5 style="color:red;" class="text-center">El usuario ya existe.</h5>
+                            <label class="col-md-3 form-label" for="usrname" >Usuario</label>
+                            <input class="col-md-6 form-control" type="text" id="usrname" name="usrname" required>
                         </div>
-                        <div class="col-md-12">
-                            <label for="psw">Contraseña</label>
-                            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        <div class="row justify-content-md-center  mt-2">
+                            <label class="col-md-3 form-label" for="psw">Contraseña</label>
+                            <input class="col-md-6 form-control" type="password" id="psw" name="psw"
                                    title="Debe contener por lo menos un número, una mayúscula, una minúscula, un caracter especial y 8 o más caracteres."
                                    required>
                         </div>
-                        <div class="col-md-12 center">
-                            <input type="submit" value="Crear">
+                        <div class="row justify-content-md-center mt-3">
+                            <button class="col-md-3 btn-grande from-control" type="submit">Siguiente</button>
                         </div>
                     </form>
                     <div id="respuestaError">{{errorRegistro}}</div>
