@@ -76,6 +76,10 @@ public class PreguntasController {
     public Response agregarPregunta(Request request, Response response){
         Pregunta pregunta = new Pregunta();
         pregunta.setPregunta(request.queryParams("pregunta"));
+        if(request.queryParams("preguntaMascota") != null){
+            pregunta.setPreguntaMascota(request.queryParams("preguntaMascota"));
+        }
+
         int cantidad = Integer.parseInt(request.queryParams("member"));
         pregunta.setRespuestas(new ArrayList<>());
         for(int i=0; i<cantidad; i++){

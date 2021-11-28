@@ -58,9 +58,8 @@ public class AdminController {
         String nueva_altura = request.queryParams("altura");
         String nuevo_ancho = request.queryParams("ancho");
 
-        Configuracion configuracion = new Configuracion();
-        configuracion.modificarPropiedad("heightPhoto", nueva_altura);
-        configuracion.modificarPropiedad("widthPhoto", nuevo_ancho);
+        Configuracion.modificarPropiedad("heightPhoto", nueva_altura);
+        Configuracion.modificarPropiedad("widthPhoto", nuevo_ancho);
         response.redirect("/admin_ok");
         return response;
     }

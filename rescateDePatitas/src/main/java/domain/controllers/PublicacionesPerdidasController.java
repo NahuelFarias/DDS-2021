@@ -70,8 +70,15 @@ public class PublicacionesPerdidasController {
 
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
-        List<PublicacionPerdidaRegistrada> encontradas = this.repo.buscarTodos();
-        parametros.put("perdidas", encontradas);
+        List<PublicacionPerdidaRegistrada> perdidas = this.repo.buscarTodos();
+        List<PublicacionPerdidaRegistrada> sin_revisar = new ArrayList<>();
+        for (PublicacionPerdidaRegistrada publicacion:perdidas) {
+            if(publicacion.getEstadoDePublicacion().equals(EstadoDePublicacion.SIN_REVISAR)){
+                sin_revisar.add(publicacion);
+            }
+        }
+        parametros.put("perdidas", sin_revisar);
+
         return new ModelAndView(parametros, "revisar_perdida.hbs");
     }
 

@@ -341,14 +341,14 @@ public class PublicacionesEncontradasController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionMascotaEncontrada> encontradas = this.repo.buscarTodos();
-        List<PublicacionMascotaEncontrada> noAprobadas = new ArrayList<>();
+        List<PublicacionMascotaEncontrada> sin_revisar = new ArrayList<>();
 
         for (PublicacionMascotaEncontrada publicacion : encontradas) {
-            if (!publicacion.estaAprobada()) {
-                noAprobadas.add(publicacion);
+            if (publicacion.getEstadoDePublicacion().equals(EstadoDePublicacion.SIN_REVISAR)) {
+                sin_revisar.add(publicacion);
             }
         }
-        parametros.put("encontradas", noAprobadas);
+        parametros.put("encontradas", sin_revisar);
         return new ModelAndView(parametros, "revisar_encontrada.hbs");
     }
 

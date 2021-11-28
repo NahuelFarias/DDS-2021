@@ -20,6 +20,8 @@ public class Pregunta extends Persistente {
     // Atributos
     @Column(name = "pregunta")
     private String pregunta;
+    @Column(name = "preguntaMascota")
+    private String preguntaMascota;
     @ElementCollection
     //Se genera la tabla pregunta_respuestas
     private List<String> respuestas;
@@ -90,5 +92,13 @@ public class Pregunta extends Persistente {
 
     public Boolean getVisible() {
         return visible;
+    }
+
+    public String getPreguntaMascota() {
+        return preguntaMascota;
+    }
+
+    public void setPreguntaMascota(String preguntaMascota) {
+        this.preguntaMascota = preguntaMascota;
     }
 }

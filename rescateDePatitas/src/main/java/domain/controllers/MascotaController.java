@@ -197,9 +197,9 @@ public class MascotaController {
         List<Pregunta> generales = repoPreguntas.buscarPorTipo("general");
         List<CaracteristicaConRta> elegidas = new ArrayList<>();
         for (Pregunta pregunta : generales) {
-            if (request.queryParams(pregunta.getPregunta()) != null) {
+            if (request.queryParams(pregunta.getPreguntaMascota()) != null) {
                 String pregunta_elegida = pregunta.getPregunta();
-                String respuesta_elegida = request.queryParams(pregunta.getPregunta());
+                String respuesta_elegida = request.queryParams(pregunta.getPreguntaMascota());
 
                 CaracteristicaConRta caracteristicaConRta = new CaracteristicaConRta(pregunta_elegida, respuesta_elegida);
                 caracteristicaConRta.setMascota(mascota);

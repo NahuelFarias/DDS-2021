@@ -38,8 +38,6 @@ public class Router {
         OrganizacionController organizacionController = new OrganizacionController();
         PreguntasController preguntasController = new PreguntasController();
         RolController rolController = RolController.getInstancia();
-        //File uploadDir = new File("/resources/fotosMascotas");
-        //uploadDir.mkdir(); //Crea el directorio si no existe
 
         Spark.get("/", homeController::mostrarHome, Router.engine);
 
@@ -82,19 +80,6 @@ public class Router {
         Spark.get("/dar_adopcion", enAdopcion::mostrarCuestionarioAdopcion, Router.engine);
 
         Spark.post("/dar_adopcion", enAdopcion::recibirDatosCuestionarioDarEnAdopcion);
-
-
-        /*        (req, res) -> {
-            Path tempFile = Files.createTempFile(uploadDir.toPath(), req.queryParams("nombre"), "img");
-
-            req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-            try (InputStream input = req.raw().getPart("foto").getInputStream()) {
-                Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
-            }
-            enAdopcion.recibirDatosCuestionarioDarEnAdopcion(req, res);
-            return "File uploaded";
-        });*/
-
 
         Spark.get("/cambiar_rol", loginController::mostrarRoles, Router.engine);
 

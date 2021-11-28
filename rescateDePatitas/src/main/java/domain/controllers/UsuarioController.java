@@ -57,6 +57,18 @@ public class UsuarioController {
         }
     }
 
+    public void asignarUsuarioYPersonaSiEstaLogueado(Request request, Map<String, Object> parametros) {
+        List<Usuario> usuarios = this.repositorio.buscarTodos();
+        parametros.put("usuarios", usuarios);
+
+        if (!request.session().isNew() && request.session().attribute("id") != null) {
+            Usuario usuario = repositorio.buscar(request.session().attribute("id"));
+            parametros.put("usuario", usuario);
+        }
+    }
+
+
+
     public ModelAndView crearUsuario(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 

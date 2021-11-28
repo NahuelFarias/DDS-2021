@@ -4,22 +4,22 @@
           <div class="container-fluid">
               <div class="py-5 text-center">
                   <br> <br>
-                  <h2 class="wavyy">Seleccione un usuario para darle rol de voluntario</h2>
+                  <h2 class="wavyy">Asignar voluntario</h2>
               </div>
-            <div class="row">
-                <div class="col-lg-8">
+            <div class="row centrar">
+                <div class="col-md-6">
                     <div class="form-group container">
                         <form class="needs-validation form-" action="/admin_voluntarios" method="post" novalidate>
                             <div class="col-sm-6">
-                                <label for="general" class="form-label">Selecciona la asociacion:</label>
-                                <select class="form-select" id="asociacion" name="asociacion" required>
+                                <label for="general" class="form-label">Seleccioná la asociación:</label>
+                                <select class="form-select" id="asociacion" name="asociación" required>
                                     <option value="" selected="selected">...</option>
                                     {{#each organizaciones}}
                                         <option value="{{nombre}}">{{nombre}}</option>
                                     {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
-                                    Por favor, seleccione una asociacion.
+                                    Por favor, seleccione una asociación.
                                 </div>
                                 <label for="altura" class="form-label">Ingrese nombre de usuario:</label>
                                 <input type="text" class="form-control" id="altura" value="" name="nombre" required>
@@ -27,18 +27,17 @@
                                     Ingrese el usuario.
                                 </div>
                             </div>
-                            <hr class="my-4">
-                            <div class="text-center">
-                                <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Hacer voluntario</button>
+
+                            <div class="text-center col-md-6">
+                                <hr class="my-4">
+                                <button class="btn-grande text-uppercase fw-bold mb-2" type="submit">Dar rol voluntario</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                </form>
             </div>
           </div>
         </div>
-      </div>
 {{/partial}}
 
 

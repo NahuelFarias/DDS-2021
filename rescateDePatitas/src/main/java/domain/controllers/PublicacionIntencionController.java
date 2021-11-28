@@ -83,10 +83,10 @@ public class PublicacionIntencionController {
 
         PreguntasController preguntasController = PreguntasController.getInstancia();
         RepositorioDePreguntas repositorioPreguntas = preguntasController.getRepositorio();
-        OrganizacionController organizacionController = OrganizacionController.getInstancia();
-        RepositorioDeOrganizaciones repoOrganizaciones = organizacionController.getRepositorio();
+        //OrganizacionController organizacionController = OrganizacionController.getInstancia();
+        //RepositorioDeOrganizaciones repoOrganizaciones = organizacionController.getRepositorio();
 
-        List<Pregunta> preferenciasYcomodidades = repositorioPreguntas.buscarPorTipo("preferenciasYcomodidades");
+        List<Pregunta> preferenciasYcomodidades = repositorioPreguntas.buscarPorTipo("pyc");
 
         parametros.put("preguntas", preferenciasYcomodidades);
         parametros.put("provincias",provincias);
@@ -119,10 +119,11 @@ public class PublicacionIntencionController {
                 adoptante = persona;
             }
         }
+        CuestionarioContestado cuestionarioContestado = new CuestionarioContestado();
 
         PreguntasController cPreguntas = PreguntasController.getInstancia();
         RepositorioDePreguntas repoPreguntas = cPreguntas.getRepositorio();
-        List<Pregunta> preferenciasYComodidades = repoPreguntas.buscarPorTipo("preferenciasYComodidades");
+        List<Pregunta> preferenciasYComodidades = repoPreguntas.buscarPorTipo("pyc");
         List<RespuestaConcreta> elegidas = new ArrayList<>();
         for (Pregunta pregunta : preferenciasYComodidades) {
             if (request.queryParams(pregunta.getPregunta()) != null) {
@@ -131,11 +132,12 @@ public class PublicacionIntencionController {
                 RespuestaConcreta respuestaConcreta = new RespuestaConcreta();
                 respuestaConcreta.setPregunta(pregunta);
                 respuestaConcreta.setRespuesta(respuesta_elegida);
+                respuestaConcreta.setCuestionarioContestado(cuestionarioContestado);
 
                 elegidas.add(respuestaConcreta);
             }
         }
-        CuestionarioContestado cuestionarioContestado = new CuestionarioContestado();
+
         cuestionarioContestado.setRespuestas(elegidas);
         publi.setCuestionarioPreferenciasYComodidades(cuestionarioContestado);
         publi.setAdoptante(adoptante);

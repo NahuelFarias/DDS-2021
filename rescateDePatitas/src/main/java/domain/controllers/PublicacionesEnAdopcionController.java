@@ -1,9 +1,6 @@
 package domain.controllers;
 
-import domain.models.entities.mascotas.CaracteristicaConRta;
-import domain.models.entities.mascotas.Foto;
-import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.mascotas.Organizacion;
+import domain.models.entities.mascotas.*;
 import domain.models.entities.notificaciones.estrategias.Estrategia;
 import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
@@ -284,7 +281,7 @@ public class PublicacionesEnAdopcionController {
         publicacionEnAdopcion.setCuestionario(cuestionario);
         publicacionEnAdopcion.setMascota(mascota);
         publicacionEnAdopcion.setEstadoDePublicacion(EstadoDePublicacion.SIN_REVISAR);
-        //repo.agregar(publicacionEnAdopcion);
+        repo.agregar(publicacionEnAdopcion);
         request.session().attribute("publiEnAdopcion", publicacionEnAdopcion);
 
         /*
@@ -364,7 +361,7 @@ public class PublicacionesEnAdopcionController {
 
         //organizacion.getPublicaciones().add(publicacion);
         //RepositorioDePublicaciones repoPublicaciones = new RepositorioDePublicaciones(new DAOHibernate<>(PublicacionEnAdopcion.class));
-        repo.agregar(publicacion);
+        repo.modificar(publicacion);
 
         response.redirect("/ok");
 
@@ -528,14 +525,20 @@ public class PublicacionesEnAdopcionController {
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<PublicacionEnAdopcion> encontradas = this.repo.buscarTodos();
-        parametros.put("adopciones", encontradas);
+        List<PublicacionEnAdopcion> sin_revisar = new ArrayList<>();
+        for (PublicacionEnAdopcion publicacion:encontradas) {
+            if(publicacion.getEstadoDePublicacion().equals(EstadoDePublicacion.SIN_REVISAR)){
+                sin_revisar.add(publicacion);
+            }
+        }
+        parametros.put("adopciones", sin_revisar);
         return new ModelAndView(parametros, "revisar_adopcion.hbs");
     }
 
     public ModelAndView revisar_publi(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
-        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        usuarioController.asignarUsuarioYPersonaSiEstaLogueado(request, parametros);
         rolController.asignarRolSiEstaLogueado(request, parametros);
 
         PublicacionEnAdopcion publicacion = this.repo.buscar(new Integer(request.params("id")));
