@@ -74,7 +74,7 @@ public class GestorDePublicaciones {
         PublicacionPerdidaRegistrada publicacion = new PublicacionPerdidaRegistrada();
         publicacion.setFecha(LocalDate.now());
         publicacion.setMascota(mascota);
-        publicacion.setTipoPublicacion("Mascota perdida registrada");
+        publicacion.setTipoPublicacion("Mascota perdida");
         publicaciones.add(publicacion);
 
         //Datos Publicacion:
@@ -92,7 +92,7 @@ public class GestorDePublicaciones {
         publicacion.setRescatista(rescatista);
         Organizacion organizacion = this.buscarOrganizacionMasCercana(datosMascota.getLugar());
         publicacion.setOrganizacion(organizacion);
-        publicacion.setTipoPublicacion("Mascota perdida no registrada");
+        publicacion.setTipoPublicacion("Mascota encontrada");
 
         publicaciones.add(publicacion);
 

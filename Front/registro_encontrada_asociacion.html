@@ -28,6 +28,9 @@
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
+    <!-- MAP -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="./index.js"></script>
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
 </head>
@@ -117,24 +120,15 @@
             <div class="py-5 text-center">
                 <br> <br>
                 <h2 class="wavyy">Mascota encontrada</h2>
-                <p class="lead">Último paso: elegí una asociación y contestá sus preguntas</p>
+                <p class="lead">Último paso: comunicate con un hogar de tránsito</p>
 
             </div>
             <div class="row">
                 <div class="col-lg-8">
                     <form class="needs-validation" novalidate>
                         <div class="row g-3">
-                            <h4 class="mb-3 wavyp">Asociaciones:</h4>
-
-                            <p>Seleccioná la asociación en el mapa:</p>
-                            <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
-                            </div>
+                            <h4 class="mb-3 wavyp">Hogares de tránsito</h4>
+                            <p>Estos son los hogares que admiten a la mascota que ingresaste:</p>
 
                             <div class="col-sm-12">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
@@ -320,6 +314,10 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly"
+      async
+    ></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

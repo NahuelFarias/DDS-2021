@@ -31,7 +31,7 @@ public class Organizacion extends Persistente {
     @OneToOne(cascade = CascadeType.ALL)
     private Lugar ubicacion;
 
-//  getters & setters
+    //  getters & setters
 
     public String getNombre() {
         return nombre;
@@ -80,7 +80,7 @@ public class Organizacion extends Persistente {
     public void generarVoluntario(Persona persona) {
         Voluntario voluntario = new Voluntario();
         voluntario.setOrganizacion(this);
-        persona.setRol(voluntario);
+        persona.setRolElegido(voluntario);
         voluntarios.add(persona);
     }
 

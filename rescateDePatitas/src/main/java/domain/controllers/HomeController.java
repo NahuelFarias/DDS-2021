@@ -1,12 +1,7 @@
 package domain.controllers;
 
 import domain.models.entities.mascotas.Mascota;
-import domain.models.entities.personas.Persona;
-import domain.models.entities.personas.Usuario;
-import domain.models.entities.rol.Rol;
-import domain.models.repositories.RepositorioDePersonas;
 import domain.models.repositories.RepositorioGenerico;
-import domain.models.repositories.daos.DAOHibernate;
 import domain.models.repositories.factories.FactoryRepositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -19,40 +14,19 @@ import java.util.Map;
 
 public class HomeController {
 
-    private DAOHibernate daoHibernate = new DAOHibernate();
-
     private RepositorioGenerico<Mascota> repo;
-    private RepositorioGenerico<Usuario> repoUser;
-    private RepositorioDePersonas repoPersonas = new RepositorioDePersonas(daoHibernate);
+    private final RolController rolController = RolController.getInstancia();
+    private final UsuarioController usuarioController = UsuarioController.getInstancia();
 
     public HomeController(){
         this.repo = FactoryRepositorio.get(Mascota.class);
-        this.repoUser = FactoryRepositorio.get(Usuario.class);
-    }
-
-    public void asignarUsuarioSiEstaLogueado(Request request, Map<String, Object> parametros){
-        if(request.session().attribute("id") != null){
-            Usuario usuario = repoUser.buscar(request.session().attribute("id"));
-            parametros.put("usuario", usuario);
-        }
-    }
-
-    public void asignarRolSiEstaLogueado(Request request, Map<String, Object> parametros){
-        if(request.session().attribute("id") != null){
-            Persona persona = this.repoPersonas.dameLaPersona(request.session().attribute("id"));
-            Rol rol = persona.getRol();
-            parametros.put("rol", rol);
-        }
     }
 
     public ModelAndView mostrarHome(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
 
-        List<Usuario> usuarios = this.repoUser.buscarTodos();
-        parametros.put("usuarios", usuarios);
-        asignarUsuarioSiEstaLogueado(request, parametros);
-
-        asignarRolSiEstaLogueado(request, parametros);
+        usuarioController.asignarUsuarioSiEstaLogueado(request, parametros);
+        rolController.asignarRolSiEstaLogueado(request, parametros);
 
         List<Mascota> mascotas = this.repo.buscarTodos();
         parametros.put("mascotas", mascotas);

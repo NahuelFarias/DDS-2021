@@ -309,26 +309,39 @@
                             <h4 class="mb-3">Sobre la mascota</h4>
 
                             <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Especie</label>
-                                <select class="form-select" id="state" required>
+                                <label for="especie" class="form-label">Especie</label>
+                                <select class="form-select" id="especie" required>
                                     <option value="">...</option>
                                     <option>Gato</option>
                                     <option>Perro</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Especie.
+                                    Por favor, elija la especie de la mascota.
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="lastName" class="form-label">Sexo</label>
-                                <select class="form-select" id="state" required>
+                                <label for="sexo" class="form-label">Sexo</label>
+                                <select class="form-select" id="sexo" required>
                                     <option value="">...</option>
                                     <option>Hembra</option>
                                     <option>Macho</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                    Sexo.
+                                    Por favor, elija el sexo de la mascota.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="tamanio" class="form-label">Tamaño</label>
+                                <select class="form-select" id="tamanio" required>
+                                    <option value="">...</option>
+                                    <option>Chica</option>
+                                    <option>Mediana</option>
+                                    <option>Grande</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, elija el tamaño de la mascota.
                                 </div>
                             </div>
 
@@ -360,12 +373,26 @@
 
                             <h4 class="mb-3">¿Dónde la encontraste?</h4>
                             <p>Seleccioná la ubicación en el mapa:</p>
+
                             <div class="row g-3">
-                                <div class="map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51023.18342038872!2d-58.46479977772431!3d-34.64479486565295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc966bf151d67%3A0x255fef772508e89c!2sUTN.BA!5e0!3m2!1ses-419!2sar!4v1630306091370!5m2!1ses-419!2sar"
-                                        width="600" height="450" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
+                                <div class="col-md-12">
+                                    <div id="mapa" style="width: 100%; height: 450px">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="latitud">Latitud</label>
+                                        <input type="text" id="latitud" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="longitud">Longitud</label>
+                                        <input type="text" id="longitud" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
@@ -373,34 +400,36 @@
                             <h4 class="mb-3">Hogar de tránsito</h4>
                             <p>Si no podés darle tránsito hasta que encuentre a su dueño comunicate con un hogar de
                                 tránsito.</p>
-                                <p>Seleccioná un radio de cercanía</p>
+                            <p>Si lo necesitás, seleccioná un radio de cercanía:</p>
                             <label for="inputEmail3" class="col-sm-2 col-form-label fw-bold">Distancia </label>
                             <div class="col-sm-3">
                                 <select class="form-select" id="state" required>
                                     <option value="">...</option>
+                                    <option>Hasta 2km</option>
                                     <option>Hasta 5km</option>
                                     <option>Hasta 10km</option>
                                     <option>Todos</option>
                                 </select>
                             </div>
-
+                            <!--
                             <div class="col-sm-12">
                                 <label for="email" class="form-label">Info de hogares:</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                     placeholder="Nombre hogar                    Direccion                      Telefono          "
                                     readonly></textarea>
-                            </div>
-                    
+                            </div>-->
+
                             <hr class="my-4">
                             <div class="container">
                                 <div class=" text-center form-check">
-                                    <input type="checkbox" class="form-check-input" id="save-info">
-                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de contacto al dueño.</label>
+                                    <input type="checkbox" class="form-check-input" id="save-info" required>
+                                    <label class="form-check-label" for="save-info">Acepto que se envíen mis datos de
+                                        contacto al dueño.</label>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a class="btn-grande" type="submit"
-                                    href="registro_encontrada_asociacion.html">PUBLICAR MASCOTA ENCONTRADA</a>
+                                <a class="btn-grande" type="submit" href="registro_encontrada_asociacion.html">PUBLICAR
+                                    MASCOTA ENCONTRADA</a>
                             </div>
                         </div>
                     </form>
@@ -536,6 +565,70 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script>
+        function iniciarMapa() {
+            var latitud = -34.5988219;
+            var longitud = -58.4204663;
+
+            coordenadas = {
+                lng: longitud,
+                lat: latitud
+            }
+
+            generarMapa(coordenadas);
+
+            function generarMapa(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapa"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+                marker.addListener('dragend', function (event) {
+                    document.getElementById("latitud").value = this.getPosition().lat();
+                    document.getElementById("longitud").value = this.getPosition().lng();
+                });
+
+
+            }
+
+            google.maps.event.addListener(map, 'click', function (event) {
+
+                marker = new google.maps.Marker({ position: event.latLng, map: map });
+
+            });
+
+            function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            }
+
+
+        };
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=iniciarMapa"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

@@ -77,7 +77,7 @@ public class PersonaConMascota {
         System.out.println ("-------------");
 
         //Agrego el rol duenio a la persona para que pueda registrar sus mascotas
-        persona.setRol(duenio);
+        persona.setRolElegido(duenio);
 
         //Registro de 1 mascota
 

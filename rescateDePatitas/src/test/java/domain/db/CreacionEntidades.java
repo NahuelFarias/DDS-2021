@@ -9,6 +9,7 @@ import domain.models.entities.personas.Contacto;
 import domain.models.entities.personas.Persona;
 import domain.models.entities.personas.TipoDeDocumento;
 import domain.models.entities.publicaciones.*;
+import domain.models.entities.rol.Administrador;
 import domain.models.entities.rol.Duenio;
 import domain.models.entities.rol.Rescatista;
 import domain.models.entities.rol.Voluntario;
@@ -143,9 +144,12 @@ public class CreacionEntidades {
         voluntario.setPersona(persona);
         rescatista = new Rescatista();
         rescatista.setPersona(persona);
+        Administrador administrador = new Administrador();
+        administrador.setPersona(persona);
         persona.addRol(duenio);
         persona.addRol(voluntario);
         persona.addRol(rescatista);
+        persona.addRol(administrador);
         persona.setRolElegido(duenio);
 
         //Agrego caracteristicas generales
@@ -162,6 +166,19 @@ public class CreacionEntidades {
         rtas2.add("Rubio");
         rtas2.add("Ninguno de estos");
         controller.crearCaracteristica("Color principal", rtas2,"general");
+
+        //Agrego preguntas para una organizacion
+        ArrayList<Pregunta> preguntasOrganizacion = new ArrayList<>();
+        Pregunta preguntaOrg1 = new Pregunta();
+        preguntaOrg1.setPregunta("Es malcriado?");
+        ArrayList<String> respuestasPreguntasOrg = new ArrayList<>();
+        respuestasPreguntasOrg.add("Sí");
+        respuestasPreguntasOrg.add("No");
+        preguntaOrg1.setRespuestas(respuestasPreguntasOrg);
+        preguntaOrg1.setOrganizacion(org1);
+        preguntasOrganizacion.add(preguntaOrg1);
+        org1.setPreguntasAdopcion(preguntasOrganizacion);
+
 
 
         List<Pregunta> caracteristicas = controller.getRepositorio().buscarPorTipo("general");
@@ -216,8 +233,10 @@ public class CreacionEntidades {
         //Seteo las preguntas
         preguntaTieneGatos= new Pregunta();
         preguntaTieneGatos.setPregunta("Tiene gatos?");
+        preguntaTieneGatos.setTipoDePregunta("pyc");
         preguntaTienePatio = new Pregunta();
         preguntaTienePatio.setPregunta("Tiene patio en su casa?");
+        preguntaTienePatio.setTipoDePregunta("pyc");
 
         //Seteo las respuestas
         respuestas = new ArrayList<>();
@@ -257,7 +276,9 @@ public class CreacionEntidades {
         preg3 = new Pregunta();
         preg4 = new Pregunta();
         preg3.setPregunta("¿Tiene Patio?");
+        preg3.setTipoDePregunta("pyc");
         preg4.setPregunta("¿Tiene un canil cerca?");
+        preg4.setTipoDePregunta("pyc");
 
         r3 = new RespuestaConcreta();
         r4 = new RespuestaConcreta();
@@ -288,11 +309,18 @@ public class CreacionEntidades {
         respuestasGenerales.add(rt2);
 
         respuestasOrganizacion = new ArrayList<>();
+        ArrayList<String> opcionesRespuesta = new ArrayList<>();
         rt1 = new RespuestaConcreta();
         preg1= new Pregunta();
         preg1.setPregunta("Raza");
-        preg1.setTipoDePregunta("Caracteristica");
+        preg1.setTipoDePregunta("asociacion");
         preg1.setVisible(true);
+        opcionesRespuesta.add("Collie");
+        opcionesRespuesta.add("Chihuahua");
+        opcionesRespuesta.add("Beagle");
+        opcionesRespuesta.add("Pug");
+        opcionesRespuesta.add("Beagle");
+        preg1.setRespuestas(opcionesRespuesta);
         preg1.setOrganizacion(org1);
         preg1.setCuestionario(cuest);
         rt1.setPregunta(preg1);
@@ -301,7 +329,7 @@ public class CreacionEntidades {
         rt2 = new RespuestaConcreta();
         preg2 = new Pregunta();
         preg2.setPregunta("Es amigable con niños?");
-        preg2.setTipoDePregunta("Caracteristica");
+        preg2.setTipoDePregunta("asociacion");
         preg2.setVisible(true);
         preg2.setOrganizacion(organizacion);
         preg2.setCuestionario(cuest);
@@ -325,8 +353,6 @@ public class CreacionEntidades {
         gestor.generarPublicacionIntencionAdoptar(persona, cuestionarioContestadoPyC);
 
     }
-
-    // TODO CORRO UN TEST Y SE GUARDA TODO LO RELACIONADO, EJEMPLO:
 
     @Test
     public void persistirUsuarioTest1(){
@@ -374,10 +400,10 @@ public class CreacionEntidades {
         EntityManagerHelper.getEntityManager().persist(org5);
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(0));
         EntityManagerHelper.getEntityManager().persist(duenio.getMascotas().get(1));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(0));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(1));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(2));
-        EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(0));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(1));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(2));
+        //EntityManagerHelper.getEntityManager().persist(gestor.getPublicaciones().get(3));
         EntityManagerHelper.commit();
 
     }

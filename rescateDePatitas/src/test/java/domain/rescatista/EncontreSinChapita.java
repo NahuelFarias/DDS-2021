@@ -46,7 +46,7 @@ public class EncontreSinChapita {
         personaRescatista.inicializar("Maria Victoria", "Sanchez", "Peru 1212,CABA", TipoDeDocumento.DNI, 3333333, LocalDate.of(1987, 9, 24),contactos);
 
         rescatista = new Rescatista();
-        personaRescatista.setRol(rescatista);
+        personaRescatista.setRolElegido(rescatista);
         //Hasta aca la creacion de un rescatista
 
         fotos = new ArrayList<>();

@@ -8,7 +8,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
         <!-- Favicon -->
-        <link href="img/favicon2.png" rel="icon" />
+        <link href="../img/favicon2.png" rel="icon" />
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
@@ -25,12 +25,13 @@
                 crossorigin="anonymous"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-        <link href="lib/animate/animate.min.css" rel="stylesheet" />
-        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+        <link href="../lib/animate/animate.min.css" rel="stylesheet" />
+        <link href="../lib/flaticon/font/flaticon.css" rel="stylesheet" />
+        <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
         <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/form-validation.css" rel="stylesheet"/>
     </head>
 
     <body>
@@ -63,31 +64,22 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-sticky navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a href="" class="navbar-brand">
-                <img src="img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
+            <a href="/" class="navbar-brand">
+                <img src="../img/logo2.svg" alt="logo" /> Rescate de Patitas</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Perdidas</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Revisar publicaciones</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="revisar_perdidas.html" class="dropdown-item">Revisar publicaciones</a>
+                            <a href="/revisar_encontrada" class="dropdown-item">Perdidas</a>
+                            <a href="/revisar_adopcion" class="dropdown-item">En adopción</a>
+
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Encontradas</a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="revisar_encontradas.html" class="dropdown-item">Revisar publicaciones</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Adopcion</a>
-                        <div class="dropdown-menu dropdown-menu-right text-right">
-                            <a href="revisar_adopciones.html" class="dropdown-item">Revisar publicaciones</a>
-                        </div>
-                    </div>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Nosotros</a>
                         <div class="dropdown-menu dropdown-menu-right text-right">
@@ -102,7 +94,6 @@
                             <div class="dropdown-menu dropdown-menu-right text-right">
                                 <a href="#" class="dropdown-item">Mi cuenta</a>
                                 <a href="mis_mascotas.html" class="dropdown-item">Mis mascotas</a>
-                                <a href="cambiar_rol" class="dropdown-item">Cambiar rol</a>
                                 <a href="/logout" method="post" class="dropdown-item">Cerrar sesion</a>
                             </div>
                         {{else}}
@@ -141,7 +132,7 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <img src="img/logo2.svg" alt="logo" width="50" height="50">Rescate de patitas
+                            <img src="../img/logo2.svg" alt="logo" width="50" height="50">Rescate de patitas
                         </h6>
                         <p>
                             Somos el nexo entre quienes aman a los animales.
@@ -239,9 +230,117 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script>
+        function iniciarMapa() {
+
+            var element =  document.getElementById('mapa');
+            if (element != null){
+                var latitud = -34.5988219;
+                var longitud = -58.4204663;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapa(coordenadas);
+            }
+
+            var element =  document.getElementById('mapaEncontrada');
+            if (element != null){
+                var nodo1 = document.getElementById('latEncontrada');
+                var nodo2 = document.getElementById('longEncontrada');
+
+                latitud = nodo1.textContent;
+                longitud = nodo2.textContent;
+
+                coordenadas = {
+                    lng: longitud,
+                    lat: latitud
+                }
+
+                generarMapaEncontrada(coordenadas);
+            }
+
+            function generarMapa(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapa"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+                marker.addListener('dragend',function(event){
+                    document.getElementById("latitud").value = this.getPosition().lat();
+                    document.getElementById("longitud").value = this.getPosition().lng();
+                });
+
+            }
+
+            function generarMapaEncontrada(coordenadas) {
+                let marker;
+
+                var mapa = new google.maps.Map(document.getElementById("mapaEncontrada"), {
+                    zoom: 15,
+                    center: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                const svgMarker = {
+                    fillColor: "blue",
+                    fillOpacity: 0.6,
+                    strokeWeight: 0,
+                    rotation: 0,
+                    scale: 2,
+                    anchor: new google.maps.Point(15, 30),
+                };
+
+                marker = new google.maps.Marker({
+                    icon: svgMarker,
+                    map: mapa,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+                });
+
+                marker.addListener("click", toggleBounce);
+
+            }
+
+            function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            }
+
+        };
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi7Zada9BftSlrcUvO-8WhuC3EIQyYC9o&callback=iniciarMapa"></script>
+
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/form-validation.js"></script>
     </body>
 
     </html>

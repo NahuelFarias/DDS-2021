@@ -13,6 +13,7 @@
             $('.back-to-top').fadeOut('slow');
         }
     });
+
     $('.back-to-top').click(function () {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
@@ -27,7 +28,6 @@
             $('.navbar').removeClass('nav-sticky');
         }
     });
-    
     
     // Dropdown on mouse hover
     $(document).ready(function () {
@@ -46,6 +46,20 @@
         $(window).resize(toggleNavbarMethod);
     });
 
+    //Ingreso de multiples contactos
+    $('#mostrarContacto2').click(function() {
+        $('#contacto2').toggle('slow', function() {
+          // Animation complete.
+        });
+        return false;
+      });
+
+      $('#mostrarContacto3').click(function() {
+        $('#contacto3').toggle('slow', function() {
+          // Animation complete.
+        });
+        return false;
+      });
 
     // Asociaciones carousel
     $(".asoc-carousel").owlCarousel({

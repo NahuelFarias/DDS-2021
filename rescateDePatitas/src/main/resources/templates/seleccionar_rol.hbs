@@ -12,7 +12,7 @@
                     <div class="row">
                         {{#each roles}}
                             {{#eq tipo "Voluntario"}}
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
                                     <div class="rol-item">
                                         <a href="/rol_elegido_voluntario" method="post">
                                             <div class="service-icon">
@@ -25,8 +25,8 @@
                                 </div>
                             {{/eq}}
 
-                            {{#eq "Dueño" tipo}}
-                                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
+                            {{#eq "Duenio" tipo}}
+                                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                                     <div class="rol-item">
                                         <a href="/rol_elegido_duenio" method="post">
                                             <div class="service-icon">
@@ -40,7 +40,7 @@
                             {{/eq}}
 
                             {{#eq tipo "Rescatista"}}
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
                                     <div class="rol-item">
                                         <a href="/rol_elegido_rescatista" method="post">
                                         <div class="service-icon">
@@ -52,44 +52,19 @@
                                 </div>
                             {{/eq}}
 
-                            {{#eq nombre "Administrador"}}
-                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                            {{#eq tipo "Administrador"}}
+                                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
                                     <div class="rol-item">
-                                        <a href="#">
+                                        <a href="/rol_elegido_admin" method="post">
                                             <div class="service-icon">
                                                 <i class="fas fa-user-cog"></i>
                                             </div>
-                                            <h3>Administrador</h3>
+                                            <h3>Admin</h3>
                                         </a>
                                     </div>
                                 </div>
                             {{/eq}}
                         {{/each}}
-                            <!-- Por ahora lo comento
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.0s">
-                            <div class="rol-item">
-                                <a href="/">
-                                    <div class="service-icon">
-                                        <i class="{{classImage}}"></i>
-                                    </div>
-                                    <h3>{{tipo}}</h3>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="rol-item">
-                                <a href="index_log_voluntario.html">
-                                    <div class="service-icon">
-                                        <i class="fas fa-hands-helping"></i>
-                                    </div>
-                                    <h3>Solicita ser ayudante! 💘</h3>
-                                    <p>Postulate para ser voluntario de una organizacion</p>
-                                </a>
-                            </div>
-                        </div>
-                        -->
                     </div>
                 </div>
             <!-- Service End -->
@@ -98,4 +73,23 @@
     </div>
 {{/partial}}
 
-{{> layout.hbs}}
+{{#eq rol null}}
+
+    {{> layout.hbs}}
+
+{{/eq}}
+{{#eq rol "Duenio"}}
+
+    {{> layout_duenio.hbs}}
+
+{{/eq}}
+{{#eq rol "Voluntario"}}
+
+    {{> layout_voluntario.hbs}}
+
+{{/eq}}
+{{#eq rol "Rescatista"}}
+
+    {{> layout_rescatista.hbs}}
+
+{{/eq}}

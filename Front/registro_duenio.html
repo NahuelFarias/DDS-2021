@@ -250,60 +250,174 @@
                             <h4 class="mb-3 wavyp">Tus contactos:</h4>
 
                             <div class="row g-3">
-
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Ingrese un nombre válido.
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
-                                        required>
-                                    <div class="invalid-feedback">
-                                        Ingrese un apellido válido.
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">Número celular</label>
-                                    <input type="text" class="form-control" id="celular" placeholder="+541123456789"
-                                        value="" required>
-                                    <div class="invalid-feedback">
-                                        Ingrese un número de celular válido.
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Correo Electrónico</label>
-                                    <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
-                                        value="" required>
-                                    <div class="invalid-feedback">
-                                        Ingrese un correo electrónico válido.
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <label for="lastName" class="form-label">Medio preferido</label>
-                                    <div class="form-check">
-                                        <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
-                                            checked required>
-                                        <label class="form-check-label" for="email">Email</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="" value=""
                                             required>
-                                        <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                                        <div class="invalid-feedback">
+                                            Ingrese un nombre válido.
+                                        </div>
                                     </div>
-
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un apellido válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Número celular</label>
+                                        <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un número de celular válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Correo Electrónico</label>
+                                        <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un correo electrónico válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+                                        <label for="lastName" class="form-label">Medio preferido</label>
+                                        <div class="form-check">
+                                            <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="email">Email</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                                        </div>
+    
+                                    </div>
+                                    <div class="col-sm-12 text-right">
+                                        <button id="mostrarContacto2" class="btn-mis" name="answer" onclick="ShowDiv()">+ Otro contacto</button>
+                                    
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-right">
-                                    <a class="btn-mis" type="submit">+ Agregar</a>
+    
+                                <div class="row g-3" style="display:none;" id="contacto2">
+    
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un nombre válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un apellido válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Número celular</label>
+                                        <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un número de celular válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Correo Electrónico</label>
+                                        <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un correo electrónico válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+                                        <label for="lastName" class="form-label">Medio preferido</label>
+                                        <div class="form-check">
+                                            <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="email">Email</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                                        </div>
+    
+                                    </div>
+                                    <div class="col-sm-12 text-right">
+                                        <button id="mostrarContacto3" class="btn-mis">+ Otro contacto</button>
+                                    </div>
                                 </div>
+    
+                                <div class="row g-3" style="display:none;" id="contacto3">
+    
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un nombre válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un apellido válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Número celular</label>
+                                        <input type="text" class="form-control" id="celular" placeholder="+541123456789"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un número de celular válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Correo Electrónico</label>
+                                        <input type="text" class="form-control" id="email" placeholder="nombre@correo.com"
+                                            value="" required>
+                                        <div class="invalid-feedback">
+                                            Ingrese un correo electrónico válido.
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+                                        <label for="lastName" class="form-label">Medio preferido</label>
+                                        <div class="form-check">
+                                            <input id="credit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="email">Email</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="debit" name="mediopreferido" type="radio" class="form-check-input"
+                                                required>
+                                            <label class="form-check-label" for="whatsapp">WhatsApp</label>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
 

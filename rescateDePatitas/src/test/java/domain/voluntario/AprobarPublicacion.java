@@ -27,7 +27,7 @@ public class AprobarPublicacion {
         publicacion2 = new PublicacionIntencionAdopcion();
         publicacion3 = new PublicacionEnAdopcion();
         voluntario = new Voluntario();
-        persona.setRol(voluntario);
+        persona.setRolElegido(voluntario);
 
     }
 

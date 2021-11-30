@@ -8,13 +8,9 @@ import java.util.Optional;
 public class RepositorioDeMascotas extends RepositorioGenerico<Mascota>{
     public List<Mascota> mascotas;
 
+    //TODO: ESTO ESTABA COMO PROTECTED, LO CAMBIE PARA PODER CREAR EL REPO EN EL CONTROLER DE PUBLICACIONES EN ADOPCION. RECORDAR POR SI ROMPE.
     public RepositorioDeMascotas(DAO<Mascota> dao) {
         super(dao);
     }
 
-//    public Optional<Mascota> buscar(Integer idMascota) {
-//        return this.mascotas.stream()
-//                .filter(n -> n.getId() == idMascota)
-//                .findFirst();
-//    }
 }
