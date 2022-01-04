@@ -374,7 +374,7 @@ public class Persona extends Persistente {
     }
 
     public void notificarSuscripcion(int publicacion_id) {
-        contactos.forEach(contacto -> contacto.notificarContacto("generamos una publicación para vos como posible adoptante."+"\n"+ "Podés darle de baja ingresando en: " + "localhost:9000/adoptantes/" + publicacion_id + "!\n"
+        contactos.forEach(contacto -> contacto.notificarContacto("generamos una publicación para vos como posible adoptante."+"\n"+ "Podés darle de baja ingresando en: " + "https://patitasalrescate04.herokuapp.com/adoptantes/" + publicacion_id + "!\n"
         ));
 
     }

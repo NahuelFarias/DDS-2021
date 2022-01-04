@@ -137,7 +137,7 @@ public class MascotaController {
 
     private void asignarAtributosA(Mascota mascota, Request request) throws IOException {
 
-        File uploadDir = new File("rescateDePatitas/src/main/resources/public/img/fotosmascotas");
+        File uploadDir = new File("/tmp");
         //uploadDir.mkdir();
         Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
@@ -149,7 +149,7 @@ public class MascotaController {
 
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
-        foto.setURLfoto(tempFile.toString().replace("rescateDePatitas\\src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setURLfoto(tempFile.toString().replace("/tmp\\", "tmp/"));
         foto.setMascota(mascota);
         fotos.add(foto);
         mascota.setFotos(fotos);
