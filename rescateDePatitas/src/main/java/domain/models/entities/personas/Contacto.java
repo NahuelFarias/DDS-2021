@@ -87,7 +87,7 @@ public class Contacto extends Persistente {
                 this.metodoDeEnvio = new MetodoDeEnvio(notificadorWhatsapp);
                 break;
             case EMAIL:
-                AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("rescateDePatitas/src/main/resources/public/config/configuration.prop",
+                AdapterJavaMailEmail adapterJavaMailEmail = new AdapterJavaMailEmail("patitasalrescate04/src/main/resources/public/config/configuration.prop",
                         "Notificación de Patitas ✨");
                 NotificadorEmail notificadorEmail = new NotificadorEmail(adapterJavaMailEmail);
                 MetodoDeEnvio metodoDeEnvioEmail = new MetodoDeEnvio(notificadorEmail);

@@ -205,7 +205,7 @@ public class PublicacionesEncontradasController {
 
     private void asignarAtributosA(PublicacionMascotaEncontrada publi, Request request) throws IOException {
         //Fotos
-        File uploadDir = new File("rescateDePatitas/src/main/resources/public/img/fotosmascotas");
+        File uploadDir = new File("/tmp");
         //uploadDir.mkdir();
         Path tempFile = Files.createTempFile(uploadDir.toPath(), request.queryParams("nombre"), ".jpg");
 
@@ -219,7 +219,7 @@ public class PublicacionesEncontradasController {
         DatosMascotaEncontrada datosMascota = new DatosMascotaEncontrada();
         List<Foto> fotos = new ArrayList<>();
         Foto foto = new Foto();
-        foto.setURLfoto(tempFile.toString().replace("rescateDePatitas\\src\\main\\resources\\public\\img\\fotosmascotas\\", "img/fotosmascotas/"));
+        foto.setURLfoto(tempFile.toString().replace("/tmp\\", "tmp/"));
         foto.setDatosMascotaEncontrada(datosMascota);
         fotos.add(foto);
         datosMascota.setFotos(fotos);

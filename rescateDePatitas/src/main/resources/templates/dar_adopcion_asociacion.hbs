@@ -14,7 +14,7 @@
                         <form class="needs-validation form-" action="/dar_adopcion_asociacion" method="post" novalidate>
                             <div class="col-sm-6">
                                 {{#each preguntas}}
-                                    <label for="general" class="form-label">{{preguntaMascota}}</label>
+                                    <label for="general" class="form-label">{{pregunta}}</label>
                                     <select class="form-select" id="state" name="respuestaOrg{{@index}}" required>
                                         <option value="" selected="selected">...</option>
                                         {{#each respuestas}}

@@ -14,9 +14,9 @@
             <property name="hibernate.archive.autodetection" value="class"/>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/db_patitas" />
-            <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://w3epjhex7h2ccjxx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/gyo4r7f20z9opqyz" />
+            <property name="hibernate.connection.username" value="lihcufhycvz9bjto" />
+            <property name="hibernate.connection.password" value="v9i3v2jvqzlw3shn" />
             <!-- Cambiar el valor de pass-->
 
             <property name="hibernate.show_sql" value="true" />
